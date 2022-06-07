@@ -28,3 +28,4 @@ Console.WriteLine("hello world!");
 //Geras komentaras pvz:
 //Išvesti Hello World! tai mano pirmoji veikianti programa
 Console.WriteLine("hello world!");
+
