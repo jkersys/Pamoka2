@@ -40,7 +40,7 @@ Console.ReadKey();
 
 Console.WriteLine("\n 2. Apverskite pirmą sulpelį ir išveskite visą Tower of Hanoi\n");
 
-//apverčiam piramdę su kintamaisiais ir palygiuojam, buvo galima redaguot tik pirmą stulp, bet kol mokaus ir pirmą kartą gyvenime koduoju gerai ir taip, jeigu ateityje naudosiu kaip pavizdį gerai pasigalvot ties kiekvienu veiksmu...
+//apverčiam piramdę su kintamaisiais ir palygiuojam, buvo galima redaguot tik pirmą stulp, bet kol mokaus ir pirmą kartą rašau kodą bus gerai taip, jeigu ateityje naudosiu kaip pavizdį gerai apmastyt veiksmus, kad nebūtų perteklinių.
 stulp1_eil1 = " \u0023\u0023\u0023\u0023\u0023|\u0023\u0023\u0023\u0023\u0023";
 stulp1_eil2 = "   \u0023\u0023\u0023|\u0023\u0023\u0023";
 stulp1_eil3 = "    \u0023\u0023|\u0023\u0023";
@@ -164,6 +164,7 @@ Console.WriteLine("\n\n\n------tęsti-------\n");
 Console.ReadKey();
 
 Console.WriteLine("\n 7.	Į visas 2stulp eilutes įdėkite tokį pat elementą kaip yra 3stup 5eil, ir išveskite Tower of Hanoi\n");
+
 //vėl kintamieji keičiami ir pasilygiuojam
 stulp2_eil1 = "         \u0023\u0023|\u0023\u0023";
 stulp2_eil2 = "         \u0023\u0023|\u0023\u0023";
