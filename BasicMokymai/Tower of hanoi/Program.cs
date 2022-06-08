@@ -243,6 +243,8 @@ Console.ReadKey();
 
 Console.WriteLine("\n 10.	paprašykite naudotojo nupiešti 1 sulpelio 1 eilutę. Išveskite visą Tower of Hanoi su perpiešta pirma eilute ");
 
+Console.WriteLine("\nNupieškite pirmo stulpelio pirmą eilutę\n");
+
 //piešimo įdėjimas
 stulp1_eil1 = Console.ReadLine();
 
