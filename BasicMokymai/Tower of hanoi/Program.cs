@@ -243,12 +243,12 @@ Console.ReadKey();
 
 Console.WriteLine("\n 10.	paprašykite naudotojo nupiešti 1 sulpelio 1 eilutę. Išveskite visą Tower of Hanoi su perpiešta pirma eilute ");
 
-Console.WriteLine("\nNupieškite pirmo stulpelio pirmą eilutę\n");
+Console.WriteLine("\nNupieškite pirmo stulpelio pirmą eilutę");
 
 //piešimo įdėjimas
 stulp1_eil1 = Console.ReadLine();
 
-
+Console.WriteLine();
 Console.WriteLine($"1eil. {stulp1_eil1}{stulp2_eil1}{stulp3_eil1}");
 Console.WriteLine($"2eil. {stulp1_eil2}{stulp2_eil2}{stulp3_eil2}");
 Console.WriteLine($"3eil. {stulp1_eil3}{stulp2_eil3}{stulp3_eil3}");
