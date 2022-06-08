@@ -219,7 +219,7 @@ Console.WriteLine("\n\n\n------tęsti-------\n");
 //pasidarom kad po paspaudomo atidarytų kita veiksmą
 Console.ReadKey();
 
-Console.WriteLine("\n 9.	pakeiskite visų elementų dizainą iš # į kabutes ");
+Console.WriteLine("\n 9.	pakeiskite visų elementų dizainą iš # į kabutes\n");
 
 //Groteles pakeičiam kabutėm.
 stulp3_eil1 = "      |";
