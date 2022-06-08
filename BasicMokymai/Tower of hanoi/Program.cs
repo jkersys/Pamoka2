@@ -123,9 +123,9 @@ Console.WriteLine("\n 5. Į 1stulp 5eil įdėkite 4 dalių elementą, 2sutup 5ei
 
 //Vėl keičiu kintamuosiu ir sulygiuoju
 stulp1_eil5 = " \u0023\u0023\u0023\u0023\u0023I\u0023\u0023\u0023\u0023\u0023";
-stulp2_eil5 = "    \u0023\u0023\u0023I\u0023\u0023\u0023";
-stulp3_eil4 = "           \u0023I\u0023";
-stulp3_eil5 = "       \u0023\u0023I\u0023\u0023";
+stulp2_eil5 = "    \u0023\u0023\u0023|\u0023\u0023\u0023";
+stulp3_eil4 = "           \u0023|\u0023";
+stulp3_eil5 = "       \u0023\u0023|\u0023\u0023";
 
 Console.WriteLine($"1eil. {stulp1_eil1}{stulp2_eil1}{stulp3_eil1}");
 Console.WriteLine($"2eil. {stulp1_eil2}{stulp2_eil2}{stulp3_eil2}");
