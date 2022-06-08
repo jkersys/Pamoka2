@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringKintamieji", "StringK
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tower of hanoi", "Tower of hanoi\Tower of hanoi.csproj", "{B81D1394-A424-4E2A-B537-1923508FC4B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tower of hanoi užduotis", "Tower of hanoi užduotis\Tower of hanoi užduotis.csproj", "{1595BEFF-A1D9-49E6-AD6B-FD0187C930FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pabandymai", "Tower of hanoi užduotis\Pabandymai.csproj", "{1595BEFF-A1D9-49E6-AD6B-FD0187C930FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
