@@ -1,14 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 //Console.WriteLine("Hello, World!");
 
-//string grotelės = "#";
-//string brūkšnys = "|";
 
-//Console.WriteLine("1eil. \n2eil. \n3eil. \n4eil.");
-//Console.WriteLine("      ----1stulp----2stulp----3stulp----4stulp----");
-
-//string stulpeliai =
-
+//prisiskiriam kintamuosius, nesigauna padėt |, deda lietuviškas raides, kaip alternatyvą naudoju I...
 string stulp1_eil1 = "      I";
 string stulp2_eil1 = "            I"; 
 string stulp3_eil1 = "            I";
@@ -39,6 +33,7 @@ Console.WriteLine("      ----1sulp-------2stulp-------3stulp----");
 
 Console.WriteLine("\n\n\n------tęsti-------\n");
 
+//pasidarom kad po enter veiktų
 Console.WriteLine(Console.ReadKey().KeyChar);
 
 stulp1_eil1 = " \u0023\u0023\u0023\u0023\u0023I\u0023\u0023\u0023\u0023\u0023";
@@ -240,18 +235,3 @@ Console.WriteLine("      ----1sulp-------2stulp-------3stulp----");
 
 
 
-//Console.WriteLine(stulp3_eil1 + stulp2_eil1 + stulp3_eil1);
-
-
-
-
-
-
-
-//onsole.WriteLine(@"
-//        |               |               |
-//      #|#              |               |
-//     ##|##             |               |
-//    ###|###            |               |
-//  ####|####           |               |
-//" );
