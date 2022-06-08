@@ -2,11 +2,11 @@
 //Console.WriteLine("Hello, World!");
 
 
-//prisiskiriam kintamuosius, nesigauna padėt |, deda lietuviškas raides, kaip alternatyvą naudoju I...
+//prisiskiriam kintamuosius, sulygiuojam
 string stulp1_eil1 = "      |";
 string stulp2_eil1 = "            |"; 
 string stulp3_eil1 = "            |";
-string stulp1_eil2 = "     #|#";
+string stulp1_eil2 = "     \u0023|\u0023";
 string stulp2_eil2 = "           |";
 string stulp3_eil2 = "            |";
 string stulp1_eil3 = "    \u0023\u0023|\u0023\u0023";
@@ -36,7 +36,7 @@ Console.WriteLine("\n\n\n------tęsti-------\n");
 //pasidarom kad po paspaudomo atidarytų kita veiksmą
 Console.ReadKey();
 
-//apverčiam kintamuosius
+//apverčiam kintamuosius, palygiuojam
 stulp1_eil1 = " \u0023\u0023\u0023\u0023\u0023|\u0023\u0023\u0023\u0023\u0023";
 stulp1_eil2 = "   \u0023\u0023\u0023|\u0023\u0023\u0023";
 stulp1_eil3 = "    \u0023\u0023|\u0023\u0023";
@@ -163,7 +163,7 @@ Console.WriteLine("\n\n\n------tęsti-------\n");
 Console.ReadKey();
 
 Console.WriteLine("\n 7.	Į visas 2stulp eilutes įdėkite tokį pat elementą kaip yra 3stup 5eil, ir išveskite Tower of Hanoi\n");
-//vėl kintamieji keičiami
+//vėl kintamieji keičiami ir pasilygiuojam
 stulp2_eil1 = "         \u0023\u0023|\u0023\u0023";
 stulp2_eil2 = "         \u0023\u0023|\u0023\u0023";
 stulp2_eil3 = "         \u0023\u0023|\u0023\u0023";
@@ -253,5 +253,5 @@ Console.WriteLine($"4eil. {stulp1_eil4}{stulp2_eil4}{stulp3_eil4}");
 Console.WriteLine($"5eil. {stulp1_eil5}{stulp2_eil5}{stulp3_eil5}");
 Console.WriteLine("      ----1sulp-------2stulp-------3stulp----");
 
-
+//Visumoj kodas atrodo baisiai ir neaišku ar teisingas, bet lyg ir veikia
 
