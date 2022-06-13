@@ -82,8 +82,33 @@ short s1 = 30_000;
 short s2 = 30_000;
 short s3 = (short)(s1 + s2);
 Console.WriteLine($"s3={s3}");
-checked
+/*checked
 {
     s3 = (short)(s1 + s2);
 }
 
+
+/*PARAŠYTI PROGRAMĄ, KURIOJE VARTOTOJO PRAŠOMA ĮVESTI 2 SKAIČIUS.PROGRAMA TURI IŠVESTI
+• SKAIČIŲ SUMĄ
+• SKAIČIŲ SKIRTUMĄ
+• SANDAUGĄ
+• DALYBĄ
+*/
+
+
+Console.WriteLine("įveskite 1 skaičių");
+int skaicius1 = int.Parse(Console.ReadLine());
+Console.WriteLine("įveskite 2 skaičių");
+int skaicius2 = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine($"{skaicius1}+{skaicius2}={skaicius1+skaicius2}");
+Console.WriteLine($"{skaicius1}-{skaicius2}={skaicius1-skaicius2}");
+Console.WriteLine($"{skaicius1}*{skaicius2}={skaicius1*skaicius2}");
+Console.WriteLine($"{skaicius1}/{skaicius2}={skaicius1/skaicius2}");
+
+//PARAŠYTI PROGRAMĄ, 3 SKAIČIUS. PROGRAMA TURI IŠVESTI ŠIŲ SKAIČIŲ VIDURKĮ
+
+int skaicius11 = int.Parse(Console.ReadLine());
+int skaicius22 = int.Parse(Console.ReadLine());
+int skaicius33 = int.Parse(Console.ReadLine());
+
+Console.WriteLine("vidurkis = {0}", (double)(skaicius11+skaicius22+skaicius33) / 3);
