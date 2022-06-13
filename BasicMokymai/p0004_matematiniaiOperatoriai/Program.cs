@@ -72,3 +72,18 @@ Console.WriteLine($" a= {a}");
 Console.WriteLine($" {a==double.PositiveInfinity}");
 Console.WriteLine($" {a == double.NegativeInfinity}");
 Console.WriteLine($"a - 500 = {a -500}");
+
+double a1 = double.NaN;
+Console.WriteLine($" begalybe / begalybe ={a / double.PositiveInfinity}");
+
+//****** Overflow and Underflow
+
+short s1 = 30_000;
+short s2 = 30_000;
+short s3 = (short)(s1 + s2);
+Console.WriteLine($"s3={s3}");
+checked
+{
+    s3 = (short)(s1 + s2);
+}
+
