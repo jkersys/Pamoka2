@@ -5,17 +5,19 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicMokymai", "BasicMokymai\BasicMokymai.csproj", "{E768EFFA-ABAA-48FD-9B65-C28B14CF45A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "komentarai", "komentarai\komentarai.csproj", "{4D415204-4AAD-450E-A188-1821B581C449}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "komentarai", "komentarai\komentarai.csproj", "{4D415204-4AAD-450E-A188-1821B581C449}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleUžduotys", "Užduotys\ConsoleUžduotys.csproj", "{A4EE8379-F26F-4F2B-8DB0-C0FF64B8A85B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleUžduotys", "Užduotys\ConsoleUžduotys.csproj", "{A4EE8379-F26F-4F2B-8DB0-C0FF64B8A85B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringKintamieji", "StringKintamieji\StringKintamieji.csproj", "{14596A2A-A1FF-4C8C-A50E-B369280D4176}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringKintamieji", "StringKintamieji\StringKintamieji.csproj", "{14596A2A-A1FF-4C8C-A50E-B369280D4176}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tower of hanoi", "Tower of hanoi\Tower of hanoi.csproj", "{B81D1394-A424-4E2A-B537-1923508FC4B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tower of hanoi", "Tower of hanoi\Tower of hanoi.csproj", "{B81D1394-A424-4E2A-B537-1923508FC4B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pabandymai", "Tower of hanoi užduotis\Pabandymai.csproj", "{1595BEFF-A1D9-49E6-AD6B-FD0187C930FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pabandymai", "Tower of hanoi užduotis\Pabandymai.csproj", "{1595BEFF-A1D9-49E6-AD6B-FD0187C930FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3pamokaKintajiemi", "3pamokaKintajiemi\3pamokaKintajiemi.csproj", "{0A8BD58E-448C-41AA-9072-4C758FE6EB2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3pamokaKintajiemi", "3pamokaKintajiemi\3pamokaKintajiemi.csproj", "{0A8BD58E-448C-41AA-9072-4C758FE6EB2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P004_TipuKonversijos", "P004_TipuKonversijos\P004_TipuKonversijos.csproj", "{60597D30-5F9F-4A7C-A847-F9BBE17A0B81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{0A8BD58E-448C-41AA-9072-4C758FE6EB2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A8BD58E-448C-41AA-9072-4C758FE6EB2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A8BD58E-448C-41AA-9072-4C758FE6EB2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60597D30-5F9F-4A7C-A847-F9BBE17A0B81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60597D30-5F9F-4A7C-A847-F9BBE17A0B81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60597D30-5F9F-4A7C-A847-F9BBE17A0B81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60597D30-5F9F-4A7C-A847-F9BBE17A0B81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
