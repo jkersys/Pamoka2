@@ -78,8 +78,10 @@
             Console.WriteLine($" skaiciusString + 1 = {skaiciusString + 1}");
             Console.WriteLine($" skaiciusIntParsintas + 1 = {skaiciusIntParsintas + 1}");
 
-            int skaiciusIntParsintas1 = int.Parse(skaiciusDidelisString); //lužta
-            int tekstasIntParsintas = int.Parse(tekstas); //klaida
+            //int skaiciusIntParsintas1 = int.Parse(skaiciusDidelisString); //lužta
+            //int tekstasIntParsintas = int.Parse(tekstas); //klaida
+
+
         }
     }
 }
