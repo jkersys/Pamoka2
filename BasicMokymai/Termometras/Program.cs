@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+           /* Console.WriteLine("Hello, World!");
 
             Console.WriteLine("įvesti 1 skaičių - temperatūrą pagal Celsijų");
             var celcius = Convert.ToDouble(Console.ReadLine());
@@ -62,28 +62,50 @@
             double f17 = (c17 * 9) / 5 + 32;
 
 
+            
+
+            var b1 = celcius >= c1;
+            var b2 = celcius >= c2;
+            var b3 = celcius >= c3;
+            var b4 = celcius >= c4;
+            var b5 = celcius >= c5;
+            var b6 = celcius >= c6;
+            var b7 = celcius >= c7;
+            var b8 = celcius >= c8;
+            var b9 = celcius >= c9;
+            var b10 = celcius >= c10;
+            var b11 = celcius >= c11;
+            var b12 = celcius >= c12;
+            var b13 = celcius >= c13;
+            var b14 = celcius >= c14;
+            var b15 = celcius >= c15;
+            var b16 = celcius >= c16;
+            var b17 = celcius >= c17;
+
+
+
 
 
 
             Console.WriteLine($" |--------------------|");
             Console.WriteLine($" |   ^F     _    ^C   |");
-            Console.WriteLine($" |  {f1} - | | - {c1} |");
-            Console.WriteLine($" |  {f2} - | | - {c2} |");
-            Console.WriteLine($" |  {f3} - | | - {c3} |");
-            Console.WriteLine($" |  {f4} - | | - {c4} |");
-            Console.WriteLine($" |  {f5} - | | - {c5} |");
-            Console.WriteLine($" |  {f6} - | | - {c6} |");
-            Console.WriteLine($" |  {f7} - | | - {c7} |");
-            Console.WriteLine($" |  {f8} - | | - {c8} |");
-            Console.WriteLine($" |  {f9} - | | - {c9} |");
-            Console.WriteLine($"|  {f10} - | | - {c10} |");
-            Console.WriteLine($"|  {f11} - | | - {c11} |");
-            Console.WriteLine($"|  {f12} - | | - {c12} |");
-            Console.WriteLine($"|  {f13} - | | - {c13} |");
-            Console.WriteLine($"|  {f14} - | | - {c14} |");
-            Console.WriteLine($"|  {f15} - | | - {c15} |");
-            Console.WriteLine($"|  {f16} - | | - {c16} |");
-            Console.WriteLine($"|  {f17} - | | - {c17} |");
+            Console.WriteLine($" |  {f1} - |{b1}| - {c1} |");
+            Console.WriteLine($" |  {f2} - |{b2}| - {c2} |");
+            Console.WriteLine($" |  {f3} - |{b3}| - {c3} |");
+            Console.WriteLine($" |  {f4} - |{b4}| - {c4} |");
+            Console.WriteLine($" |  {f5} - |{b5}| - {c5} |");
+            Console.WriteLine($" |  {f6} - |{b6}| - {c6} |");
+            Console.WriteLine($" |  {f7} - |{b7}| - {c7} |");
+            Console.WriteLine($" |  {f8} - |{b8}| - {c8} |");
+            Console.WriteLine($" |  {f9} - |{b9}| - {c9} |");
+            Console.WriteLine($"|  {f10} - |{b10}| - {c10} |");
+            Console.WriteLine($"|  {f11} - |{b11}| - {c11} |");
+            Console.WriteLine($"|  {f12} - |{b12}| - {c12} |");
+            Console.WriteLine($"|  {f13} - |{b13}| - {c13} |");
+            Console.WriteLine($"|  {f14} - |{b14}| - {c14} |");
+            Console.WriteLine($"|  {f15} - |{b15}| - {c15} |");
+            Console.WriteLine($"|  {f16} - |{b16}| - {c16} |");
+            Console.WriteLine($"|  {f17} - |{b17}| - {c17} |");
             Console.WriteLine($"|         '***`       |");
             Console.WriteLine($"|        (*****)      |");
             Console.WriteLine($"|         `---'       |");
@@ -135,6 +157,54 @@ rezultatas gali atrodyti taip:
 
             */
 
+
+
+
+            /*
+ PARAŠYTI PROGRAMĄ KURI PRAŠO ĮVESTI ATSTUMĄ (KILOMENTRAIS) TARP TAŠKŲ A IR B IR DVIEJŲ TRANSPORTO PRIEMONIŲ GREITĮ (KM/H). 
+ VIENA TRANSPORTO PRIEMONĖS PRADEDA VAŽIUOTI IŠ A, KITA IŠ B.STARTUOJA VIENU METU.
+  - PASKAIČIUOTI ATSTUMĄ NUO A IKI VIETOS KURIOJE TRASPORTO PRIEMONĖS SUTITIKS METRAIS. 
+  - PASKAIČIUOTI LAIKĄ KADA TRASPORTO PRIEMONĖS SUSITIKS SEKUNDĖMIS. 
+  - PASKAIČIUOTI LAIKĄ, KADA TRASPORTUO PRIEMONĖS PASIEKS GALIUTINIUS TAŠKUS MINUTĖMIS.
+  - PASKAIČIUOTI KIEK GRAMŲ CO2 IŠSKYRĖ ABI TRASPORTO PIEMONĖS KARTU SUDĖJUS. CO2 NORMA YRA 95 g/km.
+  - GRAFIŠKAI PAVAIZDUOTI KELIĄ NUO A IKI B SUSKIRSTYTĄ Į 20 LYGIŲ SEGMENTŲ (TARKIME ĮVESTAS ATSTUMAS YRA 100KM, TUOMENT TURĖSIME 20 SEGMENTU PO 5KM).  
+    A) PARODYTI VISO KELIO ILGĮ KM
+    B) PARODYTI SEGMENTO ILGĮ KM
+    C) PARODYTI KURIAME SEGMENTE TRASPORTO PREMONĖS SUTIKS IR ATSTUMĄ IKI SUSITIKIMO (TAŠKAS V)
+    D) PARODYTI ABIEJŲ TRANSPORTO PRIEMONIŲ VAŽIAVIMO TRUKMĘ
+    REZULTATAS GALI ARTODYTI TAIP:
+   viso 100 km
+ |--------------------------------------------------------------------------------------------------------------------------------------------|
+ 0      5     10     15     20      25     30     35     40     45     50     55     60     65     70     75     80     85     90     95    100
+ |      |      |      |      |       |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+_A______|______|______|______|___V___|______|______|______|______|______|______|______|______|______|______|______|______|______|______|______B_
+ |-------------------------------|                                                                                                                                                        
+   susitikimo vieta 23,1 km
+   susitikimo laikas po 0,87 val.
+ | >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   200 min >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|
+ |<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   60 min <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< |
+ */
+
+            Console.WriteLine("Iveskite atstumą tarp A ir B");
+            var atstumas = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Iveskite A transporto priemonės greitį");
+            var atransportoPriemone = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Iveskite A transporto priemonės greitį");
+            var btransportoPriemone = Convert.ToDouble(Console.ReadLine());
+
+
+            
+            var metraiKilometruose = 1000;
+            var minutesvalandoje = 60;
+            var sekundesValandoje = 3600;
+            var laikassusutikimoLaikas = atstumas / (atransportoPriemone + btransportoPriemone);
+            var CO2 = 95;
+
+            Console.WriteLine($"Transporto priemonės susitiks nuvažiavus {atransportoPriemone * laikassusutikimoLaikas * metraiKilometruose} metrų(us)");
+            Console.WriteLine($"Transporto priemonės susitiks praėjus {atstumas / (atransportoPriemone + btransportoPriemone) * sekundesValandoje} sekundėms(ių)");
+            Console.WriteLine($"A transporto priemonė galutinį tašką pasieks praėjus {atstumas / atransportoPriemone * minutesvalandoje} minutėms");
+            Console.WriteLine($"B transporto priemonė galutinį tašką pasieks praėjus {atstumas / btransportoPriemone * minutesvalandoje} minutėms");
+            Console.WriteLine($"Transporto priemonės kartu išskyrė {atstumas * 2 * CO2 } gramus CO2");
 
 
 
