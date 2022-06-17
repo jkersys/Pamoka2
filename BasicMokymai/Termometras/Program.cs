@@ -4,27 +4,39 @@
     {
         static void Main(string[] args)
         {
-           /* Console.WriteLine("Hello, World!");
+            Console.WriteLine("Hello, World!");
 
+            //Paprašom įvesti skaičių kuris reiks Celcijaus laipsnius
             Console.WriteLine("įvesti 1 skaičių - temperatūrą pagal Celsijų");
             var celcius = Convert.ToDouble(Console.ReadLine());
+
+            //Celcijų paverčiam farenheitu
             var farenheitas = (celcius * 9) / 5 + 32;
+            //Celcojų paverčiam Kelvinu
             var kelvinas = celcius + 273;
+            //Išvedam farenheitą ir kelviną į ekraną
             Console.WriteLine($"farenheitas = {farenheitas}");
             Console.WriteLine($"kelvinas = {kelvinas}");
+            //farenheitą keičiam į celcijų
             var farenheitasĮCelcijų = (farenheitas - 32) * 5 / 9;
+            //Patikrinam ar įvestas skaičius sutampa su skaičiumi kurį gavome konvertavę farenheitą į celcijų
             Console.WriteLine($" Celcius = farenheitasĮCelcijų {celcius == farenheitasĮCelcijų}");
+            //Pakeičiam kelviną į celcijų
             var kelvinasĮCelcijų = kelvinas - 273;
+            //Patikrinam ar įvestas skaičius sutampa su skaičiumi kurį gavome konvertavę farenheitą į celcijų
             Console.WriteLine($" kelvinas = kelvinasĮCelcijų {celcius == kelvinasĮCelcijų}");
+            //Pakeičiam farenheitą į kelviną
             var farenheitasIKelvina = 273 + ((farenheitas - 32) * 5 / 9);
-            Console.WriteLine($"farenheimasikelvina {farenheitasIKelvina}");
-            Console.WriteLine($" farenheitas = farenheitasIKelvina {kelvinas == farenheitasIKelvina}");
+            Console.WriteLine($" kelvinasĮCelcijų = farenheitasIKelvina {kelvinasĮCelcijų == farenheitasIKelvina}");
+            Console.WriteLine($" farenheitasĮCelcijų = farenheitasIKelvina {farenheitasĮCelcijų == farenheitasIKelvina}");
 
 
 
-            
+
+            //kad aiškiau man būtų pasidarau naują farenheto kintamąjį termometrui
             var TermometrasFarenheitas = (celcius * 9) / 5 + 32;
 
+            //Celcijaus stulpelį susigraduojam po +5 ir -5
             double c9 = celcius;
             double c8 = c9 + 5;
             double c7 = c8 + 5;
@@ -43,6 +55,8 @@
             double c16 = c15 - 5;
             double c17 = c16 - 5;
 
+
+            //susigraduoju farenheito stulpelį pagal formulę
             double f9 = TermometrasFarenheitas;
             double f8 = (c8 * 9) / 5 + 32;
             double f7 = (c7 * 9) / 5 + 32;
@@ -62,33 +76,33 @@
             double f17 = (c17 * 9) / 5 + 32;
 
 
-            
 
-            var b1 = celcius >= c1;
-            var b2 = celcius >= c2;
-            var b3 = celcius >= c3;
-            var b4 = celcius >= c4;
-            var b5 = celcius >= c5;
-            var b6 = celcius >= c6;
-            var b7 = celcius >= c7;
-            var b8 = celcius >= c8;
-            var b9 = celcius >= c9;
-            var b10 = celcius >= c10;
-            var b11 = celcius >= c11;
-            var b12 = celcius >= c12;
-            var b13 = celcius >= c13;
-            var b14 = celcius >= c14;
-            var b15 = celcius >= c15;
-            var b16 = celcius >= c16;
-            var b17 = celcius >= c17;
-
-
+            //Tikrinam ar įvestas skaičius didesnis už esantį termometro eilutėje, bei pakeičiam boolean į string ir True su False keičiame į # ir "  "
+            var b1 = (celcius >= c1).ToString().Replace("True", "#").Replace("False", " ");
+            var b2 = (celcius >= c2).ToString().Replace("True", "#").Replace("False", " "); ;
+            var b3 = (celcius >= c3).ToString().Replace("True", "#").Replace("False", " "); ;
+            var b4 = (celcius >= c4).ToString().Replace("True", "#").Replace("False", " "); ;
+            var b5 = (celcius >= c5).ToString().Replace("True", "#").Replace("False", " "); ;
+            var b6 = (celcius >= c6).ToString().Replace("True", "#").Replace("False", " "); ;
+            var b7 = (celcius >= c7).ToString().Replace("True", "#").Replace("False", " "); ;
+            var b8 = (celcius >= c8).ToString().Replace("True", "#").Replace("False", " "); ;
+            var b9 = (celcius >= c9).ToString().Replace("True", "#").Replace("False", " "); ;
+            var b10 = (celcius >= c10).ToString().Replace("True", "#").Replace("False", " "); ;
+            var b11 = (celcius >= c11).ToString().Replace("True", "#").Replace("False", " "); ;
+            var b12 = (celcius >= c12).ToString().Replace("True", "#").Replace("False", " "); ;
+            var b13 = (celcius >= c13).ToString().Replace("True", "#").Replace("False", " "); ;
+            var b14 = (celcius >= c14).ToString().Replace("True", "#").Replace("False", " "); ;
+            var b15 = (celcius >= c15).ToString().Replace("True", "#").Replace("False", " "); ;
+            var b16 = (celcius >= c16).ToString().Replace("True", "#").Replace("False", " "); ;
+            var b17 = (celcius >= c17).ToString().Replace("True", "#").Replace("False", " "); ;
 
 
 
 
-            Console.WriteLine($" |--------------------|");
-            Console.WriteLine($" |   ^F     _    ^C   |");
+
+            //Termometras
+            Console.WriteLine($" |-----------------|");
+            Console.WriteLine($" |   ^F    _    ^C |");
             Console.WriteLine($" |  {f1} - |{b1}| - {c1} |");
             Console.WriteLine($" |  {f2} - |{b2}| - {c2} |");
             Console.WriteLine($" |  {f3} - |{b3}| - {c3} |");
@@ -98,20 +112,19 @@
             Console.WriteLine($" |  {f7} - |{b7}| - {c7} |");
             Console.WriteLine($" |  {f8} - |{b8}| - {c8} |");
             Console.WriteLine($" |  {f9} - |{b9}| - {c9} |");
-            Console.WriteLine($"|  {f10} - |{b10}| - {c10} |");
-            Console.WriteLine($"|  {f11} - |{b11}| - {c11} |");
-            Console.WriteLine($"|  {f12} - |{b12}| - {c12} |");
-            Console.WriteLine($"|  {f13} - |{b13}| - {c13} |");
-            Console.WriteLine($"|  {f14} - |{b14}| - {c14} |");
-            Console.WriteLine($"|  {f15} - |{b15}| - {c15} |");
-            Console.WriteLine($"|  {f16} - |{b16}| - {c16} |");
-            Console.WriteLine($"|  {f17} - |{b17}| - {c17} |");
-            Console.WriteLine($"|         '***`       |");
-            Console.WriteLine($"|        (*****)      |");
-            Console.WriteLine($"|         `---'       |");
-            Console.WriteLine($"|         '***`       |");
-            Console.WriteLine($"|_____________________|");
-
+            Console.WriteLine($" |  {f10} - |{b10}| - {c10} |");
+            Console.WriteLine($" |  {f11} - |{b11}| - {c11} |");
+            Console.WriteLine($" |  {f12}  - |{b12}| - {c12} |");
+            Console.WriteLine($" |  {f13}  - |{b13}| - {c13} |");
+            Console.WriteLine($" |  {f14}  - |{b14}| - {c14} |");
+            Console.WriteLine($" |  {f15}  - |{b15}| - {c15} |");
+            Console.WriteLine($" |  {f16}  - |{b16}| - {c16} |");
+            Console.WriteLine($" |  {f17}  - |{b17}| - {c17} |");
+            Console.WriteLine($" |       '***`     |");
+            Console.WriteLine($" |      (*****)    |");
+            Console.WriteLine($" |       `---'     |");
+            Console.WriteLine($" |       '***`     |");
+            Console.WriteLine($" |_________________|");
 
 
 
@@ -184,6 +197,7 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
  | >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   200 min >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|
  |<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   60 min <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< |
  */
+            /*
 
             Console.WriteLine("Iveskite atstumą tarp A ir B");
             var atstumas = Convert.ToDouble(Console.ReadLine());
@@ -207,7 +221,7 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
             Console.WriteLine($"Transporto priemonės kartu išskyrė {atstumas * 2 * CO2 } gramus CO2");
 
 
-
+            */
 
 
 
