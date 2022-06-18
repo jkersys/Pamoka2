@@ -222,16 +222,45 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
             var susutikimoLaikas = atstumas / (atransportoPriemone + btransportoPriemone);
 
 
-            //Skaičiuojam naudodami formules pagal tai ko prašo salyga.
-            Console.WriteLine($"Transporto priemonės susitiks nuvažiavus {atransportoPriemone * susutikimoLaikas * metraiKilometruose} metrų(us)");
-            Console.WriteLine($"Transporto priemonės susitiks praėjus {atstumas / (atransportoPriemone + btransportoPriemone) * sekundesValandoje} sekundėms(ių)");
-            Console.WriteLine($"A transporto priemonė galutinį tašką pasieks praėjus {atstumas / atransportoPriemone * minutesvalandoje} minutėms");
-            Console.WriteLine($"B transporto priemonė galutinį tašką pasieks praėjus {atstumas / btransportoPriemone * minutesvalandoje} minutėms");
-            Console.WriteLine($"Transporto priemonės kartu išskyrė {atstumas * 2 * CO2 } gramus CO2");
+            //Skaičiuojam naudodami formules pagal tai ko prašo salygair pasidarom kad rodytų 2 skaičius po kalbelio (:0.00)
+            Console.WriteLine($"Transporto priemonės susitiks nuvažiavus {atransportoPriemone * susutikimoLaikas * metraiKilometruose:0.00} metrų(us)");
+            Console.WriteLine($"Transporto priemonės susitiks praėjus {atstumas / (atransportoPriemone + btransportoPriemone) * sekundesValandoje:0.00} sekundėms(ių)");
+            Console.WriteLine($"A transporto priemonė galutinį tašką pasieks praėjus {atstumas / atransportoPriemone * minutesvalandoje:0.00} minutėms");
+            Console.WriteLine($"B transporto priemonė galutinį tašką pasieks praėjus {atstumas / btransportoPriemone * minutesvalandoje:0:00} minutėms");
+            Console.WriteLine($"Transporto priemonės kartu išskyrė {atstumas * 2 * CO2:0.00} gramus CO2");
 
+
+            //segmento skaičiai
+            var segskaic1 = 0;
+            var segskaic2 = atstumas / 20 + segskaic1;
+            var segskaic3 = atstumas / 20 + segskaic2;
+            var segskaic4 = atstumas / 20 + segskaic3;
+            var segskaic5 = atstumas / 20 + segskaic4;
+            var segskaic6 = atstumas / 20 + segskaic5;
+            var segskaic7 = atstumas / 20 + segskaic6;
+            var segskaic8 = atstumas / 20 + segskaic7;
+            var segskaic9 = atstumas / 20 + segskaic8;
+            var segskaic10 = atstumas / 20 + segskaic9;
+            var segskaic11 = atstumas / 20 + segskaic10;
+            var segskaic12 = atstumas / 20 + segskaic11;
+            var segskaic13 = atstumas / 20 + segskaic12;
+            var segskaic14 = atstumas / 20 + segskaic13;
+            var segskaic15 = atstumas / 20 + segskaic14;
+            var segskaic16 = atstumas / 20 + segskaic15;
+            var segskaic17 = atstumas / 20 + segskaic16;
+            var segskaic18 = atstumas / 20 + segskaic17;
+            var segskaic19 = atstumas / 20 + segskaic18;
+            var segskaic20 = atstumas / 20 + segskaic19;
+            var segskaic21 = atstumas / 20 + segskaic20;
+
+
+            //Viso atstumas
+            Console.WriteLine($"viso {atstumas} km");
+            Console.WriteLine($"{segskaic1}      {segskaic2}     {segskaic3}     {segskaic4}     {segskaic5}      {segskaic6}     {segskaic7}     {segskaic8}     {segskaic9}     {segskaic10}     {segskaic11}     {segskaic12}     {segskaic13}     {segskaic14}     {segskaic15}     {segskaic16}     {segskaic17}     {segskaic18}     {segskaic19}     {segskaic20}     {segskaic21}|");
 
             
 
+            Console.WriteLine($"|--------------------------------------------------------------------------------------------------------------------------------------------|");
 
 
 
