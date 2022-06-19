@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            /*
+           
 
              Console.WriteLine("Hello, World!");
 
@@ -130,8 +130,8 @@
 
 
 
-
-             /*
+            /*
+             
   Paprašykite naudotojo įvesti 1 skaičių - temperatūrą pagal Celsijų. 
     - Paskaičiuokite ir išveskite į ekraną temperatūrą pagal farenheitą.
     - Paskaičiuokite ir išveskite į ekraną temperatūrą pagal kelviną.
@@ -201,6 +201,9 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
  */
 
            
+
+
+            //Su kelio grafiko braižymu buvo problemų, teko daug naudotis Jūsų rodytu brėžiniu :)
 
             //Paprašom įvesti atstumą
             Console.WriteLine("Iveskite atstumą tarp A ir B");
