@@ -335,32 +335,32 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
             var keliopiesinys =
                 $"   viso {atstumas} km \n" +
                 $" |--------------------------------------------------------------------------------------------------------------------------------------------|\n\n" +
-                //
-              $" {segskaic1}" +
-              $"      {segskaic2}" +
-              $"     {segskaic3}" +
-              $"     {segskaic4}" +
-              $"     {segskaic5}" +
-              $"     {segskaic6}" +
-              $"     {segskaic7}" +
-              $"     {segskaic8}" +
-              $"     {segskaic9}" +
-              $"     {segskaic10}" +
-              $"     {segskaic11}" +
-              $"     {segskaic12}" +
-              $"     {segskaic13}" +
-              $"     {segskaic14}" +
-              $"     {segskaic15}" +
-              $"     {segskaic15}" +
-              $"     {segskaic16}" +
-              $"     {segskaic17}" +
-              $"     {segskaic19}" +
-              $"     {segskaic20}" +
-              $"     {segskaic21}" +
+             //skaičiai padariau pagal destytoją su {SegV1.Replace("V", " ")} nes be sito išsikraipo grafikas ir nesulygiuoja gražiai skaičių viršui.
+             $" {SegV1.Replace("V", " ")}{segskaic1}" +
+              $" {SegV2.Replace("V", " ")}     {segskaic2}" +
+              $"{SegV3.Replace("V", " ")}     {segskaic3}" +
+              $"{SegV4.Replace("V", " ")}     {segskaic4}" +
+              $"{SegV5.Replace("V", " ")}     {segskaic5}" +
+              $"{SegV6.Replace("V", " ")}     {segskaic6}" +
+              $"{SegV7.Replace("V", " ")}     {segskaic7}" +
+              $"{SegV8.Replace("V", " ")}     {segskaic8}" +
+              $"{SegV9.Replace("V", " ")}     {segskaic9}" +
+              $"{SegV10.Replace("V", " ")}     {segskaic10}" +
+              $"{SegV11.Replace("V", " ")}     {segskaic11}" +
+              $"{SegV12.Replace("V", " ")}     {segskaic12}" +
+              $"{SegV13.Replace("V", " ")}     {segskaic13}" +
+              $"{SegV14.Replace("V", " ")}     {segskaic14}" +
+              $"{SegV15.Replace("V", " ")}     {segskaic15}" +
+              $"{SegV16.Replace("V", " ")}     {segskaic16}" +
+              $"{SegV17.Replace("V", " ")}     {segskaic17}" +
+              $"{SegV18.Replace("V", " ")}     {segskaic18}" +
+              $"{SegV19.Replace("V", " ")}     {segskaic19}" +
+              $"{SegV20.Replace("V", " ")}     {segskaic20}" +
+              $"{SegV20.Replace("V", " ")}     {segskaic21}" +
 
                 $"\n" +
-
-                $" |   {SegV1.Replace("V", " ")}  " +
+               //Tarpeliai |  | padariau pagal destytoją su {SegV1.Replace("V", " ")} nes be sito išsikraipo grafikas
+               $" |   {SegV1.Replace("V", " ")}  " +
                 $" |   {SegV2.Replace("V", " ")}  " +
                 $" |   {SegV3.Replace("V", " ")}  " +
                 $" |   {SegV4.Replace("V", " ")}  " +
@@ -380,9 +380,10 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
                 $" |   {SegV18.Replace("V", " ")}  " +
                 $" |   {SegV19.Replace("V", " ")}  " +
                 $" |   {SegV20.Replace("V", " ")}  " +
-                $" |   {SegV20.Replace("V", " ")}  " + 
-                $"\n" +
+                $" |   {SegV20.Replace("V", " ")}  " +
 
+                $"\n" +
+                //Eilutė kur su V raide, randa kur padėt V
                 $"_A___{SegV1}___" +
                 $"|___{SegV2}___" +
                 $"|___{SegV3}___" +
@@ -404,7 +405,7 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
                 $"|___{SegV19}___" +
                 $"|___{SegV20}___B\n" +
 
-
+                //kelio piešimas randa nupiešia kelia ----- ir randa kur padėt |
                 $" |" +
                 $"{segB1}{SegV1.Replace("V", "|")}{segA1}" +
                 $"{segB2}{SegV2.Replace("V", "|")}{segA2}" +
