@@ -253,15 +253,48 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
             var segskaic20 = atstumas / 20 + segskaic19;
             var segskaic21 = atstumas / 20 + segskaic20;
 
+            //Sustikimo vieta
+            var susutikimoVieta = atransportoPriemone * btransportoPriemone * atstumas;
+
+            //Kintamieji Surasti kur padeti v raidę
+            var segVraide1 = atstumas / 20 * 1.5;
+            var segVraide2 = atstumas / 20 * 2.5;
+            var segVraide3 = atstumas / 20 * 3.5;
+            var segVraide4 = atstumas / 20 * 4.5;
+            var segVraide5 = atstumas / 20 * 5.5;
+            var segVraide6 = atstumas / 20 * 6.5;
+            var segVraide7 = atstumas / 20 * 7.5;
+            var segVraide8 = atstumas / 20 * 8.5;
+            var segVraide9 = atstumas / 20 * 9.5;
+            var segVraide10 = atstumas / 20 * 10.5;
+            var segVraide11 = atstumas / 20 * 11.5;
+            var segVraide12 = atstumas / 20 * 12.5;
+            var segVraide13 = atstumas / 20 * 13.5;
+            var segVraide14 = atstumas / 20 * 14.5;
+            var segVraide15 = atstumas / 20 * 15.5;
+            var segVraide16 = atstumas / 20 * 16.5;
+            var segVraide17 = atstumas / 20 * 17.5;
+            var segVraide18 = atstumas / 20 * 18.5;
+            var segVraide19 = atstumas / 20 * 19.5;
+            var segVraide20 = atstumas / 20 * 20.5;
+            var segVraide21 = atstumas;
+
+
+            // tikrinam reiškmė tinkama, kur dėt V
+            var segTikrinimas = 
+
+
+
 
             //Viso atstumas
             Console.WriteLine($"viso {atstumas} km");
-            Console.WriteLine($"{segskaic1}      {segskaic2}     {segskaic3}     {segskaic4}     {segskaic5}      {segskaic6}     {segskaic7}     {segskaic8}     {segskaic9}     {segskaic10}     {segskaic11}     {segskaic12}     {segskaic13}     {segskaic14}     {segskaic15}     {segskaic16}     {segskaic17}     {segskaic18}     {segskaic19}     {segskaic20}     {segskaic21}|");
+            Console.WriteLine($"{segskaic1}      {segskaic4}     {segskaic3}     {segskaic4}     {segskaic5}      {segskaic6}     {segskaic7}     {segskaic8}     {segskaic9}     {segskaic10}     {segskaic11}     {segskaic12}     {segskaic13}     {segskaic14}     {segskaic15}     {segskaic16}     {segskaic17}     {segskaic18}     {segskaic19}     {segskaic20}     {segskaic21}|");
+
+            //Console.WriteLine($"{segVraide1}      {segVraide2}     {segVraide3}     {segVraide4}     {segVraide5}      {segVraide6}     {segVraide7}     {segVraide8}     {segVraide9}     {segVraide10}     {segVraide11}     {segVraide12}     {segVraide13}     {segVraide14}     {segVraide15}     {segVraide16}     {segVraide17}     {segVraide18}     {segVraide19}     {segVraide20}     {segskaic21}|");
 
             
 
             Console.WriteLine($"|--------------------------------------------------------------------------------------------------------------------------------------------|");
-
 
 
         }
