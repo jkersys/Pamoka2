@@ -261,7 +261,7 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
             var susutikimoVieta = atransportoPriemone * susutikimoLaikas;
 
                    
-            //V raidės nustatymas, tikrinam kur susitiks ( 10 daugiau už 5 = 10 mažiau arba lygu 15)   
+            //V raidės nustatymas, tikrinam kur susitiks ( 10 daugiau už 5 = 10 mažiau arba lygu 15) True keiciam V False ""  
             var SegV1 = ((susutikimoVieta > segskaic1) && (susutikimoVieta <= segskaic2)).ToString().Replace("True", "V").Replace("False", "");
             var SegV2 = ((susutikimoVieta > segskaic2) && (susutikimoVieta <= segskaic3)).ToString().Replace("True", "V").Replace("False", "");
             var SegV3 = ((susutikimoVieta > segskaic3) && (susutikimoVieta <= segskaic4)).ToString().Replace("True", "V").Replace("False", "");
@@ -284,6 +284,7 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
             var SegV20 = ((susutikimoVieta > segskaic20) && (susutikimoVieta <= segskaic21)).ToString().Replace("True", "V").Replace("False", "");
 
             
+            //Tikrinam kur reikia piesti kelia (---) pvz 10 > 5 (----) 10 > 15 ("    ") 
             var segB1 = (susutikimoVieta > segskaic1).ToString().Replace("True", "---").Replace("False", "   ");
             var segA1 = (susutikimoVieta > segskaic2).ToString().Replace("True", "----").Replace("False", "   ");
             var segB2 = (susutikimoVieta > segskaic2).ToString().Replace("True", "---").Replace("False", "   ");
@@ -329,23 +330,7 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
 
 
 
-            // tikrinam reiškmė tinkama, kur dėt V
-            // var segTikrinimas = segskaic1 < susutikimoVieta < 
-
-
-
-
-
-            /*
-            Console.WriteLine($"{susutikimoVieta}");
-            //Viso atstumas
-            Console.WriteLine($"viso {atstumas} km");
-            Console.WriteLine($"|--------------------------------------------------------------------------------------------------------------------------------------------|");
-
-            Console.WriteLine($"{segskaic1}      {segskaic2}     {segskaic3}     {segskaic4}     {segskaic5}      {segskaic6}     {segskaic7}     {segskaic8}     {segskaic9}     {segskaic10}     {segskaic11}     {segskaic12}     {segskaic13}     {segskaic14}     {segskaic15}     {segskaic16}     {segskaic17}     {segskaic18}     {segskaic19}     {segskaic20}     {segskaic21}|\n");
-
-           Console.WriteLine($"     {SegV1}     {SegV2}      {SegV3}     {SegV4}     {SegV5}     {SegV6}      {SegV7}     {SegV8}     {SegV9}     {SegV10}     {SegV11}     {SegV12}     {SegV13}     {SegV14}     {SegV15}     {SegV16}     {SegV17}     {SegV18}     {SegV19}     {SegV19}     {SegV20}|");
-            */
+         
 
             var keliopiesinys =
                 $"   viso {atstumas} km \n" +
