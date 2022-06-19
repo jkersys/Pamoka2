@@ -221,6 +221,8 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
             //Pasiskaičiuojam susitikimo laiką, nes reikalingas skaičiuojant kada transporto priemonės susitiks.
             var susutikimoLaikas = atstumas / (atransportoPriemone + btransportoPriemone);
 
+            var aTrukme = atstumas / atransportoPriemone * minutesvalandoje;
+            var bTrukme = atstumas / btransportoPriemone + minutesvalandoje;
 
             //Skaičiuojam naudodami formules pagal tai ko prašo salygair pasidarom kad rodytų 2 skaičius po kalbelio (:0.00)
             Console.WriteLine($"Transporto priemonės susitiks nuvažiavus {atransportoPriemone * susutikimoLaikas * metraiKilometruose:0.00} metrų(us)");
@@ -230,16 +232,16 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
             Console.WriteLine($"Transporto priemonės kartu išskyrė {atstumas * 2 * CO2:0.00} gramus CO2");
 
 
-            
-            
-            
 
 
-            
-           
+
+
+
+
+
 
             //segmento skaičiai
-            var segskaic1 = 0;
+            var segskaic1 = atstumas / 20 * 0;
             var segskaic2 = atstumas / 20 * 1;
             var segskaic3 = atstumas / 20 * 2;
             var segskaic4 = atstumas / 20 * 3;
@@ -264,7 +266,7 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
             //Sustikimo vieta
             var susutikimoVieta = atransportoPriemone * susutikimoLaikas;
 
-            /*
+           /*
             //Kintamieji Surasti kur padeti v raidę
             var segVraide0 = atstumas / 20 * 0.5;
             var segVraide1 = atstumas / 20 * 1.5;
@@ -287,27 +289,74 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
             var segVraide18 = atstumas / 20 * 18.5;
             var segVraide19 = atstumas / 20 * 19.5;
             var segVraide21 = atstumas;
-            */
-            var SegV1 = (susutikimoVieta > segskaic1) && (susutikimoVieta <= segskaic1);
-            var SegV2 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic2;
-            var SegV3 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic3;
-            var SegV4 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic4;
-            var SegV5 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic5;
-            var SegV6 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic6;
-            var SegV7 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic7;
-            var SegV8= susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic8;
-            var SegV9= susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic9;
-            var SegV10 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic10;
-            var SegV11 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic11;
-            var SegV12 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic12;
-            var SegV13 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic13;
-            var SegV14 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic14;
-            var SegV15 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic15;
-            var SegV16 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic16;
-            var SegV17 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic17;
-            var SegV18 = susutikimoVieta > segskaic17&&susutikimoVieta <= segskaic18;
-            var SegV19 = susutikimoVieta > segskaic18 && susutikimoVieta <= segskaic19;
-            var SegV20 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic20;
+           */
+           
+            //V raidės nustatymas
+            var SegV1 = ((susutikimoVieta > segskaic1) && (susutikimoVieta <= segskaic2)).ToString().Replace("True", "V").Replace("False", "");
+            var SegV2 = ((susutikimoVieta > segskaic2) && (susutikimoVieta <= segskaic3)).ToString().Replace("True", "V").Replace("False", "");
+            var SegV3 = ((susutikimoVieta > segskaic3) && (susutikimoVieta <= segskaic4)).ToString().Replace("True", "V").Replace("False", "");
+            var SegV4 = ((susutikimoVieta > segskaic4) && (susutikimoVieta <= segskaic5)).ToString().Replace("True", "V").Replace("False", "");
+            var SegV5 = ((susutikimoVieta > segskaic5) && (susutikimoVieta <= segskaic6)).ToString().Replace("True", "V").Replace("False", "");
+            var SegV6 = ((susutikimoVieta > segskaic6) && (susutikimoVieta <= segskaic7)).ToString().Replace("True", "V").Replace("False", "");
+            var SegV7 = ((susutikimoVieta > segskaic7) && (susutikimoVieta <= segskaic8)).ToString().Replace("True", "V").Replace("False", "");
+            var SegV8 = ((susutikimoVieta > segskaic8) && (susutikimoVieta <= segskaic9)).ToString().Replace("True", "V").Replace("False", "");
+            var SegV9 = ((susutikimoVieta > segskaic9) && (susutikimoVieta <= segskaic10)).ToString().Replace("True", "V").Replace("False", "");
+            var SegV10 = ((susutikimoVieta > segskaic10) && (susutikimoVieta <= segskaic11)).ToString().Replace("True", "V").Replace("False", "");
+            var SegV11 = ((susutikimoVieta > segskaic11) && (susutikimoVieta <= segskaic12)).ToString().Replace("True", "V").Replace("False", "");
+            var SegV12 = ((susutikimoVieta > segskaic12) && (susutikimoVieta <= segskaic13)).ToString().Replace("True", "V").Replace("False", "");
+            var SegV13 = ((susutikimoVieta > segskaic13) && (susutikimoVieta <= segskaic14)).ToString().Replace("True", "V").Replace("False", "");
+            var SegV14 = ((susutikimoVieta > segskaic14) && (susutikimoVieta <= segskaic15)).ToString().Replace("True", "V").Replace("False", "");
+            var SegV15 = ((susutikimoVieta > segskaic15) && (susutikimoVieta <= segskaic16)).ToString().Replace("True", "V").Replace("False", "");
+            var SegV16 = ((susutikimoVieta > segskaic16) && (susutikimoVieta <= segskaic17)).ToString().Replace("True", "V").Replace("False", "");
+            var SegV17 = ((susutikimoVieta > segskaic17) && (susutikimoVieta <= segskaic18)).ToString().Replace("True", "V").Replace("False", "");
+            var SegV18 = ((susutikimoVieta > segskaic18) && (susutikimoVieta <= segskaic19)).ToString().Replace("True", "V").Replace("False", "");
+            var SegV19 = ((susutikimoVieta > segskaic19) && (susutikimoVieta <= segskaic20)).ToString().Replace("True", "V").Replace("False", "");
+            var SegV20 = ((susutikimoVieta > segskaic20) && (susutikimoVieta <= segskaic21)).ToString().Replace("True", "V").Replace("False", "");
+
+            
+            var segB1 = (susutikimoVieta > segskaic1).ToString().Replace("True", "----").Replace("False", "    ");
+            var segA1 = (susutikimoVieta > segskaic2).ToString().Replace("True", "---").Replace("False", "   ");
+            var segB2 = (susutikimoVieta > segskaic2).ToString().Replace("True", "----").Replace("False", "    ");
+            var segA2 = (susutikimoVieta > segskaic3).ToString().Replace("True", "---").Replace("False", "   ");
+            var segB3 = (susutikimoVieta > segskaic3).ToString().Replace("True", "----").Replace("False", "    ");
+            var segA3 = (susutikimoVieta > segskaic4).ToString().Replace("True", "---").Replace("False", "   ");
+            var segB4 = (susutikimoVieta > segskaic4).ToString().Replace("True", "----").Replace("False", "    ");
+            var segA4 = (susutikimoVieta > segskaic5).ToString().Replace("True", "---").Replace("False", "   ");
+            var segB5 = (susutikimoVieta > segskaic5).ToString().Replace("True", "----").Replace("False", "    ");
+            var segA5 = (susutikimoVieta > segskaic6).ToString().Replace("True", "---").Replace("False", "   ");
+            var segB6 = (susutikimoVieta > segskaic6).ToString().Replace("True", "----").Replace("False", "    ");
+            var segA6 = (susutikimoVieta > segskaic7).ToString().Replace("True", "---").Replace("False", "   ");
+            var segB7 = (susutikimoVieta > segskaic7).ToString().Replace("True", "----").Replace("False", "    ");
+            var segA7 = (susutikimoVieta > segskaic8).ToString().Replace("True", "---").Replace("False", "   ");
+            var segB8 = (susutikimoVieta > segskaic8).ToString().Replace("True", "----").Replace("False", "    ");
+            var segA8 = (susutikimoVieta > segskaic9).ToString().Replace("True", "---").Replace("False", "   ");
+            var segB9 = (susutikimoVieta > segskaic9).ToString().Replace("True", "----").Replace("False", "    ");
+            var segA9 = (susutikimoVieta > segskaic10).ToString().Replace("True", "---").Replace("False", "   ");
+            var segB10 = (susutikimoVieta > segskaic10).ToString().Replace("True", "----").Replace("False", "    ");
+            var segA10 = (susutikimoVieta > segskaic11).ToString().Replace("True", "---").Replace("False", "   ");
+            var segB11 = (susutikimoVieta > segskaic11).ToString().Replace("True", "----").Replace("False", "    ");
+            var segA11 = (susutikimoVieta > segskaic12).ToString().Replace("True", "---").Replace("False", "   ");
+            var segB12 = (susutikimoVieta > segskaic12).ToString().Replace("True", "----").Replace("False", "    ");
+            var segA12 = (susutikimoVieta > segskaic13).ToString().Replace("True", "---").Replace("False", "   ");
+            var segB13 = (susutikimoVieta > segskaic13).ToString().Replace("True", "----").Replace("False", "    ");
+            var segA13 = (susutikimoVieta > segskaic14).ToString().Replace("True", "---").Replace("False", "   ");
+            var segB14 = (susutikimoVieta > segskaic14).ToString().Replace("True", "----").Replace("False", "    ");
+            var segA14 = (susutikimoVieta > segskaic15).ToString().Replace("True", "---").Replace("False", "   ");
+            var segB15 = (susutikimoVieta > segskaic15).ToString().Replace("True", "----").Replace("False", "    ");
+            var segA15 = (susutikimoVieta > segskaic16).ToString().Replace("True", "---").Replace("False", "   ");
+            var segB16 = (susutikimoVieta > segskaic16).ToString().Replace("True", "----").Replace("False", "    ");
+            var segA16 = (susutikimoVieta > segskaic17).ToString().Replace("True", "---").Replace("False", "   ");
+            var segB17 = (susutikimoVieta > segskaic17).ToString().Replace("True", "----").Replace("False", "    ");
+            var segA17 = (susutikimoVieta > segskaic18).ToString().Replace("True", "---").Replace("False", "   ");
+            var segB18 = (susutikimoVieta > segskaic18).ToString().Replace("True", "----").Replace("False", "    ");
+            var segA18 = (susutikimoVieta > segskaic19).ToString().Replace("True", "---").Replace("False", "   ");
+            var segB19 = (susutikimoVieta > segskaic19).ToString().Replace("True", "----").Replace("False", "    ");
+            var segA19 = (susutikimoVieta > segskaic20).ToString().Replace("True", "---").Replace("False", "   ");
+            var segB20 = (susutikimoVieta > segskaic20).ToString().Replace("True", "----").Replace("False", "    ");
+            var segA20 = (susutikimoVieta > segskaic21).ToString().Replace("True", "---").Replace("False", "   ");
+            var segB21 = (susutikimoVieta > segskaic21).ToString().Replace("True", "----").Replace("False", "    ");
+
+
 
 
             // tikrinam reiškmė tinkama, kur dėt V
@@ -317,11 +366,7 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
 
 
 
-
-
-
-
-
+            /*
             Console.WriteLine($"{susutikimoVieta}");
             //Viso atstumas
             Console.WriteLine($"viso {atstumas} km");
@@ -329,11 +374,115 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
 
             Console.WriteLine($"{segskaic1}      {segskaic2}     {segskaic3}     {segskaic4}     {segskaic5}      {segskaic6}     {segskaic7}     {segskaic8}     {segskaic9}     {segskaic10}     {segskaic11}     {segskaic12}     {segskaic13}     {segskaic14}     {segskaic15}     {segskaic16}     {segskaic17}     {segskaic18}     {segskaic19}     {segskaic20}     {segskaic21}|\n");
 
-           //onsole.WriteLine($"     {segVraide0}     {segVraide1}      {segVraide2}     {segVraide3}     {segVraide4}     {segVraide5}      {segVraide6}     {segVraide7}     {segVraide8}     {segVraide9}     {segVraide10}     {segVraide11}     {segVraide12}     {segVraide13}     {segVraide14}     {segVraide15}     {segVraide16}     {segVraide17}     {segVraide18}     {segVraide19}     {segskaic21}|");
+           Console.WriteLine($"     {SegV1}     {SegV2}      {SegV3}     {SegV4}     {SegV5}     {SegV6}      {SegV7}     {SegV8}     {SegV9}     {SegV10}     {SegV11}     {SegV12}     {SegV13}     {SegV14}     {SegV15}     {SegV16}     {SegV17}     {SegV18}     {SegV19}     {SegV19}     {SegV20}|");
+            */
 
-            
+            var keliopiesinys =
+                $"   viso {atstumas} km \n" +
+                $" |---------------------------------------------------------------------------------------------------------------------------------------------------------------|\n\n" +
+              $" {SegV1.Replace("V", " ")}{segskaic1}" +
+              $" {SegV2.Replace("V", " ")}     {segskaic2}" +
+              $"{SegV3.Replace("V", " ")}     {segskaic3}" +
+              $"{SegV4.Replace("V", " ")}     {segskaic4}" +
+              $"{SegV5.Replace("V", " ")}     {segskaic5}" +
+              $"{SegV6.Replace("V", " ")}     {segskaic6}" +
+              $"{SegV7.Replace("V", " ")}     {segskaic7}" +
+              $"{SegV8.Replace("V", " ")}     {segskaic8}" +
+              $"{SegV9.Replace("V", " ")}     {segskaic9}" +
+              $"{SegV10.Replace("V", " ")}     {segskaic10}" +
+              $"{SegV11.Replace("V", " ")}     {segskaic11}" +
+              $"{SegV12.Replace("V", " ")}     {segskaic12}" +
+              $"{SegV13.Replace("V", " ")}     {segskaic13}" +
+              $"{SegV14.Replace("V", " ")}     {segskaic14}" +
+              $"{SegV15.Replace("V", " ")}     {segskaic15}" +
+              $"{SegV16.Replace("V", " ")}     {segskaic15}" +
+              $"{SegV17.Replace("V", " ")}     {segskaic16}" +
+              $"{SegV18.Replace("V", " ")}     {segskaic17}" +
+              $"{SegV19.Replace("V", " ")}     {segskaic19}" +
+              $"{SegV20.Replace("V", " ")}     {segskaic20}" +
+              $"{SegV20.Replace("V", " ")}     {segskaic21}" +
 
-            
+                $"\n" +
+
+                $" |   {SegV1.Replace("V", " ")}  " +
+                $" |   {SegV2.Replace("V", " ")}  " +
+                $" |   {SegV3.Replace("V", " ")}  " +
+                $" |   {SegV4.Replace("V", " ")}  " +
+                $" |   {SegV5.Replace("V", " ")}  " +
+                $" |   {SegV6.Replace("V", " ")}  " +
+                $" |   {SegV7.Replace("V", " ")}  " +
+                $" |   {SegV8.Replace("V", " ")}  " +
+                $" |   {SegV9.Replace("V", " ")}  " +
+                $" |   {SegV10.Replace("V", " ")}  " +
+                $" |   {SegV11.Replace("V", " ")}  " +
+                $" |   {SegV12.Replace("V", " ")}  " +
+                $" |   {SegV13.Replace("V", " ")}  " +
+                $" |   {SegV14.Replace("V", " ")}  " +
+                $" |   {SegV15.Replace("V", " ")}  " +
+                $" |   {SegV16.Replace("V", " ")}  " +
+                $" |   {SegV17.Replace("V", " ")}  " +
+                $" |   {SegV18.Replace("V", " ")}  " +
+                $" |   {SegV19.Replace("V", " ")}  " +
+                $" |   {SegV20.Replace("V", " ")}  " +
+                $" |   {SegV20.Replace("V", " ")}  " + //truksta segmento
+                $"\n" +
+
+                $"_A___{SegV1}___" +
+                $"|___{SegV2}___" +
+                $"|___{SegV3}___" +
+                $"|___{SegV4}___" +
+                $"|___{SegV5}___" +
+                $"|___{SegV6}___" +
+                $"|___{SegV7}___" +
+                $"|___{SegV8}___" +
+                $"|___{SegV9}___" +
+                $"|___{SegV10}___" +
+                $"|___{SegV11}___" +
+                $"|___{SegV12}___" +
+                $"|___{SegV13}___" +
+                $"|___{SegV14}___" +
+                $"|___{SegV15}___" +
+                $"|___{SegV16}___" +
+                $"|___{SegV17}___" +
+                $"|___{SegV18}___" +
+                $"|___{SegV19}___" +
+                $"|___{SegV20}___B\n" +
+
+
+                $" |" +
+                $"{segA1}{SegV1.Replace("V", "|")}{segB1}" +
+                $"{segA2}{SegV2.Replace("V", "|")}{segB2}" +
+                $"{segA3}{SegV3.Replace("V", "|")}{segB3}" +
+                $"{segA4}{SegV4.Replace("V", "|")}{segB4}" +
+                $"{segA5}{SegV5.Replace("V", "|")}{segB5}" +
+                $"{segA6}{SegV6.Replace("V", "|")}{segB6}" +
+                $"{segA7}{SegV7.Replace("V", "|")}{segB7}" +
+                $"{segA8}{SegV8.Replace("V", "|")}{segB8}" +
+                $"{segA9}{SegV9.Replace("V", "|")}{segB9}" +
+                $"{segA10}{SegV10.Replace("V", "|")}{segB10}" +
+                $"{segA11}{SegV11.Replace("V", "|")}{segB11}" +
+                $"{segA12}{SegV12.Replace("V", "|")}{segB12}" +
+                $"{segA13}{SegV13.Replace("V", "|")}{segB13}" +
+                $"{segA14}{SegV14.Replace("V", "|")}{segB14}" +
+                $"{segA15}{SegV15.Replace("V", "|")}{segB15}" +
+                $"{segA16}{SegV16.Replace("V", "|")}{segB16}" +
+                $"{segA17}{SegV17.Replace("V", "|")}{segB17}" +
+                $"{segA18}{SegV18.Replace("V", "|")}{segB18}" +
+                $"{segA19}{SegV19.Replace("V", "|")}{segB19}" +
+                $"{segA20}{SegV20.Replace("V", "|")}{segB20}" +
+                $"\n" +
+
+                $"Susitikimo vieta {susutikimoVieta:0.0} km\n" +
+                $"Susitikimo laikas po {susutikimoLaikas:0.00} val. \n" +
+                $"\n" +
+
+
+                $">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>{aTrukme:0.00} min <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n" +
+                $">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>{bTrukme:0.00} min<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n";
+
+
+            Console.WriteLine(keliopiesinys);
+
 
 
         }
