@@ -227,8 +227,8 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
             //Skaičiuojam naudodami formules pagal tai ko prašo salygair pasidarom kad rodytų 2 skaičius po kalbelio (:0.00)
             Console.WriteLine($"Transporto priemonės susitiks nuvažiavus {atransportoPriemone * susutikimoLaikas * metraiKilometruose:0.00} metrų(us)");
             Console.WriteLine($"Transporto priemonės susitiks praėjus {atstumas / (atransportoPriemone + btransportoPriemone) * sekundesValandoje:0.00} sekundėms(ių)");
-            Console.WriteLine($"A transporto priemonė galutinį tašką pasieks praėjus {atstumas / atransportoPriemone * minutesvalandoje:0.00} minutėms");
-            Console.WriteLine($"B transporto priemonė galutinį tašką pasieks praėjus {atstumas / btransportoPriemone * minutesvalandoje:0:00} minutėms");
+            Console.WriteLine($"A transporto priemonė galutinį tašką pasieks praėjus {atstumas / atransportoPriemone * minutesvalandoje} minutėms");
+            Console.WriteLine($"B transporto priemonė galutinį tašką pasieks praėjus {atstumas / btransportoPriemone * minutesvalandoje} minutėms");
             Console.WriteLine($"Transporto priemonės kartu išskyrė {atstumas * 2 * CO2:0.00} gramus CO2");
 
 
@@ -314,47 +314,47 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
             var SegV20 = ((susutikimoVieta > segskaic20) && (susutikimoVieta <= segskaic21)).ToString().Replace("True", "V").Replace("False", "");
 
             
-            var segB1 = (susutikimoVieta > segskaic1).ToString().Replace("True", "----").Replace("False", "    ");
-            var segA1 = (susutikimoVieta > segskaic2).ToString().Replace("True", "---").Replace("False", "   ");
-            var segB2 = (susutikimoVieta > segskaic2).ToString().Replace("True", "----").Replace("False", "    ");
-            var segA2 = (susutikimoVieta > segskaic3).ToString().Replace("True", "---").Replace("False", "   ");
-            var segB3 = (susutikimoVieta > segskaic3).ToString().Replace("True", "----").Replace("False", "    ");
-            var segA3 = (susutikimoVieta > segskaic4).ToString().Replace("True", "---").Replace("False", "   ");
-            var segB4 = (susutikimoVieta > segskaic4).ToString().Replace("True", "----").Replace("False", "    ");
-            var segA4 = (susutikimoVieta > segskaic5).ToString().Replace("True", "---").Replace("False", "   ");
-            var segB5 = (susutikimoVieta > segskaic5).ToString().Replace("True", "----").Replace("False", "    ");
-            var segA5 = (susutikimoVieta > segskaic6).ToString().Replace("True", "---").Replace("False", "   ");
-            var segB6 = (susutikimoVieta > segskaic6).ToString().Replace("True", "----").Replace("False", "    ");
-            var segA6 = (susutikimoVieta > segskaic7).ToString().Replace("True", "---").Replace("False", "   ");
-            var segB7 = (susutikimoVieta > segskaic7).ToString().Replace("True", "----").Replace("False", "    ");
-            var segA7 = (susutikimoVieta > segskaic8).ToString().Replace("True", "---").Replace("False", "   ");
-            var segB8 = (susutikimoVieta > segskaic8).ToString().Replace("True", "----").Replace("False", "    ");
-            var segA8 = (susutikimoVieta > segskaic9).ToString().Replace("True", "---").Replace("False", "   ");
-            var segB9 = (susutikimoVieta > segskaic9).ToString().Replace("True", "----").Replace("False", "    ");
-            var segA9 = (susutikimoVieta > segskaic10).ToString().Replace("True", "---").Replace("False", "   ");
-            var segB10 = (susutikimoVieta > segskaic10).ToString().Replace("True", "----").Replace("False", "    ");
-            var segA10 = (susutikimoVieta > segskaic11).ToString().Replace("True", "---").Replace("False", "   ");
-            var segB11 = (susutikimoVieta > segskaic11).ToString().Replace("True", "----").Replace("False", "    ");
-            var segA11 = (susutikimoVieta > segskaic12).ToString().Replace("True", "---").Replace("False", "   ");
-            var segB12 = (susutikimoVieta > segskaic12).ToString().Replace("True", "----").Replace("False", "    ");
-            var segA12 = (susutikimoVieta > segskaic13).ToString().Replace("True", "---").Replace("False", "   ");
-            var segB13 = (susutikimoVieta > segskaic13).ToString().Replace("True", "----").Replace("False", "    ");
-            var segA13 = (susutikimoVieta > segskaic14).ToString().Replace("True", "---").Replace("False", "   ");
-            var segB14 = (susutikimoVieta > segskaic14).ToString().Replace("True", "----").Replace("False", "    ");
-            var segA14 = (susutikimoVieta > segskaic15).ToString().Replace("True", "---").Replace("False", "   ");
-            var segB15 = (susutikimoVieta > segskaic15).ToString().Replace("True", "----").Replace("False", "    ");
-            var segA15 = (susutikimoVieta > segskaic16).ToString().Replace("True", "---").Replace("False", "   ");
-            var segB16 = (susutikimoVieta > segskaic16).ToString().Replace("True", "----").Replace("False", "    ");
-            var segA16 = (susutikimoVieta > segskaic17).ToString().Replace("True", "---").Replace("False", "   ");
-            var segB17 = (susutikimoVieta > segskaic17).ToString().Replace("True", "----").Replace("False", "    ");
-            var segA17 = (susutikimoVieta > segskaic18).ToString().Replace("True", "---").Replace("False", "   ");
-            var segB18 = (susutikimoVieta > segskaic18).ToString().Replace("True", "----").Replace("False", "    ");
-            var segA18 = (susutikimoVieta > segskaic19).ToString().Replace("True", "---").Replace("False", "   ");
-            var segB19 = (susutikimoVieta > segskaic19).ToString().Replace("True", "----").Replace("False", "    ");
-            var segA19 = (susutikimoVieta > segskaic20).ToString().Replace("True", "---").Replace("False", "   ");
-            var segB20 = (susutikimoVieta > segskaic20).ToString().Replace("True", "----").Replace("False", "    ");
-            var segA20 = (susutikimoVieta > segskaic21).ToString().Replace("True", "---").Replace("False", "   ");
-            var segB21 = (susutikimoVieta > segskaic21).ToString().Replace("True", "----").Replace("False", "    ");
+            var segB1 = (susutikimoVieta > segskaic1).ToString().Replace("True", "---").Replace("False", "   ");
+            var segA1 = (susutikimoVieta > segskaic2).ToString().Replace("True", "----").Replace("False", "   ");
+            var segB2 = (susutikimoVieta > segskaic2).ToString().Replace("True", "---").Replace("False", "   ");
+            var segA2 = (susutikimoVieta > segskaic3).ToString().Replace("True", "----").Replace("False", "   ");
+            var segB3 = (susutikimoVieta > segskaic3).ToString().Replace("True", "---").Replace("False", "   ");
+            var segA3 = (susutikimoVieta > segskaic4).ToString().Replace("True", "----").Replace("False", "   ");
+            var segB4 = (susutikimoVieta > segskaic4).ToString().Replace("True", "---").Replace("False", "   ");
+            var segA4 = (susutikimoVieta > segskaic5).ToString().Replace("True", "----").Replace("False", "   ");
+            var segB5 = (susutikimoVieta > segskaic5).ToString().Replace("True", "---").Replace("False", "   ");
+            var segA5 = (susutikimoVieta > segskaic6).ToString().Replace("True", "----").Replace("False", "   ");
+            var segB6 = (susutikimoVieta > segskaic6).ToString().Replace("True", "---").Replace("False", "   ");
+            var segA6 = (susutikimoVieta > segskaic7).ToString().Replace("True", "----").Replace("False", "   ");
+            var segB7 = (susutikimoVieta > segskaic7).ToString().Replace("True", "---").Replace("False", "   ");
+            var segA7 = (susutikimoVieta > segskaic8).ToString().Replace("True", "----").Replace("False", "   ");
+            var segB8 = (susutikimoVieta > segskaic8).ToString().Replace("True", "---").Replace("False", "   ");
+            var segA8 = (susutikimoVieta > segskaic9).ToString().Replace("True", "----").Replace("False", "   ");
+            var segB9 = (susutikimoVieta > segskaic9).ToString().Replace("True", "---").Replace("False", "   ");
+            var segA9 = (susutikimoVieta > segskaic10).ToString().Replace("True", "----").Replace("False", "   ");
+            var segB10 = (susutikimoVieta > segskaic10).ToString().Replace("True", "---").Replace("False", "   ");
+            var segA10 = (susutikimoVieta > segskaic11).ToString().Replace("True", "----").Replace("False", "   ");
+            var segB11 = (susutikimoVieta > segskaic11).ToString().Replace("True", "---").Replace("False", "   ");
+            var segA11 = (susutikimoVieta > segskaic12).ToString().Replace("True", "----").Replace("False", "   ");
+            var segB12 = (susutikimoVieta > segskaic12).ToString().Replace("True", "---").Replace("False", "    ");
+            var segA12 = (susutikimoVieta > segskaic13).ToString().Replace("True", "----").Replace("False", "   ");
+            var segB13 = (susutikimoVieta > segskaic13).ToString().Replace("True", "---").Replace("False", "    ");
+            var segA13 = (susutikimoVieta > segskaic14).ToString().Replace("True", "----").Replace("False", "   ");
+            var segB14 = (susutikimoVieta > segskaic14).ToString().Replace("True", "---").Replace("False", "    ");
+            var segA14 = (susutikimoVieta > segskaic15).ToString().Replace("True", "----").Replace("False", "   ");
+            var segB15 = (susutikimoVieta > segskaic15).ToString().Replace("True", "---").Replace("False", "    ");
+            var segA15 = (susutikimoVieta > segskaic16).ToString().Replace("True", "----").Replace("False", "   ");
+            var segB16 = (susutikimoVieta > segskaic16).ToString().Replace("True", "---").Replace("False", "    ");
+            var segA16 = (susutikimoVieta > segskaic17).ToString().Replace("True", "----").Replace("False", "   ");
+            var segB17 = (susutikimoVieta > segskaic17).ToString().Replace("True", "---").Replace("False", "    ");
+            var segA17 = (susutikimoVieta > segskaic18).ToString().Replace("True", "----").Replace("False", "   ");
+            var segB18 = (susutikimoVieta > segskaic18).ToString().Replace("True", "---").Replace("False", "    ");
+            var segA18 = (susutikimoVieta > segskaic19).ToString().Replace("True", "----").Replace("False", "   ");
+            var segB19 = (susutikimoVieta > segskaic19).ToString().Replace("True", "---").Replace("False", "    ");
+            var segA19 = (susutikimoVieta > segskaic20).ToString().Replace("True", "----").Replace("False", "   ");
+            var segB20 = (susutikimoVieta > segskaic20).ToString().Replace("True", "---").Replace("False", "    ");
+            var segA20 = (susutikimoVieta > segskaic21).ToString().Replace("True", "----").Replace("False", "   ");
+            
 
 
 
@@ -424,7 +424,7 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
                 $" |   {SegV18.Replace("V", " ")}  " +
                 $" |   {SegV19.Replace("V", " ")}  " +
                 $" |   {SegV20.Replace("V", " ")}  " +
-                $" |   {SegV20.Replace("V", " ")}  " + //truksta segmento
+                $" |   {SegV20.Replace("V", " ")}  " + 
                 $"\n" +
 
                 $"_A___{SegV1}___" +
@@ -450,26 +450,26 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
 
 
                 $" |" +
-                $"{segA1}{SegV1.Replace("V", "|")}{segB1}" +
-                $"{segA2}{SegV2.Replace("V", "|")}{segB2}" +
-                $"{segA3}{SegV3.Replace("V", "|")}{segB3}" +
-                $"{segA4}{SegV4.Replace("V", "|")}{segB4}" +
-                $"{segA5}{SegV5.Replace("V", "|")}{segB5}" +
-                $"{segA6}{SegV6.Replace("V", "|")}{segB6}" +
-                $"{segA7}{SegV7.Replace("V", "|")}{segB7}" +
-                $"{segA8}{SegV8.Replace("V", "|")}{segB8}" +
-                $"{segA9}{SegV9.Replace("V", "|")}{segB9}" +
-                $"{segA10}{SegV10.Replace("V", "|")}{segB10}" +
-                $"{segA11}{SegV11.Replace("V", "|")}{segB11}" +
-                $"{segA12}{SegV12.Replace("V", "|")}{segB12}" +
-                $"{segA13}{SegV13.Replace("V", "|")}{segB13}" +
-                $"{segA14}{SegV14.Replace("V", "|")}{segB14}" +
-                $"{segA15}{SegV15.Replace("V", "|")}{segB15}" +
-                $"{segA16}{SegV16.Replace("V", "|")}{segB16}" +
-                $"{segA17}{SegV17.Replace("V", "|")}{segB17}" +
-                $"{segA18}{SegV18.Replace("V", "|")}{segB18}" +
-                $"{segA19}{SegV19.Replace("V", "|")}{segB19}" +
-                $"{segA20}{SegV20.Replace("V", "|")}{segB20}" +
+                $"{segB1}{SegV1.Replace("V", "|")}{segA1}" +
+                $"{segB2}{SegV2.Replace("V", "|")}{segA2}" +
+                $"{segB3}{SegV3.Replace("V", "|")}{segA3}" +
+                $"{segB4}{SegV4.Replace("V", "|")}{segA4}" +
+                $"{segB5}{SegV5.Replace("V", "|")}{segA5}" +
+                $"{segB6}{SegV6.Replace("V", "|")}{segA6}" +
+                $"{segB7}{SegV7.Replace("V", "|")}{segA7}" +
+                $"{segB8}{SegV8.Replace("V", "|")}{segA8}" +
+                $"{segB9}{SegV9.Replace("V", "|")}{segA9}" +
+                $"{segB10}{SegV10.Replace("V", "|")}{segA10}" +
+                $"{segB11}{SegV11.Replace("V", "|")}{segA11}" +
+                $"{segB12}{SegV12.Replace("V", "|")}{segA12}" +
+                $"{segB13}{SegV13.Replace("V", "|")}{segA13}" +
+                $"{segB14}{SegV14.Replace("V", "|")}{segA14}" +
+                $"{segB15}{SegV15.Replace("V", "|")}{segA15}" +
+                $"{segB16}{SegV16.Replace("V", "|")}{segA16}" +
+                $"{segB17}{SegV17.Replace("V", "|")}{segA17}" +
+                $"{segB18}{SegV18.Replace("V", "|")}{segA18}" +
+                $"{segB19}{SegV19.Replace("V", "|")}{segA19}" +
+                $"{segB20}{SegV20.Replace("V", "|")}{segA20}" +
                 $"\n" +
 
                 $"Susitikimo vieta {susutikimoVieta:0.0} km\n" +
