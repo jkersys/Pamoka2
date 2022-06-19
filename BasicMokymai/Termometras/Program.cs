@@ -200,7 +200,7 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
  |<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   60 min <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< |
  */
 
-
+           
 
             //Paprašom įvesti atstumą
             Console.WriteLine("Iveskite atstumą tarp A ir B");
@@ -224,18 +224,12 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
             var aTrukme = atstumas / atransportoPriemone * minutesvalandoje;
             var bTrukme = atstumas / btransportoPriemone * minutesvalandoje;
 
-            //Skaičiuojam naudodami formules pagal tai ko prašo salygair pasidarom kad rodytų 2 skaičius po kalbelio (:0.00)
+            //Skaičiuojam naudodami formules pagal tai ko prašo salygair pasidar om kad rodytų 2 skaičius po kalbelio (:0.00)
             Console.WriteLine($"Transporto priemonės susitiks nuvažiavus {atransportoPriemone * susutikimoLaikas * metraiKilometruose:0.00} metrų(us)");
             Console.WriteLine($"Transporto priemonės susitiks praėjus {atstumas / (atransportoPriemone + btransportoPriemone) * sekundesValandoje:0.00} sekundėms(ių)");
             Console.WriteLine($"A transporto priemonė galutinį tašką pasieks praėjus {atstumas / atransportoPriemone * minutesvalandoje} minutėms");
             Console.WriteLine($"B transporto priemonė galutinį tašką pasieks praėjus {atstumas / btransportoPriemone * minutesvalandoje} minutėms");
             Console.WriteLine($"Transporto priemonės kartu išskyrė {atstumas * 2 * CO2:0.00} gramus CO2");
-
-
-
-
-
-
 
 
 
@@ -266,32 +260,8 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
             //Sustikimo vieta
             var susutikimoVieta = atransportoPriemone * susutikimoLaikas;
 
-           /*
-            //Kintamieji Surasti kur padeti v raidę
-            var segVraide0 = atstumas / 20 * 0.5;
-            var segVraide1 = atstumas / 20 * 1.5;
-            var segVraide2 = atstumas / 20 * 2.5;
-            var segVraide3 = atstumas / 20 * 3.5;
-            var segVraide4 = atstumas / 20 * 4.5;
-            var segVraide5 = atstumas / 20 * 5.5;
-            var segVraide6 = atstumas / 20 * 6.5;
-            var segVraide7 = atstumas / 20 * 7.5;
-            var segVraide8 = atstumas / 20 * 8.5;
-            var segVraide9 = atstumas / 20 * 9.5;
-            var segVraide10 = atstumas / 20 * 10.5;
-            var segVraide11 = atstumas / 20 * 11.5;
-            var segVraide12 = atstumas / 20 * 12.5;
-            var segVraide13 = atstumas / 20 * 13.5;
-            var segVraide14 = atstumas / 20 * 14.5;
-            var segVraide15 = atstumas / 20 * 15.5;
-            var segVraide16 = atstumas / 20 * 16.5;
-            var segVraide17 = atstumas / 20 * 17.5;
-            var segVraide18 = atstumas / 20 * 18.5;
-            var segVraide19 = atstumas / 20 * 19.5;
-            var segVraide21 = atstumas;
-           */
-           
-            //V raidės nustatymas
+                   
+            //V raidės nustatymas, tikrinam kur susitiks ( 10 daugiau už 5 = 10 mažiau arba lygu 15)   
             var SegV1 = ((susutikimoVieta > segskaic1) && (susutikimoVieta <= segskaic2)).ToString().Replace("True", "V").Replace("False", "");
             var SegV2 = ((susutikimoVieta > segskaic2) && (susutikimoVieta <= segskaic3)).ToString().Replace("True", "V").Replace("False", "");
             var SegV3 = ((susutikimoVieta > segskaic3) && (susutikimoVieta <= segskaic4)).ToString().Replace("True", "V").Replace("False", "");
