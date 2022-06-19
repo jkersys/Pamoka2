@@ -230,33 +230,43 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
             Console.WriteLine($"Transporto priemonės kartu išskyrė {atstumas * 2 * CO2:0.00} gramus CO2");
 
 
+            
+            
+            
+
+
+            
+           
+
             //segmento skaičiai
             var segskaic1 = 0;
-            var segskaic2 = atstumas / 20 + segskaic1;
-            var segskaic3 = atstumas / 20 + segskaic2;
-            var segskaic4 = atstumas / 20 + segskaic3;
-            var segskaic5 = atstumas / 20 + segskaic4;
-            var segskaic6 = atstumas / 20 + segskaic5;
-            var segskaic7 = atstumas / 20 + segskaic6;
-            var segskaic8 = atstumas / 20 + segskaic7;
-            var segskaic9 = atstumas / 20 + segskaic8;
-            var segskaic10 = atstumas / 20 + segskaic9;
-            var segskaic11 = atstumas / 20 + segskaic10;
-            var segskaic12 = atstumas / 20 + segskaic11;
-            var segskaic13 = atstumas / 20 + segskaic12;
-            var segskaic14 = atstumas / 20 + segskaic13;
-            var segskaic15 = atstumas / 20 + segskaic14;
-            var segskaic16 = atstumas / 20 + segskaic15;
-            var segskaic17 = atstumas / 20 + segskaic16;
-            var segskaic18 = atstumas / 20 + segskaic17;
-            var segskaic19 = atstumas / 20 + segskaic18;
-            var segskaic20 = atstumas / 20 + segskaic19;
-            var segskaic21 = atstumas / 20 + segskaic20;
+            var segskaic2 = atstumas / 20 * 1;
+            var segskaic3 = atstumas / 20 * 2;
+            var segskaic4 = atstumas / 20 * 3;
+            var segskaic5 = atstumas / 20 * 4;
+            var segskaic6 = atstumas / 20 * 5;
+            var segskaic7 = atstumas / 20 * 6;
+            var segskaic8 = atstumas / 20 * 7;
+            var segskaic9 = atstumas / 20 * 8;
+            var segskaic10 = atstumas / 20 * 9;
+            var segskaic11 = atstumas / 20 * 10;
+            var segskaic12 = atstumas / 20 * 11;
+            var segskaic13 = atstumas / 20 * 12;
+            var segskaic14 = atstumas / 20 * 13;
+            var segskaic15 = atstumas / 20 * 14;
+            var segskaic16 = atstumas / 20 * 15;
+            var segskaic17 = atstumas / 20 * 16;
+            var segskaic18 = atstumas / 20 * 17;
+            var segskaic19 = atstumas / 20 * 18;
+            var segskaic20 = atstumas / 20 * 19;
+            var segskaic21 = atstumas / 20 * 20;
 
             //Sustikimo vieta
-            var susutikimoVieta = atransportoPriemone * btransportoPriemone * atstumas;
+            var susutikimoVieta = atransportoPriemone * susutikimoLaikas;
 
+            /*
             //Kintamieji Surasti kur padeti v raidę
+            var segVraide0 = atstumas / 20 * 0.5;
             var segVraide1 = atstumas / 20 * 1.5;
             var segVraide2 = atstumas / 20 * 2.5;
             var segVraide3 = atstumas / 20 * 3.5;
@@ -276,25 +286,54 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
             var segVraide17 = atstumas / 20 * 17.5;
             var segVraide18 = atstumas / 20 * 18.5;
             var segVraide19 = atstumas / 20 * 19.5;
-            var segVraide20 = atstumas / 20 * 20.5;
             var segVraide21 = atstumas;
+            */
+            var SegV1 = (susutikimoVieta > segskaic1) && (susutikimoVieta <= segskaic1);
+            var SegV2 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic2;
+            var SegV3 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic3;
+            var SegV4 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic4;
+            var SegV5 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic5;
+            var SegV6 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic6;
+            var SegV7 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic7;
+            var SegV8= susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic8;
+            var SegV9= susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic9;
+            var SegV10 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic10;
+            var SegV11 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic11;
+            var SegV12 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic12;
+            var SegV13 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic13;
+            var SegV14 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic14;
+            var SegV15 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic15;
+            var SegV16 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic16;
+            var SegV17 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic17;
+            var SegV18 = susutikimoVieta > segskaic17&&susutikimoVieta <= segskaic18;
+            var SegV19 = susutikimoVieta > segskaic18 && susutikimoVieta <= segskaic19;
+            var SegV20 = susutikimoVieta > segskaic19 && susutikimoVieta <= segskaic20;
 
 
             // tikrinam reiškmė tinkama, kur dėt V
-            var segTikrinimas = 
+            // var segTikrinimas = segskaic1 < susutikimoVieta < 
 
 
 
 
+
+
+
+
+
+
+            Console.WriteLine($"{susutikimoVieta}");
             //Viso atstumas
             Console.WriteLine($"viso {atstumas} km");
-            Console.WriteLine($"{segskaic1}      {segskaic4}     {segskaic3}     {segskaic4}     {segskaic5}      {segskaic6}     {segskaic7}     {segskaic8}     {segskaic9}     {segskaic10}     {segskaic11}     {segskaic12}     {segskaic13}     {segskaic14}     {segskaic15}     {segskaic16}     {segskaic17}     {segskaic18}     {segskaic19}     {segskaic20}     {segskaic21}|");
+            Console.WriteLine($"|--------------------------------------------------------------------------------------------------------------------------------------------|");
 
-            //Console.WriteLine($"{segVraide1}      {segVraide2}     {segVraide3}     {segVraide4}     {segVraide5}      {segVraide6}     {segVraide7}     {segVraide8}     {segVraide9}     {segVraide10}     {segVraide11}     {segVraide12}     {segVraide13}     {segVraide14}     {segVraide15}     {segVraide16}     {segVraide17}     {segVraide18}     {segVraide19}     {segVraide20}     {segskaic21}|");
+            Console.WriteLine($"{segskaic1}      {segskaic2}     {segskaic3}     {segskaic4}     {segskaic5}      {segskaic6}     {segskaic7}     {segskaic8}     {segskaic9}     {segskaic10}     {segskaic11}     {segskaic12}     {segskaic13}     {segskaic14}     {segskaic15}     {segskaic16}     {segskaic17}     {segskaic18}     {segskaic19}     {segskaic20}     {segskaic21}|\n");
+
+           //onsole.WriteLine($"     {segVraide0}     {segVraide1}      {segVraide2}     {segVraide3}     {segVraide4}     {segVraide5}      {segVraide6}     {segVraide7}     {segVraide8}     {segVraide9}     {segVraide10}     {segVraide11}     {segVraide12}     {segVraide13}     {segVraide14}     {segVraide15}     {segVraide16}     {segVraide17}     {segVraide18}     {segVraide19}     {segskaic21}|");
 
             
 
-            Console.WriteLine($"|--------------------------------------------------------------------------------------------------------------------------------------------|");
+            
 
 
         }
