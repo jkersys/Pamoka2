@@ -408,7 +408,7 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
                 $"|___{SegV19}___" +
                 $"|___{SegV20}___B\n" +
 
-                //kelio piešimas randa nupiešia kelia ----- ir randa kur padėt |
+                //kelio piešimas randa nupiešti kelia ----- ir randa kur padėt |
                 $" |" +
                 $"{segB1}{SegV1.Replace("V", "|")}{segA1}" +
                 $"{segB2}{SegV2.Replace("V", "|")}{segA2}" +
