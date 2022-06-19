@@ -222,7 +222,7 @@ _A______|______|______|______|___V___|______|______|______|______|______|______|
             var susutikimoLaikas = atstumas / (atransportoPriemone + btransportoPriemone);
 
             var aTrukme = atstumas / atransportoPriemone * minutesvalandoje;
-            var bTrukme = atstumas / btransportoPriemone + minutesvalandoje;
+            var bTrukme = atstumas / btransportoPriemone * minutesvalandoje;
 
             //Skaičiuojam naudodami formules pagal tai ko prašo salygair pasidarom kad rodytų 2 skaičius po kalbelio (:0.00)
             Console.WriteLine($"Transporto priemonės susitiks nuvažiavus {atransportoPriemone * susutikimoLaikas * metraiKilometruose:0.00} metrų(us)");
