@@ -385,6 +385,17 @@ Paprašykite naudotojo įvesti du skaičius ir matematinę operaciją ( +, -, * 
             }
 
 
+            /* Kalėdų sausainiai **
+- Paprašykite vartotojo įvesti betkokias 4 datas (tarkim 2013-12-24, 2020-12-22, 3000-12-24, 2021-03-03)
+- Parašykite programą kuri nustato ar tarp įvestų datų yra kalėdos (gruodžio 24).
+- Ir jei yra kalėdų data, išveda - "Jums priklauso nemokami kalėdiniai sausainiai"
+- Jei nėra išveda - "Palaukite kalėdų"
+Pavyzdzio atsakymas: "Jums priklauso nemokami kalėdų sausainiai"
+<Hint> metodai data.Month ir data.Day
+            */
+
+
+
 
         }
     }
