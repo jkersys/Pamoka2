@@ -338,7 +338,7 @@ Paprašykite naudotojo įvesti du skaičius ir matematinę operaciją ( +, -, * 
             konstrukcijas kurias iki šiol išėjome.
             */
 
-
+            /**
             Console.WriteLine("Iveskite pirmojo draugo Varda");
             string PirmoV = Console.ReadLine();
             Console.WriteLine("Iveskite pirmojo draugo amziu");
@@ -393,6 +393,33 @@ Paprašykite naudotojo įvesti du skaičius ir matematinę operaciją ( +, -, * 
 Pavyzdzio atsakymas: "Jums priklauso nemokami kalėdų sausainiai"
 <Hint> metodai data.Month ir data.Day
             */
+
+            Console.WriteLine("Iveskite 4 metus askirdami enter (formatas yyyy-mm-dd");
+            var metai1 = DateTime.Parse(Console.ReadLine());
+            var metai2 = DateTime.Parse(Console.ReadLine());
+            var metai3 = DateTime.Parse(Console.ReadLine());
+            var metai4 = DateTime.Parse(Console.ReadLine());
+
+            Console.WriteLine($"{metai1.ToString("yyyy-MM-dd")} {metai2} {metai3} {metai4}"); //taip galima nurodyti kaip rodyti data MM nes didziosiomis zymisi menesiai
+
+            if (metai1.Month == 12 && metai1.Day == 24)
+            {
+                Console.WriteLine("Jums priklauso nemokami sausainiai");
+            }
+            else if (metai2.Month == 12 && metai2.Day == 24)
+            {
+                Console.WriteLine("Jums priklauso nemokami sausainiai");
+            }
+            else if (metai3.Month == 12 && metai3.Day == 24)
+            {
+                Console.WriteLine("Jums priklauso nemokami sausainiai");
+            }
+            if (metai4.Month == 12 && metai4.Day == 24)
+            {
+                Console.WriteLine("Jums priklauso nemokami sausainiai");
+            }
+
+
 
 
 
