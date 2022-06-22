@@ -72,10 +72,22 @@ Rezultatas gali atrodyti taip:
 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 */
-            Console.WriteLine("Įveskite savo vardą ir oavardę");
+            Console.WriteLine("Įveskite savo vardą ir pavardę");
             string vardasIrPavarde = Console.ReadLine();
             Console.WriteLine("Įveskite savo asmens kodą (11 simb.)");
             var asmensKodas = (Console.ReadLine());
+            //tikrinimui    
+
+            var tikrinimui = Convert.ToDouble(11);
+
+
+            if (asmensKodas.Length < tikrinimui)
+            {
+                Console.WriteLine("Ivedete klaidinga asmens koda ");
+            }
+
+
+
             var siandienosData = DateTime.Today;
 
             var asmensKodoPirmaRaide = (asmensKodas[0]);
@@ -89,20 +101,9 @@ Rezultatas gali atrodyti taip:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
             Console.WriteLine($"#####################################################################################################");
-            Console.WriteLine($"###################################ATASKAITA APIE ASMENĮ#################################################");
-            Console.WriteLine($"###################################{siandienosData.ToString("yyyy-MM-dd")}#############################################");
+            Console.WriteLine($"###################################ATASKAITA APIE ASMENĮ##############################################");
+            Console.WriteLine($"###################################{siandienosData.ToString("yyyy-MM-dd")}#############################");
             Console.WriteLine($"####Vardas, pavarde####{vardasIrPavarde}##########################################################################");
             Console.WriteLine($"####Lytis   ####################################################################################");
             Console.WriteLine($"#####################################################################################################");
