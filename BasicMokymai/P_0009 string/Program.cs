@@ -75,6 +75,15 @@ kelias eilutes";
             Console.WriteLine(skaiciusSuapribotukiekiuPoKablelio);
 
 
+            //tryparse grazina 2 reiksmes patikrina ar is stringo galima gauti skaitmeni
+
+
+            //-------------------
+            //string metodai
+
+            //is asmens kodi iskaiciuota 
+
+            
 
 
 
