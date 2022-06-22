@@ -8,6 +8,7 @@
 
 
 
+
             //Asmenskodasprivalomas jeigu nera nutraukia
 
             /* 
@@ -76,16 +77,23 @@ Rezultatas gali atrodyti taip:
             string vardasIrPavarde = Console.ReadLine();
             Console.WriteLine("Įveskite savo asmens kodą (11 simb.)");
             var asmensKodas = (Console.ReadLine());
+
             //tikrinimui    
 
             var tikrinimui = Convert.ToDouble(11);
+           
 
+            
+            //tryparse
 
-            if (asmensKodas.Length < tikrinimui)
+            if (asmensKodas.Length == tikrinimui && double.TryParse(asmensKodas, out _))
             {
-                Console.WriteLine("Ivedete klaidinga asmens koda ");
+                Console.WriteLine("Iveskite amziu");
             }
-
+            else
+            {
+                Console.WriteLine("Ivedete klaidingus duomenis");
+            }
 
 
             var siandienosData = DateTime.Today;
