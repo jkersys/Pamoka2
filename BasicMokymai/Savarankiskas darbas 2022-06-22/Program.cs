@@ -74,14 +74,14 @@ Rezultatas gali atrodyti taip:
 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 */
 
-            //issivedam siandiens data atvzaidavimo lentelei kad rodytu pildymo data
+            //issivedam siandienos data atvzaidavimo lentelei, kad rodytu pildymo data
             var siandienosData = DateTime.Today;
 
             //prasom ivesti varda ir pavarde
             Console.WriteLine("Įveskite savo vardą ir pavardę");
             string vardasIrPavarde = Console.ReadLine();
 
-            //tikrinam ar vardas ir pavarde ivesti
+            //tikrinam ar vardas ir pavarde ivesti DAR REIKIA PATIKRINT AR NEIVESTASKAICIU
             if (vardasIrPavarde.Length <= 0)
             {
                 Console.WriteLine("Įvedete neteisingus duomenis");
@@ -91,7 +91,11 @@ Rezultatas gali atrodyti taip:
             Console.WriteLine("Įveskite savo asmens kodą (11 simb.)");
             var asmensKodas = (Console.ReadLine());
             //tikrinam ar įvesta 11 skaitmenu ir ar visi ivesti simboliai yra skaiciai 
-            if (asmensKodas.Length == Convert.ToDouble(11)! && double.TryParse(asmensKodas, out _))
+            if (asmensKodas.Length == Convert.ToDouble(11) && double.TryParse(asmensKodas, out _))
+            {
+                //ar galima taip palikt
+            }
+            else
             {
                 Console.WriteLine("Neteisingai ivedete asmens koda");
                 Environment.Exit(0);
@@ -99,15 +103,21 @@ Rezultatas gali atrodyti taip:
 
             
 
-            var asmensKodoPirmaRaide = (asmensKodas[0]);
-
-
+            var asmensKodoPirmaRaide = asmensKodas.Substring(0);
+            Console.WriteLine($"{asmensKodoPirmaRaide}");
+            ///amziaus ivedimas
             Console.WriteLine("Įveskite amžių");
             string amzius = (Console.ReadLine());
-            Console.WriteLine("Įveskite gimimo datą");
-            string gimimoData = Console.ReadLine();
 
+            //gimimo datos
+            Console.WriteLine("Įveskite gimimo datą formatu yyyy-mm-dd");
+            var gimimoData = Console.ReadLine();
 
+            //tikrinam lyti
+           // if (asmensKodoPirmaRaide = 1)
+            {
+                Console.WriteLine("Vyras");
+            }
 
 
             Console.WriteLine($"#####################################################################################################");
