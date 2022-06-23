@@ -73,30 +73,31 @@ Rezultatas gali atrodyti taip:
 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 */
+
+            //issivedam siandiens data atvzaidavimo lentelei kad rodytu pildymo data
+            var siandienosData = DateTime.Today;
+
+            //prasom ivesti varda ir pavarde
             Console.WriteLine("Įveskite savo vardą ir pavardę");
             string vardasIrPavarde = Console.ReadLine();
+
+            //tikrinam ar vardas ir pavarde ivesti
+            if (vardasIrPavarde.Length <= 0)
+            {
+                Console.WriteLine("Įvedete neteisingus duomenis");
+                Environment.Exit(0);
+            }
+
             Console.WriteLine("Įveskite savo asmens kodą (11 simb.)");
             var asmensKodas = (Console.ReadLine());
-
-            //tikrinimui    
-
-            var tikrinimui = Convert.ToDouble(11);
-           
+            //tikrinam ar įvesta 11 skaitmenu ir ar visi ivesti simboliai yra skaiciai 
+            if (asmensKodas.Length == Convert.ToDouble(11)! && double.TryParse(asmensKodas, out _))
+            {
+                Console.WriteLine("Neteisingai ivedete asmens koda");
+                Environment.Exit(0);
+            }
 
             
-            //tryparse
-
-            if (asmensKodas.Length == tikrinimui && double.TryParse(asmensKodas, out _))
-            {
-                Console.WriteLine("Iveskite amziu");
-            }
-            else
-            {
-                Console.WriteLine("Ivedete klaidingus duomenis");
-            }
-
-
-            var siandienosData = DateTime.Today;
 
             var asmensKodoPirmaRaide = (asmensKodas[0]);
 
