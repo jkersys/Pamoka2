@@ -95,7 +95,7 @@ Rezultatas gali atrodyti taip:
             //tikrinam ar įvesta 11 skaitmenu ir ar visi ivesti simboliai yra skaiciai 
             if (asmensKodas.Length == 11 && double.TryParse(asmensKodas, out _))
             {
-                //ar galima taip palikt
+                //ar galima taip palikt?
             }
             else
             {
@@ -104,34 +104,34 @@ Rezultatas gali atrodyti taip:
             }
 
             
-
+            //pasiimam asmens kodo pirmą raidę tikrinimui
             var asmensKodoPirmaRaide = asmensKodas[0];
-            Console.WriteLine($"{asmensKodoPirmaRaide}");
             ///amziaus ivedimas
             Console.WriteLine("Įveskite amžių");
             string amziusString = Console.ReadLine();
 
-            //gimimo datos
+            //gimimo datos ivedimas
             Console.WriteLine("Įveskite gimimo datą formatu yyyy-mm-dd");
             var gimimoDataString = Console.ReadLine();
-            Console.WriteLine($"Vyras {asmensKodoPirmaRaide == 1}");
-            //tikrinam lyti
-
+           
+           //asmens kodo pirma raide pasidarom int
             var pirmasSKaicius = (int)asmensKodoPirmaRaide;
             Console.WriteLine($"Pirma raidė {pirmasSKaicius == '1'}");
 
-            string lytis = "";
 
+            string lytis = "";
+            //tikrinam ar pirma asmens kodo raide yra 1, 3, 5, jeigu taip gražinam reiksme kad tai vyras
             if (asmensKodoPirmaRaide == '1' || asmensKodoPirmaRaide == '3' || asmensKodoPirmaRaide == '5')
             {
                 lytis = "Vyras";
             }
+            //tikrinam ar pirma asmens kodo raide yra 2, 4, 6, jeigu taip gražinam reiksme kad tai moteris
             else if (asmensKodoPirmaRaide == '2' || asmensKodoPirmaRaide == '4' || asmensKodoPirmaRaide == '6')
             {
                 lytis = "Moteris";
             }
             else
-            {
+            {   // jeigu nei vyras, nei moteris uzdarom programa
                 Console.WriteLine("Neteisingai ivedete asmens koda");
                 Environment.Exit(0);
             }
@@ -140,9 +140,10 @@ Rezultatas gali atrodyti taip:
 
 
 
-            //38601045879
-
+            //39105140736
+            //pasiimam asmens kodo 2 ir 3 skaicius
             var gimimoMetaiIsAsmensKodoString = asmensKodas.Substring(1, 2);
+
             var amziausZinute = "amžius patikimas";
             var amziusPagalMetusPatikimas = false;
             var amziusPagalGimimoDataPatikimas = false;
@@ -243,16 +244,18 @@ Rezultatas gali atrodyti taip:
             Console.WriteLine($"#####################################################################################################");
             Console.WriteLine($"###################################ATASKAITA APIE ASMENĮ##############################################");
             Console.WriteLine($"###################################{siandienosData.ToString("yyyy-MM-dd")}#############################");
+            Console.WriteLine($"#####################################################################################################");
             Console.WriteLine($"####Vardas, pavarde####{vardasIrPavarde}##########################################################################");
+            Console.WriteLine($"#####################################################################################################");
             Console.WriteLine($"####Lytis   {lytis}####################################################################################");
             Console.WriteLine($"#####################################################################################################");
+            Console.WriteLine($"####Asmens kodas####{asmensKodas}#############################################################################################");
             Console.WriteLine($"#####################################################################################################");
-            Console.WriteLine($"###Amziaus patikimumas    {amziausZinute}############################################################");
+            Console.WriteLine($"####Amzius#######{amziusString}##########################################################################################");
             Console.WriteLine($"#####################################################################################################");
+            Console.WriteLine($"####Gimimo data######{gimimoDataString}###########################################################################################");
             Console.WriteLine($"#####################################################################################################");
-            Console.WriteLine($"#####################################################################################################");
-            Console.WriteLine($"#####################################################################################################");
-            Console.WriteLine($"#####################################################################################################");
+            Console.WriteLine($"###Amziaus patikimumas    {amziausZinute}############################################################"); 
             Console.WriteLine($"#####################################################################################################");
             Console.WriteLine($"#####################################################################################################");
 
