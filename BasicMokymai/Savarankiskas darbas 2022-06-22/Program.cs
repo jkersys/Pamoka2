@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, Užduotis!");
-
+            
 
 
 
@@ -93,7 +93,7 @@ Rezultatas gali atrodyti taip:
             Console.WriteLine("Įveskite savo asmens kodą (11 simb.)");
             var asmensKodas = (Console.ReadLine());
             //tikrinam ar įvesta 11 skaitmenu ir ar visi ivesti simboliai yra skaiciai 
-            if (asmensKodas.Length == Convert.ToDouble(11) && double.TryParse(asmensKodas, out _))
+            if (asmensKodas.Length == 11 && double.TryParse(asmensKodas, out _))
             {
                 //ar galima taip palikt
             }
@@ -105,42 +105,149 @@ Rezultatas gali atrodyti taip:
 
             
 
-            var asmensKodoPirmaRaide = (asmensKodas[0]);
+            var asmensKodoPirmaRaide = asmensKodas[0];
             Console.WriteLine($"{asmensKodoPirmaRaide}");
             ///amziaus ivedimas
             Console.WriteLine("Įveskite amžių");
-            string amzius = (Console.ReadLine());
+            string amziusString = Console.ReadLine();
 
             //gimimo datos
             Console.WriteLine("Įveskite gimimo datą formatu yyyy-mm-dd");
-            var gimimoData = Console.ReadLine();
+            var gimimoDataString = Console.ReadLine();
             Console.WriteLine($"Vyras {asmensKodoPirmaRaide == 1}");
             //tikrinam lyti
-            var asmenskodas1 = asmensKodoPirmaRaide == '1';
-            var asmenskodas2 = asmensKodoPirmaRaide == '1';
-            var asmenskodas3 = asmensKodoPirmaRaide == '1';
-            var asmenskodas4 = asmensKodoPirmaRaide == '1';
-            var asmenskodas5 = asmensKodoPirmaRaide == '1';
-            var asmenskodas6 = asmensKodoPirmaRaide == '1';
 
+            var pirmasSKaicius = (int)asmensKodoPirmaRaide;
+            Console.WriteLine($"Pirma raidė {pirmasSKaicius == '1'}");
 
+            string lytis = "";
 
-
-
-            if (asmensKodoPirmaRaide == 1)
+            if (asmensKodoPirmaRaide == '1' || asmensKodoPirmaRaide == '3' || asmensKodoPirmaRaide == '5')
             {
-                Console.WriteLine($"Vyras {asmensKodoPirmaRaide == '1'}");
+                lytis = "Vyras";
             }
+            else if (asmensKodoPirmaRaide == '2' || asmensKodoPirmaRaide == '4' || asmensKodoPirmaRaide == '6')
+            {
+                lytis = "Moteris";
+            }
+            else
+            {
+                Console.WriteLine("Neteisingai ivedete asmens koda");
+                Environment.Exit(0);
+            }
+
+            Console.WriteLine(lytis);
+
+
+
+            //38601045879
+
+            var gimimoMetaiIsAsmensKodoString = asmensKodas.Substring(1, 2);
+            var amziausZinute = "amžius patikimas";
+            var amziusPagalMetusPatikimas = false;
+            var amziusPagalGimimoDataPatikimas = false;
+
+            if (string.IsNullOrEmpty(amziusString) == true && string.IsNullOrEmpty(gimimoDataString) == true)
+            {
+                amziausZinute = "patikimumui trūksta duomenų";
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(amziusString) == false)
+                {
+                    var amzius = int.Parse(amziusString);
+                    var gimimoMetaiIsskaiciuoti = DateTime.Now.Year - amzius;
+                    var gimimoMetaiIsAsmensKodo = int.Parse(gimimoMetaiIsAsmensKodoString);
+                    if (asmensKodoPirmaRaide == '1' || asmensKodoPirmaRaide == '2')
+                    {
+                        gimimoMetaiIsAsmensKodo = gimimoMetaiIsAsmensKodo + 1800;
+                    }
+                    if (asmensKodoPirmaRaide == '3' || asmensKodoPirmaRaide == '4')
+                    {
+                        gimimoMetaiIsAsmensKodo = gimimoMetaiIsAsmensKodo + 1900;
+                    }
+                    if (asmensKodoPirmaRaide == '5' || asmensKodoPirmaRaide == '6')
+                    {
+                        gimimoMetaiIsAsmensKodo = gimimoMetaiIsAsmensKodo + 2000;
+                    }
+
+                    if (gimimoMetaiIsskaiciuoti == gimimoMetaiIsAsmensKodo)
+                    {
+                        amziusPagalMetusPatikimas = true;
+                        amziausZinute = "amžius patikimas";
+                    }
+                    else
+                    {
+                        amziausZinute = "amžius pameluotas";
+                    }
+                }
+
+                if (string.IsNullOrEmpty(gimimoDataString) == false)
+                {
+                    var gimimoData = DateTime.Parse(gimimoDataString);
+                    var gimimoMetaiIsAsmensKodo = int.Parse(gimimoMetaiIsAsmensKodoString);
+
+                    if (asmensKodoPirmaRaide == '1' || asmensKodoPirmaRaide == '2')
+                    {
+                        gimimoMetaiIsAsmensKodo = gimimoMetaiIsAsmensKodo + 1800;
+                    }
+                    if (asmensKodoPirmaRaide == '3' || asmensKodoPirmaRaide == '4')
+                    {
+                        gimimoMetaiIsAsmensKodo = gimimoMetaiIsAsmensKodo + 1900;
+                    }
+                    if (asmensKodoPirmaRaide == '5' || asmensKodoPirmaRaide == '6')
+                    {
+                        gimimoMetaiIsAsmensKodo = gimimoMetaiIsAsmensKodo + 2000;
+                    }
+
+                    if (gimimoData.Year == gimimoMetaiIsAsmensKodo)
+                    {
+                        amziusPagalGimimoDataPatikimas = true;
+                        amziausZinute = "amžius patikimas";
+                    }
+                    else
+                    {
+                        amziausZinute = "amžius pameluotas";
+                    }
+                }
+
+
+                if (string.IsNullOrEmpty(amziusString) == false && string.IsNullOrEmpty(gimimoDataString) == false)
+                {
+                    if (amziusPagalMetusPatikimas == true && amziusPagalGimimoDataPatikimas == true)
+                    {
+                        amziausZinute = "amžius tikras";
+                    }
+                    if (amziusPagalMetusPatikimas == true && amziusPagalGimimoDataPatikimas == false)
+                    {
+                        amziausZinute = "amžius nepatikimas";
+                    }
+                    if (amziusPagalGimimoDataPatikimas == true && amziusPagalMetusPatikimas == false)
+                    {
+                        amziausZinute = "amžius nepatikimas";
+                    }
+
+                    if (amziusPagalMetusPatikimas == false && amziusPagalGimimoDataPatikimas == false)
+                    {
+                        amziausZinute = "amžius pameluotas";
+                    }
+                }
+            }
+
+            
+
+            
+
 
 
             Console.WriteLine($"#####################################################################################################");
             Console.WriteLine($"###################################ATASKAITA APIE ASMENĮ##############################################");
             Console.WriteLine($"###################################{siandienosData.ToString("yyyy-MM-dd")}#############################");
             Console.WriteLine($"####Vardas, pavarde####{vardasIrPavarde}##########################################################################");
-            Console.WriteLine($"####Lytis   ####################################################################################");
+            Console.WriteLine($"####Lytis   {lytis}####################################################################################");
             Console.WriteLine($"#####################################################################################################");
             Console.WriteLine($"#####################################################################################################");
-            Console.WriteLine($"#####################################################################################################");
+            Console.WriteLine($"###Amziaus patikimumas    {amziausZinute}############################################################");
             Console.WriteLine($"#####################################################################################################");
             Console.WriteLine($"#####################################################################################################");
             Console.WriteLine($"#####################################################################################################");
