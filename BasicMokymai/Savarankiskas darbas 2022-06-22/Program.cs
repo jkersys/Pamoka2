@@ -77,12 +77,14 @@ Rezultatas gali atrodyti taip:
             //issivedam siandienos data atvzaidavimo lentelei, kad rodytu pildymo data
             var siandienosData = DateTime.Today;
 
+            //
+
             //prasom ivesti varda ir pavarde
             Console.WriteLine("Įveskite savo vardą ir pavardę");
             string vardasIrPavarde = Console.ReadLine();
 
-            //tikrinam ar vardas ir pavarde ivesti DAR REIKIA PATIKRINT AR NEIVESTASKAICIU
-            if (vardasIrPavarde.Length <= 0)
+            //tikrinam ar vardas ir pavarde ivesti DAR REIKIA PATIKRINT AR NEIVESTA SKAICIU
+            if (vardasIrPavarde.Length == 0)
             {
                 Console.WriteLine("Įvedete neteisingus duomenis");
                 Environment.Exit(0);
@@ -103,7 +105,7 @@ Rezultatas gali atrodyti taip:
 
             
 
-            var asmensKodoPirmaRaide = asmensKodas.Substring(0);
+            var asmensKodoPirmaRaide = (asmensKodas[0]);
             Console.WriteLine($"{asmensKodoPirmaRaide}");
             ///amziaus ivedimas
             Console.WriteLine("Įveskite amžių");
@@ -112,11 +114,22 @@ Rezultatas gali atrodyti taip:
             //gimimo datos
             Console.WriteLine("Įveskite gimimo datą formatu yyyy-mm-dd");
             var gimimoData = Console.ReadLine();
-
+            Console.WriteLine($"Vyras {asmensKodoPirmaRaide == 1}");
             //tikrinam lyti
-           // if (asmensKodoPirmaRaide = 1)
+            var asmenskodas1 = asmensKodoPirmaRaide == '1';
+            var asmenskodas2 = asmensKodoPirmaRaide == '1';
+            var asmenskodas3 = asmensKodoPirmaRaide == '1';
+            var asmenskodas4 = asmensKodoPirmaRaide == '1';
+            var asmenskodas5 = asmensKodoPirmaRaide == '1';
+            var asmenskodas6 = asmensKodoPirmaRaide == '1';
+
+
+
+
+
+            if (asmensKodoPirmaRaide == 1)
             {
-                Console.WriteLine("Vyras");
+                Console.WriteLine($"Vyras {asmensKodoPirmaRaide == '1'}");
             }
 
 
