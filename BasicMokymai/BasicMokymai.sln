@@ -33,9 +33,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "p007_If", "p007_If\p007_If.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P0008_switch", "P0008_switch\P0008_switch.csproj", "{19078060-1F99-4F47-B840-C0606948B5D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P_0009 string", "P_0009 string\P_0009 string.csproj", "{B4C35665-0C1B-409C-8B31-5C465989EBE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P_0009 string", "P_0009 string\P_0009 string.csproj", "{B4C35665-0C1B-409C-8B31-5C465989EBE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Savarankiskas darbas 2022-06-22", "Savarankiskas darbas 2022-06-22\Savarankiskas darbas 2022-06-22.csproj", "{06AE8C3D-997D-4117-87FC-8F6300EF2835}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savarankiskas darbas 2022-06-22", "Savarankiskas darbas 2022-06-22\Savarankiskas darbas 2022-06-22.csproj", "{06AE8C3D-997D-4117-87FC-8F6300EF2835}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savarankiskas darbas, pasibandymai", "Savarankiskas darbas, pasibandymai\Savarankiskas darbas, pasibandymai.csproj", "{98C75F78-1289-4670-8CE2-4D6FC8F076CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metodai", "Metodai\Metodai.csproj", "{228C4E1C-F939-4F07-9401-DFD6B17BD605}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datos bandymai", "Datos bandymai\Datos bandymai.csproj", "{8F558A8B-ECE5-4D1E-BBE0-EAEA8A34D7C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metodai uzdaviniai", "Metodai uzdaviniai\Metodai uzdaviniai.csproj", "{B6F34E07-FC4C-4F6F-913E-14A4E55842C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +119,22 @@ Global
 		{06AE8C3D-997D-4117-87FC-8F6300EF2835}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06AE8C3D-997D-4117-87FC-8F6300EF2835}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06AE8C3D-997D-4117-87FC-8F6300EF2835}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98C75F78-1289-4670-8CE2-4D6FC8F076CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98C75F78-1289-4670-8CE2-4D6FC8F076CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98C75F78-1289-4670-8CE2-4D6FC8F076CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98C75F78-1289-4670-8CE2-4D6FC8F076CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{228C4E1C-F939-4F07-9401-DFD6B17BD605}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{228C4E1C-F939-4F07-9401-DFD6B17BD605}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{228C4E1C-F939-4F07-9401-DFD6B17BD605}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{228C4E1C-F939-4F07-9401-DFD6B17BD605}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F558A8B-ECE5-4D1E-BBE0-EAEA8A34D7C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F558A8B-ECE5-4D1E-BBE0-EAEA8A34D7C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F558A8B-ECE5-4D1E-BBE0-EAEA8A34D7C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F558A8B-ECE5-4D1E-BBE0-EAEA8A34D7C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6F34E07-FC4C-4F6F-913E-14A4E55842C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6F34E07-FC4C-4F6F-913E-14A4E55842C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6F34E07-FC4C-4F6F-913E-14A4E55842C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6F34E07-FC4C-4F6F-913E-14A4E55842C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
