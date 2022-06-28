@@ -144,7 +144,7 @@ Rezultatas gali atrodyti taip:
 
 
             //******Issivedam is asmens kodo gimimo data
-            //psdiimsm metus
+            //pasiimam metus
             var gimimoMetaiIsAsmensKodoString = asmensKodas.Substring(1, 2);
             //pasiimam menesi
             var gimimoMenesisIsAsmensKodoString = asmensKodas.Substring(3, 2);
@@ -174,7 +174,7 @@ Rezultatas gali atrodyti taip:
 
             //susidedam turimus int'us i data ir pakeiciam i string reikiamu datos formatu
             DateTime dataGautaIsAsmensKodo = new DateTime(gimimoMetaiIsAsmensKodo, menesis1, diena1);
-            String dataGautaIsAsmensKodoString = dataGautaIsAsmensKodo.ToString("yyyy-MM-dd");
+           // String dataGautaIsAsmensKodoString = dataGautaIsAsmensKodo.ToString("yyyy-MM-dd"); //nereikalingas
 
 
            
