@@ -89,10 +89,7 @@ Rezultatas gali atrodyti taip:
                 Console.WriteLine("Įvedete neteisingus duomenis");
                 Environment.Exit(0);
             }
-            else
-            {
-
-            }
+          
 
             Console.WriteLine("Įveskite savo asmens kodą (11 simb.)");
             var asmensKodas = (Console.ReadLine());
@@ -192,14 +189,15 @@ Rezultatas gali atrodyti taip:
 
 
 
-            //tikrinam ar ivesti bent vienas is duomenu
-            if (string.IsNullOrEmpty(amziusString) == true && string.IsNullOrEmpty(gimimoDataString) == true)
-            {
-                amziausZinute = "patikimumui trūksta duomenų";
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(amziusString) == false) // tikrinam ar ivestas amzius
+                          //tikrinam ar ivesti bent vienas is duomenu
+               if (string.IsNullOrEmpty(amziusString) == true && string.IsNullOrEmpty(gimimoDataString) == true)
+                {
+                    amziausZinute = "patikimumui trūksta duomenų";
+                }
+               else
+                {
+            
+                    if (string.IsNullOrEmpty(amziusString) == false) // tikrinam ar ivestas amzius
                 {
                     var amzius = int.Parse(amziusString); // amziu pasiparsinam i int
                     var gimimoMetaiIsskaiciuoti = DateTime.Today.AddYears(-amzius); // is siandienos datos atimam ivestus metus
@@ -255,30 +253,30 @@ Rezultatas gali atrodyti taip:
                         amziausZinute = "amžius pameluotas";
                     }
 
-
+                }
 
                 }
 
 
                 Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
                 Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ATASKAITA APIE ASMENĮ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
-                Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓{siandienosData.ToString("yyyy-MM-dd")}▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓{siandienosData.ToString("yyyy-MM-dd")}▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
                 Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
-                Console.WriteLine($"▓▓▓▓Vardas, pavarde▓▓▓▓▓▓{vardasIrPavarde}▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓Vardas, pavarde▓▓▓▓▓▓{vardasIrPavarde}                                                         ▓▓▓");
                 Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
-                Console.WriteLine($"▓▓▓▓Lytis ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓{lytis}▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓Lytis ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓{lytis}                                                                   ▓▓▓");
                 Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
-                Console.WriteLine($"▓▓▓▓Asmens kodas▓▓▓▓▓▓▓▓▓{asmensKodas}▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓Asmens kodas▓▓▓▓▓▓▓▓▓{asmensKodas}                                                             ▓▓▓");
                 Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
-                Console.WriteLine($"▓▓▓▓Amzius▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓{amziusString}▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓Amzius▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓{amziusString}                                                            ▓▓▓");
                 Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
-                Console.WriteLine($"▓▓▓▓Gimimo data▓▓▓▓▓▓▓▓▓▓{gimimoDataString}▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓Gimimo data▓▓▓▓▓▓▓▓▓▓{gimimoDataString}                                                        ▓▓▓");
                 Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
-                Console.WriteLine($"▓▓▓▓Amziaus patikimumas▓▓{amziausZinute}▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓Amziaus patikimumas▓▓{amziausZinute}                                                           ▓▓▓");
                 Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
                 Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
 
-            }
+            
         }
     }
 }

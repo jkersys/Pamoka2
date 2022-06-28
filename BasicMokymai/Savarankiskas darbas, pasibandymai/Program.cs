@@ -84,7 +84,7 @@ Rezultatas gali atrodyti taip:
 
            
             //tikrinam ar ivesta vardas ir pavarde (All(char.IsDigit) nepraleidzia whitespaco)
-            if (vardasIrPavarde.Length == 0 || vardasIrPavarde.Any(char.IsDigit) || vardasIrPavarde.Any(char.IsSymbol))
+            if (vardasIrPavarde.Length == 0 || vardasIrPavarde.Any(char.IsDigit) ||  vardasIrPavarde.Any(char.IsSymbol))
             {
                 Console.WriteLine("Įvedete neteisingus duomenis");
                 Environment.Exit(0);
