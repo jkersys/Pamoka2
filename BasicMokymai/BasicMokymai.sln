@@ -43,9 +43,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metodai", "Metodai\Metodai.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datos bandymai", "Datos bandymai\Datos bandymai.csproj", "{8F558A8B-ECE5-4D1E-BBE0-EAEA8A34D7C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metodai uzdaviniai", "Metodai uzdaviniai\Metodai uzdaviniai.csproj", "{B6F34E07-FC4C-4F6F-913E-14A4E55842C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metodai uzdaviniai", "Metodai uzdaviniai\Metodai uzdaviniai.csproj", "{B6F34E07-FC4C-4F6F-913E-14A4E55842C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Savarankiskas darbas Registracijos Forma", "Savarankiskas darbas Registracijos Forma\Savarankiskas darbas Registracijos Forma.csproj", "{727C09AB-7388-4F6D-A1B5-6A1F0F85B7EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savarankiskas darbas Registracijos Forma", "Savarankiskas darbas Registracijos Forma\Savarankiskas darbas Registracijos Forma.csproj", "{727C09AB-7388-4F6D-A1B5-6A1F0F85B7EA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metodu uzdaviniai", "Metodu uzdaviniai\Metodu uzdaviniai.csproj", "{5055DB5B-6C68-40DD-94CB-4FD4B880A042}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uzdaviniai metodai", "Uzdaviniai metodai\Uzdaviniai metodai.csproj", "{5919B20F-7A41-44BE-9C67-3F1EC0C6CD48}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B13D282D-3AA1-4703-951C-3C82421E681A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P011_Methods_Tests", "P011_Methods_Tests\P011_Methods_Tests.csproj", "{396690CF-1497-44F6-9BC0-E499C8C9A7F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,9 +149,24 @@ Global
 		{727C09AB-7388-4F6D-A1B5-6A1F0F85B7EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{727C09AB-7388-4F6D-A1B5-6A1F0F85B7EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{727C09AB-7388-4F6D-A1B5-6A1F0F85B7EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5055DB5B-6C68-40DD-94CB-4FD4B880A042}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5055DB5B-6C68-40DD-94CB-4FD4B880A042}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5055DB5B-6C68-40DD-94CB-4FD4B880A042}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5055DB5B-6C68-40DD-94CB-4FD4B880A042}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5919B20F-7A41-44BE-9C67-3F1EC0C6CD48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5919B20F-7A41-44BE-9C67-3F1EC0C6CD48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5919B20F-7A41-44BE-9C67-3F1EC0C6CD48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5919B20F-7A41-44BE-9C67-3F1EC0C6CD48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{396690CF-1497-44F6-9BC0-E499C8C9A7F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{396690CF-1497-44F6-9BC0-E499C8C9A7F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{396690CF-1497-44F6-9BC0-E499C8C9A7F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{396690CF-1497-44F6-9BC0-E499C8C9A7F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{396690CF-1497-44F6-9BC0-E499C8C9A7F7} = {B13D282D-3AA1-4703-951C-3C82421E681A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DBB0DDB7-5F85-4AAF-8D87-61824D837E90}
