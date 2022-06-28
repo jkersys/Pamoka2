@@ -94,9 +94,9 @@ Rezultatas gali atrodyti taip:
             Console.WriteLine("Įveskite savo asmens kodą (11 simb.)");
             var asmensKodas = (Console.ReadLine());
             //tikrinam ar įvesta 11 skaitmenu ir ar visi ivesti simboliai yra skaiciai 
-            if (asmensKodas.Length == 11 && double.TryParse(asmensKodas, out _))
+            if (asmensKodas.Length == 11 && asmensKodas.All(char.IsNumber))
             {
-                //ar galima taip palikt?
+               
             }
             else
             {
@@ -124,7 +124,7 @@ Rezultatas gali atrodyti taip:
             //pasiimam asmens kodo pirmą raidę tikrinimui
             var asmensKodoPirmaRaide = asmensKodas[0];
             //asmens kodo pirma raide pasidarom int
-            var pirmasSKaicius = (int)asmensKodoPirmaRaide;
+            //var pirmasSKaicius = (int)asmensKodoPirmaRaide;
             //Pasidarom string kintamaji kurio reiksme istatysim su if
             string lytis = "";
             //tikrinam ar pirma asmens kodo raide yra 1, 3, 5, jeigu taip gražinam reiksme kad tai vyras
