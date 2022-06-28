@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, Užduotis!");
+           // Console.WriteLine("Hello, Užduotis!");
 
 
 
@@ -82,7 +82,7 @@ Rezultatas gali atrodyti taip:
             Console.WriteLine("Įveskite savo vardą ir pavardę");
             string vardasIrPavarde = Console.ReadLine();
 
-           
+
             //tikrinam ar ivesta vardas ir pavarde (All(char.IsDigit) nepraleidzia whitespaco)
             if (vardasIrPavarde.Length == 0 || vardasIrPavarde.Any(char.IsDigit) || vardasIrPavarde.Any(char.IsSymbol))
             {
@@ -91,7 +91,7 @@ Rezultatas gali atrodyti taip:
             }
             else
             {
-                
+
             }
 
             Console.WriteLine("Įveskite savo asmens kodą (11 simb.)");
@@ -181,7 +181,7 @@ Rezultatas gali atrodyti taip:
             String dataGautaIsAsmensKodoString = dataGautaIsAsmensKodo.ToString("yyyy-MM-dd");
 
 
-            Console.WriteLine($"{dataGautaIsAsmensKodoString}");
+           
 
             //kintamasis amziaus patikimumui isvesti
             var amziausZinute = "amžius patikimas";
@@ -191,10 +191,6 @@ Rezultatas gali atrodyti taip:
 
 
 
-            //Console.WriteLine("gimimoMetaiIsskaiciuoti" + gimimoMetaiIsskaiciuotiString);
-
-            //gimimo data gauta is asmens kodo pasiverciam int kad galetumem palygint su isskaiciuota gimimo data
-            //Console.WriteLine("gimimoMetaiIsskaiciuoti" + gimimoMetaiIsskaiciuoti);
 
             //tikrinam ar ivesti bent vienas is duomenu
             if (string.IsNullOrEmpty(amziusString) == true && string.IsNullOrEmpty(gimimoDataString) == true)
@@ -214,7 +210,7 @@ Rezultatas gali atrodyti taip:
                     if (dataGautaIsAsmensKodo.Year == gimimoMetaiIsskaiciuoti.Year) // tikrinam ar paskaiciuoti metai sutama su asmens kodo metais
                     {
                         amziusPagalMetusPatikimas = true;     // jeigu sutampa isvedam true
-                        amziausZinute = "amžius patikimas";    
+                        amziausZinute = "amžius patikimas";
                     }
                     else
                     {
@@ -228,7 +224,7 @@ Rezultatas gali atrodyti taip:
                     var gimimoData = DateTime.Parse(gimimoDataString);
                     if (gimimoData == dataGautaIsAsmensKodo)
                     {
-                       
+
                         amziusPagalGimimoDataPatikimas = true;
                         amziausZinute = "amžius patikimas";
                     }
@@ -264,23 +260,23 @@ Rezultatas gali atrodyti taip:
                 }
 
 
-                Console.WriteLine($"#####################################################################################################");
-                Console.WriteLine($"###################################ATASKAITA APIE ASMENĮ##############################################");
-                Console.WriteLine($"###################################{siandienosData.ToString("yyyy-MM-dd")}#############################");
-                Console.WriteLine($"#####################################################################################################");
-                Console.WriteLine($"####Vardas, pavarde####{vardasIrPavarde}##########################################################################");
-                Console.WriteLine($"#####################################################################################################");
-                Console.WriteLine($"####Lytis   {lytis}####################################################################################");
-                Console.WriteLine($"#####################################################################################################");
-                Console.WriteLine($"####Asmens kodas####{asmensKodas}#############################################################################################");
-                Console.WriteLine($"#####################################################################################################");
-                Console.WriteLine($"####Amzius#######{amziusString}##########################################################################################");
-                Console.WriteLine($"#####################################################################################################");
-                Console.WriteLine($"####Gimimo data######{gimimoDataString}###########################################################################################");
-                Console.WriteLine($"#####################################################################################################");
-                Console.WriteLine($"###Amziaus patikimumas    {amziausZinute}############################################################");
-                Console.WriteLine($"#####################################################################################################");
-                Console.WriteLine($"#####################################################################################################");
+                Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ATASKAITA APIE ASMENĮ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓{siandienosData.ToString("yyyy-MM-dd")}▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓Vardas, pavarde▓▓▓▓▓▓{vardasIrPavarde}▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓Lytis ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓{lytis}▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓Asmens kodas▓▓▓▓▓▓▓▓▓{asmensKodas}▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓Amzius▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓{amziusString}▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓Gimimo data▓▓▓▓▓▓▓▓▓▓{gimimoDataString}▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓Amziaus patikimumas▓▓{amziausZinute}▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+                Console.WriteLine($"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
 
             }
         }
@@ -289,7 +285,7 @@ Rezultatas gali atrodyti taip:
 
 
 
-  
+
 
 
 

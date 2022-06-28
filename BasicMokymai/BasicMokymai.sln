@@ -45,6 +45,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Datos bandymai", "Datos ban
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metodai uzdaviniai", "Metodai uzdaviniai\Metodai uzdaviniai.csproj", "{B6F34E07-FC4C-4F6F-913E-14A4E55842C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Savarankiskas darbas Registracijos Forma", "Savarankiskas darbas Registracijos Forma\Savarankiskas darbas Registracijos Forma.csproj", "{727C09AB-7388-4F6D-A1B5-6A1F0F85B7EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,10 @@ Global
 		{B6F34E07-FC4C-4F6F-913E-14A4E55842C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6F34E07-FC4C-4F6F-913E-14A4E55842C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6F34E07-FC4C-4F6F-913E-14A4E55842C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{727C09AB-7388-4F6D-A1B5-6A1F0F85B7EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{727C09AB-7388-4F6D-A1B5-6A1F0F85B7EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{727C09AB-7388-4F6D-A1B5-6A1F0F85B7EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{727C09AB-7388-4F6D-A1B5-6A1F0F85B7EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
