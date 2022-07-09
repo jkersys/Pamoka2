@@ -83,18 +83,29 @@
             {
                 case "1":
                     Console.WriteLine("Paspaustas 1");
+                    grandine = grandine.Replace("GCT", "AGG");
+                    Console.WriteLine($"{grandine}");
                     break;
                 case "2":
                     Console.WriteLine("Paspaustas 2");
+                    Console.WriteLine($"Ar tekste yra CAT = {grandine.Contains("CAT")}");
                     break;
                 case "3":
                     Console.WriteLine("Paspaustas 3");
+                    string TreciasSegmentas = grandine.Substring(8, 3);
+                    string PentasSegmentas = grandine.Substring(16, 3);
+                    Console.WriteLine($"Trecias segmentas = {TreciasSegmentas} Penktas segmentas = {PentasSegmentas}");
                     break;
                 case "4":
                     Console.WriteLine("Paspaustas 4");
+                    var raidziuKiekis = grandine.Replace("-", "").Length;
+                    Console.WriteLine($"{raidziuKiekis}");
+                    
+
                     break;
                 case "5":
                     Console.WriteLine("Paspaustas 5");
+                    var IvestasTekstasIsConsoles = Console.ReadLine();
                     break;
                 case "6":
                     Console.WriteLine("Paspaustas 6");
@@ -121,5 +132,8 @@
         {
            return grandine.All(x => x == 'A' || x == 'T' || x == 'C' || x == 'G' || x == '-');
         }
+
+     
+        }
+
     }
-}
