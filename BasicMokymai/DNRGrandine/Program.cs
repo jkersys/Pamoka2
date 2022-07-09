@@ -2,9 +2,9 @@
 {
     public class Program
     {
-        static bool arNormalizuota = false;
-        static bool arValidi = false;
-        static string grandine = " T CG-TAC- gaC-TAC-CGT-CAG-ACT-TAa-CcA-GTC-cAt-AGA-GCT    ";
+        public static bool arNormalizuota = false;
+        public static bool arValidi = false;
+        public static string grandine = " T CG-TAC- gaC-TAC-CGT-CAG-ACT-TAa-CcA-GTC-cAt-AGA-GCT    ";
 
         static void Main(string[] args)
         {
@@ -102,7 +102,7 @@
                 case "4":
                     Console.WriteLine("Paspaustas 4");
                     var raidziuKiekis = grandine.Replace("-", "").Length;
-                    Console.WriteLine($"{raidziuKiekis}");
+                    Console.WriteLine($"Grandineje yra {raidziuKiekis} raidziu(-es)");
                     SubMenu(ref grandine);
                     break;
                 case "5":
@@ -137,13 +137,22 @@
                     break;
                 case "8":
                    Console.WriteLine("Paspaustas 8");
+                    
+            
                    Console.WriteLine("Pasirinkite kuri grandines elementa norite pasalinti");
                    string IvestiKaKeisti = Console.ReadLine();
                    Console.WriteLine("Iveskite kuo norite pakeisti");
                    string IvestiIKaKeisti = Console.ReadLine();
-                   string PakeistasElementasIsI = grandine.Replace(IvestiIKaKeisti, IvestiKaKeisti);
-                   Console.WriteLine($"{PakeistasElementasIsI}");
-                   
+                    
+                    if (IvestiKaKeisti.All(x => x == 'A' || x == 'T' || x == 'C' || x == 'G' || x == '-') && 
+                        (IvestiIKaKeisti.All(x => x == 'A' || x == 'T' || x == 'C' || x == 'G' || x == '-')))
+                         {
+                        string PakeistasElementasIsI = grandine.Replace(IvestiKaKeisti, IvestiIKaKeisti);
+                        Console.WriteLine($"{PakeistasElementasIsI}");
+                         }
+                    else
+                        Console.WriteLine("Nevalidus teksas");                                      
+                    SubMenu(ref grandine);
                     break;
                 case "9":
                     Console.WriteLine("Gryztii pradini meniu");
