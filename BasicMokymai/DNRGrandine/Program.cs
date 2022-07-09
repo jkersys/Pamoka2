@@ -85,36 +85,65 @@
                     Console.WriteLine("Paspaustas 1");
                     grandine = grandine.Replace("GCT", "AGG");
                     Console.WriteLine($"{grandine}");
+                    SubMenu(ref grandine);
                     break;
                 case "2":
                     Console.WriteLine("Paspaustas 2");
                     Console.WriteLine($"Ar tekste yra CAT = {grandine.Contains("CAT")}");
+                    SubMenu(ref grandine);
                     break;
                 case "3":
                     Console.WriteLine("Paspaustas 3");
                     string TreciasSegmentas = grandine.Substring(8, 3);
                     string PentasSegmentas = grandine.Substring(16, 3);
                     Console.WriteLine($"Trecias segmentas = {TreciasSegmentas} Penktas segmentas = {PentasSegmentas}");
+                    SubMenu(ref grandine);
                     break;
                 case "4":
                     Console.WriteLine("Paspaustas 4");
                     var raidziuKiekis = grandine.Replace("-", "").Length;
                     Console.WriteLine($"{raidziuKiekis}");
-                    
-
+                    SubMenu(ref grandine);
                     break;
                 case "5":
                     Console.WriteLine("Paspaustas 5");
                     var IvestasTekstasIsConsoles = Console.ReadLine();
+                    SubMenu(ref grandine);
                     break;
                 case "6":
                     Console.WriteLine("Paspaustas 6");
+                    
+                    Console.WriteLine("Iveskite 3 raides (A,T,C,G)");
+                    var ivestasTekstas2 = Console.ReadLine();
+                    var arIvestosRaidesValidzios = false;
+                    if (arIvestosRaidesValidzios = ivestasTekstas2.All(x => x == 'A' || x == 'T' || x == 'C' || x == 'G' || x == '-') && ivestasTekstas2.Length == 3)
+                    {
+                        Console.WriteLine($"{grandine}-{ivestasTekstas2}");
+                        SubMenu(ref grandine);
+                    }
+                    else
+                        Console.WriteLine("Nevalidus tekstas");
+                        SubMenu(ref grandine);
+
                     break;
                 case "7":
                     Console.WriteLine("Paspaustas 7");
+                    Console.WriteLine("Pasalinkite is grandines elementa");
+                    string PanaikintiElementa = Console.ReadLine();
+                    
+                    string pasalintiElementa = grandine.Replace(PanaikintiElementa, "");
+                    Console.WriteLine($"{pasalintiElementa}");
+                   // grandine.Remove(pasalintiElementa);
                     break;
                 case "8":
-                    Console.WriteLine("Paspaustas 8");
+                   Console.WriteLine("Paspaustas 8");
+                   Console.WriteLine("Pasirinkite kuri grandines elementa norite pasalinti");
+                   string IvestiKaKeisti = Console.ReadLine();
+                   Console.WriteLine("Iveskite kuo norite pakeisti");
+                   string IvestiIKaKeisti = Console.ReadLine();
+                   string PakeistasElementasIsI = grandine.Replace(IvestiIKaKeisti, IvestiKaKeisti);
+                   Console.WriteLine($"{PakeistasElementasIsI}");
+                   
                     break;
                 case "9":
                     Console.WriteLine("Gryztii pradini meniu");
@@ -133,7 +162,14 @@
            return grandine.All(x => x == 'A' || x == 'T' || x == 'C' || x == 'G' || x == '-');
         }
 
+
+     //   public static bool PrieGrandinesGaloTrysSimboliai(ref string grandine)
+       // {
+        //    var ivestasTekstas2 = Console.ReadLine();
+        //    ivestasTekstas2.All(x => x == 'A' || x == 'T' || x == 'C' || x == 'G' || x == '-');
+            
+        }
      
         }
 
-    }
+    
