@@ -7,6 +7,28 @@
             Console.WriteLine("Hello, World!");
 
 
+            string bandymas = "54321";
+            var raide = bandymas[0];
+            Console.WriteLine($"{raide == '5'}");
+
+
+            char q = '1';
+            Console.WriteLine($"{q + '1' + '1' + '1'} {'1' + '1' + '1' + '1'}");
+
+
+            Console.WriteLine($"{q + '1' == '1' + '1'}");
+
+            Console.WriteLine($"{q -48}");
+
+
+
+            char a = '1';
+            char b = '2';
+
+            Console.WriteLine($"{a + b} ir a {a + '1'}  ");
+
+
+
             Console.WriteLine("Įveskite savo asmens kodą (11 simb.)");
             var asmensKodas = (Console.ReadLine());
             //tikrinam ar įvesta 11 skaitmenu ir ar visi ivesti simboliai yra skaiciai 

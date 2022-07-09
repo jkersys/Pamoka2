@@ -83,12 +83,12 @@ Rezultatas gali atrodyti taip:
             string vardasIrPavarde = Console.ReadLine();
 
 
-            //tikrinam ar ivesta vardas ir pavarde (All(char.IsDigit) nepraleidzia whitespaco)
+            //tikrinam ar ivesta vardas ir pavarde (All(char.IsLetter) nepraleidzia whitespaco)
             if (vardasIrPavarde.Length == 0 || vardasIrPavarde.Any(char.IsDigit) || vardasIrPavarde.Any(char.IsSymbol))
             {
                 Console.WriteLine("Įvedete neteisingus duomenis");
                 Environment.Exit(0);
-            }
+            }    
           
 
             Console.WriteLine("Įveskite savo asmens kodą (11 simb.)");
@@ -157,7 +157,7 @@ Rezultatas gali atrodyti taip:
             var diena1 = int.Parse(gimimoDienaisIsAsmensKodoString);
 
 
-            //skaiciuojam tukstantmeti
+            //skaiciuojam amziu
             if (asmensKodoPirmaRaide == '1' || asmensKodoPirmaRaide == '2')
             {
                 gimimoMetaiIsAsmensKodo = gimimoMetaiIsAsmensKodo + 1800;
@@ -172,7 +172,7 @@ Rezultatas gali atrodyti taip:
                 gimimoMetaiIsAsmensKodo = gimimoMetaiIsAsmensKodo + 2000;
             }
 
-            //susidedam turimus int'us i data ir pakeiciam i string reikiamu datos formatu
+            //susidedam turimus int'us i data 
             DateTime dataGautaIsAsmensKodo = new DateTime(gimimoMetaiIsAsmensKodo, menesis1, diena1);
            // String dataGautaIsAsmensKodoString = dataGautaIsAsmensKodo.ToString("yyyy-MM-dd"); //nereikalingas
 

@@ -1,7 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Skaiciuotuvo_testas</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
@@ -17,8 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Debug_Uzdavinys_Skaiciuotuvas\Debug_Uzdavinys_Skaiciuotuvas.csproj" />
-    <ProjectReference Include="..\P_014_Debug\P_014_Debug.csproj" />
-    <ProjectReference Include="..\Uzdaviniai metodai\Uzdaviniai metodai.csproj" />
   </ItemGroup>
 
 </Project>

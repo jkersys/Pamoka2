@@ -16,9 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Debug_Uzdavinys_Skaiciuotuvas\Debug_Uzdavinys_Skaiciuotuvas.csproj" />
-    <ProjectReference Include="..\P_014_Debug\P_014_Debug.csproj" />
-    <ProjectReference Include="..\Uzdaviniai metodai\Uzdaviniai metodai.csproj" />
+    <ProjectReference Include="..\DNRGrandine\DNRGrandine.csproj" />
   </ItemGroup>
 
 </Project>
