@@ -107,7 +107,16 @@
                     break;
                 case "5":
                     Console.WriteLine("Paspaustas 5");
-                    var IvestasTekstasIsConsoles = Console.ReadLine();
+                    Console.WriteLine("Iveskite segmenta");
+                    var tekstas = Console.ReadLine();
+                    var KiekRandaSegmenta = grandine.Replace(tekstas, "");
+                    var KiekKartuKartojasi = (grandine.Length - KiekRandaSegmenta.Length) / 3;
+                    
+                    Console.WriteLine($"Segmentas {tekstas} rastas {KiekKartuKartojasi} karta(us)");
+                    
+
+                    // var kiekKartu = grandine.Length - tekstas.Length / 39
+                    //Console.WriteLine($"{grandine.Length - tekstas.Length}");
                     SubMenu(ref grandine);
                     break;
                 case "6":
@@ -171,6 +180,19 @@
            return grandine.All(x => x == 'A' || x == 'T' || x == 'C' || x == 'G' || x == '-');
         }
 
+      //  public static void KiekKartuPasikartojaSegmentas(ref string grandine)
+        //{
+         //   Console.WriteLine("Iveskite segmenta");
+        //    var tekstas = Console.ReadLine();
+
+         //   Console.WriteLine($"{grandine.Length - tekstas.Length}"); 
+
+
+          
+
+           
+
+        }
 
      //   public static bool PrieGrandinesGaloTrysSimboliai(ref string grandine)
        // {
@@ -179,6 +201,6 @@
             
         }
      
-        }
+        
 
     
