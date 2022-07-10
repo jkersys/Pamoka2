@@ -27,9 +27,20 @@ namespace DNRGrandine.Tests
             Assert.AreEqual(true, arValidi);
         }
 
+        public void ArGrandinejeYra_CAT_Grazina_True()
+        {
+            var grandine = "ACG-CGA-CAT";
+            var actual = DNRGrandine.Program.ArYraCat(ref grandine);
+            var expected = true;
+            Assert.AreEqual(expected, actual);
+        }
 
-
-
+        public void ArGrandinejeYra_CAT_Grazina_False()
+        {
+            var grandine = "ACG-CGA-VAT";
+            var expected = Program.ArYraCat(ref grandine);
+            Assert.AreEqual(true, expected);
+        }
 
 
 
