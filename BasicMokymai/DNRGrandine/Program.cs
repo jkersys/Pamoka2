@@ -83,13 +83,12 @@
             {
                 case "1":
                     Console.WriteLine("Paspaustas 1");
-                    grandine = grandine.Replace("GCT", "AGG");
-                    Console.WriteLine($"{grandine}");
+                    PakeistiGctIAgg(ref grandine);
                     SubMenu(ref grandine);
                     break;
                 case "2":
                     Console.WriteLine("Paspaustas 2");
-                    Console.WriteLine($"Ar tekste yra CAT = {grandine.Contains("CAT")}");
+                    Console.WriteLine($"Ar grandinėje yra CAT  {ArYraCat(ref grandine)}");
                     SubMenu(ref grandine);
                     break;
                 case "3":
@@ -101,48 +100,23 @@
                     break;
                 case "4":
                     Console.WriteLine("Paspaustas 4");
-                    var raidziuKiekis = grandine.Replace("-", "").Length;
-                    Console.WriteLine($"Grandineje yra {raidziuKiekis} raidziu(-es)");
+                    KiekRaidziuGrandineje(ref grandine);
                     SubMenu(ref grandine);
                     break;
                 case "5":
                     Console.WriteLine("Paspaustas 5");
-                    Console.WriteLine("Iveskite segmenta");
-                    var tekstas = Console.ReadLine();
-                    var KiekRandaSegmenta = grandine.Replace(tekstas, "");
-                    var KiekKartuKartojasi = (grandine.Length - KiekRandaSegmenta.Length) / 3;
-                    
-                    Console.WriteLine($"Segmentas {tekstas} rastas {KiekKartuKartojasi} karta(us)");
-                    
-
-                    // var kiekKartu = grandine.Length - tekstas.Length / 39
-                    //Console.WriteLine($"{grandine.Length - tekstas.Length}");
+                    KiekKartuKartojasiKodas(ref grandine);
                     SubMenu(ref grandine);
                     break;
                 case "6":
                     Console.WriteLine("Paspaustas 6");
-                    
-                    Console.WriteLine("Iveskite 3 raides (A,T,C,G)");
-                    var ivestasTekstas2 = Console.ReadLine();
-                    var arIvestosRaidesValidzios = false;
-                    if (arIvestosRaidesValidzios = ivestasTekstas2.All(x => x == 'A' || x == 'T' || x == 'C' || x == 'G' || x == '-') && ivestasTekstas2.Length == 3)
-                    {
-                        Console.WriteLine($"{grandine}-{ivestasTekstas2}");
-                        SubMenu(ref grandine);
-                    }
-                    else
-                        Console.WriteLine("Nevalidus tekstas");
-                        SubMenu(ref grandine);
+                    PridediPrieGRandinesIvestaSegmenta(ref  grandine);
 
                     break;
                 case "7":
-                    Console.WriteLine("Paspaustas 7");
-                    Console.WriteLine("Pasalinkite is grandines elementa");
-                    string PanaikintiElementa = Console.ReadLine();
-                    
-                    string pasalintiElementa = grandine.Replace(PanaikintiElementa, "");
-                    Console.WriteLine($"{pasalintiElementa}");
-                   // grandine.Remove(pasalintiElementa);
+                    IstrintiSegmenta(ref grandine);
+                    SubMenu(ref grandine);
+                   
                     break;
                 case "8":
                    Console.WriteLine("Paspaustas 8");
@@ -180,24 +154,94 @@
            return grandine.All(x => x == 'A' || x == 'T' || x == 'C' || x == 'G' || x == '-');
         }
 
-      //  public static void KiekKartuPasikartojaSegmentas(ref string grandine)
-        //{
-         //   Console.WriteLine("Iveskite segmenta");
-        //    var tekstas = Console.ReadLine();
-
-         //   Console.WriteLine($"{grandine.Length - tekstas.Length}"); 
-
-
-          
-
-           
-
+        //Metodas pakeisti GCT I AGG
+        public static string PakeistiGctIAgg(ref string grandine)
+        {
+           string grandineAGG = grandine.Replace("GCT", "AGG");
+            Console.WriteLine($"Operacija atlikta \n{grandineAGG}");
+            return grandineAGG;
         }
 
-     //   public static bool PrieGrandinesGaloTrysSimboliai(ref string grandine)
-       // {
-        //    var ivestasTekstas2 = Console.ReadLine();
-        //    ivestasTekstas2.All(x => x == 'A' || x == 'T' || x == 'C' || x == 'G' || x == '-');
+        //Metodas ar grandineje yra CAT
+        public static bool ArYraCat(ref string grandine) => grandine.Contains("CAT");
+
+        //trecias ir penktas segmentas
+        public static string TreciasIrPenktasSegmentas(ref string grandine)
+        {
+            string TreciasSegmentas = grandine.Substring(8, 3);
+            string PentasSegmentas = grandine.Substring(16, 3);
+            Console.WriteLine($"Trecias segmentas = {TreciasSegmentas} Penktas segmentas = {PentasSegmentas}");
+            return TreciasSegmentas;
+            return PentasSegmentas;
+        }
+       
+        
+        //Kiek raidziu grandineje
+        public static int KiekRaidziuGrandineje(ref string grandine)
+        {
+            var raidziuKiekis = grandine.Replace("-", "").Length;
+            Console.WriteLine($"Gradineje yra {raidziuKiekis} raide(es)");
+            return raidziuKiekis;
+        }
+
+        public static int KiekKartuKartojasiKodas(ref string grandine)
+        {
+            var tekstas = Console.ReadLine().ToUpper();
+            var KiekRandaSegmenta = grandine.Replace(tekstas, "");
+            var KiekKartuKartojasi = (grandine.Length - KiekRandaSegmenta.Length) / 3;
+            Console.WriteLine($"Segmentas {tekstas} rastas {KiekKartuKartojasi} karta(us)");
+            return KiekKartuKartojasi;
+        }
+        //Prie grandines galo prideti is klaviaturos ivesta segmetna
+        public static void PridediPrieGRandinesIvestaSegmenta(ref string grandine)
+        {
+            Console.WriteLine("Iveskite 3 raides (A,T,C,G)");
+            var ivestasTekstas2 = Console.ReadLine().ToUpper();
+            var arIvestosRaidesValidzios = false;
+            if (arIvestosRaidesValidzios = ivestasTekstas2.All(x => x == 'A' || x == 'T' || x == 'C' || x == 'G' || x == '-') && ivestasTekstas2.Length == 3)
+            {
+                var pridetasSegmentas = grandine + "-" + ivestasTekstas2;
+                Console.WriteLine($"Jusu ivesta grandine prideta {pridetasSegmentas}");
+                SubMenu(ref grandine);
+
+            }
+            else
+                Console.WriteLine("Nevalidus tekstas");
+                SubMenu(ref grandine);
+        }
+       
+        //Pasalinti segmenta
+        public static void IstrintiSegmenta(ref string grandine)
+        {
+            Console.WriteLine("Pasalinkite is grandines elementa");
+            string PanaikintiElementa = Console.ReadLine().ToUpper();
+
+            string pasalintiElementa = grandine.Replace(PanaikintiElementa, "");
+            Console.WriteLine($"Grandines elementas pasalintas{pasalintiElementa}");
+        }
+
+
+        //pakeisti grandines elementa
+        public static void PakeistiGrandinesElementa(ref string grandine)
+        {
+            Console.WriteLine("Pasirinkite kuri grandines elementa norite pasalinti");
+            string IvestiKaKeisti = Console.ReadLine().ToUpper();
+            Console.WriteLine("Iveskite kuo norite pakeisti");
+            string IvestiIKaKeisti = Console.ReadLine().ToUpper();
+
+            if (IvestiKaKeisti.All(x => x == 'A' || x == 'T' || x == 'C' || x == 'G' || x == '-') &&
+                (IvestiIKaKeisti.All(x => x == 'A' || x == 'T' || x == 'C' || x == 'G' || x == '-')))
+            {
+                string PakeistasElementasIsI = grandine.Replace(IvestiKaKeisti, IvestiIKaKeisti);
+                Console.WriteLine($"Elementas pakeistas {PakeistasElementasIsI}");
+            }
+            else
+                Console.WriteLine("Nevalidus teksas");
+        }
+
+
+    }
+
             
         }
      

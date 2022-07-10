@@ -26,5 +26,12 @@ namespace DNRGrandine.Tests
             var arValidi = Program.ArValidiGrandine(grandine);
             Assert.AreEqual(true, arValidi);
         }
+
+
+
+
+
+
+
     }
 }
