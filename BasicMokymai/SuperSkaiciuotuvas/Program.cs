@@ -6,9 +6,14 @@
         public static double? rezultatas = null;
         //  static string ivedimas = DuomenuIvedimas();
         public static string ivedimas = "";
-       // public static List<string> ivedimas = new List<string>();
+        public static string dabartineBusena = "0";
+        // public static List<string> ivedimas = new List<string>();
         public static double num1 = 0;
         public static double num2 = 0;
+        public static string veiksmas = "";
+        public static bool calculationSelected = false;
+        public static bool continueCalculation = false;
+        public static bool poApskaiciavimo = false;
 
         static void Main(string[] args)
         {
@@ -24,7 +29,7 @@
 
 
 
-            SuperSkaiciuotuvas(ivedimas);
+            SkaiciuotuvoMenu();
             // Ivedimas(ref num1, ref num2);
 
             //   Console.WriteLine(num1);
@@ -39,7 +44,8 @@
               1. Sudetis 2. Atimtis 3. Daugyba 4. Dalyba
 
               Pasirinkus viena is operaciju programa turetu paprasyti naudotoja ivesti pirma ir antra skaicius,
-              o gale isvesti rezultata į ekraną. Po rezultato parodymo naudotojui parodomas submeniu su klausimu ar naudotojas nori atlikti nauja operacija ar testi su rezultatu. 
+              o gale isvesti rezultata į ekraną. Po rezultato parodymo naudotojui parodomas submeniu su klausimu ar naudotojas nori 
+            atlikti nauja operacija ar testi su rezultatu. 
               1. Nauja operacija 2. Testi su rezultatu 3. Iseiti”
               Pasirinkus 2 programa turetu paprasyti ivesti kokia operacija turetu buti atliekama ir paprasyti TIK SEKANCIO SKAITMENS. 
               Pasirinkus 3 programa turetu issijungti. Visa kita turetu veikti tokiu pat budu.
@@ -159,7 +165,7 @@
 
         public static void Reset()
         {
-
+            continueCalculation = false;
             rezultatas = null;
         }
 
@@ -168,151 +174,154 @@
             return rezultatas ?? 0;
 
         }
+
         public static void SuperSkaiciuotuvas(string ivedimas)
         {
-
-
-            if (rezultatas == null)
+            switch (dabartineBusena)
             {
-                Console.WriteLine("1. Nauja operacija");
-                Console.WriteLine("2. Iseiti");
-                ivedimas = Console.ReadLine();
+                case "0": //Pradine menu busena busena
+                if (ivedimas == "1")
+                    {
+                        dabartineBusena = "1";
+                        return;
+                    }
+                    break;
+                case "1": //Pasirinkimo busena, kurioje vartotojas renkasi aritmetinius veiksmus
+                    
+                    dabartineBusena = continueCalculation ? "3" : "2";
+                    veiksmas = ivedimas; //pasidaryti kad leistu tik 1-4
+                    break;
+                case "2": //Naujo skaiciavimo busena
+                    dabartineBusena = "3";
+                    rezultatas = double.Parse(ivedimas);
+                    break;
+                case "3": //testinio skaiciavimo busena
+                    dabartineBusena = "4";
+                    num2 = double.Parse(ivedimas);
+                    
+                    //aritmetiniai veiksmai
+                    switch (veiksmas)
+                    {
 
-                /*
-                   switch (ivedimas)
-                   {
-                       case "1":
-                           Reset();
-                           SubMenu(ivedimas);
-                           break;
-                       case "2":
-                           Console.WriteLine("Pasirinkote iseiti is programos");
-                           Environment.Exit(0);
-                           break;
-                   }
-               }*/
+                        case "1":
+                            rezultatas += num2;
+                            break;
+                        case "2":
+                            rezultatas -= num2;
+                            break;
+                        case "3":
+                            rezultatas *= num2;
+                            break;
+                        case "4":
+                            rezultatas /= num2;
+                            break;
+                            
+
+
+                    }
+                    break;
+                case "4": //Busena po skaiciavimo busena
+                    dabartineBusena = "4";
+                    switch(ivedimas)
+                    {
+                        case "1":
+                            dabartineBusena = "1";
+                            Reset();
+                            return;
+                        case "2":
+                            dabartineBusena = "1";
+                            continueCalculation = true;
+                            return;
+                        default: return;
+
+                    }
+                    
+
             }
-            else if (rezultatas != null)
+                                   
+        }
+
+        public static void SkaiciuotuvoMenu()
+        {
+           
+
+            if (dabartineBusena == "0")
+            {
+               Console.WriteLine("1. Nauja operacija");
+               Console.WriteLine("2. Iseiti");
+               ivedimas = Console.ReadLine();
+
+               
+            }
+            else 
             {
                 Console.WriteLine("1. Nauja operacija");
                 Console.WriteLine("2. Testi su rezultatu");
-                Console.WriteLine("2. Iseiti");
+                Console.WriteLine("3. Iseiti");
                 ivedimas = Console.ReadLine();
 
             }
+            SuperSkaiciuotuvas(ivedimas);
 
-
-            if (ivedimas == "1" || ivedimas == "2")
+            if (dabartineBusena == "1")
+            {
 
                 Console.WriteLine("1 Sudetis");
-            Console.WriteLine("2 Atimtis");
-            Console.WriteLine("3 Daugyba");
-            Console.WriteLine("4 Dalyba");
+                Console.WriteLine("2 Atimtis");
+                Console.WriteLine("3 Daugyba");
+                Console.WriteLine("4 Dalyba");
 
-            ivedimas = Console.ReadLine();
-
-
-
-            if (ivedimas == "1")
-                    {
-                        if (rezultatas == null)
-                        {
-                            Console.WriteLine("Iveskite pirmajį skaičiu");
-                            ivedimas = Console.ReadLine();
-                            double.TryParse(ivedimas, out double num1);
-
-                            Console.WriteLine("Iveskite antraji skaičiu");
-                            ivedimas = Console.ReadLine();
-                            double.TryParse(ivedimas, out double num2);
-                            rezultatas = num1 + num2;
-                            Console.WriteLine($"Rezultatas yra :{rezultatas}");
-                        }
-
-                        else if (rezultatas != null)
-                        {
-                            Console.WriteLine("Tesiate su rezultatu");
-                            num1 = (double)rezultatas;
-                            Console.WriteLine("Iveskite antraji skaiciu");
-                            num2 = Convert.ToDouble(Console.ReadLine());
-                            rezultatas = num1 + num2;
-                            Console.WriteLine($"Rezultatas yra :{rezultatas}");
-                        }
-
-                        SuperSkaiciuotuvas(ivedimas);
-                    }
-                    else if (ivedimas == "2")
-                    {
-                    if (rezultatas == null)
-                    {
-                        Console.WriteLine("Iveskite pirmajį skaičiu");
-                        num1 = Convert.ToDouble(Console.ReadLine());
-                        Console.WriteLine("Iveskite antraji skaičiu");
-                        num2 = Convert.ToDouble(Console.ReadLine());
-                        rezultatas = num1 - num2;
-                        Console.WriteLine($"Rezultatas yra :{rezultatas}");
-                    }
-
-                    else if (rezultatas != null)
-                    {
-                        Console.WriteLine("Tesiate su rezultatu");
-                        num1 = (double)rezultatas;
-                        Console.WriteLine("Iveskite antraji skaiciu");
-                        num2 = Convert.ToDouble(Console.ReadLine());
-                        rezultatas = num1 - num2;
-                        Console.WriteLine($"Rezultatas yra :{rezultatas}");
-                    }
-                    SuperSkaiciuotuvas(ivedimas);
-                }
-                    else if (ivedimas == "3")
-                    {
-                    if (rezultatas == null)
-                    {
-                        Console.WriteLine("Iveskite pirmajį skaičiu");
-                        num1 = Convert.ToDouble(Console.ReadLine());
-                        Console.WriteLine("Iveskite antraji skaičiu");
-                        num2 = Convert.ToDouble(Console.ReadLine());
-                        rezultatas = num1 * num2;
-                        Console.WriteLine($"Rezultatas yra :{rezultatas}");
-                    }
-
-                    else if (rezultatas != null)
-                    {
-                        Console.WriteLine("Tesiate su rezultatu");
-                        num1 = (double)rezultatas;
-                        Console.WriteLine("Iveskite antraji skaiciu");
-                        num2 = Convert.ToDouble(Console.ReadLine());
-                        rezultatas = num1 * num2;
-                        Console.WriteLine($"Rezultatas yra :{rezultatas}");
-                    }
-                    else if (ivedimas == "4")
-                    {
-                        if (rezultatas == null)
-                        {
-                            Console.WriteLine("Iveskite pirmajį skaičiu");
-                            num1 = Convert.ToDouble(Console.ReadLine());
-                            Console.WriteLine("Iveskite antraji skaičiu");
-                            num2 = Convert.ToDouble(Console.ReadLine());
-                            rezultatas = num1 / num2;
-                            Console.WriteLine($"Rezultatas yra :{rezultatas}");
-                        }
-
-                        else if (rezultatas != null)
-                        {
-                            Console.WriteLine("Tesiate su rezultatu");
-                            num1 = (double)rezultatas;
-                            Console.WriteLine("Iveskite antraji skaiciu");
-                            num2 = Convert.ToDouble(Console.ReadLine());
-                            rezultatas = num1 / num2;
-                            Console.WriteLine($"Rezultatas yra :{rezultatas}");
-                        }
-                        SuperSkaiciuotuvas(ivedimas);
-                    }
-
-
-                }
-
-
+                ivedimas = Console.ReadLine();
             }
+
+
+            
+            else if (ivedimas == "3")
+            {
+                Environment.Exit(0);
+            }
+            SuperSkaiciuotuvas(ivedimas);
+
+
+            if (dabartineBusena == "2")
+            {
+                
+                
+                    Console.WriteLine("Iveskite pirmajį skaičiu");
+                    ivedimas = Console.ReadLine();
+                    SuperSkaiciuotuvas(ivedimas);
+                    
+
+                    Console.WriteLine("Iveskite antraji skaičiu");
+                    ivedimas = Console.ReadLine();
+                    SuperSkaiciuotuvas(ivedimas);
+                    
+                    Console.WriteLine($"Rezultatas yra :{rezultatas}");
+                
+
+            
+
+                SkaiciuotuvoMenu();
+            }
+            else if (dabartineBusena == "3")
+            {
+                Console.WriteLine("Tesiate su rezultatu");
+                
+                Console.WriteLine("Iveskite antraji skaiciu");
+                ivedimas = Console.ReadLine();
+                SuperSkaiciuotuvas(ivedimas);
+                
+                Console.WriteLine($"Rezultatas yra :{rezultatas}");
+                SkaiciuotuvoMenu();
+            }
+           
+            }
+
+
+                }
+
+
+            
         
 
         /*
@@ -525,7 +534,6 @@
 
         */
 
-
     }
-    }
+    
       
