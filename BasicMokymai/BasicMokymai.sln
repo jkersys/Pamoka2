@@ -103,6 +103,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savarankiskas_darbas_SuperS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefaktorintasSuperSkaiciuotuvas", "RefaktorintasSuperSkaiciuotuvas\RefaktorintasSuperSkaiciuotuvas.csproj", "{15597F18-3ECD-4DA3-A461-7D27551D7129}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bandymas", "Bandymas\Bandymas.csproj", "{40D31A41-A9B0-4F1A-BE53-34DE2F5BB34E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P_024_Random", "P_024_Random\P_024_Random.csproj", "{37774723-CDB9-42EA-BB95-C2A3477BBD01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kartojimo pamoka", "Kartojimo pamoka\Kartojimo pamoka.csproj", "{BF502C2E-BE26-4D16-9A5E-3B85B27F0F63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangman", "Hangman\Hangman.csproj", "{A6727096-CE6A-4981-A252-ED611AAA22C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -305,6 +313,22 @@ Global
 		{15597F18-3ECD-4DA3-A461-7D27551D7129}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15597F18-3ECD-4DA3-A461-7D27551D7129}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15597F18-3ECD-4DA3-A461-7D27551D7129}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40D31A41-A9B0-4F1A-BE53-34DE2F5BB34E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40D31A41-A9B0-4F1A-BE53-34DE2F5BB34E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40D31A41-A9B0-4F1A-BE53-34DE2F5BB34E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40D31A41-A9B0-4F1A-BE53-34DE2F5BB34E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37774723-CDB9-42EA-BB95-C2A3477BBD01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37774723-CDB9-42EA-BB95-C2A3477BBD01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37774723-CDB9-42EA-BB95-C2A3477BBD01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37774723-CDB9-42EA-BB95-C2A3477BBD01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF502C2E-BE26-4D16-9A5E-3B85B27F0F63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF502C2E-BE26-4D16-9A5E-3B85B27F0F63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF502C2E-BE26-4D16-9A5E-3B85B27F0F63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF502C2E-BE26-4D16-9A5E-3B85B27F0F63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6727096-CE6A-4981-A252-ED611AAA22C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6727096-CE6A-4981-A252-ED611AAA22C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6727096-CE6A-4981-A252-ED611AAA22C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6727096-CE6A-4981-A252-ED611AAA22C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
