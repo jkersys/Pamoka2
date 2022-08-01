@@ -101,15 +101,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P023 Dictionaries", "P023 D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savarankiskas_darbas_SuperSkaiciuotuvas", "Savarankiskas_darbas_SuperSkaiciuotuvas\Savarankiskas_darbas_SuperSkaiciuotuvas.csproj", "{94B6A2DB-FAFA-4700-90DB-6BC588875A7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefaktorintasSuperSkaiciuotuvas", "RefaktorintasSuperSkaiciuotuvas\RefaktorintasSuperSkaiciuotuvas.csproj", "{15597F18-3ECD-4DA3-A461-7D27551D7129}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RefaktorintasSuperSkaiciuotuvas", "RefaktorintasSuperSkaiciuotuvas\RefaktorintasSuperSkaiciuotuvas.csproj", "{15597F18-3ECD-4DA3-A461-7D27551D7129}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bandymas", "Bandymas\Bandymas.csproj", "{40D31A41-A9B0-4F1A-BE53-34DE2F5BB34E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bandymas", "Bandymas\Bandymas.csproj", "{40D31A41-A9B0-4F1A-BE53-34DE2F5BB34E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P_024_Random", "P_024_Random\P_024_Random.csproj", "{37774723-CDB9-42EA-BB95-C2A3477BBD01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P_024_Random", "P_024_Random\P_024_Random.csproj", "{37774723-CDB9-42EA-BB95-C2A3477BBD01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kartojimo pamoka", "Kartojimo pamoka\Kartojimo pamoka.csproj", "{BF502C2E-BE26-4D16-9A5E-3B85B27F0F63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kartojimo pamoka", "Kartojimo pamoka\Kartojimo pamoka.csproj", "{BF502C2E-BE26-4D16-9A5E-3B85B27F0F63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangman", "Hangman\Hangman.csproj", "{A6727096-CE6A-4981-A252-ED611AAA22C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hangman", "Hangman\Hangman.csproj", "{A6727096-CE6A-4981-A252-ED611AAA22C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangmanTestai", "HangmanTestai\HangmanTestai.csproj", "{98AAE0D1-ABFB-47B9-8D1A-9D8CB2B3655C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -329,6 +331,10 @@ Global
 		{A6727096-CE6A-4981-A252-ED611AAA22C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6727096-CE6A-4981-A252-ED611AAA22C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6727096-CE6A-4981-A252-ED611AAA22C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98AAE0D1-ABFB-47B9-8D1A-9D8CB2B3655C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98AAE0D1-ABFB-47B9-8D1A-9D8CB2B3655C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98AAE0D1-ABFB-47B9-8D1A-9D8CB2B3655C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98AAE0D1-ABFB-47B9-8D1A-9D8CB2B3655C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -339,6 +345,7 @@ Global
 		{6AAF61F1-4274-4AAE-8699-EF1F139647AB} = {B13D282D-3AA1-4703-951C-3C82421E681A}
 		{FA0E41CD-5F7D-4253-8F8E-60753F4161BD} = {B13D282D-3AA1-4703-951C-3C82421E681A}
 		{9C066386-396D-4652-A127-2CE0241403EE} = {B13D282D-3AA1-4703-951C-3C82421E681A}
+		{98AAE0D1-ABFB-47B9-8D1A-9D8CB2B3655C} = {B13D282D-3AA1-4703-951C-3C82421E681A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DBB0DDB7-5F85-4AAF-8D87-61824D837E90}
