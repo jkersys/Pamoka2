@@ -18,12 +18,12 @@ namespace Hangman
 
         public static Dictionary<string, bool> pasirinktiZodziai;
 
-        //public static string[] vardai = new[] { "Greta", "Karolina", "Tomas", "Petras", "Genutė", "Justinas", "Giedrė", "Gintarė", "Ratis", "Audrius" };
-        public static Dictionary<string, bool> vardai = new Dictionary<string, bool>() { { "ŠarŪnas", false } };
-        public static Dictionary<string, bool> miestai = new Dictionary<string, bool>() { { "Vilnius", false } };
-        public static Dictionary<string, bool> salys = new Dictionary<string, bool>() { { "Lietuva", false } };
-        public static Dictionary<string, bool> kita = new Dictionary<string, bool>() { { "Pienas", false } };
 
+        public static Dictionary<string, bool> vardai = new Dictionary<string, bool>() { { "Greta", false }, { "Karolina", false }, { "Tomas", false }, { "Petras", false }, { "Justinas", false }, { "Giedrė", false }, { "Gintarė", false }, { "Adomas", false }, { "Audrius", false } };
+        public static Dictionary<string, bool> miestai = new Dictionary<string, bool>() { { "Vilnius", false }, { "Kaunas", false }, { "Molėtai", false }, { "Varėna", false }, { "Klaipėda", false }, { "Alytus", false }, { "Panevėžys", false }, { "Ignalina", false }, { "Utena", false }, { "Lazdijai", false } };
+        public static Dictionary<string, bool> salys = new Dictionary<string, bool>() { { "Lietuva", false }, { "Latvija", false }, { "Estija", false }, { "Lenkija", false }, { "Ukraina", false }, { "Suomija", false }, { "Švedija", false }, { "Norvegija", false }, { "Danija", false }, { "Vokietija", false } };
+        public static Dictionary<string, bool> kita = new Dictionary<string, bool>() { { "Stalas", false }, { "Kėdė", false }, { "Žemėlapis", false }, { "Pelė", false }, { "Kilimas", false }, { "Spausdintuvas", false }, { "Laikrodis", false }, { "Siena", false }, { "Grindys", false }, { "Lubos", false } };
+        //public static string[] vardai = new[] { "Greta", "Karolina", "Tomas", "Petras", "Genutė", "Justinas", "Giedrė", "Gintarė", "Ratis", "Audrius" };
         //public static string[] miestai = new[] { "Vilnius", "Kaunas", "Molėtai", "Varėna", "Klaipėda", "Alytus", "Panevėžys", "Lazdijai", "Ignalina", "Utena" };
         //public static string[] salys = new[] { "Lietuva", "Latvija", "Estija", "Lenkija", "Ukraina", "Suomija", "Švedija", "Norvegija", "Danija", "Vokietija" };
         //public static string[] kita = new[] { "Stalas", "Kėdė", "Zemėlapis", "Pelė", "Kilimas", "Spausdintuvas", "Laikrodis", "Siena", "Grindys", "Lubos" };
@@ -54,20 +54,26 @@ namespace Hangman
                 Console.WriteLine();
                 Console.Write($"Spėtos raidės: ");
                 SpetosRaides();
-                Console.Write("\nZodis: ");
+                Console.Write("\nŽodis: ");
                 Console.WriteLine(string.Join(" ", uzmaskuotasZodis));
-                Console.WriteLine("\n\nSpekite raide, ar zodi");
+                Console.WriteLine("\n\nSpėkite raidę, ar žodį");
 
                 spejimas = Console.ReadLine();
-                
 
-                if (spejimas.Length == 1)
+
+                if (spejimas == "" || spejimas == null)
+                {
+                    continue;
+                }
+                else
+
+                    if (spejimas.Length == 1)
                 {
                     spejamaRaide = spejimas[0];
 
                     if (char.IsLetter(spejamaRaide))
                     {       //ignoruoja didžiasias ir mazasias raides
-                        if (sugeneruotasZodis.Contains(spejimas, StringComparison.CurrentCultureIgnoreCase)) 
+                        if (sugeneruotasZodis.Contains(spejimas, StringComparison.CurrentCultureIgnoreCase))
                         {
                             for (int i = 0; i < sugeneruotasZodis.Length; i++)
                             {                   //suvienodina abi raides, kad suveiktu palyginimas
@@ -83,7 +89,7 @@ namespace Hangman
                                 break;
                             }
                         }
-                        else
+                        else if ((!sugeneruotasZodis.Contains(spejimas) && !spetosRaides.Contains(spejimas))) //pridejau sita
                         {
                             neteisinguSpejimuSkaicius++;
                         }
@@ -112,27 +118,31 @@ namespace Hangman
         }
 
         public static void ZaidimoPabaiga()
-        {            
+        {
             if (laimeta)
             {
-                ZaidimoPabaigosMeniu(new[] { "LAIMEJOT", "Pakartoti zaidima T/N?" });
+                Console.Clear();
+                KartuviuPiesimas();
+                //ZaidimoPabaigosMeniu(new[] { "LAIMEJOT", "Pakartoti žaidimą T/N?" });
+                Console.WriteLine($"Laimėjote, teisingas žodis {sugeneruotasZodis}");
+                Console.WriteLine("Pakartoti zaidimą T / N ? ");
+                ZaidimoPabaigosMeniu();
+
             }
             else
             {
                 Console.Clear();
                 neteisinguSpejimuSkaicius = 7;
                 KartuviuPiesimas();
-                ZaidimoPabaigosMeniu(new[] { "PRALAIMEJOT", "Pakartoti zaidima T/N?" });
+                Console.WriteLine($"Pralaimėjote, teisingas žodis {sugeneruotasZodis}");
+                Console.WriteLine("Pakartoti zaidimą T / N ? ");
+                ZaidimoPabaigosMeniu();
             }
         }
 
-        public static void ZaidimoPabaigosMeniu(string[] meniuItems)
+        public static void ZaidimoPabaigosMeniu()
         {
-            foreach (var meniuItem in meniuItems)
-            {
-                Console.WriteLine(meniuItem);
-            }
-            
+
             while (true)
             {
                 var key = Console.ReadKey(true);
@@ -144,8 +154,8 @@ namespace Hangman
                 {
                     Environment.Exit(0);
                 }
-            }
 
+            }
             Kartuves();
         }
 
@@ -156,10 +166,10 @@ namespace Hangman
             Console.WriteLine("Pasirinkite tema:");
             Console.WriteLine("1. Vardai");
             Console.WriteLine("2. Miestai");
-            Console.WriteLine("3. Valstybes");
+            Console.WriteLine("3. Valstybės");
             Console.WriteLine("4. Kita");
 
-            // int pasirinkimas = Convert.ToInt32(Console.ReadLine());
+
             int.TryParse(Console.ReadLine(), out menuPasirinkimas);
 
             if (menuPasirinkimas <= 4 && menuPasirinkimas >= 1)
@@ -190,9 +200,10 @@ namespace Hangman
                 }
             else
             {
-                Console.WriteLine($"{menuPasirinkimas} tokios temos nėra, pasirinkite kitą temą");
+                Console.WriteLine($"{menuPasirinkimas} temos nėra, pasirinkite kitą temą");
                 KartuviuMenu();
             }
+
         }
 
         public static void ZodzioParinkimas()
@@ -200,7 +211,8 @@ namespace Hangman
             var nepanaudotiZodziai = NepanaudotiZodziai(pasirinktiZodziai);
             if (nepanaudotiZodziai.Count == 0)
             {
-                ZaidimoPabaigosMeniu(new[] { "Tema: {kintamaji isirasyt}", "Temoje nebera zodziu, ar norite rinktis kita tema T/N" });
+                Console.WriteLine($"Tema: {tema} nebėra žodžių, ar norite rinktis kitą temą T/N");
+                ZaidimoPabaigosMeniu();
             }
 
             Random rnd = new Random();
@@ -234,7 +246,8 @@ namespace Hangman
         {
             if (!sugeneruotasZodis.Contains(spejimas, StringComparison.CurrentCultureIgnoreCase) && !spetosRaides.Contains(spejimas))
             {
-                if (char.IsLetter(spejimas[0])){
+                if (char.IsLetter(spejimas[0]))
+                {
                     spetosRaides.Add(spejimas);
                 }
             }
@@ -283,7 +296,7 @@ namespace Hangman
             {
                 Console.WriteLine("   - - - - - - |");
                 Console.WriteLine("|              o ");
-                Console.WriteLine("|            \\|");
+                Console.WriteLine("|             \\|");
                 Console.WriteLine("|               ");
                 Console.WriteLine("|              ");
                 Console.WriteLine("|                ");

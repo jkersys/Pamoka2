@@ -1,321 +1,356 @@
-﻿namespace BM025
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Sveiki atvykę į KARTUVES! \n");
+﻿using System.Text;
 
+namespace Hangman
+{
+    public class Program
+    {
+        public static int menuPasirinkimas = 0;
+        public static int neteisinguSpejimuSkaicius = 0;
+        public static string sugeneruotasZodis = "";
+        public static string tema = "";
+        public static List<string> spetosRaides = new List<string>();
+        public static string spejimas = "";
+        public static List<char> uzmaskuotasZodis = new List<char>();
+        public static char spejamaRaide;
+        public static bool laimeta = false;
+       
+        public static Dictionary<string, bool> panaudotiZodziai = new Dictionary<string, bool>();
+
+        public static Dictionary<string, bool> pasirinktiZodziai;
+
+        
+        public static Dictionary<string, bool> vardai = new Dictionary<string, bool>() { { "Greta", false }, { "Karolina", false }, { "Tomas", false }, { "Petras", false }, { "Justinas", false }, { "Giedrė", false }, { "Gintarė", false }, { "Adomas", false }, { "Audrius", false } };
+        public static Dictionary<string, bool> miestai = new Dictionary<string, bool>() { { "Vilnius", false }, { "Kaunas", false }, { "Molėtai", false }, { "Varėna", false }, { "Klaipėda", false }, { "Alytus", false }, { "Panevėžys", false }, { "Ignalina", false }, { "Utena", false }, { "Lazdijai", false } };
+        public static Dictionary<string, bool> salys = new Dictionary<string, bool>() { { "Lietuva", false }, { "Latvija", false }, { "Estija", false }, { "Lenkija", false }, { "Ukraina", false }, { "Suomija", false }, { "Švedija", false }, { "Norvegija", false }, { "Danija", false }, { "Vokietija", false } };
+        public static Dictionary<string, bool> kita = new Dictionary<string, bool>() { { "Stalas", false }, { "Kėdė", false }, { "Žemėlapis", false }, { "Pelė", false }, { "Kilimas", false }, { "Spausdintuvas", false }, { "Laikrodis", false }, { "Siena", false }, { "Grindys", false }, { "Lubos", false } };
+        //public static string[] vardai = new[] { "Greta", "Karolina", "Tomas", "Petras", "Genutė", "Justinas", "Giedrė", "Gintarė", "Ratis", "Audrius" };
+        //public static string[] miestai = new[] { "Vilnius", "Kaunas", "Molėtai", "Varėna", "Klaipėda", "Alytus", "Panevėžys", "Lazdijai", "Ignalina", "Utena" };
+        //public static string[] salys = new[] { "Lietuva", "Latvija", "Estija", "Lenkija", "Ukraina", "Suomija", "Švedija", "Norvegija", "Danija", "Vokietija" };
+        //public static string[] kita = new[] { "Stalas", "Kėdė", "Zemėlapis", "Pelė", "Kilimas", "Spausdintuvas", "Laikrodis", "Siena", "Grindys", "Lubos" };
+
+
+        public static void Main(string[] args)
+        {
+            Console.OutputEncoding = Encoding.GetEncoding(1200);
+            Console.InputEncoding = Encoding.GetEncoding(1200);
+            Kartuves();
+        }
+        public static void Kartuves()
+        {
+            Reset();
+
+            //pakvieciam menu, temos pasirinkimui ir busenos priskyrimui
+            KartuviuMenu();
+
+            //pakvieciam metoda, kuris pagal esama busena sugeneruotu random zodi
+            ZodzioParinkimas();
+            ZodzioUzmaskavimas();
+
+            while (neteisinguSpejimuSkaicius < 7)
+            {
+                Console.Clear();
+                Console.WriteLine($"Tema: {tema}");
+                KartuviuPiesimas();
+                Console.WriteLine();
+                Console.Write($"Spėtos raidės: ");
+                SpetosRaides();
+                Console.Write("\nŽodis: ");
+                Console.WriteLine(string.Join(" ", uzmaskuotasZodis));
+                Console.WriteLine("\n\nSpėkite raidę, ar žodį");
+
+                spejimas = Console.ReadLine();
+
+               
+            if (spejimas == "" || spejimas == null)
+                {
+                    continue;
+                }
+                else
+
+                if (spejimas.Length == 1)
+                {
+                    spejamaRaide = spejimas[0];
+
+                    if (char.IsLetter(spejamaRaide))
+                    {       //ignoruoja didžiasias ir mazasias raides
+                        if (sugeneruotasZodis.Contains(spejimas, StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            for (int i = 0; i < sugeneruotasZodis.Length; i++)
+                            {                   //suvienodina abi raides, kad suveiktu palyginimas
+                                if (char.ToUpper(sugeneruotasZodis[i]) == char.ToUpper(spejamaRaide))
+                                {
+                                    uzmaskuotasZodis[i] = spejamaRaide;
+                                }
+                            }
+
+                            if (!uzmaskuotasZodis.Contains('_'))
+                            {
+                                laimeta = true;
+                                break;
+                            }
+                        }
+                        else if ((!sugeneruotasZodis.Contains(spejimas) && !spetosRaides.Contains(spejimas))) //pridejau sita
+                        {
+                            neteisinguSpejimuSkaicius++;
+                        }
+                    }
+                }
+                else
+                {                   //tikrina ar laimeta, ignuoroja didziosios ar mazosios raides
+                    laimeta = sugeneruotasZodis.Equals(spejimas, StringComparison.CurrentCultureIgnoreCase) ? true : false;
+                    break;
+                }
+            }
+
+            ZaidimoPabaiga();
+        }
+
+
+        public static void Reset()
+        {
+            laimeta = false;
+            neteisinguSpejimuSkaicius = 0;
+            sugeneruotasZodis = "";
+            spejamaRaide = ' ';
+            uzmaskuotasZodis.Clear();
+            spejimas = "";
+            spetosRaides.Clear();
+        }
+
+        public static void ZaidimoPabaiga()
+        {
+            if (laimeta)
+            {
+                Console.Clear();
+                KartuviuPiesimas();
+                //ZaidimoPabaigosMeniu(new[] { "LAIMEJOT", "Pakartoti žaidimą T/N?" });
+                Console.WriteLine($"Laimėjote, teisingas žodis {sugeneruotasZodis}");
+                Console.WriteLine("Pakartoti zaidimą T / N ? ");
+                ZaidimoPabaigosMeniu();
+
+            }
+            else
+            {
+                Console.Clear();
+                neteisinguSpejimuSkaicius = 7;
+                KartuviuPiesimas();
+                Console.WriteLine($"Pralaimėjote, teisingas žodis {sugeneruotasZodis}");
+                Console.WriteLine("Pakartoti zaidimą T / N ? ");
+                ZaidimoPabaigosMeniu();
+            }
+        }
+
+        public static void ZaidimoPabaigosMeniu()
+        {
+           
+            while (true)
+            {
+                var key = Console.ReadKey(true);
+                if (key.Key == ConsoleKey.T)
+                {
+                    break;
+                }
+                if (key.Key == ConsoleKey.N)
+                {
+                    Environment.Exit(0);
+                }
+
+            }
             Kartuves();
         }
 
-
-        // Klasės žodynai
-        public static Dictionary<int, string> zodynasVardai = new Dictionary<int, string>
+        // metodas pasirinkti temai
+        public static void KartuviuMenu()
         {
-            { 0, "Tomas" },
-            { 1, "Matas" },
-            { 2, "Lukas" },
-            { 3, "Jonas" },
-            { 4, "Tadas" },
-            { 5, "Domas" },
-            { 6, "Laima" },
-            { 7, "Erika" },
-            { 8, "Diana" },
-            { 9, "Edita" }
-        };
-        public static Dictionary<int, string> zodynasMiestai = new Dictionary<int, string>
-        {
-            { 0, "Alytus" },
-            { 1, "Garliava" },
-            { 2, "Jonava" },
-            { 3, "Kaunas" },
-            { 4, "Ignalina" },
-            { 5, "Lazdijai" },
-            { 6, "Kretinga" },
-            { 7, "Prienai" },
-            { 8, "Trakai" },
-            { 9, "Vilnius" }
-        };
-        public static Dictionary<int, string> zodynasValstybes = new Dictionary<int, string>
-        {
-            { 0, "Airija" },
-            { 1, "Belgija" },
-            { 2, "Danija" },
-            { 3, "Egiptas" },
-            { 4, "Haitis" },
-            { 5, "Irakas" },
-            { 6, "Kanada" },
-            { 7, "Malta" },
-            { 8, "Togas" },
-            { 9, "Vanuatu" }
-        };
-        public static Dictionary<int, string> zodynasKita = new Dictionary<int, string>
-        {
-            { 0, "Kilpa" },
-            { 1, "Sapnas" },
-            { 2, "Rojus" },
-            { 3, "Balsas" },
-            { 4, "Pasaka" },
-            { 5, "Magas" },
-            { 6, "Garsas" },
-            { 7, "Metras" },
-            { 8, "Uogos" },
-            { 9, "Batas" }
-        };
-
-        // Klasės kintamieji
-        public static string kartuviuTema = "";
-        public static string kartuviuZodis = "";
-        public static string zodzioVizualas = "";
-
-        public static bool arZaidziama = true;
-        public static bool arLaimeta = false;
-        public static int spejimai = 0;
-
-        public static string atspetosRaides = "";
-        public static string neatspetosRaides = "";
-
-
-        public static void Kartuves()
-        {
-            // Prieš prasidedant žaidimui, visi "pagalbiniai" klasės kintamieji yra grąžinami į savo pirmines reikšmes
-            kartuviuTema = "";
-            kartuviuZodis = "";
-            arZaidziama = true;
-            arLaimeta = false;
-            spejimai = 0;
-            atspetosRaides = "";
-            neatspetosRaides = "";
-
-            // Žaidimas prasideda. Pirmiausiai išrenkamas žodis kurį spėlios vartotojas
-            while (kartuviuZodis == "")
-            {
-                PasirinktiTema();
-                PasirinktiZodi();
-            }
-
             Console.Clear();
+            Console.WriteLine("Pasirinkite tema:");
+            Console.WriteLine("1. Vardai");
+            Console.WriteLine("2. Miestai");
+            Console.WriteLine("3. Valstybės");
+            Console.WriteLine("4. Kita");
 
-            // Tada nupiešiamos kartuvės ir žaidėjas pradeda spėlioti. Kartojasi iki kol žodis atspėjamas / žaidėjas pakariamas
-            while (arZaidziama == true)
-            {
-                ZodzioVizualinimas();
-                KartuviuLenta();
-                ZaidejoSpejimas();
-                Console.Clear();
-            }
+            
+            int.TryParse(Console.ReadLine(), out menuPasirinkimas);
 
-            Rezultatas();
-        }
-
-
-        public static void PasirinktiTema()
-        {
-            // Kintamieji temos pasirinkimui
-            var vartojoPasirinkimas = "";
-
-            // Vartotojo prašome pasirinkiti temą
-            Console.WriteLine("Pasirinkite temą: \n");
-            Console.WriteLine("1. Vardai \n2. Lietuvos Miestai \n3. Valstybes \n4. Kita \n");
-
-            while (kartuviuTema == "")
-            {
-                vartojoPasirinkimas = Console.ReadLine();
-                kartuviuTema = vartojoPasirinkimas switch
+            if (menuPasirinkimas <= 4 && menuPasirinkimas >= 1)
+                switch (menuPasirinkimas)
                 {
-                    "1" => "Vardai",
-                    "2" => "Lietuvos Miestai",
-                    "3" => "Valstybes",
-                    "4" => "Kita",
-                    _ => ""
-                };
-
-                // Jeigu klientas atlieka neteisingą įvestį, while'as kartojasi
-                if (kartuviuTema == "") { Console.WriteLine($"\n{vartojoPasirinkimas} temos nėra, bandykite iš naujo"); }
-            }
-        }
-
-
-        public static void PasirinktiZodi()
-        {
-            // Reikiamo zodyno išsitraukimas
-            var reikiamasZodynas = kartuviuTema switch
-            {
-                "Vardai" => zodynasVardai,
-                "Lietuvos Miestai" => zodynasMiestai,
-                "Valstybes" => zodynasValstybes,
-                "Kita" => zodynasKita
-            };
-
-            int zodynoIlgis = reikiamasZodynas.Count;
-
-            // Jeigu pasirinktoje temoje nebėra žodžių, vartotojas turi pasirinkti kitą temą
-            if (zodynoIlgis == 0)
-            {
-                Console.Clear();
-                Console.WriteLine($"\"{kartuviuTema}\" temoje nebėra žodžių :( \n");
-                kartuviuTema = "";
-            }
-
-            // Kitu atveju, kartuvių žodžis yra atsitiktinai pasirenkamas iš žodyno
-            else
-            {
-                Random rnd = new Random();
-                int zodzioVieta = -1;
-
-                // Jeigu atrinkta žodyno vieta neturi reikšmės, bandoma iš naujo
-                while (kartuviuZodis == "")
-                {
-                    zodzioVieta = rnd.Next(0, 11);
-
-                    if (reikiamasZodynas.TryGetValue(zodzioVieta, out _) == true)
-                    { kartuviuZodis = reikiamasZodynas[zodzioVieta]; }
+                    case 1:
+                        menuPasirinkimas = 1;
+                        tema = "VARDAI";
+                        pasirinktiZodziai = vardai;
+                        break;
+                    case 2:
+                        menuPasirinkimas = 2;
+                        tema = "MIESTAI";
+                        pasirinktiZodziai = miestai;
+                        break;
+                    case 3:
+                        menuPasirinkimas = 3;
+                        tema = "VALSTYBE";
+                        pasirinktiZodziai = salys;
+                        break;
+                    case 4:
+                        menuPasirinkimas = 4;
+                        tema = "KITA";
+                        pasirinktiZodziai = kita;
+                        break;
+                    default:
+                        break;
                 }
-
-                // Atrinktas žodis yra pašalinamas iš žodyno ir daugiau nepasikartos
-                reikiamasZodynas.Remove(zodzioVieta);
-            }
-        }
-
-
-        public static void ZodzioVizualinimas()
-        {
-            char[] kartuviuZodzioMasyvas = kartuviuZodis.ToLower().ToArray();
-            zodzioVizualas = "";
-
-            // Atrinktas žodis yra užslapstinamas (nebent žaidėjas atspėjo kažkurias raides)
-            foreach (char c in kartuviuZodzioMasyvas)
-            {
-                if (atspetosRaides.Contains(c))
-                { zodzioVizualas += c; }
-                else
-                { zodzioVizualas += "_"; }
-
-                zodzioVizualas += " ";
-            }
-        }
-
-
-        public static void KartuviuLenta()
-        {
-            // Žodynas kuriuo bus naudojamasi nupiešti žmogeliuką
-            Dictionary<int, string[]> zmogZodynas = new Dictionary<int, string[]>
-            {
-                { 0, new string[] { "   |   ", "  _|_  ", "  _|_  ", "  _|_  ", "  _|_  ",  "  _|_  ",  "  _|_  "  } },
-                { 1, new string[] { "       ", " (o_O) ", " (o_O) ", " (o_O) ", " (o_O) ",  " (o_O) ",  " (x_X) "  } },
-                { 2, new string[] { "       ", "       ", "  | |  ", " /| |  ", " /| |\\ ", " /| |\\ ", " /| |\\ " } },
-                { 3, new string[] { "       ", "       ", "  | |  ", "/ | |  ", "/ | | \\", "/ | | \\", "/ | | \\" } },
-                { 4, new string[] { "       ", "       ", "   -   ", "   -   ", "   -   ",  "  /-   ",  "  /-\\  " } },
-                { 5, new string[] { "       ", "       ", "       ", "       ", "       ",  "_/     ",  "_/   \\_" } }
-            };
-
-            // Kartuvių lenta!
-            Console.WriteLine($"Tema: {kartuviuTema}    \n" +
-                $"     __________                       \n" +
-                $"     |/       |                       \n" +
-                $"     |     {zmogZodynas[0][spejimai]} \n" +
-                $"     |     {zmogZodynas[1][spejimai]} \n" +
-                $"     |     {zmogZodynas[2][spejimai]} \n" +
-                $"     |     {zmogZodynas[3][spejimai]} \n" +
-                $"     |     {zmogZodynas[4][spejimai]} \n" +
-                $"     |     {zmogZodynas[5][spejimai]} \n" +
-                $"     |                                \n" +
-                $"   __|__                              \n");
-        }
-
-
-        public static void ZaidejoSpejimas()
-        {
-            Console.WriteLine($"\n" +
-                $"Spetos raides: {neatspetosRaides}\n" +
-                $"Zodis: {zodzioVizualas}\n\n" +
-                $"Spėkite raidę arba žodį: \n");
-
-            var ivedimas = "";
-
-            // Vartotojo prašoma atlikti įvedimą tol kol jis kažką įrašo
-            while (ivedimas == "") { ivedimas = Console.ReadLine(); }
-            ivedimas = ivedimas.ToLower();
-
-            // Jeigu įvedama raidė, patikrinima ar ji yra kartuvių žodyje / ar buvo spėta ankščiau
-            if (char.TryParse(ivedimas, out _) == true)
-            {
-                if (kartuviuZodis.ToLower().Contains(ivedimas) && !(atspetosRaides.Contains(ivedimas)))
-                { atspetosRaides += ivedimas; }
-
-                else if (!(kartuviuZodis.ToLower().Contains(ivedimas)) && !(neatspetosRaides.Contains(ivedimas)))
-                { neatspetosRaides += " " + ivedimas; spejimai++; }
-
-            } // Kitu atveju palyginama ar tai kas įvesta yra kartuvių žodis
             else
             {
-                if (ivedimas == kartuviuZodis.ToLower())
-                { arLaimeta = true; }
-                else
-                { arLaimeta = false; spejimai = 6; }
-
-                arZaidziama = false;
+                Console.WriteLine($"{menuPasirinkimas} temos nėra, pasirinkite kitą temą");
+                KartuviuMenu();
             }
 
-            // Patikrinama ar vartotojas atspėjo visas raides (jeigu jau natspėjo žodžio)
-            if (PatikrintiRaides() && arLaimeta == false)
+        }
+
+        public static void ZodzioParinkimas()
+        {       //pasifiltruojam nepanaudotus zodzius
+            var nepanaudotiZodziai = NepanaudotiZodziai(pasirinktiZodziai);
+            if (nepanaudotiZodziai.Count == 0)
             {
-                arLaimeta = true;
-                arZaidziama = false;
+                Console.WriteLine($"Tema: {tema} nebėra žodžių, ar norite rinktis kitą temą T/N");
+                ZaidimoPabaigosMeniu();
             }
-            // Prie to paties patikrinama ar vartotojas išnaudojo visus spėjimus
-            else if (spejimai > 5)
+
+            Random rnd = new Random();
+            int random = rnd.Next(nepanaudotiZodziai.Count);
+            sugeneruotasZodis = nepanaudotiZodziai[random];
+            pasirinktiZodziai[sugeneruotasZodis] = true;
+        }
+
+        public static List<string> NepanaudotiZodziai(Dictionary<string, bool> zodziai)
+        {
+            List<string> nepanaudotiZodziai = new List<string>();
+            foreach (var zodis in zodziai)
             {
-                arLaimeta = false;
-                arZaidziama = false;
+                if (zodis.Value == false)
+                {
+                    nepanaudotiZodziai.Add(zodis.Key);
+                }
+            }
+            return nepanaudotiZodziai;
+        }
+
+        public static void ZodzioUzmaskavimas()
+        {
+            for (int i = 0; i < sugeneruotasZodis.Length; i++)
+            {
+                uzmaskuotasZodis.Add('_');
             }
         }
 
-
-        public static bool PatikrintiRaides()
+        public static void SpetosRaides()
         {
-            bool arViskas = true;
-            char[] kartuviuZodzioMasyvas = kartuviuZodis.ToLower().ToArray();
-
-            // Patikrinima kiekviena raidė kartuvių žodyje (ar jos atspėtos)
-            foreach (char c in kartuviuZodzioMasyvas)
+            if (!sugeneruotasZodis.Contains(spejimas, StringComparison.CurrentCultureIgnoreCase) && !spetosRaides.Contains(spejimas))
             {
-                if (atspetosRaides.Contains(c) == false)
-                { arViskas = false; break; }
+                if (char.IsLetter(spejimas[0]))
+                {
+                    spetosRaides.Add(spejimas);
+                }
             }
-
-            return arViskas;
+            Console.Write($"{string.Join(", ", spetosRaides)}");
         }
 
-
-        public static void Rezultatas()
+        public static void KartuviuPiesimas()
         {
-            // Vizualas laimėjus/pralaimėjus žaidimą
-            if (arLaimeta)
+            if (neteisinguSpejimuSkaicius == 0)
             {
-                Console.WriteLine("\n!!!!! SVEIKINIMAI! !!!!! \nJus atspejote teisingai!\n");
+                Console.WriteLine("   - - - - - - |");
+                Console.WriteLine("|               ");
+                Console.WriteLine("|               ");
+                Console.WriteLine("|               ");
+                Console.WriteLine("|               ");
+                Console.WriteLine("|               ");
+                Console.WriteLine("|               ");
+                Console.WriteLine("|               ");
+                Console.WriteLine("|               ");
             }
-            else
+            else if (neteisinguSpejimuSkaicius == 1)
             {
-                KartuviuLenta();
-                Console.WriteLine("\n----- PRALAIMEJOTE -----\n");
+                Console.WriteLine("   - - - - - - |");
+                Console.WriteLine("|              o ");
+                Console.WriteLine("|             ");
+                Console.WriteLine("|             ");
+                Console.WriteLine("|              ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
             }
-
-            Console.WriteLine($"Žodis buvo: {kartuviuZodis}");
-
-            // Patikrinama ar dar yra temų su žodžiais
-            if (zodynasVardai.Count == 0 && zodynasMiestai.Count == 0 && zodynasValstybes.Count == 0 && zodynasKita.Count == 0)
+            else if (neteisinguSpejimuSkaicius == 2)
             {
-                Console.WriteLine("Išnaudojote visus žodžius, žaidimas baigtas :)");
+                Console.WriteLine("   - - - - - - |");
+                Console.WriteLine("|              o ");
+                Console.WriteLine("|              |");
+                Console.WriteLine("|               ");
+                Console.WriteLine("|              ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
             }
-            else
+            else if (neteisinguSpejimuSkaicius == 3)
             {
-                // Žaidėjo paklausiama ar nori kartoti žaidimą
-                Console.WriteLine($"Ar norite kartoti žaidimą? T/N \n");
-                string? ivedimas = Console.ReadLine();
-
-                if (ivedimas.ToLower() == "t") { Console.Clear(); Kartuves(); }
+                Console.WriteLine("   - - - - - - |");
+                Console.WriteLine("|              o ");
+                Console.WriteLine("|             \\|");
+                Console.WriteLine("|               ");
+                Console.WriteLine("|              ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+            }
+            else if (neteisinguSpejimuSkaicius == 4)
+            {
+                Console.WriteLine("   - - - - - - |");
+                Console.WriteLine("|              o ");
+                Console.WriteLine("|             \\|/");
+                Console.WriteLine("|              ");
+                Console.WriteLine("|              ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+            }
+            else if (neteisinguSpejimuSkaicius == 5)
+            {
+                Console.WriteLine("   - - - - - - |");
+                Console.WriteLine("|              o ");
+                Console.WriteLine("|             \\|/");
+                Console.WriteLine("|              0 ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+            }
+            else if (neteisinguSpejimuSkaicius == 6)
+            {
+                Console.WriteLine("   - - - - - - |");
+                Console.WriteLine("|              o ");
+                Console.WriteLine("|             \\|/");
+                Console.WriteLine("|              0 ");
+                Console.WriteLine("|             /  ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+            }
+            else if (neteisinguSpejimuSkaicius == 7)
+            {
+                Console.WriteLine("   - - - - - - |");
+                Console.WriteLine("|              o ");
+                Console.WriteLine("|             \\|/");
+                Console.WriteLine("|              0 ");
+                Console.WriteLine("|             / \\ ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
             }
         }
     }
