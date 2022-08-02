@@ -41,8 +41,8 @@
         public void ArNepridedaTeisingoSpejimo() //
         {
             var randomZodis = "Testas";
-            var spetaRaide = "t";
-            var expected = new List<char> {  };
+            var spetaRaide = "q";
+            var expected = new List<char> { 'q' };
             var actual = Hangman.Program.SpetosRaides(randomZodis, spetaRaide);
             CollectionAssert.AreEqual(expected, actual);
 
