@@ -89,7 +89,7 @@ namespace Hangman
                                 break;
                             }
                         }
-                        else if ((!sugeneruotasZodis.Contains(spejimas) && !spetosRaides.Contains(spejimas))) //pridejau sita
+                        else if ((!sugeneruotasZodis.Contains(spejimas) && !spetosRaides.Contains(spejimas))) 
                         {
                             neteisinguSpejimuSkaicius++;
                         }
@@ -123,7 +123,6 @@ namespace Hangman
             {
                 Console.Clear();
                 KartuviuPiesimas();
-                //ZaidimoPabaigosMeniu(new[] { "LAIMEJOT", "Pakartoti žaidimą T/N?" });
                 Console.WriteLine($"Laimėjote, teisingas žodis {sugeneruotasZodis}");
                 Console.WriteLine("Pakartoti zaidimą T / N ? ");
                 ZaidimoPabaigosMeniu();
