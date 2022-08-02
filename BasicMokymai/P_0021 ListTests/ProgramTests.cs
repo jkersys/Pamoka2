@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P_0021_List.Tests
+//namespace P_0021_List.Tests
 {
     [TestClass()]
     public class ProgramTests

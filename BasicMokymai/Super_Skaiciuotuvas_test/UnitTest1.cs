@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RefaktorintasSuperSkaiciuotuvas.Tests
+//namespace RefaktorintasSuperSkaiciuotuvas.Tests
 {
     [TestClass()]
     public class ProgramTests

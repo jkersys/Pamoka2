@@ -89,7 +89,7 @@ namespace Hangman
                                 break;
                             }
                         }
-                        else if ((!sugeneruotasZodis.Contains(spejimas) && !spetosRaides.Contains(spejimas))) 
+                        else if ((!sugeneruotasZodis.Contains(spejimas) && !spetosRaides.Contains(spejimas))) //pridejau sita
                         {
                             neteisinguSpejimuSkaicius++;
                         }
@@ -171,6 +171,7 @@ namespace Hangman
 
             int.TryParse(Console.ReadLine(), out menuPasirinkimas);
 
+
             if (menuPasirinkimas <= 4 && menuPasirinkimas >= 1)
                 switch (menuPasirinkimas)
                 {
@@ -194,8 +195,7 @@ namespace Hangman
                         tema = "KITA";
                         pasirinktiZodziai = kita;
                         break;
-                    default:
-                        break;
+                    
                 }
             else
             {

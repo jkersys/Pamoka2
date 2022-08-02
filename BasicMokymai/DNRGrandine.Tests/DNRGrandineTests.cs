@@ -1,4 +1,4 @@
-namespace DNRGrandine.Tests
+//namespace DNRGrandine.Tests
 {
     [TestClass]
     public class DNRGrandineTests

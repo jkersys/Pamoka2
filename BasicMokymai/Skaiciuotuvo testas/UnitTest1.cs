@@ -1,4 +1,4 @@
-namespace Debug_Uzdavinys_Skaiciuotuvas
+//namespace Debug_Uzdavinys_Skaiciuotuvas
 {
     [TestClass]
     public class Skaiciuotuvo_testas

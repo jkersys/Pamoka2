@@ -1,6 +1,6 @@
 using P_0021_ForEach;
 
-namespace ForEach_testai
+//namespace ForEach_testai
 
 {
     [TestClass]
