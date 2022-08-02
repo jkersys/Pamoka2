@@ -23,10 +23,6 @@ namespace Hangman
         public static Dictionary<string, bool> miestai = new Dictionary<string, bool>() { { "Vilnius", false }, { "Kaunas", false }, { "Molėtai", false }, { "Varėna", false }, { "Klaipėda", false }, { "Alytus", false }, { "Panevėžys", false }, { "Ignalina", false }, { "Utena", false }, { "Lazdijai", false } };
         public static Dictionary<string, bool> salys = new Dictionary<string, bool>() { { "Lietuva", false }, { "Latvija", false }, { "Estija", false }, { "Lenkija", false }, { "Ukraina", false }, { "Suomija", false }, { "Švedija", false }, { "Norvegija", false }, { "Danija", false }, { "Vokietija", false } };
         public static Dictionary<string, bool> kita = new Dictionary<string, bool>() { { "Stalas", false }, { "Kėdė", false }, { "Žemėlapis", false }, { "Pelė", false }, { "Kilimas", false }, { "Spausdintuvas", false }, { "Laikrodis", false }, { "Siena", false }, { "Grindys", false }, { "Lubos", false } };
-        //public static string[] vardai = new[] { "Greta", "Karolina", "Tomas", "Petras", "Genutė", "Justinas", "Giedrė", "Gintarė", "Ratis", "Audrius" };
-        //public static string[] miestai = new[] { "Vilnius", "Kaunas", "Molėtai", "Varėna", "Klaipėda", "Alytus", "Panevėžys", "Lazdijai", "Ignalina", "Utena" };
-        //public static string[] salys = new[] { "Lietuva", "Latvija", "Estija", "Lenkija", "Ukraina", "Suomija", "Švedija", "Norvegija", "Danija", "Vokietija" };
-        //public static string[] kita = new[] { "Stalas", "Kėdė", "Zemėlapis", "Pelė", "Kilimas", "Spausdintuvas", "Laikrodis", "Siena", "Grindys", "Lubos" };
 
 
         public static void Main(string[] args)
@@ -53,7 +49,7 @@ namespace Hangman
                 KartuviuPiesimas();
                 Console.WriteLine();
                 Console.Write($"Spėtos raidės: ");
-                SpetosRaides();
+                SpetosRaides(sugeneruotasZodis, spejimas);
                 Console.Write("\nŽodis: ");
                 Console.WriteLine(string.Join(" ", uzmaskuotasZodis));
                 Console.WriteLine("\n\nSpėkite raidę, ar žodį");
@@ -199,7 +195,6 @@ namespace Hangman
                 }
             else
             {
-                Console.WriteLine($"{menuPasirinkimas} temos nėra, pasirinkite kitą temą");
                 KartuviuMenu();
             }
 
@@ -241,7 +236,7 @@ namespace Hangman
             }
         }
 
-        public static void SpetosRaides()
+        public static List<string> SpetosRaides(string sugeneruotasZodis, string spejimas)
         {
             if (!sugeneruotasZodis.Contains(spejimas, StringComparison.CurrentCultureIgnoreCase) && !spetosRaides.Contains(spejimas))
             {
@@ -251,6 +246,7 @@ namespace Hangman
                 }
             }
             Console.Write($"{string.Join(", ", spetosRaides)}");
+            return spetosRaides;
         }
 
         public static void KartuviuPiesimas()

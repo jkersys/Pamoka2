@@ -3,11 +3,13 @@ namespace HangmanTestai
     [TestClass]
     public class UnitTest1
     {
+
+
         [TestMethod]
         public void NepanaudotiZodziai_GrazinaNepanaudotusZodzius()
         {
             var zodziai = new Dictionary<string, bool>() { { "Vilnius", true }, { "Kaunas", false } };
-            
+
             var nepanaudoti = Hangman.Program.NepanaudotiZodziai(zodziai);
 
             Assert.IsTrue(nepanaudoti.Count == 1);
@@ -34,6 +36,26 @@ namespace HangmanTestai
 
             Assert.IsTrue(Hangman.Program.sugeneruotasZodis == "Kaunas");
             Assert.IsTrue(Hangman.Program.pasirinktiZodziai.All(x => x.Value == true));
+        }
+        [TestMethod]
+        public void ArNepridedaTeisingoSpejimo() //testuojame ar metodas ivedus neteisinga raide ja prideda i klaidu lista
+        {
+            var randomZodis = "Testas";
+            var spetaRaide = "t";
+            var expected = new List<char> {  };
+            var actual = Hangman.Program.SpetosRaides(randomZodis, spetaRaide);
+            CollectionAssert.AreEqual(expected, actual);
+
+        }
+        [TestMethod]
+        public void Test() //testuojame ar metodas ivedus neteisinga raide ja prideda i klaidu lista
+        {
+           var randomZodis = "Testas";
+           var spetaRaide = "q";
+           var actual = Hangman.Program.SpetosRaides(randomZodis, spetaRaide);
+           
+            Assert.IsTrue(Hangman.Program.spetosRaides.Count == 1);
+
         }
     }
 }
