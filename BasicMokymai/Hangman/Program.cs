@@ -19,7 +19,7 @@ namespace Hangman
         public static Dictionary<string, bool> pasirinktiZodziai;
 
 
-        public static Dictionary<string, bool> vardai = new Dictionary<string, bool>() { { "Greta", false }, { "Karolina", false }, { "Tomas", false }, { "Petras", false }, { "Justinas", false }, { "Giedrė", false }, { "Gintarė", false }, { "Adomas", false }, { "Audrius", false } };
+        public static Dictionary<string, bool> vardai = new Dictionary<string, bool>() { { "Greta", false }, { "Karolina", false }, { "Tomas", false }, { "Jonas", false }, { "Justinas", false }, { "Giedrė", false }, { "Gintarė", false }, { "Adomas", false }, { "Audrius", false } };
         public static Dictionary<string, bool> miestai = new Dictionary<string, bool>() { { "Vilnius", false }, { "Kaunas", false }, { "Molėtai", false }, { "Varėna", false }, { "Klaipėda", false }, { "Alytus", false }, { "Panevėžys", false }, { "Ignalina", false }, { "Utena", false }, { "Lazdijai", false } };
         public static Dictionary<string, bool> salys = new Dictionary<string, bool>() { { "Lietuva", false }, { "Latvija", false }, { "Estija", false }, { "Lenkija", false }, { "Ukraina", false }, { "Suomija", false }, { "Švedija", false }, { "Norvegija", false }, { "Danija", false }, { "Vokietija", false } };
         public static Dictionary<string, bool> kita = new Dictionary<string, bool>() { { "Stalas", false }, { "Kėdė", false }, { "Žemėlapis", false }, { "Pelė", false }, { "Kilimas", false }, { "Spausdintuvas", false }, { "Laikrodis", false }, { "Siena", false }, { "Grindys", false }, { "Lubos", false } };
@@ -35,10 +35,10 @@ namespace Hangman
         {
             Reset();
 
-            //pakvieciam menu, temos pasirinkimui ir busenos priskyrimui
+            //pakvieciam menu, temos pasirinkimui ir būsenos priskyrimui
             KartuviuMenu();
 
-            //pakvieciam metoda, kuris pagal esama busena sugeneruotu random zodi
+            //pakvieciam metodus, kuries pagal esama būsena sugeneruoja random žodį ir jį užmaskuoja
             ZodzioParinkimas();
             ZodzioUzmaskavimas();
 
@@ -68,7 +68,7 @@ namespace Hangman
                     spejamaRaide = spejimas[0];
 
                     if (char.IsLetter(spejamaRaide))
-                    {       //ignoruoja didžiasias ir mazasias raides
+                    {                                       //ignoruoja didžiasias ir mazasias raides
                         if (sugeneruotasZodis.Contains(spejimas, StringComparison.CurrentCultureIgnoreCase))
                         {
                             for (int i = 0; i < sugeneruotasZodis.Length; i++)
@@ -85,14 +85,14 @@ namespace Hangman
                                 break;
                             }
                         }
-                        else if ((!sugeneruotasZodis.Contains(spejimas) && !spetosRaides.Contains(spejimas))) //pridejau sita
+                        else if ((!sugeneruotasZodis.Contains(spejimas) && !spetosRaides.Contains(spejimas))) 
                         {
                             neteisinguSpejimuSkaicius++;
                         }
                     }
                 }
                 else
-                {                   //tikrina ar laimeta, ignuoroja didziosios ar mazosios raides
+                {                   //tikrina ar laimeta, ignuorojamos didziosios ar mazosios raides
                     laimeta = sugeneruotasZodis.Equals(spejimas, StringComparison.CurrentCultureIgnoreCase) ? true : false;
                     break;
                 }

@@ -1,4 +1,4 @@
-namespace HangmanTestai
+﻿namespace HangmanTestai
 {
     [TestClass]
     public class UnitTest1
@@ -38,7 +38,7 @@ namespace HangmanTestai
             Assert.IsTrue(Hangman.Program.pasirinktiZodziai.All(x => x.Value == true));
         }
         [TestMethod]
-        public void ArNepridedaTeisingoSpejimo() //testuojame ar metodas ivedus neteisinga raide ja prideda i klaidu lista
+        public void ArNepridedaTeisingoSpejimo() //
         {
             var randomZodis = "Testas";
             var spetaRaide = "t";
@@ -48,13 +48,24 @@ namespace HangmanTestai
 
         }
         [TestMethod]
-        public void Test() //testuojame ar metodas ivedus neteisinga raide ja prideda i klaidu lista
+        public void NeteisingosRaidesĮvedimoAtvejuPasikeiciaListDydis() 
         {
            var randomZodis = "Testas";
            var spetaRaide = "q";
            var actual = Hangman.Program.SpetosRaides(randomZodis, spetaRaide);
            
             Assert.IsTrue(Hangman.Program.spetosRaides.Count == 1);
+
+        }
+
+        [TestMethod]
+        public void IvedusTeisingaRaideListasNepadideja()
+        {
+            var randomZodis = "Testas";
+            var spetaRaide = "A";
+            var actual = Hangman.Program.SpetosRaides(randomZodis, spetaRaide);
+
+            Assert.IsTrue(Hangman.Program.spetosRaides.Count == 0);
 
         }
     }
