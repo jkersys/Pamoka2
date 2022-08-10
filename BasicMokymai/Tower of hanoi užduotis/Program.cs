@@ -1,303 +1,352 @@
-﻿namespace Savarankiskas_darbas_2022_06_22
+﻿using System.Text;
+
+namespace Hangman
 {
-    internal class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static int menuPasirinkimas = 0;
+        public static int neteisinguSpejimuSkaicius = 0;
+        public static string sugeneruotasZodis = "";
+        public static string tema = "";
+        public static List<string> spetosRaides = new List<string>();
+        public static string spejimas = "";
+        public static List<char> uzmaskuotasZodis = new List<char>();
+        public static char spejamaRaide;
+        public static bool laimeta = false;
+
+        public static Dictionary<string, bool> panaudotiZodziai = new Dictionary<string, bool>();
+
+        public static Dictionary<string, bool> pasirinktiZodziai;
+
+
+        public static Dictionary<string, bool> vardai = new Dictionary<string, bool>() { { "Greta", false }, { "Karolina", false }, { "Tomas", false }, { "Jonas", false }, { "Justinas", false }, { "Giedrė", false }, { "Gintarė", false }, { "Adomas", false }, { "Audrius", false } };
+        public static Dictionary<string, bool> miestai = new Dictionary<string, bool>() { { "Vilnius", false }, { "Kaunas", false }, { "Molėtai", false }, { "Varėna", false }, { "Klaipėda", false }, { "Alytus", false }, { "Panevėžys", false }, { "Ignalina", false }, { "Utena", false }, { "Lazdijai", false } };
+        public static Dictionary<string, bool> salys = new Dictionary<string, bool>() { { "Lietuva", false }, { "Latvija", false }, { "Estija", false }, { "Lenkija", false }, { "Ukraina", false }, { "Suomija", false }, { "Švedija", false }, { "Norvegija", false }, { "Danija", false }, { "Vokietija", false } };
+        public static Dictionary<string, bool> kita = new Dictionary<string, bool>() { { "Stalas", false }, { "Kėdė", false }, { "Žemėlapis", false }, { "Pelė", false }, { "Kilimas", false }, { "Spausdintuvas", false }, { "Laikrodis", false }, { "Siena", false }, { "Grindys", false }, { "Lubos", false } };
+
+
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello, Užduotis!");
+            Console.OutputEncoding = Encoding.GetEncoding(1200);
+            Console.InputEncoding = Encoding.GetEncoding(1200);
+            Kartuves();
+        }
+        public static void Kartuves()
+        {
+            Reset();
 
+            //pakvieciam menu, temos pasirinkimui ir būsenos priskyrimui
+            KartuviuMenu();
 
+            //pakvieciam metodus, kuries pagal esama būsena sugeneruoja random žodį ir jį užmaskuoja
+            ZodzioParinkimas();
+            ZodzioUzmaskavimas();
 
-
-            //Asmenskodasprivalomas jeigu nera nutraukia
-
-            /* 
-           Sukurkite programą, kuri pateiktų vartotojo registracijos formą.
-           Vartotojas įveda:
-            - vardą ir pavardę 
-            - asmens kodą (11simb.)
-            - amžių (sveiką skaičių metais) ir/arba gimimo datą (galima abu, tik kažkurį vieną, ar neįvesti nei vieno)
-          Programa į ekraną išveda ataskatą:
-           - šiandienos datą
-           - Vardas, pavardė
-           - Lytis
-              <HINT> asmens kodo pirmasis rodo gimimo šimtmetį ir asmens lytį 
-              (1 – XIX a. gimęs vyras, 
-               2 – XIX a. gimusi moteris, 
-               3 – XX a. gimęs vyras,
-               4 – XX a. gimusi moteris, 
-               5 – XXI a. gimęs vyras,
-               6 – XXI a. gimusi moteris
-               tolesni šeši: 
-                    metai (du skaitmenys), 
-                    mėnuo (du skaitmenys), 
-                    diena (du skaitmenys))     
-           - Asmens kodas 
-              <NEPRIVALOMAS PASUNKINIMAS> asmens kodas validuojamas pagal tokias salygas
-                 Paskaičiuojamas Kontrolinis skaičius 
-                 a) jei kontrolinis skaičius teisingas išvedamas asmens kodas
-                 b) jei neteisingas išvedamas tekstas "kodas neteisingas", 
-                    o laukeAmžiaus patikimumas išvedama "patikimumui trūksta duomenų" 
-                    <HINT> https://lt.wikipedia.org/wiki/Asmens_kodas
-           - Amžius
-           - Amžiaus patikimumas - pagal tokias sąlygas:
-           -  jei įvestas amžius metais, paskaičiuoti gimimo metus ir sulyginti su įvestu asmens kodu. 
-              a) jei sutampa išvesti "amžius patikimas"
-              b) jei nesutampa išvesti "amžius pameluotas"
-           - jei įvesta gimimo data sulyginti su įvestu asmens kodu. 
-              a) jei sutampa išvesti "amžius patikimas" 
-              b) jei nesutampa išvesti "amžius pameluotas"
-           - jei įvesta ir amžius ir gimimo data sulyginti su įvestu asmens kodu. 
-              a) jei viskas sutampa išvesti "amžius tikras" 
-              b) jei asmens kodu sutampa tik vienas įvestų, išvesti "amžius nepatikimas" 
-              c) jei nesutampa išvesti "amžius pameluotas"
-           - jei neįvesta nei amžius nei gimimo data išvesti
-              a) "patikimumui trūksta duomenų"
-Rezultatas gali atrodyti taip:
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ATASKAITA APIE ASMENĮ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓      2022-06-20       ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-▓     Vardas, pavardė ▓ Vardenis Pavardenis                 ▓
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-▓               Lytis ▓ Vyras                               ▓
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-▓        Asmens kodas ▓ 44012029286                         ▓
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-▓              Amžius ▓ 82                                  ▓
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-▓         Gimimo data ▓ 1980-06-20                          ▓
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-▓ Amžiaus patikimumas ▓ amžius nepatikimas                  ▓
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-*/
-
-
-
-
-
-            //prasom ivesti varda ir pavarde
-            Console.WriteLine("Įveskite savo vardą ir pavardę");
-            string vardasIrPavarde = Console.ReadLine();
-
-            //tikrinam ar vardas ir pavarde ivesti DAR REIKIA PATIKRINT AR NEIVESTA SKAICIU
-            if (vardasIrPavarde.Length == 0)
+            while (neteisinguSpejimuSkaicius < 7)
             {
-                Console.WriteLine("Įvedete neteisingus duomenis");
-                Environment.Exit(0);
-            }
+                Console.Clear();
+                Console.WriteLine($"Tema: {tema}");
+                KartuviuPiesimas();
+                Console.WriteLine();
+                Console.Write($"Spėtos raidės: ");
+                SpetosRaides(sugeneruotasZodis, spejimas);
+                Console.Write("\nŽodis: ");
+                Console.WriteLine(string.Join(" ", uzmaskuotasZodis));
+                Console.WriteLine("\n\nSpėkite raidę, ar žodį");
 
-            Console.WriteLine("Įveskite savo asmens kodą (11 simb.)");
-            var asmensKodas = (Console.ReadLine());
-            //tikrinam ar įvesta 11 skaitmenu ir ar visi ivesti simboliai yra skaiciai 
-            if (asmensKodas.Length == 11 && double.TryParse(asmensKodas, out _))
-            {
-                //ar galima taip palikt?
-            }
-            else
-            {
-                Console.WriteLine("Neteisingai ivedete asmens koda");
-                Environment.Exit(0);
-            }
+                spejimas = Console.ReadLine();
 
 
-
-
-
-            ///amziaus ivedimas
-            Console.WriteLine("Įveskite amžių");
-            string amziusString = Console.ReadLine();
-
-            //gimimo datos ivedimas
-            Console.WriteLine("Įveskite gimimo datą formatu yyyy-mm-dd");
-            var gimimoDataString = Console.ReadLine();
-
-            //issivedam siandienos data atvzaidavimo lentelei, kad rodytu pildymo data
-            var siandienosData = DateTime.Today;
-
-
-            //******TIKRINAM AR VYRAS AR MOTERIS*******
-            //pasiimam asmens kodo pirmą raidę tikrinimui
-            var asmensKodoPirmaRaide = asmensKodas[0];
-            //asmens kodo pirma raide pasidarom int
-            var pirmasSKaicius = (int)asmensKodoPirmaRaide;
-            //Pasidarom string kintamaji kurio reiksme istatysim su if
-            string lytis = "";
-            //tikrinam ar pirma asmens kodo raide yra 1, 3, 5, jeigu taip gražinam reiksme kad tai vyras
-            if (asmensKodoPirmaRaide == '1' || asmensKodoPirmaRaide == '3' || asmensKodoPirmaRaide == '5')
-            {
-                lytis = "Vyras";
-            }
-            //tikrinam ar pirma asmens kodo raide yra 2, 4, 6, jeigu taip gražinam reiksme kad tai moteris
-            else if (asmensKodoPirmaRaide == '2' || asmensKodoPirmaRaide == '4' || asmensKodoPirmaRaide == '6')
-            {
-                lytis = "Moteris";
-            }
-            else
-            {   // jeigu nei vyras, nei moteris uzdarom programa
-                Console.WriteLine("Neteisingai ivedete asmens koda");
-                Environment.Exit(0);
-            }
-
-
-            //******Issivedam is asmens kodo gimimo data
-            //psdiimsm metus
-            var gimimoMetaiIsAsmensKodoString = asmensKodas.Substring(1, 2);
-            //pasiimam menesi
-            var gimimoMenesisIsAsmensKodoString = asmensKodas.Substring(3, 2);
-            //pasiimam diena
-            var gimimoDienaisIsAsmensKodoString = asmensKodas.Substring(5, 2);
-
-            //paimtus skaicius parsinam is string i int
-            var gimimoMetaiIsAsmensKodo = int.Parse(gimimoMetaiIsAsmensKodoString);
-            var menesis1 = int.Parse(gimimoMenesisIsAsmensKodoString);
-            var diena1 = int.Parse(gimimoDienaisIsAsmensKodoString);
-
-
-            //skaiciuojam tukstantmeti
-            if (asmensKodoPirmaRaide == '1' || asmensKodoPirmaRaide == '2')
-            {
-                gimimoMetaiIsAsmensKodo = gimimoMetaiIsAsmensKodo + 1800;
-            }
-            if (asmensKodoPirmaRaide == '3' || asmensKodoPirmaRaide == '4')
-            {
-                gimimoMetaiIsAsmensKodo = gimimoMetaiIsAsmensKodo + 1900;
-
-            }
-            if (asmensKodoPirmaRaide == '5' || asmensKodoPirmaRaide == '6')
-            {
-                gimimoMetaiIsAsmensKodo = gimimoMetaiIsAsmensKodo + 2000;
-            }
-
-            //susidedam turimus int'us i data ir pakeiciam i string reikiamu datos formatu
-            DateTime dataGautaIsAsmensKodo = new DateTime(gimimoMetaiIsAsmensKodo, menesis1, diena1);
-            String dataGautaIsAsmensKodoString = dataGautaIsAsmensKodo.ToString("yyyy-MM-dd");
-
-
-            Console.WriteLine($"{dataGautaIsAsmensKodoString}");
-
-            //kintamasis amziaus patikimumui isvesti
-            var amziausZinute = "amžius patikimas";
-            //kintamieji patikrinti ar pagal vartotojo ivestus duomenis patikimas amzius ir gimimo data 
-            var amziusPagalMetusPatikimas = false;
-            var amziusPagalGimimoDataPatikimas = false;
-
-
-
-            //Console.WriteLine("gimimoMetaiIsskaiciuoti" + gimimoMetaiIsskaiciuotiString);
-
-            //gimimo data gauta is asmens kodo pasiverciam int kad galetumem palygint su isskaiciuota gimimo data
-            //Console.WriteLine("gimimoMetaiIsskaiciuoti" + gimimoMetaiIsskaiciuoti);
-
-            //tikrinam ar ivesti bent vienas is duomenu
-            if (string.IsNullOrEmpty(amziusString) == true && string.IsNullOrEmpty(gimimoDataString) == true)
-            {
-                amziausZinute = "patikimumui trūksta duomenų";
-            }
-            else
-            {        //tikrinam ar ivestas amzius
-                if (string.IsNullOrEmpty(amziusString) == false)
+                if (spejimas == "" || spejimas == null)
                 {
-                    //ivesta amziu parsinam i int
-                    var amzius = int.Parse(amziusString);
-                    //pasiskaiciuojam koks amzius gaunasi is siandienos atemus vartotojo ivesta amziu
-                    var gimimoMetaiIsskaiciuoti = DateTime.Today.AddYears(-amzius);
-                    //gauta data pasikonvertuojam i string
-                    var gimimoMetaiIsskaiciuotiString = gimimoMetaiIsskaiciuoti.ToString("yyyy-MM-dd");
-
-                    Console.WriteLine($"dataGautaIsAsmensKodo{dataGautaIsAsmensKodo.Year} {gimimoMetaiIsskaiciuoti.Year} gimimoMetaiIsskaiciuoti");
-
-                    if (dataGautaIsAsmensKodo.Year == gimimoMetaiIsskaiciuoti.Year)
-                        amziusPagalMetusPatikimas = true;
-                    amziausZinute = "amžius patikimas";
+                    continue;
                 }
                 else
+
+                    if (spejimas.Length == 1)
                 {
-                    amziausZinute = "amžius pameluotas";
-                }
+                    spejamaRaide = spejimas[0];
 
+                    if (char.IsLetter(spejamaRaide))
+                    {                                       //ignoruoja didžiasias ir mazasias raides
+                        if (sugeneruotasZodis.Contains(spejimas, StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            for (int i = 0; i < sugeneruotasZodis.Length; i++)
+                            {                   //suvienodina abi raides, kad suveiktu palyginimas
+                                if (char.ToUpper(sugeneruotasZodis[i]) == char.ToUpper(spejamaRaide))
+                                {
+                                    uzmaskuotasZodis[i] = spejamaRaide;
+                                }
+                            }
 
-            }
-            if (string.IsNullOrEmpty(gimimoDataString) == false)
-            {
-
-                if (gimimoDataString == gimimoMetaiIsAsmensKodoString)
-                {
-                    Console.WriteLine($"{gimimoDataString}    {gimimoMetaiIsAsmensKodoString}");
-                    amziusPagalGimimoDataPatikimas = true;
-                    amziausZinute = "amžius patikimas";
+                            if (!uzmaskuotasZodis.Contains('_'))
+                            {
+                                laimeta = true;
+                                break;
+                            }
+                        }
+                        else if ((!sugeneruotasZodis.Contains(spejimas) && !spetosRaides.Contains(spejimas)))
+                        {
+                            neteisinguSpejimuSkaicius++;
+                        }
+                    }
                 }
                 else
-                {
-                    amziausZinute = "amžius pameluotas";
+                {                   //tikrina ar laimeta, ignuorojamos didziosios ar mazosios raides
+                    laimeta = sugeneruotasZodis.Equals(spejimas, StringComparison.CurrentCultureIgnoreCase) ? true : false;
+                    break;
                 }
             }
 
+            ZaidimoPabaiga();
+        }
 
-            if (string.IsNullOrEmpty(amziusString) == false && string.IsNullOrEmpty(gimimoDataString) == false)
+
+        public static void Reset()
+        {
+            laimeta = false;
+            neteisinguSpejimuSkaicius = 0;
+            sugeneruotasZodis = "";
+            spejamaRaide = ' ';
+            uzmaskuotasZodis.Clear();
+            spejimas = "";
+            spetosRaides.Clear();
+        }
+
+        public static void ZaidimoPabaiga()
+        {
+            if (laimeta)
             {
-                if (amziusPagalMetusPatikimas == true && amziusPagalGimimoDataPatikimas == true)
-                {
-                    amziausZinute = "amžius tikras";
-                }
-                if (amziusPagalMetusPatikimas == true && amziusPagalGimimoDataPatikimas == false)
-                {
-                    amziausZinute = "amžius nepatikimas";
-                }
-                if (amziusPagalGimimoDataPatikimas == true && amziusPagalMetusPatikimas == false)
-                {
-                    amziausZinute = "amžius nepatikimas";
-                }
-
-                if (amziusPagalMetusPatikimas == false && amziusPagalGimimoDataPatikimas == false)
-                {
-                    amziausZinute = "amžius pameluotas";
-                }
-
-
+                Console.Clear();
+                KartuviuPiesimas();
+                Console.WriteLine($"Laimėjote, teisingas žodis {sugeneruotasZodis}");
+                Console.WriteLine("Pakartoti zaidimą T / N ? ");
+                ZaidimoPabaigosMeniu();
 
             }
+            else
+            {
+                Console.Clear();
+                neteisinguSpejimuSkaicius = 7;
+                KartuviuPiesimas();
+                Console.WriteLine($"Pralaimėjote, teisingas žodis {sugeneruotasZodis}");
+                Console.WriteLine("Pakartoti zaidimą T / N ? ");
+                ZaidimoPabaigosMeniu();
+            }
+        }
+
+        public static void ZaidimoPabaigosMeniu()
+        {
+
+            while (true)
+            {
+                var key = Console.ReadKey(true);
+                if (key.Key == ConsoleKey.T)
+                {
+                    break;
+                }
+                if (key.Key == ConsoleKey.N)
+                {
+                    Environment.Exit(0);
+                }
+
+            }
+            Kartuves();
+        }
+
+        // metodas pasirinkti temai
+        public static void KartuviuMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("Pasirinkite tema:");
+            Console.WriteLine("1. Vardai");
+            Console.WriteLine("2. Miestai");
+            Console.WriteLine("3. Valstybės");
+            Console.WriteLine("4. Kita");
 
 
-            Console.WriteLine($"#####################################################################################################");
-            Console.WriteLine($"###################################ATASKAITA APIE ASMENĮ##############################################");
-            Console.WriteLine($"###################################{siandienosData.ToString("yyyy-MM-dd")}#############################");
-            Console.WriteLine($"#####################################################################################################");
-            Console.WriteLine($"####Vardas, pavarde####{vardasIrPavarde}##########################################################################");
-            Console.WriteLine($"#####################################################################################################");
-            Console.WriteLine($"####Lytis   {lytis}####################################################################################");
-            Console.WriteLine($"#####################################################################################################");
-            Console.WriteLine($"####Asmens kodas####{asmensKodas}#############################################################################################");
-            Console.WriteLine($"#####################################################################################################");
-            Console.WriteLine($"####Amzius#######{amziusString}##########################################################################################");
-            Console.WriteLine($"#####################################################################################################");
-            Console.WriteLine($"####Gimimo data######{gimimoDataString}###########################################################################################");
-            Console.WriteLine($"#####################################################################################################");
-            Console.WriteLine($"###Amziaus patikimumas    {amziausZinute}############################################################");
-            Console.WriteLine($"#####################################################################################################");
-            Console.WriteLine($"#####################################################################################################");
+            int.TryParse(Console.ReadLine(), out menuPasirinkimas);
 
 
+            if (menuPasirinkimas <= 4 && menuPasirinkimas >= 1)
+                switch (menuPasirinkimas)
+                {
+                    case 1:
+                        menuPasirinkimas = 1;
+                        tema = "VARDAI";
+                        pasirinktiZodziai = vardai;
+                        break;
+                    case 2:
+                        menuPasirinkimas = 2;
+                        tema = "MIESTAI";
+                        pasirinktiZodziai = miestai;
+                        break;
+                    case 3:
+                        menuPasirinkimas = 3;
+                        tema = "VALSTYBE";
+                        pasirinktiZodziai = salys;
+                        break;
+                    case 4:
+                        menuPasirinkimas = 4;
+                        tema = "KITA";
+                        pasirinktiZodziai = kita;
+                        break;
 
+                }
+            else
+            {
+                KartuviuMenu();
+            }
 
+        }
 
+        public static void ZodzioParinkimas()
+        {       //pasifiltruojam nepanaudotus zodzius
+            var nepanaudotiZodziai = NepanaudotiZodziai(pasirinktiZodziai);
+            if (nepanaudotiZodziai.Count == 0)
+            {
+                Console.WriteLine($"Tema: {tema} nebėra žodžių, ar norite rinktis kitą temą T/N");
+                ZaidimoPabaigosMeniu();
+            }
 
+            Random rnd = new Random();
+            int random = rnd.Next(nepanaudotiZodziai.Count);
+            sugeneruotasZodis = nepanaudotiZodziai[random];
+            pasirinktiZodziai[sugeneruotasZodis] = true;
+        }
+
+        public static List<string> NepanaudotiZodziai(Dictionary<string, bool> zodziai)
+        {
+            List<string> nepanaudotiZodziai = new List<string>();
+            foreach (var zodis in zodziai)
+            {
+                if (zodis.Value == false)
+                {
+                    nepanaudotiZodziai.Add(zodis.Key);
+                }
+            }
+            return nepanaudotiZodziai;
+        }
+
+        public static void ZodzioUzmaskavimas()
+        {
+            for (int i = 0; i < sugeneruotasZodis.Length; i++)
+            {
+                uzmaskuotasZodis.Add('_');
+            }
+        }
+
+        public static List<string> SpetosRaides(string sugeneruotasZodis, string spejimas)
+        {
+            if (!sugeneruotasZodis.Contains(spejimas, StringComparison.CurrentCultureIgnoreCase) && !spetosRaides.Contains(spejimas))
+            {
+                if (char.IsLetter(spejimas[0]))
+                {
+                    spetosRaides.Add(spejimas);
+                }
+            }
+            Console.Write($"{string.Join(", ", spetosRaides)}");
+            return spetosRaides;
+        }
+
+        public static void KartuviuPiesimas()
+        {
+            if (neteisinguSpejimuSkaicius == 0)
+            {
+                Console.WriteLine("   - - - - - - |");
+                Console.WriteLine("|               ");
+                Console.WriteLine("|               ");
+                Console.WriteLine("|               ");
+                Console.WriteLine("|               ");
+                Console.WriteLine("|               ");
+                Console.WriteLine("|               ");
+                Console.WriteLine("|               ");
+                Console.WriteLine("|               ");
+            }
+            else if (neteisinguSpejimuSkaicius == 1)
+            {
+                Console.WriteLine("   - - - - - - |");
+                Console.WriteLine("|              o ");
+                Console.WriteLine("|             ");
+                Console.WriteLine("|             ");
+                Console.WriteLine("|              ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+            }
+            else if (neteisinguSpejimuSkaicius == 2)
+            {
+                Console.WriteLine("   - - - - - - |");
+                Console.WriteLine("|              o ");
+                Console.WriteLine("|              |");
+                Console.WriteLine("|               ");
+                Console.WriteLine("|              ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+            }
+            else if (neteisinguSpejimuSkaicius == 3)
+            {
+                Console.WriteLine("   - - - - - - |");
+                Console.WriteLine("|              o ");
+                Console.WriteLine("|             \\|");
+                Console.WriteLine("|               ");
+                Console.WriteLine("|              ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+            }
+            else if (neteisinguSpejimuSkaicius == 4)
+            {
+                Console.WriteLine("   - - - - - - |");
+                Console.WriteLine("|              o ");
+                Console.WriteLine("|             \\|/");
+                Console.WriteLine("|              ");
+                Console.WriteLine("|              ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+            }
+            else if (neteisinguSpejimuSkaicius == 5)
+            {
+                Console.WriteLine("   - - - - - - |");
+                Console.WriteLine("|              o ");
+                Console.WriteLine("|             \\|/");
+                Console.WriteLine("|              0 ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+            }
+            else if (neteisinguSpejimuSkaicius == 6)
+            {
+                Console.WriteLine("   - - - - - - |");
+                Console.WriteLine("|              o ");
+                Console.WriteLine("|             \\|/");
+                Console.WriteLine("|              0 ");
+                Console.WriteLine("|             /  ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+            }
+            else if (neteisinguSpejimuSkaicius == 7)
+            {
+                Console.WriteLine("   - - - - - - |");
+                Console.WriteLine("|              o ");
+                Console.WriteLine("|             \\|/");
+                Console.WriteLine("|              0 ");
+                Console.WriteLine("|             / \\ ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+                Console.WriteLine("|                ");
+            }
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -19,7 +19,7 @@ namespace Hangman
         public static Dictionary<string, bool> pasirinktiZodziai;
 
 
-        public static Dictionary<string, bool> vardai = new Dictionary<string, bool>() { { "Greta", false }, { "Karolina", false }, { "Tomas", false }, { "Jonas", false }, { "Justinas", false }, { "Giedrė", false }, { "Gintarė", false }, { "Adomas", false }, { "Audrius", false } };
+        public static Dictionary<string, bool> vardai = new Dictionary<string, bool>() { { "Greta", false }, { "Karolina", false }, { "Tomas", false }, { "Jonas", false }, { "Justinas", false }, { "Giedrė", false }, { "Gintarė", false }, { "Adomas", false }, { "Audrius", false }, { "Marius", false } };
         public static Dictionary<string, bool> miestai = new Dictionary<string, bool>() { { "Vilnius", false }, { "Kaunas", false }, { "Molėtai", false }, { "Varėna", false }, { "Klaipėda", false }, { "Alytus", false }, { "Panevėžys", false }, { "Ignalina", false }, { "Utena", false }, { "Lazdijai", false } };
         public static Dictionary<string, bool> salys = new Dictionary<string, bool>() { { "Lietuva", false }, { "Latvija", false }, { "Estija", false }, { "Lenkija", false }, { "Ukraina", false }, { "Suomija", false }, { "Švedija", false }, { "Norvegija", false }, { "Danija", false }, { "Vokietija", false } };
         public static Dictionary<string, bool> kita = new Dictionary<string, bool>() { { "Stalas", false }, { "Kėdė", false }, { "Žemėlapis", false }, { "Pelė", false }, { "Kilimas", false }, { "Spausdintuvas", false }, { "Laikrodis", false }, { "Siena", false }, { "Grindys", false }, { "Lubos", false } };
@@ -57,49 +57,49 @@ namespace Hangman
                 spejimas = Console.ReadLine();
 
 
-                if (spejimas == "" || spejimas == null)
-                {
-                    continue;
-                }
-                else
+                    if (spejimas == "" || spejimas == null)
+                    {
+                        continue;
+                    }
+                    else
 
-                    if (spejimas.Length == 1)
-                {
-                    spejamaRaide = spejimas[0];
+                        if (spejimas.Length == 1)
+                    {
+                        spejamaRaide = spejimas[0];
 
-                    if (char.IsLetter(spejamaRaide))
-                    {                                       //ignoruoja didžiasias ir mazasias raides
-                        if (sugeneruotasZodis.Contains(spejimas, StringComparison.CurrentCultureIgnoreCase))
-                        {
-                            for (int i = 0; i < sugeneruotasZodis.Length; i++)
-                            {                   //suvienodina abi raides, kad suveiktu palyginimas
-                                if (char.ToUpper(sugeneruotasZodis[i]) == char.ToUpper(spejamaRaide))
+                        if (char.IsLetter(spejamaRaide))
+                        {                                       //ignoruoja didžiasias ir mazasias raides
+                            if (sugeneruotasZodis.Contains(spejimas, StringComparison.CurrentCultureIgnoreCase))
+                            {
+                                for (int i = 0; i < sugeneruotasZodis.Length; i++)
+                                {                   //suvienodina abi raides, kad suveiktu palyginimas
+                                    if (char.ToUpper(sugeneruotasZodis[i]) == char.ToUpper(spejamaRaide))
+                                    {
+                                        uzmaskuotasZodis[i] = spejamaRaide;
+                                    }
+                                }
+
+                                if (!uzmaskuotasZodis.Contains('_'))
                                 {
-                                    uzmaskuotasZodis[i] = spejamaRaide;
+                                    laimeta = true;
+                                    break;
                                 }
                             }
-
-                            if (!uzmaskuotasZodis.Contains('_'))
+                            else if ((!sugeneruotasZodis.Contains(spejimas) && !spetosRaides.Contains(spejimas))) 
                             {
-                                laimeta = true;
-                                break;
+                                neteisinguSpejimuSkaicius++;
                             }
                         }
-                        else if ((!sugeneruotasZodis.Contains(spejimas) && !spetosRaides.Contains(spejimas))) 
-                        {
-                            neteisinguSpejimuSkaicius++;
-                        }
+                    }
+                    else
+                    {                   //tikrina ar laimeta, ignuorojamos didziosios ar mazosios raides
+                        laimeta = sugeneruotasZodis.Equals(spejimas, StringComparison.CurrentCultureIgnoreCase) ? true : false;
+                        break;
                     }
                 }
-                else
-                {                   //tikrina ar laimeta, ignuorojamos didziosios ar mazosios raides
-                    laimeta = sugeneruotasZodis.Equals(spejimas, StringComparison.CurrentCultureIgnoreCase) ? true : false;
-                    break;
-                }
-            }
 
-            ZaidimoPabaiga();
-        }
+                ZaidimoPabaiga();
+            }
 
 
         public static void Reset()

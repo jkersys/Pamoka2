@@ -8,7 +8,7 @@
         [TestMethod]
         public void NepanaudotiZodziai_GrazinaNepanaudotusZodzius()
         {
-            var zodziai = new Dictionary<string, bool>() { { "Vilnius", true }, { "Kaunas", false } };
+            var zodziai = new Dictionary<string, bool>() { { "Vilnius", true }, { "Kaunas", false }, { "Klaipėda", true }, { "Šiauliai", true }, { "Molėtai", true } };
 
             var nepanaudoti = Hangman.Program.NepanaudotiZodziai(zodziai);
 
@@ -41,8 +41,8 @@
         public void ArNepridedaTeisingoSpejimo() //
         {
             var randomZodis = "Testas";
-            var spetaRaide = "q";
-            var expected = new List<char> { 'q' };
+            var spetaRaide = "A";
+            var expected = new List<char> {  };
             var actual = Hangman.Program.SpetosRaides(randomZodis, spetaRaide);
             CollectionAssert.AreEqual(expected, actual);
 
