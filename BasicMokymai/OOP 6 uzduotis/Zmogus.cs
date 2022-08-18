@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P_032_OOPMetodaiDomain.Models
+namespace OOP_6_uzduotis
 {
     /*
      * Access Modifiers (Prieinamumo modifikuotojai)
@@ -14,7 +14,7 @@ namespace P_032_OOPMetodaiDomain.Models
      * internal: Tipą ar narį galima pasiekti naudojant bet kurį kodą tame pačiame assembly(Projekto) kode, bet ne iš kito assembly kodo.
      * protected: (Eisim kada prieisime paveldimumo/inheritence tema)
      */
-    internal class Zmogus
+    public class Zmogus
     {
         public Zmogus() { }
         public Zmogus(int zmogausNamoKambariuSkaicius)
@@ -41,9 +41,16 @@ namespace P_032_OOPMetodaiDomain.Models
             Vardas = vardas;
         }
 
+        public Zmogus(string vardas, Namas namas, string pavarde, Bendrabutis bendrabutis, string pilnasVardas) : this(vardas, namas, pavarde)
+        {
+            Bendrabutis = bendrabutis;
+            PilnasVardas = pilnasVardas;
+        }
+
         public string Vardas { get; private set; }
         public Namas Namas { get; private set; }
         public string Pavarde { get; private set; }
+        public Bendrabutis Bendrabutis { get; set; }
         public string PilnasVardas
         {
             get { return Vardas + " " + Pavarde; }
