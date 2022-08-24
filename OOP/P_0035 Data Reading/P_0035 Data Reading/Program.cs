@@ -9,7 +9,26 @@ namespace P_0035_Data_Reading
             Console.WriteLine("Hello Data Reading!");
             //string path = Environment.CurrentDirectory;
             //SakninioFolderioSuradimas(path);
-            SkaitymasIsTxtFailoEilutemisAtskirai();
+            //SkaitymasIsTxtFailoEilutemisAtskiraiSuUsing();
+            FileService animalFileService = new FileService(Environment.CurrentDirectory + "\\InitialData\\AnimaData.txt");
+            List<Animal> animals = animalFileService.FetchAnimalTxtRecords();
+            //animalFileService.ReadStreamSymbolsFromFile();
+            FileService basicUserFileService = new FileService(Environment.CurrentDirectory + "\\InitialData\\UserFirstNameBaseData1.csv");
+            FileService userData1Csv = new FileService(Environment.CurrentDirectory + "\\InitialData\\UserData1.csv");
+
+
+            //Console.WriteLine(userData1Csv.FetchUserData1CsvRecords());
+
+            // Console.WriteLine(basicUserFileService.ExtractBasicUserCsvHeaders());   destytojo pvz
+            // PrintAllBasicUsers(basicUserFileService.FetchBasicUserCsvRecords());       destytojo pvz
+        }
+
+        public static void PrintAllBasicUsers(List<User> basicUsers)
+        {
+            foreach (User user in basicUsers)
+            {
+                Console.WriteLine($"{user.Id}. {user.Name}");
+            }
         }
 
         /*
@@ -25,6 +44,20 @@ namespace P_0035_Data_Reading
              tokiu principu: SortByFirstName().Asc()
                              SortByLastName().Desc()
             <hint> return this
+         */
+
+        /*
+         1.	Uzduotis 1– Sukurkite programa, kuri moketu nuskaityti UserData1.csv failą. UserData1.csv galite pasiimti iš Teams pamokos Files sekcijos. Atvaizduokite kiekvieno naudotojo duomenis tokiu formatu:”55. Petras Petraitis (Vyras) – petras@petramail.lt”.
+        Headeri turetu atspausdinti pirmoje eiluteje.
+        PAGALBA: Tam, kad turėtumėt patogų priėjimu visiems duomenims jums reikės susikurti naują <User> klasę.
+        2.	Uzduotis 2 – Sukurkite nauja <Hotel> klase, kuri savyje gali laikyti sarasa <User> (Hoteliu data importuokite is HotelData1.csv). 
+        Sukurkite nauja <HotelManager> klase, kuri savyje laiko sarasa hoteliu. 
+        Naujai sukurtai klasei <HotelManager> sukurkite metoda [AllocateUsersToHotels(users)], kuris priskirs kiekviena vartotoja atsitiktiniam (Random) hoteliui. 
+        Sukurkite atskleidziama <Hotel> property, AverageClientSalary, kuris grazintu besilankanciu klientu vidutine sumuota alga. Turi buti Unit Test Coverage.
+        3.	Uzduotis 3- Sukurkite isskleista property <HotelManager> AverageRating, kuris grazintu vidutini hoteliu ivertinima + unit test.
+        Sukurkite <HotelManager> klasei isskleidziama property NewHotels, kuris grazintu sarasa visu hoteliu, kurie buvo pastatyti veliau nei 2010-01-01.
+        Sukurkite <HotelManager> klasei metoda [AllocateUsersToLuxHotels(users)], kuris turetu naudotojus priskirti tik i hotelius, kuriu ivertinimas yra auksciau 3 ir yra NewHotels sarase.
+        Sukurkite <Hotel> klasei [MenVisitors] ir [WomenVisitors] isskleidziamus property, kurie turetu grazinti besilankancius vyrus ir moteris individualiai.
          */
         static void PirmasEnumUzdavinys()
         {
@@ -114,7 +147,7 @@ namespace P_0035_Data_Reading
             int animalColumnCount = 2;
             List<Animal> animals = new List<Animal>();
             //string filePath = "C:\\Users\\Edvinas\\source\\repos\\CA.NET2\\OOP\\P035_DataReading\\P035_DataReading\\InitialData\\AnimalData.txt";
-            string filePath = Environment.CurrentDirectory + "\\InitialData\\AnimalData.txt";
+            string filePath = Environment.CurrentDirectory + "\\InitialData\\AnimaData.txt";
             Console.WriteLine(filePath);
             string text = File.ReadAllText(filePath);
             string[] animalStringData = text.Split(Environment.NewLine);
@@ -145,7 +178,7 @@ namespace P_0035_Data_Reading
         {
             int animalColumnCount = 2;
             List<Animal> animals = new List<Animal>();
-            string filePath = Environment.CurrentDirectory + "\\InitialData\\AnimalData.txt";
+            string filePath = Environment.CurrentDirectory + "\\InitialData\\AnimaData.txt";
 
             string[] animalStringData = File.ReadAllLines(filePath);
 
@@ -169,23 +202,61 @@ namespace P_0035_Data_Reading
         {
             int animalColumnCount = 2;
             List<Animal> animals = new List<Animal>();
-            string filePath = Environment.CurrentDirectory + "\\InitialData\\AnimalData.txt";
+            string filePath = Environment.CurrentDirectory + "\\InitialData\\AnimaData.txt";
 
             // IDisposable resursai butu elementai kaip: Streamai, Listeneriai, duombazes komunikacijos repositorijos, webiniai iskvietimai ir t.t.
             StreamReader sr = new StreamReader(filePath);
 
-            string line = sr.ReadLine();
-            Console.WriteLine(line);
-            string line2 = sr.ReadLine();
-            Console.WriteLine(line2);
+            string animalLine;
+            //Console.WriteLine(line);
+            //string line2 = sr.ReadLine();
+            //Console.WriteLine(line2);
+
+            while ((animalLine = sr.ReadLine()) != null)
+            {
+                string[] animalData = animalLine.Split(',');
+
+                if (animalData.Length != animalColumnCount) break;
+
+                Animal newAnimal = new Animal(animalData);
+                animals.Add(newAnimal);
+            }
 
             // Su .Close() mes pasakome GarbageCollector, kad reikia isvalyti duomenis priklausancius siam objektui
             sr.Close();
 
-            //foreach (Animal animal in animals)
-            //{
-            //    Console.WriteLine(animal.Name);
-            //}
+            foreach (Animal animal in animals)
+            {
+                Console.WriteLine(animal.Name);
+            }
+        }
+
+        public static void SkaitymasIsTxtFailoEilutemisAtskiraiSuUsing()
+        {
+            int animalColumnCount = 2;
+            List<Animal> animals = new List<Animal>();
+            string filePath = Environment.CurrentDirectory + "\\InitialData\\AnimaData.txt";
+
+            //using (StreamReader sr = new StreamReader(filePath)) { }
+
+            using StreamReader sr = new StreamReader(filePath);
+
+            string animalLine;
+
+            while ((animalLine = sr.ReadLine()) != null)
+            {
+                string[] animalData = animalLine.Split(',');
+
+                if (animalData.Length != animalColumnCount) break;
+
+                Animal newAnimal = new Animal(animalData);
+                animals.Add(newAnimal);
+            }
+
+            foreach (Animal animal in animals)
+            {
+                Console.WriteLine(animal.Name);
+            }
         }
     }
 }

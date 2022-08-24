@@ -7,7 +7,7 @@
             Console.WriteLine("Hello, World!");
 
 
-            var skaiciuoklis = new Skaiciuoklis(1);
+            var skaiciuoklis = new Skaiciuoklis(5);
             skaiciuoklis.Atspausdinimas();
             skaiciuoklis.Mazinti();
             skaiciuoklis.Atspausdinimas();
@@ -15,6 +15,7 @@
             skaiciuoklis.Atspausdinimas();
             skaiciuoklis.Reset();
             skaiciuoklis.Atspausdinimas();
+            
 
 
 

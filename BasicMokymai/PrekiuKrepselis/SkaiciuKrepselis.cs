@@ -10,39 +10,44 @@ namespace PrekiuKrepselis
     {
         public SkaiciuKrepselis()
         {
-            
+
         }
 
         public SkaiciuKrepselis(List<int> skaiciai)
         {
-            Skaiciai = skaiciai;
+            SkaiciuSarasas = skaiciai;
         }
 
-        public List<int> Skaiciai { get; set; } = new List<int>();
+        private List<int> SkaiciuSarasas { get; set; } = new List<int>();
 
 
 
-
-     
-
-
-
-         public void PridetiSkaiciu(int skaicius)
+        public void PridetiSkaiciu(int skaicius)
         {
-            var skaiciai = new List<int>();
-            skaiciai.Add(skaicius);
-        }
-           
-            
-           
-            
+
+            SkaiciuSarasas.Add(skaicius);
         }
 
-        //public static void ApskaiciuotiVidurki()
-        //{
-        
-        //}
+        public double SkaiciuVidurkis()
+        {
+            var vidurkis = 0;
+            foreach (var skaicius in SkaiciuSarasas)
+            {
+                vidurkis += skaicius;
+            }
+
+            vidurkis = vidurkis / SkaiciuSarasas.Count;
+
+            return vidurkis;
 
 
+
+
+        }
     }
+}
+        
+
+
+    
 

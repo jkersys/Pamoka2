@@ -6,12 +6,15 @@
         {
             Console.WriteLine("Hello, World!");
 
-            List<SkaiciuKrepselis> skaiciuKrepselis = new SkaiciuKrepselis(List<int>)
+            List<SkaiciuKrepselis> skaiciuKrepselis = new List<SkaiciuKrepselis>();
+            new SkaiciuKrepselis();
+            skaiciuKrepselis.Add(new SkaiciuKrepselis(new List<int>));
 
-            skaiciuKrepselis.PridetiSkaiciu(5);
-            skaiciuKrepselis.PridetiSkaiciu(6);
-            skaiciuKrepselis.PridetiSkaiciu(7);
-            skaiciuKrepselis.PridetiSkaiciu(8);
+
+            //skaiciuKrepselis.Add(5);
+            //skaiciuKrepselis.PridetiSkaiciu(6);
+            //skaiciuKrepselis.PridetiSkaiciu(7);
+            //skaiciuKrepselis.PridetiSkaiciu(8);
 
 
             

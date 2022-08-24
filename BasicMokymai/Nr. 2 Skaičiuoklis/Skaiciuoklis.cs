@@ -8,11 +8,18 @@ namespace Nr._2_Skaičiuoklis
 {
     internal class Skaiciuoklis
     {
-        private int? Skaicius { get; set; }
+        private int Skaicius { get; set; }
+        public int skaicius;
+
+        public Skaiciuoklis()
+        {
+
+        }
 
         public Skaiciuoklis(int skaicius)
         {
             Skaicius = skaicius;
+            
         }
 
         public void Didinti()
@@ -39,9 +46,9 @@ namespace Nr._2_Skaičiuoklis
         }
 
 
-        public void Reset() 
+        public int Reset() 
         {
-            //nesigavo nuresetint be param
+            return this.skaicius;
        
         }
 
