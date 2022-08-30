@@ -136,6 +136,7 @@
             void ChangeDiscount(int discountPercentage);
             void PrintLabel();
         }
+
         public class Food : IPurchasable, IEquatable<Food>, IEquatable<A>
         {
             public Food()
@@ -145,44 +146,44 @@
             public Food(string type)
             {
                 Type = type;
-                Console.WriteLine($"Constroctor from food was called. Type was set to: {Type}");
+                Console.WriteLine($"Constructor from Food was called. Type was set to: {Type}");
             }
+
             public Food(string type, string name)
             {
                 Type = type;
                 Name = name;
-                Console.WriteLine($"Constroctor from food was called. Type was set to: {Type} name was set to : {Name}");
+                Console.WriteLine($"Constructor from Food was called. Type was set to: {Type}. Name was set to: {Name}");
             }
+
             public string Type { get; set; }
 
-            //interface dalis
-            public string Name { get; protected set;}
-            //interface dalis
+            // Interface dalis
+            public string Name { get; protected set; }
+            // Interface dalis
             public double Price { get; set; }
-            //interface dalis
-            public int Discount { get; protected set;}
-            //interface dalis
+            // Interface dalis
+            public int Discount { get; protected set; }
+            // Interface dalis
             public void ChangeDiscount(int discountPercentage)
             {
-                Discount = discountPercentage; 
+                Discount = discountPercentage;
             }
 
             public bool Equals(Food other) => other.Type == Type;
 
             public bool Equals(A other) => other.Type == Type;
-
+            // Interface dalis
             public void PrintLabel()
             {
-                Console.WriteLine($"Food product {Name}:{Type} is priced ad {Price} ");            
+                Console.WriteLine($"Food product {Name}:{Type} is priced at: {Price}");
             }
         }
+
         public class Apple : Food
         {
-            public Apple()
-            {
-
-            }
-            public Apple(string color, int quality, int size) : base("Fruit")
+            public Apple() { }
+            public Apple(string color, int quality, int size) : base("Fruit", $"{color} {quality}/5* {size}/5 size")
             {
                 Color = color;
                 Quality = quality;
@@ -200,23 +201,17 @@
 
         public class Pizza : Food
         {
-          
             public Pizza() : base("Pizza")
             {
                 Console.WriteLine("Constructor from Pizza was called");
             }
-
-            public Pizza(string name) : base("Pizza", name)
-            {
-            }
+            public Pizza(string name) : base("Pizza", name) { }
             public string CompanyName { get; set; }
         }
+
         public class Furniture : IPurchasable
         {
-            public Furniture()
-            {
-
-            }
+            public Furniture() { }
             public Furniture(string name)
             {
                 Name = name;
@@ -225,14 +220,13 @@
             public string Color { get; protected set; }
             public string Material { get; protected set; }
 
-            //interface dalis
+            // Interface dalis
             public string Name { get; protected set; }
-            //interface dalis
+            // Interface dalis
             public double Price { get; set; }
-            //interface dalis
+            // Interface dalis
             public int Discount { get; protected set; }
-            //interface dalis
-
+            // Interface dalis
             public void ChangeDiscount(int discountPercentage)
             {
                 Discount = discountPercentage;
@@ -240,21 +234,21 @@
 
             public void PrintLabel()
             {
-                Console.WriteLine($"Food product {Name}:{Material} is priced ad {Price} ");
+                Console.WriteLine($"Furniture product {Name}:{Material} is priced at: {Price}");
             }
         }
+
         public class Chair : Furniture
         {
-            public Chair()
-            {
-
-            }
-            public Chair (string color, string material, string name) : base(name)
+            public Chair() { }
+            public Chair(string color, string material, string name) : base(name)
             {
                 Color = color;
                 Material = material;
             }
         }
+
+        // public class GeneratedConstructorClass { } // Pavyzdine klase
         public interface IAccount
         {
             string BankNo { get; }
@@ -263,22 +257,80 @@
             double Withdraw(double money);
             double TransferMoney(double money);
         }
+
+        public class CheckingAccount : IAccount
+        {
+            public CheckingAccount() { }
+
+            public CheckingAccount(string ownerName, string bankNo, double money)
+            {
+                OwnerName = ownerName;
+                BankNo = bankNo;
+                Money = money;
+            }
+
+            public string BankNo { get; }
+
+            public string OwnerName { get; }
+            protected double Money { get; set; }
+
+            public string GetAccountInfo() => $"{OwnerName} bank account has {Money}$";
+
+            public double TransferMoney(double money)
+            {
+                Money -= money;
+                return Money;
+            }
+
+            public double Withdraw(double money)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public class SavingAccount : IAccount
+        {
+            public string BankNo => throw new NotImplementedException();
+
+            public string OwnerName => throw new NotImplementedException();
+
+            public string GetAccountInfo()
+            {
+                throw new NotImplementedException();
+            }
+
+            public double TransferMoney(double money)
+            {
+                throw new NotImplementedException();
+            }
+
+            public double Withdraw(double money)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public interface ICart
         {
-            public void AddToCart(IPurchasable product);
+            public void AddToCart(IPurchasable item);
             public void Purchase(IAccount account);
             public void PrintItemList();
         }
         public class Cart : ICart
         {
-            public void AddToCart(IPurchasable product)
+            protected List<IPurchasable> Items { get; set; } = new List<IPurchasable>();
+            public void AddToCart(IPurchasable item)
             {
-                throw new NotImplementedException();
+                Items.Add(item);
+                Console.WriteLine($"Item '{item.Name}' was successfully added to the cart.");
             }
 
             public void PrintItemList()
             {
-                throw new NotImplementedException();
+                foreach (IPurchasable item in Items)
+                {
+                    Console.WriteLine($"{item.Name} - {item.Price}$");
+                }
             }
 
             public void Purchase(IAccount account)
@@ -292,31 +344,42 @@
             Food burger = new Food("Burger");
             Food pizza1 = new Food("Pizza");
             Food pizza2 = new Food("Pizza");
+            A a1 = new A()
+            {
+                Type = "Pizza"
+            };
 
-            Console.WriteLine($"Is burger == pizza {burger.Equals(pizza1)}");
-            Console.WriteLine($"Is pizza1 == pizza2 {pizza1.Equals(pizza2)}");
+            Console.WriteLine($"Is burger == pizza: {burger.Equals(pizza1)}");
+            Console.WriteLine($"Is pizza == pizza: {pizza1.Equals(pizza2)}");
+            Console.WriteLine($"Is a.Type == pizza.Type: {pizza1.Equals(a1)}");
         }
 
         public static void SecondExampleShopInterfaces()
         {
             Apple redApple = new Apple("Red", 4, 4);
-            //Naudojan t Interface mes negalime pasiekti Color, Quality ir Size
+            // Naudojant interface mes nebegalime pasiekti Color, Quality ir Size
             IPurchasable greenApple = new Apple("Green", 4, 3);
             redApple.ChangeSize(3);
-            //greenApple.ChangeSize(4); //Negalima igyvendinti del to, kad tai nera kontrakto dalis
+            // greenApple.ChageSize(4); // Negalima igyvendinti del to, kad tai nera kontrakto dalis
             greenApple.Price = 0.89;
 
-            //kada mes kaireje puseje deklaruojam class varda, siuo atveju <Pizza> mes galime pasiekti visus egzistuojancius atributus <Pizza>
-            // ir paveldejimose klasese (siuo atveju mes galime pasiekti ir <Pizza> atributus ir <Food> atributus ir <Object atributus>)
-            Pizza ItalianPizza = new Pizza("Le Express");
-            //Kada mes kaireje puseje deklaruiojame Interface varda, siuo atveju <IPurchasable> mes galime pasiekti TIK 
+            // Kada mes kaireje puseje deklaruojam Class varda, siuo atveju <Pizza>, mes galime pasiekti visus egzistuojancius atributus <Pizza>
+            // ir paveldejimose klasese (Siuo atveju mes galime pasiekti <Pizza> attributus ir <Food> atributus ir <Object> atributus)
+            Pizza italianPizza = new Pizza("Le Express");
+            // Kada mes kaireje puseje deklaruojam Interface varda, siuo atveju <IPurchasable>, mes galime pasiekti TIK <IPurchasable> atributus.
+            // Siuo atveju mes negaletume pasiekti <CompanyName>
             IPurchasable americanPizza = new Pizza("Americano");
             IPurchasable blueDenimChair = new Chair("Denim", "Plastic", "Denimo");
+
+            ICart cart = new Cart();
+            cart.AddToCart(redApple);
+            cart.AddToCart(greenApple);
+            cart.AddToCart(italianPizza);
+            cart.AddToCart(americanPizza);
+            cart.AddToCart(blueDenimChair);
+
+            cart.PrintItemList();
         }
-
-
         #endregion
     }
-
 }
-
