@@ -136,6 +136,9 @@ namespace Prakika.Service
 
             foreach (var book in books)
             {
+                BookHtml bookHtml = new BookHtml(); 
+
+
                 res.Add(book);
             }
             return books.ToString();

@@ -38,7 +38,7 @@ namespace P_041_Interface_praktika.Models
 
         public string GetHobbyInformation()
         {
-            return $"Tai yra {Genre} žanro daina, kurios įvertinimas yra {Rating}";
+            return $"Tai yra {Genre} žanro daina, kurios įvertinimas yra {Rating}, Leidėjas {Publisher}";
         }
 
         public string GetHobbyName()

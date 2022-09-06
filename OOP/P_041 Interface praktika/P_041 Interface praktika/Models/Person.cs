@@ -60,12 +60,35 @@ namespace P_041_Interface_praktika.Models
 
         public IHobby GetFavoriteHobby()
         {
-            throw new NotImplementedException();
+            Dictionary<string, int> favoriteHobbyOCCurance = new Dictionary<string, int>();
+            List<string> allHobbyType = GetHobbyType();cf
+            foreach (string hobby in allHobbyType)
+            {
+                favoriteHobbyOCCurance.Add(hobby, 0);
+            }
+            foreach (IHobby hobby in FavoriteHobbies)
+            {
+                favoriteHobbyOCCurance[hobby.GetHobbyName()] += 1;
+            }
+            favoriteHobbyOCCurance.Sort
+        }
+        private List<string> GetHobbyType()
+        {
+            List<string> result = new List<string>();
+
+            foreach (var hobby in FavoriteHobbies)
+            {
+                string hobbyName = hobby.GetHobbyName();
+                if(!result.Contains(hobbyName))
+                result.Contains(hobby.GetHobbyName());
+            }
+            return result;
         }
 
         public string GetFavoriteHobbyType()
         {
-            throw new NotImplementedException();
+          FavoriteHobbies.Sort((h1, h2) => h1.Rating.CompareTo(h2.Rating));
+            return FavoriteHobbies.FirstOrDefault().Name;
         }
 
         public string GetFavoriteMusicGenre()

@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P_042 Abstract", "P_042 Abstract\P_042 Abstract.csproj", "{C93C9565-1A2D-4B11-934B-9E9EC1FA478F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P_042 Abstract", "P_042 Abstract\P_042 Abstract.csproj", "{C93C9565-1A2D-4B11-934B-9E9EC1FA478F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prakika", "Prakika\Prakika.csproj", "{FC1647BB-FE07-408C-8FA5-99AEAEE6694B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prakika", "Prakika\Prakika.csproj", "{FC1647BB-FE07-408C-8FA5-99AEAEE6694B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrakikaTests", "PrakikaTests\PrakikaTests.csproj", "{8F5553E2-E956-47B5-9ED5-D9739874710E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{FC1647BB-FE07-408C-8FA5-99AEAEE6694B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC1647BB-FE07-408C-8FA5-99AEAEE6694B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC1647BB-FE07-408C-8FA5-99AEAEE6694B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F5553E2-E956-47B5-9ED5-D9739874710E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F5553E2-E956-47B5-9ED5-D9739874710E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F5553E2-E956-47B5-9ED5-D9739874710E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F5553E2-E956-47B5-9ED5-D9739874710E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

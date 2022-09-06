@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P_044 Estensions", "P_044 Estensions\P_044 Estensions.csproj", "{248AF37A-72AA-4207-A2D8-448754F54E0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P_044 Estensions", "P_044 Estensions\P_044 Estensions.csproj", "{248AF37A-72AA-4207-A2D8-448754F54E0A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P_043 Praktika", "P_043 Praktika\P_043 Praktika.csproj", "{8D06EADE-D0E4-4614-9208-DA3C6653F874}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{248AF37A-72AA-4207-A2D8-448754F54E0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{248AF37A-72AA-4207-A2D8-448754F54E0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{248AF37A-72AA-4207-A2D8-448754F54E0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D06EADE-D0E4-4614-9208-DA3C6653F874}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D06EADE-D0E4-4614-9208-DA3C6653F874}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D06EADE-D0E4-4614-9208-DA3C6653F874}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D06EADE-D0E4-4614-9208-DA3C6653F874}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

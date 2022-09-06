@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TowerOfHanoi", "Tower of hanoi atsiskaitomasis\TowerOfHanoi.csproj", "{CF77A8A9-8769-41CD-B582-684A871FCB3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{AF4AE814-AF4A-4289-8DFD-CF83BEFF9D13}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CF77A8A9-8769-41CD-B582-684A871FCB3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF77A8A9-8769-41CD-B582-684A871FCB3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF77A8A9-8769-41CD-B582-684A871FCB3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF77A8A9-8769-41CD-B582-684A871FCB3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF4AE814-AF4A-4289-8DFD-CF83BEFF9D13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF4AE814-AF4A-4289-8DFD-CF83BEFF9D13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF4AE814-AF4A-4289-8DFD-CF83BEFF9D13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF4AE814-AF4A-4289-8DFD-CF83BEFF9D13}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E9CA36CB-96E8-4D16-9F63-713A5329FFF0}
+	EndGlobalSection
+EndGlobal
