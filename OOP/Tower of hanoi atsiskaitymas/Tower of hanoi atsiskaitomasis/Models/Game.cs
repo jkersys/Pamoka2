@@ -73,6 +73,8 @@
                         Console.Write("|".PadLeft(currentTower.Height + 4, ' ')
                             .PadRight(2 * currentTower.Height + 10, ' '));
                     }
+                }
+            }
         }
     }
 }
