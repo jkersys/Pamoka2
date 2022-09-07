@@ -7,9 +7,11 @@ namespace TowerOfHanoi
     {
         static void Main(string[] args)
         {
-
+            Console.OutputEncoding = Encoding.GetEncoding(1200);
+            Console.InputEncoding = Encoding.GetEncoding(1200);
             //Console.WriteLine("Hello, Tower!");
             //List<Disc> diskai = new List<Disc> { };
+            
 
             TowerOfHanoi();
         }
@@ -242,15 +244,62 @@ APRIBOJIMAI:
 
                 Console.WriteLine();
                 Console.WriteLine($"Diskas rankoje: diskas");
+                Console.WriteLine();
                 Game.DrawTower();
+                Console.WriteLine();
                 Console.WriteLine("Norėdami išeiti paspauskite 'Esc'");
                 Console.WriteLine("Pagalbai paspauskite 'H'");
-                Console.WriteLine("Pasirinkite stulpelį iš kurio paimti");
+                Console.WriteLine("Pasirinkite stulpelį iš kurio paimti diską");
 
                 char input = Console.ReadKey().KeyChar;
 
+                if (input == '\u001b')
+                {
+                    Console.Clear();
+                    Console.WriteLine("Išėjote");
+                    Environment.Exit(2);
+                }
+                if(input == '1' || input == '2' || input == '3')
+                {
+
+                }
+
+
+                //switch (input)
+                //{
+                //    case '\u001b':  // ESC
+                //       // Console.Clear();
+                //        Console.WriteLine($"Išėjote");
+                //        Environment.Exit(0);
+                //        break;
+                //    case '1':
+                //        Console.Clear();
+                //        Console.WriteLine("1:\n");
+                        
+                //        break;
+                //    case '2':
+                //        Console.Clear();
+                //        Console.WriteLine("2:\n");
+                //    //    tower.Move(tower.Peg2, 2);
+                //        break;
+                //    case '3':
+                //        Console.Clear();
+                //        Console.WriteLine("3:\n");
+                //   //     tower.Move(tower.Peg3, 3);
+                //        break;
+                //    case 'h' or 'H':
+                //        Console.Clear();
+                //        Console.WriteLine("Pagalba:\n");
+                //        break;
+                //    default:
+                //        Console.Clear();
+                //        Console.WriteLine("Blogas pasirinkimas, bandykite iš naujo.\n");
+                //        break;
+                //}
             }
+
         }
+        
      
 //        public static void DrawTower()
 //        {
@@ -266,8 +315,7 @@ APRIBOJIMAI:
 
 
 
-
+}
     }
-        }
-    
+  
    
