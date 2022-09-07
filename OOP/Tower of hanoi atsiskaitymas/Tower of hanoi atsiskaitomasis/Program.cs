@@ -11,8 +11,8 @@ namespace TowerOfHanoi
             Console.InputEncoding = Encoding.GetEncoding(1200);
             //Console.WriteLine("Hello, Tower!");
             //List<Disc> diskai = new List<Disc> { };
-            
 
+           
             TowerOfHanoi();
         }
         // Disc disk = new Disc();
@@ -228,40 +228,41 @@ APRIBOJIMAI:
 
         public static void TowerOfHanoi()
         {
-
-
+            Game Towers = new Game(3, 5);
+            
             var play = true;
 
-
+            char? input = null;
 
             while (play)
             {
+                Console.Clear();
                 
-
                 Console.WriteLine("Tower Of Hanoi");
-                Console.WriteLine($"Ejimas x");
+                Console.WriteLine($"Ejimas ");
 
 
                 Console.WriteLine();
-                Console.WriteLine($"Diskas rankoje: diskas");
+                Console.WriteLine($"Diskas rankoje: {Towers.ActiveDisc}");
                 Console.WriteLine();
                 Game.DrawTower();
                 Console.WriteLine();
                 Console.WriteLine("Norėdami išeiti paspauskite 'Esc'");
                 Console.WriteLine("Pagalbai paspauskite 'H'");
-                Console.WriteLine("Pasirinkite stulpelį iš kurio paimti diską");
+                Game.TextMethod(input);
+                Towers.GetDisc(1);
+                input = Game.InputValidation();
 
-                char input = Console.ReadKey().KeyChar;
+                //while(input != '1' || input != '2' || input != '3' || input != 'h' || input != '\u001b')
+                //{
+                //    input = Console.ReadKey().KeyChar;
+                //}
 
                 if (input == '\u001b')
                 {
                     Console.Clear();
                     Console.WriteLine("Išėjote");
                     Environment.Exit(2);
-                }
-                if(input == '1' || input == '2' || input == '3')
-                {
-
                 }
 
 
@@ -299,23 +300,25 @@ APRIBOJIMAI:
             }
 
         }
-        
-     
-//        public static void DrawTower()
-//        {
-//            Console.WriteLine(@"
-//      1eil.       |            |            |      
-//      2eil.      #|#           |            |      
-//      3eil.     ##|##          |            |      
-//      4eil.    ###|###         |            |      
-//      5eil.   ####|####        |            |      
-//            -----[1]----------[2]----------[3]------
-//        ");
-//}
+
+       
+
+
+        //        public static void DrawTower()
+        //        {
+        //            Console.WriteLine(@"
+        //      1eil.       |            |            |      
+        //      2eil.      #|#           |            |      
+        //      3eil.     ##|##          |            |      
+        //      4eil.    ###|###         |            |      
+        //      5eil.   ####|####        |            |      
+        //            -----[1]----------[2]----------[3]------
+        //        ");
+        //}
 
 
 
-}
+    }
     }
   
    

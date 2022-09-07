@@ -2,8 +2,10 @@
 {
     public class Game
     {
+       
         public int TowersCount { get; set; }
         public int TowerHeight { get; set; }
+        public int CountMoves { get; set; }
 
         public Disc ActiveDisc { get; private set; }
 
@@ -34,13 +36,19 @@
         public void GetDisc(int towerNumber)
         {
             //Validation+
-
+           
             ActiveDisc = Towers[towerNumber - 1].Dics.First();
             Towers[towerNumber - 1].Dics.Remove(ActiveDisc);
             Towers[towerNumber - 1].IsActive = true;
         }
+            public void PutDiscValidation()
+            {
+           
 
-        public void PutDisc(int towerNumber)
+            }
+        
+
+            public void PutDisc(int towerNumber)
         {
             //Validation
 
@@ -49,6 +57,7 @@
             ActiveDisc = Towers[towerNumber - 1].Dics.First();
             Towers[towerNumber - 1].Dics.Add(ActiveDisc);
             Towers[towerNumber - 1].IsActive = false;
+            CountMoves++;
         }
 
         public static void DrawTower()
@@ -79,6 +88,42 @@
                 Console.WriteLine();
             }
             }
+
+        public static void TextMethod(char? input)
+        {
+            if (input == null)
+            {
+                Console.WriteLine("Pasirinkite stulpelį iš kurio paimti");
+            }
+            else if (input == '1' || input == '2' || input == '3')
+            {
+                Console.WriteLine("Pasirinkite stulpelį į kurį padėti");
+            }
+            else
+            {
+                Console.WriteLine("Neteisinga įvestis");
+            }
         }
-    }
+
+                public static char InputValidation()
+                {
+                var input = Console.ReadKey().KeyChar;
+                if ((input != '1')
+                   && (input != '2')
+                   && (input != '3')
+                   && (input != 'h')
+                   && (input != '\u001b'))
+                {
+                //Console.WriteLine("Tokio pasirinkimo nera");
+                //input = Console.ReadKey().KeyChar;
+            }
+
+                return input;
+            }
+
+
+        }
+
+        }
+    
 
