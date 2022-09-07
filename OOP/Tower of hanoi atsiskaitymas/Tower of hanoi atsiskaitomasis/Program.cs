@@ -234,24 +234,6 @@ APRIBOJIMAI:
         }
 
 
-        public static void piesimas()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("1eil.");
-            for (int i = 1; i <= 5; i++)
-            {
-
-                {
-                    sb.Append(i);
-                }
-            }
-        }
-                public static void Draw(Tower input)
-                {
-                    Console.WriteLine(input);
-                }
-
-
 
             }
         }
