@@ -7,40 +7,42 @@ namespace TowerOfHanoi
     {
         static void Main(string[] args)
         {
-            
+
             Console.WriteLine("Hello, Tower!");
             List<Disc> diskai = new List<Disc> { };
 
-           // Disc disk = new Disc();
-            //       Console.WriteLine(disk.Discus);
+            TowerOfHanoi();
+        }
+        // Disc disk = new Disc();
+        //       Console.WriteLine(disk.Discus);
 
-           // List<Disc> discs = new List<Disc>() { disk, disk };
+        // List<Disc> discs = new List<Disc>() { disk, disk };
 
-            //Tower tower = new Tower(discs);
+        //Tower tower = new Tower(discs);
 
-            //for (int i = 0; i < discs.Count; i++)
-            //{
-            //    Console.WriteLine(i.ToString());
-            //}
+        //for (int i = 0; i < discs.Count; i++)
+        //{
+        //    Console.WriteLine(i.ToString());
+        //}
 
 
-            /*
-             *  SUKURTI ŽAIDIMĄ TOWER OF HANOI
- Tower Of Hanoi
-  Ėjimas 0
+        /*
+         *  SUKURTI ŽAIDIMĄ TOWER OF HANOI
+Tower Of Hanoi
+Ėjimas 0
 
-   Diskas rankoje: 
+Diskas rankoje: 
 
-  1eil.       |            |            |      
-  2eil.      #|#           |            |      
-  3eil.     ##|##          |            |      
-  4eil.    ###|###         |            |      
-  5eil.   ####|####        |            |      
-        -----[1]----------[2]----------[3]------
+1eil.       |            |            |      
+2eil.      #|#           |            |      
+3eil.     ##|##          |            |      
+4eil.    ###|###         |            |      
+5eil.   ####|####        |            |      
+    -----[1]----------[2]----------[3]------
 
-  Norėdami išeiti paspauskite 'Esc' 
-  Pagalbai paspauskite 'H' 
-  Pasirinkite stulpelį iš kurio paimti
+Norėdami išeiti paspauskite 'Esc' 
+Pagalbai paspauskite 'H' 
+Pasirinkite stulpelį iš kurio paimti
 
 
 ŽAIDIMO TAISYKLĖS:
@@ -52,38 +54,38 @@ namespace TowerOfHanoi
 - VIENĄ ĖJIMĄ SUDARO VIRŠUTINIO DISKO PAĖMIMAS IR PADĖJIMAS
 - ĖJIMAI TURI BŪTI SKAIČIUOJAMI
 - NEGALIMA DIDESNĮ DISKĄ PADĖTI ANT MAŽESNIO 
-   (TOKES ĖJIMAS NESKAIČIUOJAMAS)
-   (RAUDONA SPALVA IŠVESTI 'NEGALIMA DIDESNIO DISKO DĖTI ANT MAŽESNIO')
+(TOKES ĖJIMAS NESKAIČIUOJAMAS)
+(RAUDONA SPALVA IŠVESTI 'NEGALIMA DIDESNIO DISKO DĖTI ANT MAŽESNIO')
 - JEI SULPELYJE NĖRA DISKŲ NIEKO PAIMTI NEGALIMA
-   (TOKES ĖJIMAS NESKAIČIUOJAMAS)
-   (RAUDONA SPALVA IŠVESTI 'STULPELYJE NĖRA DISKO')
+(TOKES ĖJIMAS NESKAIČIUOJAMAS)
+(RAUDONA SPALVA IŠVESTI 'STULPELYJE NĖRA DISKO')
 - JEI ĮVESTAS NEEGZISTUOJANTIS SULPELIS 
-   (TOKES ĖJIMAS NESKAIČIUOJAMAS)
-   (RAUDONA SPALVA IŠVESTI 'NETEISINGA ĮVESTIS')
+(TOKES ĖJIMAS NESKAIČIUOJAMAS)
+(RAUDONA SPALVA IŠVESTI 'NETEISINGA ĮVESTIS')
 - NUSPAUDUS 'ESC' KLAVIŠĄ ŽAIDIMAS TURI BAIGTIS
 - NUSPAUDUS 'H' KLAVIŠĄ IŠKVIEČIAMA PAGALBA (APRAŠYMAS TOLIAU)
 
 UŽDUOTYS:
 1. KIEKVIENAS ĖJIMAS TURI BŪTI ĮRAŠOMAS. 
-  - ĮRAŠYMAS VYKDOMAS Į SKIRTINGUS FAILĄ(-US) (IŠPLĖTIMAS NURODYTAS) 
-  - GALIMO FAILŲ TURINIO FORMATAI (TIKSLŪS KONTRAKTAI APRAŠYTI ŽEMIAU):
-  (.csv) CSV  
-  (.html) HTML <table>....</table> 
-  (.txt) NATŪRALI KALBA PVZ: "žaidime kuris pradėtas 2022-01-01 12:00, ėjimu nr 2 dviejų dalių diskas buvo paimtas iš pirmo stulpelio ir padėtas į trečią" 
-  - BŪTINAS UNIT-TEST AR TEISINGAI SUFORMUOTAS FAILO TURINYS
-  - GALI BŪTI PASIRINKTAS VIENAS ARBA VISI FORMATAI. 
-  - NEGALIMA NEPASIRINKTI NEI VIENO. 
-  - PASIRINKIMAS PADAROMAS PROGRAMOS PALEIDIMO METU PESKAIČIUS KONFIGURACINĮ FAILĄ game.config
+- ĮRAŠYMAS VYKDOMAS Į SKIRTINGUS FAILĄ(-US) (IŠPLĖTIMAS NURODYTAS) 
+- GALIMO FAILŲ TURINIO FORMATAI (TIKSLŪS KONTRAKTAI APRAŠYTI ŽEMIAU):
+(.csv) CSV  
+(.html) HTML <table>....</table> 
+(.txt) NATŪRALI KALBA PVZ: "žaidime kuris pradėtas 2022-01-01 12:00, ėjimu nr 2 dviejų dalių diskas buvo paimtas iš pirmo stulpelio ir padėtas į trečią" 
+- BŪTINAS UNIT-TEST AR TEISINGAI SUFORMUOTAS FAILO TURINYS
+- GALI BŪTI PASIRINKTAS VIENAS ARBA VISI FORMATAI. 
+- NEGALIMA NEPASIRINKTI NEI VIENO. 
+- PASIRINKIMAS PADAROMAS PROGRAMOS PALEIDIMO METU PESKAIČIUS KONFIGURACINĮ FAILĄ game.config
 
 2. TURI BŪTI GALIMYBĖ PERŽIŪRĖTI ŽAIDIMO STATISTIKĄ.
-  - SKAITANT ŽAIDIMŲ ĮRAŠUS TURI BŪTI GALIMA SUGENERUTUOTI IR PAMATYTI ATASKAITĄ  (UNIT-TEST)
-  - JEI ŽAIDIMAS BUVO NEBAIGTAS VIETOJ KIEKIO IŠVESTI N/B. POKYČIUI SKAIČIUOTI ŠIS ŽAIDIMAS NENAUDOJAMAS. PRIE POKYČIO IŠVESTI N/G.
-  - SUSKAIČIUOTI ĖJIMŲ POKYTĮ NUO PASKUTINIO ŽAIDIMO
-  - TURI BŪTI GALIMYBĖ ATASKAITOS STULPELĮ "Ėjimų kiekis iki laimėjimo" 
-    PAKEISTI STULPELIU "Perteklinių ėjimų kiekis" (minimalus ėjimų kiekis yra 15)
-    NAUDOTOJAS PASIRENKA KOKIOS FORMOS ATASKAITA NORI MATYTI
-  - ATASKAITA TURI BŪTI IŠVEDAMA Į KONSOLĘ.
-  - SERVISAI TURI MOKĖTI SKAITYTI VISUS FORMATUS (csv, html ir txt), TAČIAU PRIORITETAS TEIKIAMAS TOKIA TVARKA TXT -> HTML -> CSV (UNIT-TEST)
+- SKAITANT ŽAIDIMŲ ĮRAŠUS TURI BŪTI GALIMA SUGENERUTUOTI IR PAMATYTI ATASKAITĄ  (UNIT-TEST)
+- JEI ŽAIDIMAS BUVO NEBAIGTAS VIETOJ KIEKIO IŠVESTI N/B. POKYČIUI SKAIČIUOTI ŠIS ŽAIDIMAS NENAUDOJAMAS. PRIE POKYČIO IŠVESTI N/G.
+- SUSKAIČIUOTI ĖJIMŲ POKYTĮ NUO PASKUTINIO ŽAIDIMO
+- TURI BŪTI GALIMYBĖ ATASKAITOS STULPELĮ "Ėjimų kiekis iki laimėjimo" 
+PAKEISTI STULPELIU "Perteklinių ėjimų kiekis" (minimalus ėjimų kiekis yra 15)
+NAUDOTOJAS PASIRENKA KOKIOS FORMOS ATASKAITA NORI MATYTI
+- ATASKAITA TURI BŪTI IŠVEDAMA Į KONSOLĘ.
+- SERVISAI TURI MOKĖTI SKAITYTI VISUS FORMATUS (csv, html ir txt), TAČIAU PRIORITETAS TEIKIAMAS TOKIA TVARKA TXT -> HTML -> CSV (UNIT-TEST)
 
 -------------------------------------------------------------- 
 | Žaidimo data       | Ėjimų kiekis iki laimėjimo | Pokytis  |
@@ -111,38 +113,38 @@ UŽDUOTYS:
 
 
 3. ŽAIDIMO METU ŽAIDĖJAS TURI TURĖTI GALIMYBĘ PAPRAŠYTI KOMPIUTERIO PAGALBOS
-  - PAGALBOS SERVISAS NUSKAITO FAILO(-Ų) TURINĮ IR IEŠKO ĮRAŠYTOS ESAMOS SITUACIJOS (UNIT-TEST)
-  - SERVISAS TURI MOKĖTI SKAITYTI VISUS FORMATUS (csv, html ir txt), TAČIAU PRIORITETAS TEIKIAMAS TOKIA TVARKA CSV -> HTML-> TXT (UNIT-TEST)
-  - SURADUS JAU ŽAISTĄ TOKIĄ SITUACIJĄ SERVISAS PASIŪLO ĖJIMĄ su tekstu "paimkite diską iš ...... stulpelio padėkite į ......." (UNIT-TEST) 
-  - JEI SITUACIJA NEBUVO RASTA, IŠVEDAMAS PRANEŠIMAS 'PAGALBA NEGALIMA' (UNIT-TEST)
-  - JEI BUVO RASTOS KELIOS TOKIOS SITUACIJOS ATRENKAMA TAS ĖJIMAS KURIS GREIČIAUSIAI PRIVEDĖ PRIE LAIMĖJIMO (UNIT-TEST)
-  - BŪTINAS UNIT-TEST AR TEISINGAI PADEDAMA, IR AR TIKRAI PARENKAMA GERIAUSIA ĮRAŠYTA PAGALBA              
+- PAGALBOS SERVISAS NUSKAITO FAILO(-Ų) TURINĮ IR IEŠKO ĮRAŠYTOS ESAMOS SITUACIJOS (UNIT-TEST)
+- SERVISAS TURI MOKĖTI SKAITYTI VISUS FORMATUS (csv, html ir txt), TAČIAU PRIORITETAS TEIKIAMAS TOKIA TVARKA CSV -> HTML-> TXT (UNIT-TEST)
+- SURADUS JAU ŽAISTĄ TOKIĄ SITUACIJĄ SERVISAS PASIŪLO ĖJIMĄ su tekstu "paimkite diską iš ...... stulpelio padėkite į ......." (UNIT-TEST) 
+- JEI SITUACIJA NEBUVO RASTA, IŠVEDAMAS PRANEŠIMAS 'PAGALBA NEGALIMA' (UNIT-TEST)
+- JEI BUVO RASTOS KELIOS TOKIOS SITUACIJOS ATRENKAMA TAS ĖJIMAS KURIS GREIČIAUSIAI PRIVEDĖ PRIE LAIMĖJIMO (UNIT-TEST)
+- BŪTINAS UNIT-TEST AR TEISINGAI PADEDAMA, IR AR TIKRAI PARENKAMA GERIAUSIA ĮRAŠYTA PAGALBA              
 
-            ↑↑↑↑↑        ↓↓↓↓↓
-  1eil.       |            |            |      
-  2eil.      #|#           |            |      
-  3eil.     ##|##          |            |      
-  4eil.    ###|###         |            |      
-  5eil.   ####|####        |            |      
-        -----[1]----------[2]----------[3]------
+        ↑↑↑↑↑        ↓↓↓↓↓
+1eil.       |            |            |      
+2eil.      #|#           |            |      
+3eil.     ##|##          |            |      
+4eil.    ###|###         |            |      
+5eil.   ####|####        |            |      
+    -----[1]----------[2]----------[3]------
 
-  <pagalba> - paimkite diską iš pirmo stulpelio ir padėkite į antrą
-  Norėdami išeiti paspauskite 'Esc' 
-  Pagalbai paspauskite 'H' 
-  Pasirinkite stulpelį iš kurio paimti
+<pagalba> - paimkite diską iš pirmo stulpelio ir padėkite į antrą
+Norėdami išeiti paspauskite 'Esc' 
+Pagalbai paspauskite 'H' 
+Pasirinkite stulpelį iš kurio paimti
 
 4. BAIGIAMOJO DARBO KOREKTIŠKAM VEIKIMUI PATIKRINTI NAUDOJAMI TESTINIAI DUOMENYS .CSV, .HTML IR .TXT FAILUOSE
 - ĮRAŠYTI TIE PATYS DUOMENYS GALI KARTOTIS KELIUOSE FAILUOSE. UNIKALUS RAKTAS YRA ŽAIDIMO DATA.
 - DALIS ŽAIDIMO DUOMENŲ BUS VIENAME, DALIS KITAME FAILE, O DALIS KARTOSIS PER KELIS AR VISUS FAILUS, TODĖL NUSKAITYTI REIKIA VISUS
 - BŪTINA LAIKYTIS ŽEMIAU PATEIKIAMŲ KONTRAKTŲ (atsiskaitymo metu dėstytojas gali paprašyti sudėti jo pateiktus testinius duomenis):
 
- ** CSV KONTRAKTAS
- zaidimo_pradzios_data, ejimo_nr, disko_1_vieta, disko_2_vieta, disko_3_vieta, disko_4_vieta 
+** CSV KONTRAKTAS
+zaidimo_pradzios_data, ejimo_nr, disko_1_vieta, disko_2_vieta, disko_3_vieta, disko_4_vieta 
 PVZ:
 2022-01-01 12:00,1,2,1,1,1
 2022-01-01 12:00,2,2,3,1,1
 
- ** HTML LENTELĖS 
+** HTML LENTELĖS 
 PVZ:
 <table border>
 <tr>
@@ -172,7 +174,7 @@ PVZ:
 </table>
 
 ** NATŪRALIOS KALBOS VIENA EILUTĖ FORMUOJAMA TAIP:
- "žaidime kuris pradėtas {zaidimo_pradzios_data}, ėjimu nr {ejimo_nr} {disko_dydis} dalių diskas buvo paimtas iš {is_stulpelio_nr_zodziu} sulpelio ir padėtas į {i_stulpelio_nr_zodziu}" 
+"žaidime kuris pradėtas {zaidimo_pradzios_data}, ėjimu nr {ejimo_nr} {disko_dydis} dalių diskas buvo paimtas iš {is_stulpelio_nr_zodziu} sulpelio ir padėtas į {i_stulpelio_nr_zodziu}" 
 PVZ: 
 žaidime kuris pradėtas 2022-01-01 12:00, ėjimu nr 1, 1 dalies diskas buvo paimtas iš pirmo stulpelio ir padėtas į antrą
 žaidime kuris pradėtas 2022-01-01 12:00, ėjimu nr 2, 2 dalių diskas buvo paimtas iš pirmo stulpelio ir padėtas į trečią 
@@ -187,55 +189,75 @@ APRIBOJIMAI:
 - TAIKYTI "Dependency inversion principle". t.y. VISI SERVISAI TURI BŪTI KONSTRUOJAMI Į INTERFACE
 - TAIKYTI "Single-responsibility principle". t.y. KLASĖS TURI ATLIKTI TIK VIENOS ATSAKOMYBĖS UŽDUOTIS IR GALI BŪTI KEIČIAMOS TIK DĖL VIENOS PRIEŽASTIES 
 
-            */
+        */
 
 
-            //Disc disc0 = new Disc("|");
-            //Disc disc1 = new Disc("    #|#    ");
-            //Disc disc2 = new Disc("   ##|##   ");
-            //Disc disc3 = new Disc("  ###|###  ");
-            //Disc disc4 = new Disc(" ####|#### ");
+        //Disc disc0 = new Disc("|");
+        //Disc disc1 = new Disc("    #|#    ");
+        //Disc disc2 = new Disc("   ##|##   ");
+        //Disc disc3 = new Disc("  ###|###  ");
+        //Disc disc4 = new Disc(" ####|#### ");
 
 
 
 
-            //List<Disc> disc = new List<Disc>();
-            //disc.Add(disc0);
-            //disc.Add(disc1);
-            //disc.Add(disc2);
-            //disc.Add(disc3);
-            //disc.Add(disc4);
+        //List<Disc> disc = new List<Disc>();
+        //disc.Add(disc0);
+        //disc.Add(disc1);
+        //disc.Add(disc2);
+        //disc.Add(disc3);
+        //disc.Add(disc4);
 
-            //var diskasstuplui = disc;
-
-
-            ////  Tower tower = new Tower(diskasstuplui);
+        //var diskasstuplui = disc;
 
 
-            //Tower tower1 = new Tower(disc);
-            
+        ////  Tower tower = new Tower(diskasstuplui);
 
-        
 
-            
-            //Tower tower2 = new Tower();
-            //Tower tower3 = new Tower();
+        //Tower tower1 = new Tower(disc);
 
 
 
 
 
+        //Tower tower2 = new Tower();
+        //Tower tower3 = new Tower();
+
+
+        public static void TowerOfHanoi()
+        {
+
+
+            var play = true;
 
 
 
+            while (play)
+            {
 
 
+                Console.WriteLine("Tower Of Hanoi");
+                Console.WriteLine($"Ejimas x");
 
-        }
 
+                Console.WriteLine();
+                Console.WriteLine($"Diskas rankoje: diskas");
+                //PrintGame();
+                Console.WriteLine("Norėdami išeiti paspauskite 'Esc'");
+                Console.WriteLine("Pagalbai paspauskite 'H'");
+                Console.WriteLine("Pasirinkite stulpelį iš kurio paimti");
 
+                char input = Console.ReadKey().KeyChar;
 
             }
+        }
+     
+
+
+
+
+
+    }
         }
     
    
