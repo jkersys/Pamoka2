@@ -8,8 +8,8 @@ namespace TowerOfHanoi
         static void Main(string[] args)
         {
 
-            Console.WriteLine("Hello, Tower!");
-            List<Disc> diskai = new List<Disc> { };
+            //Console.WriteLine("Hello, Tower!");
+            //List<Disc> diskai = new List<Disc> { };
 
             TowerOfHanoi();
         }
@@ -234,7 +234,7 @@ APRIBOJIMAI:
 
             while (play)
             {
-
+                
 
                 Console.WriteLine("Tower Of Hanoi");
                 Console.WriteLine($"Ejimas x");
@@ -242,7 +242,7 @@ APRIBOJIMAI:
 
                 Console.WriteLine();
                 Console.WriteLine($"Diskas rankoje: diskas");
-                //PrintGame();
+                Game.DrawTower();
                 Console.WriteLine("Norėdami išeiti paspauskite 'Esc'");
                 Console.WriteLine("Pagalbai paspauskite 'H'");
                 Console.WriteLine("Pasirinkite stulpelį iš kurio paimti");
@@ -252,7 +252,17 @@ APRIBOJIMAI:
             }
         }
      
-
+//        public static void DrawTower()
+//        {
+//            Console.WriteLine(@"
+//      1eil.       |            |            |      
+//      2eil.      #|#           |            |      
+//      3eil.     ##|##          |            |      
+//      4eil.    ###|###         |            |      
+//      5eil.   ####|####        |            |      
+//            -----[1]----------[2]----------[3]------
+//        ");
+//}
 
 
 

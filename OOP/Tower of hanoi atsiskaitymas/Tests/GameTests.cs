@@ -24,11 +24,13 @@ namespace Tests
                     if (currentTower.Dics.Count > i)
                     {
                         Console.Write(currentTower.Dics[i].ToString()
-                            .PadLeft(currentTower.Height + 5 + i, ' ')
-                            .PadRight(2 * currentTower.Height + 10 + (i *2), ' '));
+                            .PadLeft(currentTower.Height + 4 + i, ' ')
+                            .PadRight(2 * currentTower.Height + 10 , ' '));
         }
                     else{
-                        Console.Write("|");
+                        Console.Write("|".PadLeft(currentTower.Height + 4, ' ')
+                            .PadRight(2 * currentTower.Height + 10, ' '));
+                            
                     }
                     
                 }
