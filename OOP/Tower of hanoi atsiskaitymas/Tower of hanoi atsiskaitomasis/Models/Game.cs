@@ -2,12 +2,13 @@
 {
     public class Game
     {
-       
         public int TowersCount { get; set; }
         public int TowerHeight { get; set; }
-        public int CountMoves { get; set; }
+        public int Moves { get; set; }
 
-        public Disc ActiveDisc { get; private set; }
+        public GameState State { get; private set; }
+
+        public Disc? ActiveDisc { get; private set; } = null;
 
         public List<Tower> Towers { get; set; } = new List<Tower>();
         public Game(int towersCount, int towerHeight)
@@ -20,26 +21,115 @@
                 Towers.Add(new Tower(towerHeight));
             }
 
-            for (int i = 0; i < towerHeight; i++)
+            for (int i = 0; i < towerHeight - 1; i++)
             {
-                Towers[0].Dics.Add(new Disc(i));
-                //Towers[1].Dics.Add(new Disc(i));
-                //Towers[2].Dics.Add(new Disc(i));
+                Towers[0].Discs.Add(new Disc(i + 1));
             }
         }
 
-        public void ChooseTower(int towerNumber)
+        public void SetInvalidState()
         {
+            if (State == GameState.Initial)
+            {
+                State = GameState.InvalidInputTower;
+            }
+            if (State == GameState.DiskInHand)
+            {
+                State = GameState.InvalidDestinationTower;
+            }
+        }
 
+
+        public void MakeMove(int towerNumber)
+        {
+            if (State == GameState.Initial || State == GameState.NoDisksInSelectedTower || State == GameState.InvalidInputTower)
+            {
+                var tower = Towers[towerNumber - 1];
+                if (tower.Discs.Count == 0)
+                {
+                    State = GameState.NoDisksInSelectedTower;
+                    return;
+                }
+                else
+                {
+                    State = GameState.DiskInHand;
+                    ActiveDisc = tower.Discs.First();
+                    tower.Discs.RemoveAt(0);
+                    return;
+                }
+            }
+            
+            if (State == GameState.DiskInHand || State == GameState.DiskDoesNotFit || State == GameState.InvalidDestinationTower)
+            {
+                var tower = Towers[towerNumber - 1];
+
+                if (tower.Discs.Any() && ActiveDisc.Size > tower.Discs.First().Size)
+                {
+                    State = GameState.DiskDoesNotFit;
+                    return;
+                }
+
+                tower.Discs.Insert(0, ActiveDisc);
+                State = GameState.Initial;
+                ActiveDisc = null;
+                Moves++;
+            }
+        }
+
+        public void DrawTower()
+        {
+            for (int i = 0; i < TowerHeight; i++)
+            {
+                for (int j = 0; j < TowersCount; j++)
+                {
+                    var currentTower = Towers[j];
+                    
+                    var currentDisc = currentTower.Discs.Skip(i - 1).FirstOrDefault();
+
+                    if (currentDisc != null && i > 0)
+                    {
+                        Console.Write($"{i + 1}eil.");
+                        Console.Write(currentDisc.ToString()
+                            .PadLeft(currentTower.Height + 4 + i, ' ')
+                            .PadRight(2 * currentTower.Height + 10, ' '));
+                    }
+                    else
+                    {
+                        if (i == 0 && j == 0)
+                        {
+                            Console.Write($"{i + 1}eil.");
+                        }
+                        Console.Write("|".PadLeft(currentTower.Height + 4, ' ')
+                            .PadRight(2 * currentTower.Height + 10, ' '));
+                    }
+                }
+                Console.WriteLine();
+            }
+
+            var towerHeight = Towers[0].Height;
+
+            Console.Write("      ");
+            for (int i = 0; i < TowersCount; i++)
+            {
+                Console.Write($"[{i + 1}]".PadLeft(towerHeight + 4 + i, '-').PadRight(2 * towerHeight + 9, '-'));
+            }
+        }
+
+
+        public void ChooseTower(char towerNumber)
+        {
+            
         }
 
         public void GetDisc(int towerNumber)
         {
             //Validation+
-           
-            ActiveDisc = Towers[towerNumber - 1].Dics.First();
-            Towers[towerNumber - 1].Dics.Remove(ActiveDisc);
-            Towers[towerNumber - 1].IsActive = true;
+                 
+
+            //ActiveDisc = Towers[towerNumber - 1].Disc.First();
+            //Towers[towerNumber - 1].Disc.RemoveAt(towerNumber -1);
+            //Towers[towerNumber - 1].IsActive = true;
+            
         }
             public void PutDiscValidation()
             {
@@ -54,56 +144,14 @@
 
 
 
-            ActiveDisc = Towers[towerNumber - 1].Dics.First();
-            Towers[towerNumber - 1].Dics.Add(ActiveDisc);
+            //ActiveDisc = Towers[towerNumber - 1].Disc.First();
+            Towers[towerNumber - 1].Discs.Add(ActiveDisc);
             Towers[towerNumber - 1].IsActive = false;
-            CountMoves++;
+            //CountMoves++;
+            ActiveDisc = null;
         }
 
-        public static void DrawTower()
-        {
-            var game = new Game(3, 5);
-
-            for (int i = 0; i < game.TowerHeight; i++)
-            {
-
-                for (int j = 0; j < game.TowersCount; j++)
-                {
-                    var currentTower = game.Towers[j];
-
-                    if (currentTower.Dics.Count > i)
-                    {
-                        Console.Write(currentTower.Dics[i].ToString()
-                            .PadLeft(currentTower.Height + 4 + i, ' ')
-                            .PadRight(2 * currentTower.Height + 10, ' '));
-                    }
-                    else
-                    {
-                        Console.Write("|".PadLeft(currentTower.Height + 4, ' ')
-                            .PadRight(2 * currentTower.Height + 10, ' '));
-
-                    }
-
-                }
-                Console.WriteLine();
-            }
-            }
-
-        public static void TextMethod(char? input)
-        {
-            if (input == null)
-            {
-                Console.WriteLine("Pasirinkite stulpelį iš kurio paimti");
-            }
-            else if (input == '1' || input == '2' || input == '3')
-            {
-                Console.WriteLine("Pasirinkite stulpelį į kurį padėti");
-            }
-            else
-            {
-                Console.WriteLine("Neteisinga įvestis");
-            }
-        }
+       
 
                 public static char InputValidation()
                 {
@@ -111,6 +159,7 @@
                 if ((input != '1')
                    && (input != '2')
                    && (input != '3')
+                   && (input != 'H')
                    && (input != 'h')
                    && (input != '\u001b'))
                 {

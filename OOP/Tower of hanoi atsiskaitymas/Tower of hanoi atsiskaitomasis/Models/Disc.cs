@@ -2,7 +2,7 @@
 {
     public class Disc
     {
-        public int Size { get; set; }
+        public int Size { get; private set; }
 
         public Disc(int size)
         {

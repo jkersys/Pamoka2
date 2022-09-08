@@ -21,16 +21,17 @@ namespace Tests
                 {
                     var currentTower = game.Towers[j];
 
-                    if (currentTower.Dics.Count > i)
+                    if (currentTower.Discs.Count > i)
                     {
-                        Console.Write(currentTower.Dics[i].ToString()
+                        Console.Write($"Eil{i+1}");
+                        Console.Write(currentTower.Discs[i].ToString()
                             .PadLeft(currentTower.Height + 4 + i, ' ')
                             .PadRight(2 * currentTower.Height + 10 , ' '));
         }
                     else{
                         Console.Write("|".PadLeft(currentTower.Height + 4, ' ')
                             .PadRight(2 * currentTower.Height + 10, ' '));
-                            
+                        
                     }
                     
                 }

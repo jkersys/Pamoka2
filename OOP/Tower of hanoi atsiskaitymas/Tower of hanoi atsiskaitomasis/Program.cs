@@ -3,7 +3,7 @@ using TowerOfHanoi.Models;
 
 namespace TowerOfHanoi
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -12,7 +12,7 @@ namespace TowerOfHanoi
             //Console.WriteLine("Hello, Tower!");
             //List<Disc> diskai = new List<Disc> { };
 
-           
+
             TowerOfHanoi();
         }
         // Disc disk = new Disc();
@@ -192,133 +192,105 @@ APRIBOJIMAI:
 - TAIKYTI "Single-responsibility principle". t.y. KLASĖS TURI ATLIKTI TIK VIENOS ATSAKOMYBĖS UŽDUOTIS IR GALI BŪTI KEIČIAMOS TIK DĖL VIENOS PRIEŽASTIES 
 
         */
-
-
-        //Disc disc0 = new Disc("|");
-        //Disc disc1 = new Disc("    #|#    ");
-        //Disc disc2 = new Disc("   ##|##   ");
-        //Disc disc3 = new Disc("  ###|###  ");
-        //Disc disc4 = new Disc(" ####|#### ");
-
-
-
-
-        //List<Disc> disc = new List<Disc>();
-        //disc.Add(disc0);
-        //disc.Add(disc1);
-        //disc.Add(disc2);
-        //disc.Add(disc3);
-        //disc.Add(disc4);
-
-        //var diskasstuplui = disc;
-
-
-        ////  Tower tower = new Tower(diskasstuplui);
-
-
-        //Tower tower1 = new Tower(disc);
-
-
-
-
-
-        //Tower tower2 = new Tower();
-        //Tower tower3 = new Tower();
-
-
         public static void TowerOfHanoi()
         {
-            Game Towers = new Game(3, 5);
-            
+            Game game = new Game(3, 5);
             var play = true;
-
-            char? input = null;
 
             while (play)
             {
                 Console.Clear();
-                
+
                 Console.WriteLine("Tower Of Hanoi");
-                Console.WriteLine($"Ejimas ");
-
+                Console.WriteLine($"Ejimas {game.Moves}");
+                Console.WriteLine($"Diskas rankoje: {game.ActiveDisc?.ToString()}");
 
                 Console.WriteLine();
-                Console.WriteLine($"Diskas rankoje: {Towers.ActiveDisc}");
                 Console.WriteLine();
-                Game.DrawTower();
+                game.DrawTower();
+                Console.WriteLine();
                 Console.WriteLine();
                 Console.WriteLine("Norėdami išeiti paspauskite 'Esc'");
                 Console.WriteLine("Pagalbai paspauskite 'H'");
-                Game.TextMethod(input);
-                Towers.GetDisc(1);
-                input = Game.InputValidation();
 
-                //while(input != '1' || input != '2' || input != '3' || input != 'h' || input != '\u001b')
-                //{
-                //    input = Console.ReadKey().KeyChar;
-                //}
+                PrintDynamicMeniu(game.State);
 
-                if (input == '\u001b')
+                var inputKey = Console.ReadKey();
+
+                if (inputKey.Key == ConsoleKey.Escape)
                 {
-                    Console.Clear();
-                    Console.WriteLine("Išėjote");
-                    Environment.Exit(2);
+                    Console.WriteLine("IIšėjote");
+                    Environment.Exit(0);
                 }
 
+                var towerNumber = Char.IsDigit(inputKey.KeyChar) ? int.Parse(inputKey.KeyChar.ToString()) : 0;
 
-                //switch (input)
-                //{
-                //    case '\u001b':  // ESC
-                //       // Console.Clear();
-                //        Console.WriteLine($"Išėjote");
-                //        Environment.Exit(0);
-                //        break;
-                //    case '1':
-                //        Console.Clear();
-                //        Console.WriteLine("1:\n");
-                        
-                //        break;
-                //    case '2':
-                //        Console.Clear();
-                //        Console.WriteLine("2:\n");
-                //    //    tower.Move(tower.Peg2, 2);
-                //        break;
-                //    case '3':
-                //        Console.Clear();
-                //        Console.WriteLine("3:\n");
-                //   //     tower.Move(tower.Peg3, 3);
-                //        break;
-                //    case 'h' or 'H':
-                //        Console.Clear();
-                //        Console.WriteLine("Pagalba:\n");
-                //        break;
-                //    default:
-                //        Console.Clear();
-                //        Console.WriteLine("Blogas pasirinkimas, bandykite iš naujo.\n");
-                //        break;
-                //}
+                if (towerNumber > 0 && towerNumber < 4)
+                {
+                    game.MakeMove(towerNumber);
+                }
+                else
+                {
+                    game.SetInvalidState();
+                }
             }
-
         }
 
-       
 
+        public static void PrintDynamicMeniu(GameState state)
+        {
+            if (state == GameState.Initial)
+            {
+                Console.WriteLine("Pasirinkite stulpelį iš kurio paimti");
+                return;
+            }
 
-        //        public static void DrawTower()
-        //        {
-        //            Console.WriteLine(@"
-        //      1eil.       |            |            |      
-        //      2eil.      #|#           |            |      
-        //      3eil.     ##|##          |            |      
-        //      4eil.    ###|###         |            |      
-        //      5eil.   ####|####        |            |      
-        //            -----[1]----------[2]----------[3]------
-        //        ");
-        //}
+            if (state == GameState.DiskInHand)
+            {
+                Console.WriteLine("Pasirinkite stulpelį į kurį padėti");
+                return;
+            }
 
+            if (state == GameState.NoDisksInSelectedTower)
+            {
+                Console.WriteLine("NoDisksInSelectedTower");
+                return;
+            }
 
+            if (state == GameState.DiskDoesNotFit)
+            {
+                Console.WriteLine("DiskDoesNotFit");
+                return;
+            }
 
+            if (state == GameState.InvalidInputTower)
+            {
+                Console.WriteLine("Neteisinga ivestis");
+                Console.WriteLine("Pasirinkite boksta is kurio paimti");
+                return;
+            }
+
+            if (state == GameState.InvalidDestinationTower)
+            {
+                Console.WriteLine("Neteisinga ivestis");
+                Console.WriteLine("Pasirinkite boksta i kuri padeti");
+                return;
+            }
+
+            //if (input != null && ActiveDisc != null)
+            //{
+            //    Console.WriteLine("Pasirinkite stulpelį į kurį padėti");
+            //}
+            //else if (input == '1' || input == '2' || input == '3' && ActiveDisc != null)
+            //{
+            //    Console.WriteLine("Pasirinkite stulpelį į kurį padėti");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Neteisinga įvestis");
+            //}
+        }
     }
-    }
-  
-   
+}
+
+

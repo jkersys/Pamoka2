@@ -5,12 +5,12 @@
         public int Height { get; set; }
         public bool IsActive { get; set; }
 
-        public List<Disc> Dics { get; set; }
+        public List<Disc> Discs { get; set; }
 
         public Tower(int height)
         { 
             Height = height;
-            Dics = new List<Disc>(height - 1);
+            Discs = new List<Disc>(height - 1);
         }
     }
 }
