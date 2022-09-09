@@ -200,7 +200,7 @@ APRIBOJIMAI:
             while (play)
             {
                 Console.Clear();
-
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Tower Of Hanoi");
                 Console.WriteLine($"Ejimas {game.Moves}");
                 Console.WriteLine($"Diskas rankoje: {game.ActiveDisc?.ToString()}");
@@ -240,7 +240,7 @@ APRIBOJIMAI:
         public static void PrintDynamicMeniu(GameState state)
         {
             if (state == GameState.Initial)
-            {
+            {                
                 Console.WriteLine("Pasirinkite stulpelį iš kurio paimti");
                 return;
             }
@@ -253,26 +253,32 @@ APRIBOJIMAI:
 
             if (state == GameState.NoDisksInSelectedTower)
             {
-                Console.WriteLine("NoDisksInSelectedTower");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Stulpelyje nėra disko");
                 return;
             }
 
             if (state == GameState.DiskDoesNotFit)
             {
-                Console.WriteLine("DiskDoesNotFit");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Negalima didesnio disko dėti ant mažesnio");
                 return;
             }
 
             if (state == GameState.InvalidInputTower)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Neteisinga ivestis");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Pasirinkite boksta is kurio paimti");
                 return;
             }
 
             if (state == GameState.InvalidDestinationTower)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Neteisinga ivestis");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Pasirinkite boksta i kuri padeti");
                 return;
             }
