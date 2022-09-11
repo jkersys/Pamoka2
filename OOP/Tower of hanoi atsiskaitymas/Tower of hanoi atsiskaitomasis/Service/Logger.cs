@@ -28,10 +28,10 @@ namespace TowerOfHanoi.Service
 
         private Dictionary<string, string> numberToDestinationName = new Dictionary<string, string>
         {
-            { "1", "pirma" },
-            {"2", "antra"},
-            {"3", "trecia"},
-            {"4", "ketvirta"}
+            { "1", "pirmą" },
+            {"2", "antrą"},
+            {"3", "trecią"},
+            {"4", "ketvirtą"}
         };
 
         public Logger(bool logToCsv, bool logToTxt, bool logToHtml)
