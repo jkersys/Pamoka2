@@ -1,4 +1,8 @@
-﻿namespace TowerOfHanoi.Models
+﻿using System.Text;
+using TowerOfHanoi.Interface;
+using TowerOfHanoi.Service;
+
+namespace TowerOfHanoi.Models
 {
     public class Game
     {
@@ -8,11 +12,18 @@
 
         public GameState State { get; private set; }
 
-        public Disc? ActiveDisc { get; private set; } = null;
+        public Disc? ActiveDisc { get; set; } = null;
 
         public List<Tower> Towers { get; set; } = new List<Tower>();
-        public Game(int towersCount, int towerHeight)
+        public DateTime? StartDate { get; set; } = DateTime.Now;
+
+        private int TowerFromNumber { get; set; }
+        private int TowerToNumber { get; set; }
+        private ILog Logger { get; set; }
+        
+        public Game(ILog logger, int towersCount, int towerHeight)
         {
+            this.Logger = logger;
             TowersCount = towersCount;
             TowerHeight = towerHeight;
 
@@ -21,9 +32,9 @@
                 Towers.Add(new Tower(towerHeight));
             }
 
-            for (int i = 0; i < towerHeight - 1; i++)
+            for (int i = towerHeight; i > 1; i--)
             {
-                Towers[0].Discs.Add(new Disc(i + 1));
+                Towers[0].Discs.Add(new Disc(i - 1));
             }
         }
 
@@ -53,8 +64,10 @@
                 else
                 {
                     State = GameState.DiskInHand;
-                    ActiveDisc = tower.Discs.First();
-                    tower.Discs.RemoveAt(0);
+                    ActiveDisc = tower.Discs.Last();
+                    tower.Discs.Remove(ActiveDisc);
+                    TowerFromNumber = towerNumber;
+                    SetActiveTower(tower);
                     return;
                 }
             }
@@ -62,117 +75,163 @@
             if (State == GameState.DiskInHand || State == GameState.DiskDoesNotFit || State == GameState.InvalidDestinationTower)
             {
                 var tower = Towers[towerNumber - 1];
+                
 
-                if (tower.Discs.Any() && ActiveDisc.Size > tower.Discs.First().Size)
+                if (tower.Discs.Any() && ActiveDisc.Size > tower.Discs.Last().Size)
                 {
                     State = GameState.DiskDoesNotFit;
                     return;
                 }
 
-                tower.Discs.Insert(0, ActiveDisc);
+                tower.Discs.Add(ActiveDisc);
                 State = GameState.Initial;
-                ActiveDisc = null;
+                
+                SetActiveTower(tower);
+                IsWon();
                 Moves++;
+                TowerToNumber = towerNumber;
+                Logger.Log(GetLogData());
+                ActiveDisc = null;
             }
+        }
+
+        private string[] GetLogData()
+        {
+            string[] dataToString = new string[9];
+            var discLocationMap = GetDiscLocationMap();
+
+            dataToString[0] = StartDate.ToString();
+            dataToString[1] = Moves.ToString();
+            dataToString[2] = discLocationMap[0].ToString();
+            dataToString[3] = discLocationMap[1].ToString();
+            dataToString[4] = discLocationMap[2].ToString();
+            dataToString[5] = discLocationMap[3].ToString();
+            dataToString[6] = ActiveDisc.Size.ToString(); //disko dydis
+            dataToString[7] = TowerFromNumber.ToString();
+            dataToString[8] = TowerToNumber.ToString();
+            return dataToString;
         }
 
         public void DrawTower()
         {
+            var width = 10;
+
+            var builder = new StringBuilder();
+
             for (int i = 0; i < TowerHeight; i++)
             {
                 for (int j = 0; j < TowersCount; j++)
                 {
-                    var currentTower = Towers[j];
-                    
-                    var currentDisc = currentTower.Discs.Skip(i - 1).FirstOrDefault();
-
-                    if (currentDisc != null && i > 0)
+                    if (j == 0)
                     {
                         Console.Write($"{i + 1}eil.");
-                        Console.Write(currentDisc.ToString()
-                            .PadLeft(currentTower.Height + 4 + i, ' ')
-                            .PadRight(2 * currentTower.Height + 10, ' '));
+                    }
+
+                    var currentTower = Towers[j];
+                    var diskIndex = currentTower.Height - i - 1;
+
+                    builder.Clear();
+
+                    if (diskIndex < currentTower.Discs.Count)
+                    {
+                        var currentDisc = currentTower.Discs[diskIndex];
+                        builder.Append(' ', width - currentDisc.Size);
+                        builder.Append(currentDisc.ToString());
+                        builder.Append(' ', width - currentDisc.Size - 2 + 1);
+                        Console.Write(builder.ToString());
                     }
                     else
                     {
-                        if (i == 0 && j == 0)
-                        {
-                            Console.Write($"{i + 1}eil.");
-                        }
-                        Console.Write("|".PadLeft(currentTower.Height + 4, ' ')
-                            .PadRight(2 * currentTower.Height + 10, ' '));
+                        builder.Append(' ', width).Append('|').Append(' ', width - 1);
+                        Console.Write(builder.ToString());
                     }
                 }
                 Console.WriteLine();
             }
 
-            var towerHeight = Towers[0].Height;
+            builder.Clear();
+            builder.Append(' ', 5);
 
-            Console.Write("      ");
             for (int i = 0; i < TowersCount; i++)
             {
-                Console.Write($"[{i + 1}]".PadLeft(towerHeight + 4 + i, '-').PadRight(2 * towerHeight + 9, '-'));
+                var tower = Towers[i];
+                if (tower.IsActive)
+                    {
+                        builder.Append('-', width - 3);
+                        builder.Append($"^^[{i + 1}]^^");
+                        builder.Append('-', width - 4);
+                    }
+                    else
+                    {
+                builder.Append('-', width - 1);
+                builder.Append($"[{i + 1}]");
+                builder.Append('-', width - 2);
+
+                    }
             }
-        }
 
+            //Console.Write(builder.ToString());
 
-        public void ChooseTower(char towerNumber)
-        {
-            
-        }
+            //builder.Clear();
+            //Console.WriteLine();
 
-        public void GetDisc(int towerNumber)
-        {
-            //Validation+
-                 
+            //builder.Append(' ', 5);
 
-            //ActiveDisc = Towers[towerNumber - 1].Disc.First();
-            //Towers[towerNumber - 1].Disc.RemoveAt(towerNumber -1);
-            //Towers[towerNumber - 1].IsActive = true;
-            
-        }
-            public void PutDiscValidation()
-            {
-           
+            //foreach (var tower in Towers)
+            //{
+            //    builder.Append(' ', width - 1);
+            //    if (tower.IsActive)
+            //    {
+            //        builder.Append($"^^[{i + 1}]^^");
+            //    }
+            //    else
+            //    {
+            //        builder.Append(' ', 3);
+            //    }
 
+            //    builder.Append(' ', width - 2);
+            Console.Write(builder.ToString());
             }
         
 
-            public void PutDisc(int towerNumber)
+
+        public void SetActiveTower(Tower tower)
         {
-            //Validation
-
-
-
-            //ActiveDisc = Towers[towerNumber - 1].Disc.First();
-            Towers[towerNumber - 1].Discs.Add(ActiveDisc);
-            Towers[towerNumber - 1].IsActive = false;
-            //CountMoves++;
-            ActiveDisc = null;
-        }
-
-       
-
-                public static char InputValidation()
-                {
-                var input = Console.ReadKey().KeyChar;
-                if ((input != '1')
-                   && (input != '2')
-                   && (input != '3')
-                   && (input != 'H')
-                   && (input != 'h')
-                   && (input != '\u001b'))
-                {
-                //Console.WriteLine("Tokio pasirinkimo nera");
-                //input = Console.ReadKey().KeyChar;
+            foreach (var t in Towers)
+            {
+                t.IsActive = false;
             }
 
-                return input;
+            tower.IsActive = true;
+            if (ActiveDisc == null)
+            {
+                tower.IsActive = false;
             }
-
-
         }
 
+        private void IsWon()
+        {
+            if (Towers[2].Discs.Count() == 4)
+            {
+                State = GameState.Won;
+                
+            }
+                
         }
-    
+        private int[] GetDiscLocationMap()
+        {
+            int[] discLocation = new int[4];
 
+            for (int j = 0; j < TowersCount; j++)
+            {
+                var currentTower = Towers[j];
+                foreach (var disk in currentTower.Discs)
+                {
+                    discLocation[disk.Size - 1] = (j + 1);
+                }
+            }
+            return discLocation;
+        }
+    }
+
+}

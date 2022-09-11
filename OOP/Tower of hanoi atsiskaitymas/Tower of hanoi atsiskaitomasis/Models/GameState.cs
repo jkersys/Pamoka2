@@ -7,6 +7,8 @@
         NoDisksInSelectedTower,
         DiskDoesNotFit,
         InvalidInputTower,
-        InvalidDestinationTower
+        InvalidDestinationTower,
+        Won
+        
     }
 }

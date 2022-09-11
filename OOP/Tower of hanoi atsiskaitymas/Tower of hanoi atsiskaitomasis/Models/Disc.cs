@@ -11,7 +11,8 @@
 
         public override string ToString()
         {
-            return "|".PadLeft(Size + 1, '#').PadRight(2 * Size  + 1, '#');
+            return "|".PadLeft(Size + 1, '#')
+                .PadRight(2 * Size + 1, '#');
         }
     }
 }

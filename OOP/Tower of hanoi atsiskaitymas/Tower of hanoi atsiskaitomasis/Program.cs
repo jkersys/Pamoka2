@@ -1,5 +1,10 @@
 ﻿using System.Text;
 using TowerOfHanoi.Models;
+using System.Configuration;
+using TowerOfHanoi.Service;
+using Microsoft.Extensions.Configuration;
+
+//using TowerOfHanoi.Service;
 
 namespace TowerOfHanoi
 {
@@ -194,13 +199,18 @@ APRIBOJIMAI:
         */
         public static void TowerOfHanoi()
         {
-            Game game = new Game(3, 5);
-            var play = true;
+            Logger logger = new Logger(true, true, true);
+            Game game = new Game(logger, 3, 5);
 
+            var play = true;
+            var startDate = game.StartDate;
             while (play)
             {
+
                 Console.Clear();
+                //Console.WriteLine(logger.DateTime);
                 Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(startDate);
                 Console.WriteLine("Tower Of Hanoi");
                 Console.WriteLine($"Ejimas {game.Moves}");
                 Console.WriteLine($"Diskas rankoje: {game.ActiveDisc?.ToString()}");
@@ -212,6 +222,7 @@ APRIBOJIMAI:
                 Console.WriteLine();
                 Console.WriteLine("Norėdami išeiti paspauskite 'Esc'");
                 Console.WriteLine("Pagalbai paspauskite 'H'");
+               
 
                 PrintDynamicMeniu(game.State);
 
@@ -233,6 +244,7 @@ APRIBOJIMAI:
                 {
                     game.SetInvalidState();
                 }
+
             }
         }
 
@@ -240,7 +252,7 @@ APRIBOJIMAI:
         public static void PrintDynamicMeniu(GameState state)
         {
             if (state == GameState.Initial)
-            {                
+            {
                 Console.WriteLine("Pasirinkite stulpelį iš kurio paimti");
                 return;
             }
@@ -282,19 +294,27 @@ APRIBOJIMAI:
                 Console.WriteLine("Pasirinkite boksta i kuri padeti");
                 return;
             }
+            if (state == GameState.Won)
+            {
+                Console.WriteLine("Laimėjote");
+                Environment.Exit(0);
+                
+            }
 
-            //if (input != null && ActiveDisc != null)
-            //{
-            //    Console.WriteLine("Pasirinkite stulpelį į kurį padėti");
-            //}
-            //else if (input == '1' || input == '2' || input == '3' && ActiveDisc != null)
-            //{
-            //    Console.WriteLine("Pasirinkite stulpelį į kurį padėti");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Neteisinga įvestis");
-            //}
+
+                //if (input != null && ActiveDisc != null)
+                //{
+                //    Console.WriteLine("Pasirinkite stulpelį į kurį padėti");
+                //}
+                //else if (input == '1' || input == '2' || input == '3' && ActiveDisc != null)
+                //{
+                //    Console.WriteLine("Pasirinkite stulpelį į kurį padėti");
+                //}
+                //else
+                //{
+                //    Console.WriteLine("Neteisinga įvestis");
+                //}
+            
         }
     }
 }
