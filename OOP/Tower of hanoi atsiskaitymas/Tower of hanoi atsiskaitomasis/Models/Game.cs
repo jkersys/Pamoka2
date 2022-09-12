@@ -89,7 +89,7 @@ namespace TowerOfHanoi.Models
                 IsWon();
                 Moves++;
                 TowerToNumber = towerNumber;
-                Logger.Log(GetLogData(),Logger.CreateHtmlLogText(GetLogData()));
+                Logger.Log(GetLogData());
                 ActiveDisc = null;
                 SetActiveTower(tower);
             }
@@ -108,7 +108,7 @@ namespace TowerOfHanoi.Models
             dataToString[5] = discLocationMap[3].ToString();
             dataToString[6] = ActiveDisc.Size.ToString(); //disko dydis
             dataToString[7] = TowerFromNumber.ToString();
-           dataToString[8] = TowerToNumber.ToString();
+            dataToString[8] = TowerToNumber.ToString();
             return dataToString;
         }
 

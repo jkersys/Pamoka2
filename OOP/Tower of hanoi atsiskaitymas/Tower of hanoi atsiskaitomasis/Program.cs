@@ -12,6 +12,8 @@ namespace TowerOfHanoi
     {
         static void Main(string[] args)
         {
+
+            
             Console.OutputEncoding = Encoding.GetEncoding(1200);
             Console.InputEncoding = Encoding.GetEncoding(1200);
             //Console.WriteLine("Hello, Tower!");
@@ -208,13 +210,11 @@ APRIBOJIMAI:
             {
 
                 Console.Clear();
-                //Console.WriteLine(logger.DateTime);
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(startDate);
                 Console.WriteLine("Tower Of Hanoi");
                 Console.WriteLine($"Ejimas {game.Moves}");
                 Console.WriteLine($"Diskas rankoje: {game.ActiveDisc?.ToString()}");
-
                 Console.WriteLine();
                 Console.WriteLine();
                 game.DrawTower();
@@ -299,21 +299,7 @@ APRIBOJIMAI:
                 Console.WriteLine("Laimėjote");
                 Environment.Exit(0);
                 
-            }
-
-
-                //if (input != null && ActiveDisc != null)
-                //{
-                //    Console.WriteLine("Pasirinkite stulpelį į kurį padėti");
-                //}
-                //else if (input == '1' || input == '2' || input == '3' && ActiveDisc != null)
-                //{
-                //    Console.WriteLine("Pasirinkite stulpelį į kurį padėti");
-                //}
-                //else
-                //{
-                //    Console.WriteLine("Neteisinga įvestis");
-                //}
+            }                        
             
         }
     }

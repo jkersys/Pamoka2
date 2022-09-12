@@ -62,7 +62,7 @@ namespace TowerOfHanoi.Service
 
 
 
-        public void Log(string[] data, string data1)
+        public void Log(string[] data)
         {
             if (!Directory.Exists(LogDir))
             {
