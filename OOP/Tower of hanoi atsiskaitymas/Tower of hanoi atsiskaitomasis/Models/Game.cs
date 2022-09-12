@@ -15,7 +15,7 @@ namespace TowerOfHanoi.Models
         public Disc? ActiveDisc { get; set; } = null;
 
         public List<Tower> Towers { get; set; } = new List<Tower>();
-        public DateTime? StartDate { get; set; } = DateTime.Now;
+        public DateTime StartDate { get; set; } = DateTime.Now;
 
         private int TowerFromNumber { get; set; }
         private int TowerToNumber { get; set; }
@@ -86,21 +86,21 @@ namespace TowerOfHanoi.Models
                 tower.Discs.Add(ActiveDisc);
                 State = GameState.Initial;
                 
-                SetActiveTower(tower);
                 IsWon();
                 Moves++;
                 TowerToNumber = towerNumber;
-                Logger.Log(GetLogData());
+                Logger.Log(GetLogData(),Logger.CreateHtmlLogText(GetLogData()));
                 ActiveDisc = null;
+                SetActiveTower(tower);
             }
         }
 
-        private string[] GetLogData()
+        public string[] GetLogData()
         {
             string[] dataToString = new string[9];
             var discLocationMap = GetDiscLocationMap();
 
-            dataToString[0] = StartDate.ToString();
+            dataToString[0] = StartDate.ToString("yyyy-MM-dd HH:mm");
             dataToString[1] = Moves.ToString();
             dataToString[2] = discLocationMap[0].ToString();
             dataToString[3] = discLocationMap[1].ToString();
@@ -108,7 +108,7 @@ namespace TowerOfHanoi.Models
             dataToString[5] = discLocationMap[3].ToString();
             dataToString[6] = ActiveDisc.Size.ToString(); //disko dydis
             dataToString[7] = TowerFromNumber.ToString();
-            dataToString[8] = TowerToNumber.ToString();
+           dataToString[8] = TowerToNumber.ToString();
             return dataToString;
         }
 

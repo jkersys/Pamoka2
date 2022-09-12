@@ -20,7 +20,7 @@ namespace TowerOfHanoi.Service
 
         private Dictionary<string, string> numberToSourceName = new Dictionary<string, string>
         {
-            { "1", "pirmo" },
+            {"1", "pirmo" },
             {"2", "antro"},
             {"3", "trecio"},
             {"4", "ketvirto"}
@@ -28,7 +28,7 @@ namespace TowerOfHanoi.Service
 
         private Dictionary<string, string> numberToDestinationName = new Dictionary<string, string>
         {
-            { "1", "pirmą" },
+            {"1", "pirmą" },
             {"2", "antrą"},
             {"3", "trecią"},
             {"4", "ketvirtą"}
@@ -45,8 +45,7 @@ namespace TowerOfHanoi.Service
             HtmlLogPath = Path.Combine(LogDir, "log.html");
             TxtLogPath = Path.Combine(LogDir, "txt.txt");
         }
-
-        public string HtmlLog(string[] data)
+                public string HtmlLog(string[] data)
         {
             StringBuilder htmlToLogData = new StringBuilder();
             htmlToLogData.AppendLine($"<tr>");
@@ -61,7 +60,9 @@ namespace TowerOfHanoi.Service
             return htmlToLogData.ToString();
         }
 
-        public void Log(string[] data)
+
+
+        public void Log(string[] data, string data1)
         {
             if (!Directory.Exists(LogDir))
             {
@@ -73,7 +74,7 @@ namespace TowerOfHanoi.Service
                 {
                     File.WriteAllLines(CsvLogPath,  new[] { "zaidimo_pradzios_data, ejimo_nr, disko_1_vieta, disko_2_vieta, disko_3_vieta, disko_4_vieta" });
                 }
-                File.AppendAllLines(CsvLogPath, new[] { string.Join(", ", data) });
+                File.AppendAllLines(CsvLogPath, CreateCsvLogText(data));
             }
 
             if (WriteLogToHtml)
@@ -100,6 +101,38 @@ namespace TowerOfHanoi.Service
             $"buvo paimtas iš {numberToSourceName[data[7]]} sulpelio ir padėtas į {numberToDestinationName[data[8]]}"
             });
             }
+        }
+
+      
+
+        public string CreateHtmlLogText(string[] data)
+        {
+            StringBuilder htmlToLogData = new StringBuilder();
+            htmlToLogData.AppendLine($"<tr>");
+            htmlToLogData.AppendLine($"<td>{data[0]}</td>");
+            htmlToLogData.AppendLine($"<td>{data[1]}</td>");
+            htmlToLogData.AppendLine($"<td>{data[2]}</td>");
+            htmlToLogData.AppendLine($"<td>{data[3]}</td>");
+            htmlToLogData.AppendLine($"<td>{data[4]}</td>");
+            htmlToLogData.AppendLine($"<td>{data[5]}</td>");
+            htmlToLogData.AppendLine($"</tr>");
+            htmlToLogData.Append($"</table>");
+            return htmlToLogData.ToString();
+        }
+
+        public string CreateTxtLogText()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string[] CreateCsvLogText(string[] data)
+        {
+            return new[] { $"{data[0]},{data[1]},{data[2]},{data[3]},{data[4]},{data[5]}" };
+        }
+
+        public string CreateTxtLogText(string[] data)
+        {
+            throw new NotImplementedException();
         }
     }
 }
