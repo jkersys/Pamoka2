@@ -16,23 +16,12 @@ namespace TowerOfHanoi
             
             Console.OutputEncoding = Encoding.GetEncoding(1200);
             Console.InputEncoding = Encoding.GetEncoding(1200);
-            //Console.WriteLine("Hello, Tower!");
-            //List<Disc> diskai = new List<Disc> { };
+            
 
 
             TowerOfHanoi();
         }
-        // Disc disk = new Disc();
-        //       Console.WriteLine(disk.Discus);
-
-        // List<Disc> discs = new List<Disc>() { disk, disk };
-
-        //Tower tower = new Tower(discs);
-
-        //for (int i = 0; i < discs.Count; i++)
-        //{
-        //    Console.WriteLine(i.ToString());
-        //}
+       
 
 
         /*
@@ -214,7 +203,7 @@ APRIBOJIMAI:
                 Console.WriteLine(startDate);
                 Console.WriteLine("Tower Of Hanoi");
                 Console.WriteLine($"Ejimas {game.Moves}");
-                Console.WriteLine($"Diskas rankoje: {game.ActiveDisc?.ToString()}");
+                Console.WriteLine($"Diskas rankoje: {game.ActiveDisc}");
                 Console.WriteLine();
                 Console.WriteLine();
                 game.DrawTower();
@@ -231,7 +220,7 @@ APRIBOJIMAI:
                 if (inputKey.Key == ConsoleKey.Escape)
                 {
                     Console.WriteLine("IIšėjote");
-                    Environment.Exit(0);
+                    Environment.Exit(5);
                 }
 
                 var towerNumber = Char.IsDigit(inputKey.KeyChar) ? int.Parse(inputKey.KeyChar.ToString()) : 0;
