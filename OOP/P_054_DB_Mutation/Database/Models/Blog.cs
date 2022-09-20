@@ -5,21 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P053_QueryingSqliteDb.Domain.Models
+namespace P_054_DB_Mutation
 {
-    [Table("Blog")]
     public class Blog
     {
-        [Column(Order = 0)]
-        public int BlogId { get; set; }
-        [Column(Order = 2)]
-        public decimal Rating { get; set; }
+        public virtual int BlogId { get; set; }
+        public virtual string Name { get; set; }
+        public virtual decimal Rating { get; set; }
 
-        [Column("Blogname", Order = 1)]
-        public string Name { get; set; }
+        public virtual ICollection<Post> Posts { get; set; } = new HashSet<Post>(); //Lazy loading
 
-        public virtual List<Post> Posts{ get; set; }
-        public virtual IList<AuthorBlog> AuthorBlogs { get; set; }
-
+        public virtual IList<AuthorBlog> AuthorBlog { get; set; }
     }
 }

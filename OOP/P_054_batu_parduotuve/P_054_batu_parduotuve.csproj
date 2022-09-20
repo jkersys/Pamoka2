@@ -14,7 +14,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Moq" Version="4.18.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\P_054_batu_parduotuve.Domain\P_054_batu_parduotuve.Domain.csproj" />
+    <ProjectReference Include="..\P_054_batu_parduotuve.Infrastructure\P_054_batu_parduotuve.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

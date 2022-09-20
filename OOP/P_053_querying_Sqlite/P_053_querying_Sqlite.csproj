@@ -21,8 +21,4 @@
     <ProjectReference Include="..\P053_QueryingSqliteDb.Infrastructure\P053_QueryingSqliteDb.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>
