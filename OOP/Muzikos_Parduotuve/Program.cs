@@ -1,5 +1,6 @@
 ﻿using Muzikos_Parduotuve.Infrastructure.Database;
 using Muzikos_Parduotuve.Infrastructure.Interfaces;
+using Muzikos_Parduotuve.Services;
 
 namespace Muzikos_Parduotuve
 {
@@ -9,17 +10,22 @@ namespace Muzikos_Parduotuve
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
+            IMusicShop startShop = new MusicShop();
+            startShop.StartShop();
+
+
 
             //IChinookRepository musicShop = new chinookRepository();
             //musicShop.Main();
             //musicShop.PrintCustomers();
-            
+
             //_chinookRepository.ShowCatalog();
             //_chinookRepository.SortBy();
-            _chinookRepository.SearchBy();
+            //_chinookRepository.SearchBy();
+            //_chinookRepository.AddToBasket();
 
 
-            
+
             //   _chinookRepository.MainMenu();
             //while (true)
             //{
@@ -32,7 +38,7 @@ namespace Muzikos_Parduotuve
             //            break;
             //        case '2':
             //            _chinookRepository.RegistrationForm();
-                        
+
             //            break;
             //            //case '3':
             //            //    _bloggingRepository.PrintAllPersonsSorted();

@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Muzikos_Parduotuve.Domain\Muzikos_Parduotuve.Domain.csproj" />
     <ProjectReference Include="..\P060_Muzikos_Parduotuve.Infrastructure\Muzikos_Parduotuve.Infrastructure.csproj" />
   </ItemGroup>

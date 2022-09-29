@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Muzikos_Parduotuve.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,12 @@ namespace Muzikos_Parduotuve.Infrastructure.Interfaces
         void ShowCatalog();
         void SortBy();
         void SearchBy();
-       
+        void AddToBasket();
+        List<Track> SongsById();
+        List<Track> SongsByName();
+        List<Track> SongsByAlbumId();
+        List<Track> SongsByAlbumName();
+
+
     }
 }
