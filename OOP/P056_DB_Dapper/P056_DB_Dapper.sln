@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P056_DB_Dapper", "P056_DB_Dapper.csproj", "{B88AA4AC-5AA5-44DA-88CF-5B178C8022DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pirma_uzduotis", "..\Pirma_uzduotis\Pirma_uzduotis.csproj", "{A0C17F3C-75CC-4404-91F0-0EFCC1AB3B19}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B88AA4AC-5AA5-44DA-88CF-5B178C8022DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B88AA4AC-5AA5-44DA-88CF-5B178C8022DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B88AA4AC-5AA5-44DA-88CF-5B178C8022DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B88AA4AC-5AA5-44DA-88CF-5B178C8022DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0C17F3C-75CC-4404-91F0-0EFCC1AB3B19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0C17F3C-75CC-4404-91F0-0EFCC1AB3B19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0C17F3C-75CC-4404-91F0-0EFCC1AB3B19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0C17F3C-75CC-4404-91F0-0EFCC1AB3B19}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {552EFC32-463A-4B51-82C2-DE146B1FF949}
+	EndGlobalSection
+EndGlobal

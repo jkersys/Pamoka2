@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P_054_batu_parduotuve.Domai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P_054_batu_parduotuve.Infrastructure", "..\P_054_batu_parduotuve.Infrastructure\P_054_batu_parduotuve.Infrastructure.csproj", "{BEFBAB46-0F36-4197-BDC5-4F379076E8DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P055_Scaffold", "..\P055_Scaffold\P055_Scaffold.csproj", "{FCE3445D-7A34-497F-8936-413AF469E45B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BEFBAB46-0F36-4197-BDC5-4F379076E8DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEFBAB46-0F36-4197-BDC5-4F379076E8DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEFBAB46-0F36-4197-BDC5-4F379076E8DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCE3445D-7A34-497F-8936-413AF469E45B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCE3445D-7A34-497F-8936-413AF469E45B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCE3445D-7A34-497F-8936-413AF469E45B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCE3445D-7A34-497F-8936-413AF469E45B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
