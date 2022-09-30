@@ -438,24 +438,24 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
 
         public List<Track> SongsById()
         {
-        Console.WriteLine("Iveskite dainos Id");
-        var idInput = Convert.ToInt64(Console.ReadLine());
-        var searchById = SongList().Where(i => i.TrackId == idInput).ToList();
+            Console.WriteLine("Iveskite dainos Id");
+            var idInput = Convert.ToInt64(Console.ReadLine());
+            var searchById = SongList().Where(i => i.TrackId == idInput).ToList();
 
-        var songById = (from id in searchById
-                        where id.TrackId == idInput
-                        select id).ToList();
+            var songById = (from id in searchById
+                            where id.TrackId == idInput
+                            select id).ToList();
             Console.WriteLine("-------------------------------------------------------------- ");
             Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
-            
+
             foreach (var song in songById)
-                {
+            {
                 Console.WriteLine("--------------------------------------------------------------");
                 Console.WriteLine($"{song.TrackId}| {song.Name}, {song.Composer}, {song.Genre.Name}, {song.Album.Title}, {song.Milliseconds}, {song.UnitPrice}");
                 Console.WriteLine("--------------------------------------------------------------");
             }
-                return songById;
-}
+            return songById;
+        }
 
         public void AddToBasket()
         {
@@ -483,7 +483,7 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
                 case 2:
                     SongsByName();
                     break;
-                    case 3:
+                case 3:
                     SongsByAlbumId();
                     break;
                 case 4:
@@ -511,7 +511,7 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
                 Console.WriteLine($"{song.TrackId}| {song.Name}, {song.Composer}, {song.Genre.Name}, {song.Album.Title}, {song.Milliseconds}, {song.UnitPrice}");
                 Console.WriteLine("--------------------------------------------------------------");
             }
-                return songById;
+            return songById;
         }
 
         public List<Track> SongsByAlbumId()
@@ -520,8 +520,8 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
             var searchById = SongList().Where(i => i.AlbumId == idInput).ToList();
 
             var SongsByAlbumId = (from id in searchById
-                            where id.AlbumId == idInput
-                            select id).ToList();
+                                  where id.AlbumId == idInput
+                                  select id).ToList();
             Console.WriteLine("-------------------------------------------------------------- ");
             Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
 
@@ -540,8 +540,8 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
             var searchByName = SongList().Where(i => i.Album.Title == idInput).ToList();
 
             var SongsByAlbumName = (from id in searchByName
-                            where id.Album.Title == idInput
-                            select id).ToList();
+                                    where id.Album.Title == idInput
+                                    select id).ToList();
             foreach (var song in SongsByAlbumName)
             {
                 Console.WriteLine("--------------------------------------------------------------");
@@ -550,8 +550,14 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
             }
             return SongsByAlbumName;
         }
+
+        public void SortSongs()
+        {
+            using var context = new chinookContext();
+            var tracksByName = context.Tracks.Where(x => x.Status == "Active").Include(x => x.Genre).Include(x => x.Album).OrderBy(x => x.Name);
     }
     }
+}
 
 
 

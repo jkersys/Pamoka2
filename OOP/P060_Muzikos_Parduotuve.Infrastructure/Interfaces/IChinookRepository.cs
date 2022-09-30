@@ -25,6 +25,7 @@ namespace Muzikos_Parduotuve.Infrastructure.Interfaces
         List<Track> SongsByName();
         List<Track> SongsByAlbumId();
         List<Track> SongsByAlbumName();
+        void SortSongs();
 
 
     }

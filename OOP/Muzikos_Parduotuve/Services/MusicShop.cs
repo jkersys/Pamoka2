@@ -75,7 +75,7 @@ namespace Muzikos_Parduotuve.Services
             switch (input)
             {
                 case '1':
-                   
+
                     ShowAllTracks();
                     break;
                 case '2':
@@ -114,10 +114,10 @@ namespace Muzikos_Parduotuve.Services
 
         public void ShowAllTracks()
         {
-            
+
             List<Track> tracksList = context.ShowCatalog();
 
-    Console.WriteLine("-------------------------------------------------------------- ");
+            Console.WriteLine("-------------------------------------------------------------- ");
             Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
             Console.WriteLine("-------------------------------------------------------------- ");
             foreach (var track in tracksList)
@@ -125,18 +125,18 @@ namespace Muzikos_Parduotuve.Services
                 Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
                 Console.WriteLine("-------------------------------------------------------------- ");
             }
-           Console.WriteLine("Q. grįžti");
-           Console.WriteLine("O. Rikiuoti");
-           Console.WriteLine("S. Paieška");
+            Console.WriteLine("Q. grįžti");
+            Console.WriteLine("O. Rikiuoti");
+            Console.WriteLine("S. Paieška");
 
             var input = Console.ReadLine();
-            if(input == "q")
+            if (input == "q")
             {
                 BuyMenu();
             }
             if (input == "o")
             {
-                BuyMenu();
+                SortByMenu();
             }
             if (input == "s")
             {
@@ -203,7 +203,7 @@ namespace Muzikos_Parduotuve.Services
             //    return;
             context.AddUser(firstName, lastName, company, adress, city, state, country, postalCode, phone, fax, email);
         }
-    
+
 
         private void SignUp()
         {
@@ -227,14 +227,46 @@ namespace Muzikos_Parduotuve.Services
             Console.WriteLine("4.Genre");
             Console.WriteLine("5.Composer ir Album:");
 
-            var input = Console.ReadLine()    
+            var input = Console.ReadLine();
 
             switch (input)
             {
+                case "1":
+                    SortSongsAToZ();
+                    break;
+                case "2":
+
+                    break;
+                case "3":
+
+                    break;
+                case "4":
+
+                    break;
+                case "5":
+
+                    break;
+                case "q":
+                    BuyMenu();
+                    break;
                 default:
                     break;
             }
 
+        }
+
+        public void SortSongsAToZ()
+        {
+            List<Track> tracksList = context.ShowCatalog();
+
+            Console.WriteLine("-------------------------------------------------------------- ");
+            Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
+            Console.WriteLine("-------------------------------------------------------------- ");
+            foreach (var track in tracksList)
+            {
+                Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
+                Console.WriteLine("-------------------------------------------------------------- ");
+            }
         }
     }
 }

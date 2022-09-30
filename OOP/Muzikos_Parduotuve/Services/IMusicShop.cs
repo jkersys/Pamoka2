@@ -13,6 +13,7 @@ namespace Muzikos_Parduotuve.Services
         void BuyMenu();
         void SortByMenu();
         void ShowAllTracks();
+        void SortSongsAToZ();
 
     }
 }
