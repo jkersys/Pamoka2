@@ -16,6 +16,10 @@ namespace Muzikos_Parduotuve.Services
 
         IChinookRepository context = new chinookRepository();
 
+        private Customer activeCustomer { get; set; }
+
+        private Invoice invoice { get; set; }
+
 
         public void StartShop()
         {
@@ -89,10 +93,10 @@ namespace Muzikos_Parduotuve.Services
 
                     break;
                 case 'q':
-                    //MainMenu();
+                    //BuyMenu();
                     return;
                 case 'Q':
-                    //MainMenu();
+                    //BuyMenu();
                     return;
                 case 'o':
                     //SortByMenu();
@@ -226,27 +230,31 @@ namespace Muzikos_Parduotuve.Services
             Console.WriteLine("3.Composer");
             Console.WriteLine("4.Genre");
             Console.WriteLine("5.Composer ir Album:");
+            Console.WriteLine("Q.Grįžti atgal:");
 
             var input = Console.ReadLine();
-
+            
             switch (input)
             {
                 case "1":
                     SortSongsAToZ();
                     break;
                 case "2":
-
+                    SortSongDescending();
                     break;
                 case "3":
-
+                    SortSongsByComposer();
                     break;
                 case "4":
-
+                    SortSongsByGenre();
                     break;
                 case "5":
-
+                    SortSongsByComposerAndAlbum();
                     break;
                 case "q":
+                    BuyMenu();
+                    break;
+                case "Q":
                     BuyMenu();
                     break;
                 default:
@@ -257,7 +265,7 @@ namespace Muzikos_Parduotuve.Services
 
         public void SortSongsAToZ()
         {
-            List<Track> tracksList = context.ShowCatalog();
+            List<Track> tracksList = context.SortSongs();
 
             Console.WriteLine("-------------------------------------------------------------- ");
             Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
@@ -267,7 +275,111 @@ namespace Muzikos_Parduotuve.Services
                 Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
                 Console.WriteLine("-------------------------------------------------------------- ");
             }
+            SortByMenu();
         }
+
+        public void SortSongDescending()
+        {
+            List<Track> tracksList = context.TracksByNameDecending();
+
+            Console.WriteLine("-------------------------------------------------------------- ");
+            Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
+            Console.WriteLine("-------------------------------------------------------------- ");
+            foreach (var track in tracksList)
+            {
+                Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
+                Console.WriteLine("-------------------------------------------------------------- ");
+            }
+            SortByMenu();
+        }
+
+        public void SortSongsByComposer()
+        {
+            List<Track> tracksList = context.TracksByComposer();
+
+            Console.WriteLine("-------------------------------------------------------------- ");
+            Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
+            Console.WriteLine("-------------------------------------------------------------- ");
+            foreach (var track in tracksList)
+            {
+                Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
+                Console.WriteLine("-------------------------------------------------------------- ");
+            }
+            SortByMenu();
+        }
+
+        public void SortSongsByGenre()
+        {
+            List<Track> tracksList = context.TracksByGenre();
+
+            Console.WriteLine("-------------------------------------------------------------- ");
+            Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
+            Console.WriteLine("-------------------------------------------------------------- ");
+            foreach (var track in tracksList)
+            {
+                Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
+                Console.WriteLine("-------------------------------------------------------------- ");
+            }
+            SortByMenu();
+        }
+
+        public void SortSongsByComposerAndAlbum()
+        {
+            List<Track> tracksList = context.TracksByComposerAndAlbum();
+
+            Console.WriteLine("-------------------------------------------------------------- ");
+            Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
+            Console.WriteLine("-------------------------------------------------------------- ");
+            foreach (var track in tracksList)
+            {
+                Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
+                Console.WriteLine("-------------------------------------------------------------- ");
+            }
+            SortByMenu();
+        }
+
+
+        public void SearchByMenu()
+        {
+            Console.WriteLine("Pasirinkite pagal ką norite ieškoti");
+            Console.WriteLine("1.Id");
+            Console.WriteLine("2.Name");
+            Console.WriteLine("3.Composer");
+            Console.WriteLine("4.Genre");
+            Console.WriteLine("5.Composer ir Album");
+            Console.WriteLine("Q.Grįžti atgal");
+
+            var input = Console.ReadLine();
+
+            switch (input)
+            {
+                case "1":
+                    SortSongsAToZ();
+                    break;
+                case "2":
+                    SortSongDescending();
+                    break;
+                case "3":
+                    SortSongsByComposer();
+                    break;
+                case "4":
+                    SortSongsByGenre();
+                    break;
+                case "5":
+                    SortSongsByComposerAndAlbum();
+                    break;
+                case "q":
+                    BuyMenu();
+                    break;
+                case "Q":
+                    BuyMenu();
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
     }
 }
         

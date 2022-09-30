@@ -14,6 +14,10 @@ namespace Muzikos_Parduotuve.Services
         void SortByMenu();
         void ShowAllTracks();
         void SortSongsAToZ();
+        void SortSongDescending();
+        void SortSongsByComposer();
+        void SortSongsByGenre();
+        void SortSongsByComposerAndAlbum();
 
     }
 }
