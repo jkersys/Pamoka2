@@ -17,7 +17,7 @@ namespace Muzikos_Parduotuve.Infrastructure.Interfaces
         void EmployeeLogin();
         void RegistrationForm();
         void BuyMenu();
-        void ShowCatalog();
+        List<Track> ShowCatalog();
         void SortBy();
         void SearchBy();
         void AddToBasket();

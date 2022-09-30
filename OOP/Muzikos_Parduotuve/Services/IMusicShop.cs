@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Muzikos_Parduotuve.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +10,9 @@ namespace Muzikos_Parduotuve.Services
     public interface IMusicShop
     {
         public void StartShop();
+        void BuyMenu();
+        void SortByMenu();
+        void ShowAllTracks();
+
     }
 }

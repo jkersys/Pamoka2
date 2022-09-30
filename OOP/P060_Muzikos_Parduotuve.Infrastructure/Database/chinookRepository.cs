@@ -195,20 +195,21 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
 
             }
         }
-        public void ShowCatalog()
+        public List<Track> ShowCatalog()
         {
             using var context = new chinookContext();
-            {
-                var ActiveTrack = context.Tracks.Where(x => x.Status == "Active").Include(x => x.Genre).Include(x => x.Album);
-                Console.WriteLine("-------------------------------------------------------------- ");
-                Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
-                Console.WriteLine("-------------------------------------------------------------- ");
-                foreach (var track in ActiveTrack)
-                {
-                    Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
-                    Console.WriteLine("-------------------------------------------------------------- ");
-                }
-            }
+            //{
+            List<Track> activeTrack = context.Tracks.Where(x => x.Status == "Active").Include(x => x.Genre).Include(x => x.Album).ToList(); ;
+            //Console.WriteLine("-------------------------------------------------------------- ");
+            //Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
+            //Console.WriteLine("-------------------------------------------------------------- ");
+            //foreach (var track in ActiveTrack)
+            //{
+            //    Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
+            //    Console.WriteLine("-------------------------------------------------------------- ");
+            //}
+            //}
+            return activeTrack;
         }
 
         public void SortBy()

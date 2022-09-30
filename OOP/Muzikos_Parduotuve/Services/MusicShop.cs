@@ -1,4 +1,5 @@
 ﻿using Castle.Core.Internal;
+using Muzikos_Parduotuve.Domain.Models;
 using Muzikos_Parduotuve.Infrastructure.Database;
 using Muzikos_Parduotuve.Infrastructure.Interfaces;
 using System;
@@ -14,6 +15,8 @@ namespace Muzikos_Parduotuve.Services
     {
 
         IChinookRepository context = new chinookRepository();
+
+
         public void StartShop()
         {
             Console.WriteLine("--------------------------------------------------------------");
@@ -49,13 +52,103 @@ namespace Muzikos_Parduotuve.Services
                     Console.WriteLine("Tokio pasirinkimo nėra");
                     break;
 
-
             }
+        }
+
+        public void BuyMenu()
+        {
+            Console.WriteLine("--------------------------------------------------------------");
+            Console.WriteLine("| #       | Pasirinkimas | ");
+            Console.WriteLine("--------------------------------------------------------------");
+            Console.WriteLine("| 1       | Peržiūrėti katalogą | ");
+            Console.WriteLine("--------------------------------------------------------------");
+            Console.WriteLine("| 2       | Įdėti į krepšelį | ");
+            Console.WriteLine("--------------------------------------------------------------");
+            Console.WriteLine("| 3       | Peržiūrėti krepšelį  | ");
+            Console.WriteLine("--------------------------------------------------------------");
+            Console.WriteLine("| 4       | Peržiūrėti pirkimų istorija (Išrašai) | ");
+            Console.WriteLine("--------------------------------------------------------------");
+
+
+            char input = Console.ReadKey().KeyChar;
+
+            switch (input)
+            {
+                case '1':
+                   
+                    ShowAllTracks();
+                    break;
+                case '2':
+
+                    break;
+                case '3':
+
+
+                    break;
+                case '4':
+
+                    break;
+                case 'q':
+                    //MainMenu();
+                    return;
+                case 'Q':
+                    //MainMenu();
+                    return;
+                case 'o':
+                    //SortByMenu();
+                    return;
+                case 'O':
+                    //SortByMenu();
+                    return;
+                case 's':
+                    StartShop();
+                    return;
+                case 'S':
+                    StartShop();
+                    return;
+                default:
+                    Console.WriteLine("No such case");
+                    break;
+            }
+        }
+
+        public void ShowAllTracks()
+        {
+            
+            List<Track> tracksList = context.ShowCatalog();
+
+    Console.WriteLine("-------------------------------------------------------------- ");
+            Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
+            Console.WriteLine("-------------------------------------------------------------- ");
+            foreach (var track in tracksList)
+            {
+                Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
+                Console.WriteLine("-------------------------------------------------------------- ");
+            }
+           Console.WriteLine("Q. grįžti");
+           Console.WriteLine("O. Rikiuoti");
+           Console.WriteLine("S. Paieška");
+
+            var input = Console.ReadLine();
+            if(input == "q")
+            {
+                BuyMenu();
+            }
+            if (input == "o")
+            {
+                BuyMenu();
+            }
+            if (input == "s")
+            {
+                BuyMenu();
+            }
+
+
         }
 
         private void EmployeeLogIn()
         {
-            Console.Clear()
+            Console.Clear();
             const string pin = "1234";
             Console.WriteLine("Įveskite pin kodą");
             var pinGuess = Console.ReadLine();
@@ -68,7 +161,7 @@ namespace Muzikos_Parduotuve.Services
 
         private void RegistrationForm()
         {
-            Console.Clear()
+            Console.Clear();
             Console.WriteLine("Registration");
             Console.WriteLine($"\nName:");
             string firstName = Console.ReadLine();
@@ -119,8 +212,29 @@ namespace Muzikos_Parduotuve.Services
 
             Console.WriteLine("Iveskite vartotojo Id prie kurio norite prisijungti");
             Console.ReadLine();
+            //sutvarkyt
+            BuyMenu();
             return;
             //nezinau kaip uzsetint kad zinotu kuris vartotojas paimtas
+        }
+
+        public void SortByMenu()
+        {
+            Console.WriteLine("Rušiuoti pagal:");
+            Console.WriteLine("1.Name abecėlės tvarka");
+            Console.WriteLine("2.Name atvirkštine abecėlės tvarka");
+            Console.WriteLine("3.Composer");
+            Console.WriteLine("4.Genre");
+            Console.WriteLine("5.Composer ir Album:");
+
+            var input = Console.ReadLine()    
+
+            switch (input)
+            {
+                default:
+                    break;
+            }
+
         }
     }
 }
