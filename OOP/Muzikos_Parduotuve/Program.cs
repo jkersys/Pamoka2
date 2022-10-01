@@ -11,10 +11,10 @@ namespace Muzikos_Parduotuve
         {
             Console.WriteLine("Hello, World!");
             IMusicShop startShop = new MusicShop();
-            startShop.StartShop();
+             startShop.StartShop();
 
-
-
+           // _chinookRepository.SearchSongsById(32);
+            //_chinookRepository.SearchSongsByComposerAndAlbum("Billy Corgan", "Judas 0: B-Sides and Rarities");
             //IChinookRepository musicShop = new chinookRepository();
             //musicShop.Main();
             //musicShop.PrintCustomers();

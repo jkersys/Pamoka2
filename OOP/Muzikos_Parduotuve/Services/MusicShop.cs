@@ -81,6 +81,7 @@ namespace Muzikos_Parduotuve.Services
                 case '1':
 
                     ShowAllTracks();
+                    FilterMenu();
                     break;
                 case '2':
 
@@ -93,10 +94,22 @@ namespace Muzikos_Parduotuve.Services
 
                     break;
                 case 'q':
-                    //BuyMenu();
+                    Console.WriteLine("Ar tikrai norite atsijungti y: taip n: ne");
+                    var logOut = Console.ReadLine();
+                    if (logOut == "y")
+                    {
+                        activeCustomer = null;
+                        StartShop();
+                    }
+                    if (logOut == "n")
+                    {
+                        BuyMenu();
+                    }
+
+                    StartShop();
                     return;
                 case 'Q':
-                    //BuyMenu();
+                    StartShop();
                     return;
                 case 'o':
                     //SortByMenu();
@@ -129,6 +142,11 @@ namespace Muzikos_Parduotuve.Services
                 Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
                 Console.WriteLine("-------------------------------------------------------------- ");
             }
+           
+        }
+
+        public void FilterMenu()
+        {
             Console.WriteLine("Q. grįžti");
             Console.WriteLine("O. Rikiuoti");
             Console.WriteLine("S. Paieška");
@@ -144,11 +162,10 @@ namespace Muzikos_Parduotuve.Services
             }
             if (input == "s")
             {
-                BuyMenu();
+                SearchByMenu();
             }
-
-
         }
+
 
         private void EmployeeLogIn()
         {
@@ -252,10 +269,10 @@ namespace Muzikos_Parduotuve.Services
                     SortSongsByComposerAndAlbum();
                     break;
                 case "q":
-                    BuyMenu();
+                    FilterMenu();
                     break;
                 case "Q":
-                    BuyMenu();
+                    FilterMenu();
                     break;
                 default:
                     break;
@@ -354,30 +371,145 @@ namespace Muzikos_Parduotuve.Services
             switch (input)
             {
                 case "1":
-                    SortSongsAToZ();
+                    SearchById();
                     break;
                 case "2":
-                    SortSongDescending();
+                    SearchByName();
                     break;
                 case "3":
-                    SortSongsByComposer();
+                    SearchByComposer();
                     break;
                 case "4":
-                    SortSongsByGenre();
+                    SearchByGenre();
                     break;
                 case "5":
-                    SortSongsByComposerAndAlbum();
+                    SearchByComposerAndAlbum();
+                    break;
+                case "6":
+                    SearchByLength();
                     break;
                 case "q":
-                    BuyMenu();
+                    FilterMenu();
                     break;
                 case "Q":
-                    BuyMenu();
+                    FilterMenu();
                     break;
                 default:
+                    Console.WriteLine("Tokio pasirinkimo nėra");
                     break;
             }
 
+        }
+        public void SearchById()
+        {
+            Console.WriteLine("Įveskite dainos Id");
+            int songId = Convert.ToInt32(Console.ReadLine());
+
+            List<Track> tracksList = context.SearchSongsById(songId);
+
+            Console.WriteLine("-------------------------------------------------------------- ");
+            Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
+            Console.WriteLine("-------------------------------------------------------------- ");
+            foreach (var track in tracksList)
+            {
+                Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
+                Console.WriteLine("-------------------------------------------------------------- ");
+            }
+            SearchByMenu();
+        }
+        public void SearchByName()
+        {
+            Console.WriteLine("Įveskite dainos pavadinimą");
+            string songName = Console.ReadLine();
+
+            List<Track> tracksList = context.SearchBySongName(songName);
+
+            Console.WriteLine("-------------------------------------------------------------- ");
+            Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
+            Console.WriteLine("-------------------------------------------------------------- ");
+            foreach (var track in tracksList)
+            {
+                Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
+                Console.WriteLine("-------------------------------------------------------------- ");
+            }
+            SearchByMenu();
+        }
+        public void SearchByComposer()
+        {
+            Console.WriteLine("Įveskite kompzitoriaus pavadinimą");
+            string composer = Console.ReadLine();
+
+            List<Track> tracksList = context.SearchByComposer(composer);
+
+            Console.WriteLine("-------------------------------------------------------------- ");
+            Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
+            Console.WriteLine("-------------------------------------------------------------- ");
+            foreach (var track in tracksList)
+            {
+                Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
+                Console.WriteLine("-------------------------------------------------------------- ");
+            }
+            SearchByMenu();
+        }
+        public void SearchByGenre()
+        {
+            Console.WriteLine("Įveskite dainos žanro pavadinimą");
+            string genre = Console.ReadLine();
+
+            List<Track> tracksList = context.SearchByGenre(genre);
+
+            Console.WriteLine("-------------------------------------------------------------- ");
+            Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
+            Console.WriteLine("-------------------------------------------------------------- ");
+            foreach (var track in tracksList)
+            {
+                Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
+                Console.WriteLine("-------------------------------------------------------------- ");
+            }
+            SearchByMenu();
+        }
+        public void SearchByComposerAndAlbum()
+        {
+            Console.WriteLine("Įveskite dainos autorių");
+            string composer = Console.ReadLine();
+            Console.WriteLine("Įveskite albumo pavadinimą");
+            string album = Console.ReadLine();
+
+            List<Track> tracksList = context.SearchSongsByComposerAndAlbum(composer, album);
+
+
+
+            Console.WriteLine("-------------------------------------------------------------- ");
+            Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
+            Console.WriteLine("-------------------------------------------------------------- ");
+            foreach (var track in tracksList)
+            {
+                Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
+                Console.WriteLine("-------------------------------------------------------------- ");
+            }
+            SearchByMenu();
+        }
+        public void SearchByLength()
+        {
+            Console.WriteLine("Įveskite milisekundžių skaičių");
+            int miliseconds = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("1. Dainos ilgesnės nei įvestas milisekundžių skaičius");
+            Console.WriteLine("2. Dainos trumpesnės nei įvestas milisekundžių skaičius");
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            List<Track> tracksList = context.SearchSongsByLength(miliseconds, choice);
+
+
+
+            Console.WriteLine("-------------------------------------------------------------- ");
+            Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
+            Console.WriteLine("-------------------------------------------------------------- ");
+            foreach (var track in tracksList)
+            {
+                Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
+                Console.WriteLine("-------------------------------------------------------------- ");
+            }
+            SearchByMenu();
         }
 
     }

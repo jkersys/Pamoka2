@@ -20,30 +20,7 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
             // Jei neegzsituoja uz mus buna paleidziama CLI komanda update-datase
             context.Database.EnsureCreated();
         }
-
-
-        public void MainMenu()
-        {
-
-            Console.WriteLine("--------------------------------------------------------------");
-            Console.WriteLine("| #       | Pasirinkimas | ");
-            Console.WriteLine("--------------------------------------------------------------");
-            Console.WriteLine("| 1       | Prisijungti | ");
-            Console.WriteLine("--------------------------------------------------------------");
-            Console.WriteLine("| 2       | Registruoti | ");
-            Console.WriteLine("--------------------------------------------------------------");
-            Console.WriteLine("| 3       | Darbuotojų Parinktys | ");
-            Console.WriteLine("--------------------------------------------------------------");
-
-
-
-            // var veiksmas = Console.ReadKey().Key;
-
-            // if (veiksmas == ConsoleKey.NumPad1) LogIn();
-            // if (veiksmas == ConsoleKey.NumPad2) Registration(string firstName, string lastName, string ? company, string ? adress, string ? city, string ? state, string ? country, string ? postalCode, string ? phone, string ? fax, string email);
-            // if (veiksmas == ConsoleKey.NumPad3) LogIn();
-
-        }
+             
 
 
         public void AddUser(string firstName, string lastName, string? company, string? adress, string? city, string? state, string? country, string? postalCode, string? phone, string? fax, string email)
@@ -95,174 +72,18 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
                 //to do
             }
 
+         }
 
-        }
-
-        public void RegistrationForm()
-        {
-
-
-
-            Console.WriteLine("Registration");
-            Console.WriteLine($"\nName:");
-            string firstName = Console.ReadLine();
-            Console.WriteLine($"\nLast name:");
-            string lastName = Console.ReadLine();
-            Console.WriteLine($"\nCompany");
-            string company = Console.ReadLine();
-            Console.WriteLine($"\nAdress");
-            string adress = Console.ReadLine();
-            Console.WriteLine($"\nCity");
-            string city = Console.ReadLine();
-            Console.WriteLine($"\nState");
-            string state = Console.ReadLine();
-            Console.WriteLine($"\nCountry");
-            string country = Console.ReadLine();
-            Console.WriteLine($"\nPostalCode");
-            string postalCode = Console.ReadLine();
-            Console.WriteLine($"\nPhone");
-            string phone = Console.ReadLine();
-            Console.WriteLine($"\nFax");
-            string fax = Console.ReadLine();
-            Console.WriteLine($"\nEmail");
-            string email = Console.ReadLine();
-
-            if (firstName.IsNullOrEmpty())
-            {
-                Console.WriteLine("Neivedėte vardo");
-            }
-            if (lastName.IsNullOrEmpty == null)
-            {
-                Console.WriteLine("Neivedėte Pavardės");
-            }
-            if (email.IsNullOrEmpty() && !email.Contains("@"))
-            {
-                Console.WriteLine("Neįvestas, arba neteisingai įvestas El. paštas");
-            }
-            else
-            {
-                return;
-            }
-
-
-
-            AddUser(firstName, lastName, company, adress, city, state, country, postalCode, phone, fax, email);
-        }
-
-        public void BuyMenu()
-        {
-            Console.WriteLine("--------------------------------------------------------------");
-            Console.WriteLine("| #       | Pasirinkimas | ");
-            Console.WriteLine("--------------------------------------------------------------");
-            Console.WriteLine("| 1       | Peržiūrėti katalogą | ");
-            Console.WriteLine("--------------------------------------------------------------");
-            Console.WriteLine("| 2       | Įdėti į krepšelį | ");
-            Console.WriteLine("--------------------------------------------------------------");
-            Console.WriteLine("| 3       | Peržiūrėti krepšelį  | ");
-            Console.WriteLine("--------------------------------------------------------------");
-            Console.WriteLine("| 3       | Peržiūrėti pirkimų istorija (Išrašai) | ");
-            Console.WriteLine("--------------------------------------------------------------");
-
-
-            char BuyMenu = Console.ReadKey().KeyChar;
-
-            switch (BuyMenu)
-            {
-                //case '1':
-                //    ShowCatalog();
-                //    break;
-                //case '2':
-                //    KrepselioMetodas();
-                //    break;
-                //case '3':
-                //    ViewBasket();
-                //    UzbaigimoKomandos();
-                //    break;
-                //case '4':
-                //    SalesHistoryData();
-                //    break;
-                //case 'q':
-                //    Run();
-                //    return;
-                //case 'Q':
-                //    Run();
-                //        return;
-                //    default:
-                //        Console.WriteLine("No such case");
-                //        break;
-                //}
-
-
-            }
-        }
+            
+        
         public List<Track> ShowCatalog()
         {
             using var context = new chinookContext();
-            //{
+           
             List<Track> activeTrack = context.Tracks.Where(x => x.Status == "Active").Include(x => x.Genre).Include(x => x.Album).ToList(); ;
-            //Console.WriteLine("-------------------------------------------------------------- ");
-            //Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
-            //Console.WriteLine("-------------------------------------------------------------- ");
-            //foreach (var track in ActiveTrack)
-            //{
-            //    Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
-            //    Console.WriteLine("-------------------------------------------------------------- ");
-            //}
-            //}
             return activeTrack;
         }
-
-        public void SortBy()
-        {
-            using var context = new chinookContext();
-
-
-            Console.WriteLine("Rušiuoti pagal:");
-            Console.WriteLine("1.Name abecėlės tvarka");
-            Console.WriteLine("2.Name atvirkštine abecėlės tvarka");
-            Console.WriteLine("3.Composer");
-            Console.WriteLine("4.Genre");
-            Console.WriteLine("5.Composer ir Album:");
-
-            var input = Console.ReadLine();
-
-
-            if (input == "1")
-            {
-                Console.Clear();
-                var tracksByName = context.Tracks.Where(x => x.Status == "Active").Include(x => x.Genre).Include(x => x.Album).OrderBy(x => x.Name);
-                foreach (var track in tracksByName)
-                {
-                    Console.WriteLine($"Track Id. {track.TrackId} Track name. {track.Name} Track composer. {track.Composer} Track album. {track.Album.Title} Track genre. {track.Genre.Name} Track length. {track.Milliseconds} Track price. {track.UnitPrice}");
-                }
-            }
-
-            if (input == "2")
-            {
-                var tracksByNameDecending = context.Tracks.Where(x => x.Status == "Active").Include(x => x.Genre).Include(x => x.Album).OrderByDescending(x => x.Name);
-                foreach (var track in tracksByNameDecending)
-                { Console.WriteLine($"Track Id. {track.TrackId} Track name. {track.Name} Track composer. {track.Composer} Track album. {track.Album.Title} Track genre. {track.Genre.Name} Track length. {track.Milliseconds} Track price. {track.UnitPrice}"); }
-            }
-            if (input == "3")
-            {
-                var tracksByComposer = context.Tracks.Where(x => x.Status == "Active").Include(x => x.Genre).Include(x => x.Album).OrderBy(x => x.Composer);
-                foreach (var track in tracksByComposer)
-                { Console.WriteLine($"Track Id. {track.TrackId} Track composer. {track.Composer} Track name. {track.Name} Track album. {track.Album.Title} Track genre. {track.Genre.Name} Track length. {track.Milliseconds} Track price. {track.UnitPrice}"); }
-            }
-            if (input == "4")
-            {
-                var tracksByGenre = context.Tracks.Where(x => x.Status == "Active").Include(x => x.Genre).Include(x => x.Album).OrderBy(x => x.Genre.Name);
-                foreach (var track in tracksByGenre)
-                { Console.WriteLine($"Track genre. {track.Genre.Name} Track Id. {track.TrackId} Track name. {track.Name} Track album. {track.Album.Title} Track length. {track.Milliseconds} Track price. {track.UnitPrice}"); }
-            }
-            if (input == "5")
-            {
-                var tracksByNameDecending = context.Tracks.Where(x => x.Status == "Active").Include(x => x.Genre).Include(x => x.Album).OrderBy(c => c.Composer).ThenBy(a => a.Album.Title);
-                foreach (var track in tracksByNameDecending)
-                { Console.WriteLine($"Track Id. {track.TrackId} Track composer. {track.Composer} Track album. {track.Album.Title} Track name. {track.Name} Track genre. {track.Genre.Name} Track length. {track.Milliseconds} Track price. {track.UnitPrice}"); }
-            }
-        }
-
+       
         public void SearchBy()
         {
             using var context = new chinookContext();
@@ -340,22 +161,22 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
             {
                 Console.WriteLine("Iveskite kompozitorių");
                 var composerInput = Console.ReadLine();
-                var searchById = SongList().Where(i => i.Composer == composerInput).ToList();
+                var searchByComposer = SongList().Where(i => i.Composer == composerInput).ToList();
 
-                var songById = (from id in searchById
+                var songByComposer = (from id in searchByComposer
                                 where id.Composer == composerInput
                                 select id).ToList();
 
-                if (songById.Count == 0)
+                if (songByComposer.Count == 0)
                 {
                     Console.WriteLine("Tokio kompozitoriaus saraše nėra");
                 }
 
                 Console.WriteLine("Iveskite albumo pavadinimą");
                 var albumInput = Console.ReadLine();
-                var songByComposer = songById.Where(i => i.Album.Title == albumInput).ToList();
+                var searchByAlbum = songByComposer.Where(i => i.Album.Title == albumInput).ToList();
 
-                var songByAlbum = (from id in songByComposer
+                var songByAlbum = (from id in searchByAlbum
                                    where id.Album.Title == albumInput
                                    select id).ToList();
 
@@ -369,7 +190,7 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
                 }
 
                 else
-                    foreach (var song in songById)
+                    foreach (var song in songByAlbum)
                     {
                         Console.WriteLine($"{song.TrackId} {song.Name} {song.UnitPrice}");
                     }
@@ -392,32 +213,24 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
 
                 if (optionInput == 1)
                 {
-                    var searchById = SongList().Where(i => i.Milliseconds > lengthInput).ToList();
+                    var searchByLength = SongList().Where(i => i.Milliseconds > lengthInput).ToList();
 
-                    var songById = (from id in searchById
+                    var songByLength = (from id in searchByLength
                                     where id.Milliseconds > lengthInput
-                                    select id).ToList();
-
-                    foreach (var song in songById)
-                    {
-                        Console.WriteLine($"{song.TrackId} {song.Name} {song.UnitPrice} {song.Milliseconds}");
-                    }
+                                    select id).ToList();                                     
                 }
                 if (optionInput == 2)
                 {
-                    var searchById = SongList().Where(i => i.Milliseconds < lengthInput).ToList();
+                    var searchByLength = SongList().Where(i => i.Milliseconds < lengthInput).ToList();
 
-                    var songById = (from id in searchById
+                    var songByLength = (from id in searchByLength
                                     where id.Milliseconds < lengthInput
                                     select id).ToList();
-                    foreach (var song in songById)
-                    {
-                        Console.WriteLine($"{song.TrackId} {song.Name} {song.UnitPrice} {song.Milliseconds}");
-                    }
+                  
                 }
 
 
-
+                
             }
         }
 
@@ -456,18 +269,18 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
             switch (input)
             {
                 case 1:
-                    SongsById();
+                   
                     Console.WriteLine($"'q' - Grįžti atgal || 'y' - Įdeda į krepšelį visas rastas dainas");
                     Console.ReadLine();
                     break;
                 case 2:
-                    SongsByName();
+                   
                     break;
                 case 3:
-                    SongsByAlbumId();
+                    //SongsByAlbumId();
                     break;
                 case 4:
-                    SongsByAlbumName();
+                   // SongsByAlbumName();
                     break;
                 default:
                     break;
@@ -475,82 +288,9 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
 
 
         }
-        public List<Track> SongsById()
-        {
-            Console.WriteLine("Iveskite dainos Id");
-            var idInput = Convert.ToInt64(Console.ReadLine());
-            var searchById = SongList().Where(i => i.TrackId == idInput).ToList();
+                  
 
-            var songById = (from id in searchById
-                            where id.TrackId == idInput
-                            select id).ToList();
-            Console.WriteLine("-------------------------------------------------------------- ");
-            Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
-
-            foreach (var song in songById)
-            {
-                Console.WriteLine("--------------------------------------------------------------");
-                Console.WriteLine($"{song.TrackId}| {song.Name}, {song.Composer}, {song.Genre.Name}, {song.Album.Title}, {song.Milliseconds}, {song.UnitPrice}");
-                Console.WriteLine("--------------------------------------------------------------");
-            }
-            return songById;
-        }
-
-
-        public List<Track> SongsByName()
-        {
-            Console.WriteLine("Iveskite dainos Pavadinimą");
-            var idInput = Console.ReadLine();
-            var searchByName = SongList().Where(i => i.Name == idInput).ToList();
-
-            var songById = (from id in searchByName
-                            where id.Name == idInput
-                            select id).ToList();
-            foreach (var song in searchByName)
-            {
-                Console.WriteLine("--------------------------------------------------------------");
-                Console.WriteLine($"{song.TrackId}| {song.Name}, {song.Composer}, {song.Genre.Name}, {song.Album.Title}, {song.Milliseconds}, {song.UnitPrice}");
-                Console.WriteLine("--------------------------------------------------------------");
-            }
-            return songById;
-        }
-
-        public List<Track> SongsByAlbumId()
-        {
-            var idInput = Convert.ToInt64(Console.ReadLine());
-            var searchById = SongList().Where(i => i.AlbumId == idInput).ToList();
-
-            var SongsByAlbumId = (from id in searchById
-                                  where id.AlbumId == idInput
-                                  select id).ToList();
-            Console.WriteLine("-------------------------------------------------------------- ");
-            Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
-
-            foreach (var song in SongsByAlbumId)
-            {
-                Console.WriteLine("--------------------------------------------------------------");
-                Console.WriteLine($"{song.TrackId}| {song.Name}, {song.Composer}, {song.Genre.Name}, {song.Album.Title}, {song.Milliseconds}, {song.UnitPrice}");
-                Console.WriteLine("--------------------------------------------------------------");
-            }
-            return SongsByAlbumId;
-        }
-
-        public List<Track> SongsByAlbumName()
-        {
-            var idInput = Console.ReadLine();
-            var searchByName = SongList().Where(i => i.Album.Title == idInput).ToList();
-
-            var SongsByAlbumName = (from id in searchByName
-                                    where id.Album.Title == idInput
-                                    select id).ToList();
-            foreach (var song in SongsByAlbumName)
-            {
-                Console.WriteLine("--------------------------------------------------------------");
-                Console.WriteLine($"{song.TrackId}| {song.Name}, {song.Composer}, {song.Genre.Name}, {song.Album.Title}, {song.Milliseconds}, {song.UnitPrice}");
-                Console.WriteLine("--------------------------------------------------------------");
-            }
-            return SongsByAlbumName;
-        }
+      
 
         public List<Track> SortSongs()
         {
@@ -592,19 +332,150 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
             //invoice
         }
 
-        public List<Track> SongsByAlbumId(int trackId)
+        public List<Track> SearchSongsById(int songId)
         {
-            throw new NotImplementedException();
+                      
+            var searchById = SongList().Where(i => i.TrackId == songId).ToList();
+            var songById = (from id in searchById
+                            where id.TrackId == songId
+                            select id).ToList();
+
+            return songById;
         }
+        public List<Track> SearchBySongName(string songName)
+        {
+           
+            
+            var searchByName = SongList().Where(i => i.Name == songName).ToList();
+
+            var songById = (from id in searchByName
+                            where id.Name == songName
+                            select id).ToList();
+            
+            return songById;
+        }
+
+        public List<Track> SongsByAlbumId(int albumId)
+        {
+           
+            var searchById = SongList().Where(i => i.AlbumId == albumId).ToList();
+
+            var SongsByAlbumId = (from id in searchById
+                                  where id.AlbumId == albumId
+                                  select id).ToList();
+            Console.WriteLine("-------------------------------------------------------------- ");
+            Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
+
+            foreach (var song in SongsByAlbumId)
+            {
+                Console.WriteLine("--------------------------------------------------------------");
+                Console.WriteLine($"{song.TrackId}| {song.Name}, {song.Composer}, {song.Genre.Name}, {song.Album.Title}, {song.Milliseconds}, {song.UnitPrice}");
+                Console.WriteLine("--------------------------------------------------------------");
+            }
+            return SongsByAlbumId;
+        }    
 
         public List<Track> SongsByAlbumName(string albumName)
         {
-            throw new NotImplementedException();
+          
+            var searchByName = SongList().Where(i => i.Album.Title == albumName).ToList();
+
+            var SongsByAlbumName = (from id in searchByName
+                                    where id.Album.Title == albumName
+                                    select id).ToList();
+            foreach (var song in SongsByAlbumName)
+            {
+                Console.WriteLine("--------------------------------------------------------------");
+                Console.WriteLine($"{song.TrackId}| {song.Name}, {song.Composer}, {song.Genre.Name}, {song.Album.Title}, {song.Milliseconds}, {song.UnitPrice}");
+                Console.WriteLine("--------------------------------------------------------------");
+            }
+            return SongsByAlbumName;
+        }                 
+             
+        public List<Track> SearchByComposer(string composer)
+        {
+         
+            
+            var searchById = SongList().Where(i => i.Composer == composer).ToList();
+
+            var songById = (from id in searchById
+                            where id.Composer == composer
+                            select id).ToList();
+
+          
+            return songById;
+        }           
+
+        public List<Track> SearchByGenre(string genre)
+        {
+            
+            var searchById = SongList().Where(i => i.Genre.Name == genre).ToList();
+
+            var songById = (from id in searchById
+                            where id.Genre.Name == genre
+                            select id).ToList();
+
+          
+            return songById;
         }
 
-        public List<Track> TracksByComposer(string composer)
+        public List<Track> SearchSongsByComposerAndAlbum(string composer, string album)
         {
-            throw new NotImplementedException();
+          
+            
+            var searchByComposer = SongList().Where(i => i.Composer == composer).ToList();
+
+            var songByComposer = (from id in searchByComposer
+                                  where id.Composer == composer
+                                  select id).ToList();
+
+            if (songByComposer.Count == 0)
+            {
+                Console.WriteLine("Tokio kompozitoriaus saraše nėra");
+            }
+
+            Console.WriteLine("Iveskite albumo pavadinimą");
+            
+            var searchByAlbum = songByComposer.Where(i => i.Album.Title == album).ToList();
+
+            var songByAlbum = (from id in searchByAlbum
+                               where id.Album.Title == album
+                               select id).ToList();
+                   
+            
+            if (songByAlbum.Count == 0)
+            {
+                Console.WriteLine("Tokio albumo saraše nėra");
+            }                     
+
+            return songByAlbum;
+        }
+
+        public List<Track> SearchSongsByLength(int length, int choice)
+        {
+          
+            List<Track> songByLength;
+
+            if (choice == 1)
+            {
+                var searchByLength = SongList().Where(i => i.Milliseconds > length).ToList();
+
+              songByLength = (from id in searchByLength
+                                    where id.Milliseconds > length
+                                    select id).ToList();
+                return songByLength;
+            }
+            if (choice == 2)
+            {
+                var searchByLength = SongList().Where(i => i.Milliseconds < length).ToList();
+
+               songByLength = (from id in searchByLength
+                                    where id.Milliseconds < length
+                                    select id).ToList();
+
+                return songByLength;
+            }
+            return null;
         }
     }
 }

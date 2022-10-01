@@ -14,22 +14,26 @@ namespace Muzikos_Parduotuve.Infrastructure.Interfaces
             adress, string? city, string? state, string? country, 
             string? postalCode, string? phone, string? fax, string email);
         void EmployeeLogin();
-        void RegistrationForm();
-        void BuyMenu();
+        
+       
         List<Track> ShowCatalog();
-        void SortBy();
+       
         void SearchBy();
         void AddToBasket(int customerId, List<int> trackIds);
-        List<Track> SongsById();
-
-        List<Track> SongsByName();
-        List<Track> SongsByAlbumId(int trackId);
-        List<Track> SongsByAlbumName(string albumName);
+               
         List<Track> SortSongs();
         List<Track> TracksByNameDecending();
         List<Track> TracksByComposer();
         List<Track> TracksByGenre();
         List<Track> TracksByComposerAndAlbum();
+        List<Track> SearchSongsById(int songId);
+        List<Track> SearchBySongName(string songName);
+        List<Track> SearchByComposer(string composer);
+        List<Track> SearchByGenre(string genre);
+        List<Track> SearchSongsByComposerAndAlbum(string composer, string album);
+        List<Track> SearchSongsByLength(int length, int choice);
+        List<Track> SongsByAlbumName(string albumName);
+
 
 
     }
