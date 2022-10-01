@@ -9,7 +9,7 @@ namespace Muzikos_Parduotuve.Infrastructure.Interfaces
 {
     public interface IChinookRepository
     {
-        void LogIn();
+        List<Customer> CustomerList();
         void AddUser(string firstName, string lastName, string? company, string? 
             adress, string? city, string? state, string? country, 
             string? postalCode, string? phone, string? fax, string email);
@@ -32,7 +32,11 @@ namespace Muzikos_Parduotuve.Infrastructure.Interfaces
         List<Track> SearchByGenre(string genre);
         List<Track> SearchSongsByComposerAndAlbum(string composer, string album);
         List<Track> SearchSongsByLength(int length, int choice);
-        List<Track> SongsByAlbumName(string albumName);
+        List<Track> SearchSongsByAlbumId(int albumId);
+        List<Track> SearchBySongAlbumName(string albumName);
+
+
+
 
 
 
