@@ -11,9 +11,7 @@ namespace Muzikos_Parduotuve
     {
         public chinookContext()
         {
-            //var folder = Environment.SpecialFolder.LocalApplicationData;
-            //var path = Environment.GetFolderPath(folder);
-            //ConnectionString = Path.Join(path, "CodeFirstBlogging.db");
+        
         }
 
         public chinookContext(DbContextOptions<chinookContext> options)

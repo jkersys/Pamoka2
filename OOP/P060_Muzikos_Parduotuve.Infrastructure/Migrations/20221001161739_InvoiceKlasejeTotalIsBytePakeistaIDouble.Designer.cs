@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Muzikos_Parduotuve;
 
@@ -10,9 +11,10 @@ using Muzikos_Parduotuve;
 namespace Muzikos_Parduotuve.Infrastructure.Migrations
 {
     [DbContext(typeof(chinookContext))]
-    partial class chinookContextModelSnapshot : ModelSnapshot
+    [Migration("20221001161739_InvoiceKlasejeTotalIsBytePakeistaIDouble")]
+    partial class InvoiceKlasejeTotalIsBytePakeistaIDouble
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.9");
@@ -112,7 +114,7 @@ namespace Muzikos_Parduotuve.Infrastructure.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("NVARCHAR(70)");
 
-                    b.Property<DateTime?>("BirthDate")
+                    b.Property<byte[]>("BirthDate")
                         .HasColumnType("DATETIME");
 
                     b.Property<string>("City")
@@ -131,7 +133,7 @@ namespace Muzikos_Parduotuve.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("NVARCHAR(20)");
 
-                    b.Property<DateTime?>("HireDate")
+                    b.Property<byte[]>("HireDate")
                         .HasColumnType("DATETIME");
 
                     b.Property<string>("LastName")

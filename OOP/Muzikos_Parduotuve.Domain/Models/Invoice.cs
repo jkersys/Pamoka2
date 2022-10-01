@@ -18,7 +18,7 @@ namespace Muzikos_Parduotuve.Domain.Models
         public string? BillingState { get; set; }
         public string? BillingCountry { get; set; }
         public string? BillingPostalCode { get; set; }
-        public byte[] Total { get; set; } = null!;
+        public double Total { get; set; }
 
         public virtual Customer Customer { get; set; } = null!;
         public virtual ICollection<InvoiceItem> InvoiceItems { get; set; }

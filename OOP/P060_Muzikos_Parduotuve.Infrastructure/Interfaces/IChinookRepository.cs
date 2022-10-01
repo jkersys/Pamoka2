@@ -13,12 +13,14 @@ namespace Muzikos_Parduotuve.Infrastructure.Interfaces
         void AddUser(string firstName, string lastName, string? company, string? 
             adress, string? city, string? state, string? country, 
             string? postalCode, string? phone, string? fax, string email);
-        void EmployeeLogin();
-        
+        List<Employee> EmployeesList();
+
+
+        List<Track> ShowCatalogForAdmin();
+        List<Track> SongList();
+
+
        
-        List<Track> ShowCatalog();
-       
-        void SearchBy();
         void AddToBasket(int customerId, List<int> trackIds);
                
         List<Track> SortSongs();
@@ -34,6 +36,7 @@ namespace Muzikos_Parduotuve.Infrastructure.Interfaces
         List<Track> SearchSongsByLength(int length, int choice);
         List<Track> SearchSongsByAlbumId(int albumId);
         List<Track> SearchBySongAlbumName(string albumName);
+        void UpdateSongStatus(int id, string status);
 
 
 
