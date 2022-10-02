@@ -13,12 +13,19 @@ namespace Muzikos_Parduotuve.Services
 
     public class MusicShop : IMusicShop
     {
+        private readonly IChinookRepository repository;
+        private Customer? activeCustomer { get; set; }
 
-        IChinookRepository context = new chinookRepository();
+        private List<Track> tracksSelected { get; set; } = new List<Track>();
 
-        public virtual Customer activeCustomer { get; set; }
+        public MusicShop()
+        {
+            repository = new ChinookRepository();
+        }
 
-        public virtual List<Track>? TracksSelected { get; set; }
+
+
+        const string pin = "1234";
 
 
         public void StartShop()
@@ -38,7 +45,7 @@ namespace Muzikos_Parduotuve.Services
             switch (input)
             {
                 case '1':
-                    ChangeSongStatus();
+                    CustomerLogIn();
                     break;
                 case '2':
                     RegistrationForm();
@@ -87,11 +94,10 @@ namespace Muzikos_Parduotuve.Services
                     AddToBasketMenu();
                     break;
                 case '3':
-
-
+                    ShowBasket();
                     break;
                 case '4':
-
+                    ShowAllInvoices();
                     break;
                 case 'q':
                     Console.WriteLine("Ar tikrai norite atsijungti y: taip n: ne");
@@ -120,7 +126,7 @@ namespace Muzikos_Parduotuve.Services
         public void ShowAllTracks()
         {
 
-            List<Track> tracksList = context.SongList();
+            List<Track> tracksList = repository.SongList();
 
             Console.WriteLine("-------------------------------------------------------------- ");
             Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
@@ -154,19 +160,8 @@ namespace Muzikos_Parduotuve.Services
             }
         }
 
-        private void EmployeeLogIn()
-        {
-            Console.Clear();
-            const string pin = "1234";
-            Console.WriteLine("Įveskite pin kodą");
-            var pinGuess = Console.ReadLine();
 
-            if (pinGuess == pin)
-            {
-                //to do
-            }
-        }
-
+        //Uztikrint kad ivestu privalomus laukus, neismetant is reg formos
         private void RegistrationForm()
         {
             Console.Clear();
@@ -194,28 +189,39 @@ namespace Muzikos_Parduotuve.Services
             Console.WriteLine($"\nEmail");
             string email = Console.ReadLine();
 
-            //if (firstName.IsNullOrEmpty())
-            //{
-            //    Console.WriteLine("Neivedėte vardo");
-            //}
-            //if (lastName.IsNullOrEmpty == null)
-            //{
-            //    Console.WriteLine("Neivedėte Pavardės");
-            //}
-            //if (email.IsNullOrEmpty() && !email.Contains("@"))
-            //{
-            //    Console.WriteLine("Neįvestas, arba neteisingai įvestas El. paštas");
-            //}
-            //else
-            //{
-            //    return;
-            context.AddUser(firstName, lastName, company, adress, city, state, country, postalCode, phone, fax, email);
+            if (firstName.IsNullOrEmpty())
+            {
+                while (firstName.IsNullOrEmpty())
+                {
+                    Console.WriteLine("Vardas privalo būti įvestas");
+                    firstName = Console.ReadLine();
+                }
+                
+                while (lastName.IsNullOrEmpty())
+                {
+                    Console.WriteLine("Neivedėte Pavardės");
+                    lastName = Console.ReadLine();
+                }
+                
+                while (email.IsNullOrEmpty() || !email.Contains("@"))
+                {
+                    Console.WriteLine("Neįvestas, arba neteisingai įvestas El. paštas");
+                    email = Console.ReadLine();
+                }
+            }
+
+
+            repository.AddUser(firstName, lastName, company, adress, city, state, country, postalCode, phone, fax, email);
+
+            StartShop();
         }
+
+
 
         private void CustomerLogIn()
         {
             Console.Clear();
-            List<Customer> customerList = context.CustomerList();
+            List<Customer> customerList = repository.CustomerList();
             foreach (Customer customer in customerList)
             {
                 Console.WriteLine($"{customer.CustomerId} {customer.FirstName} {customer.LastName}");
@@ -280,7 +286,7 @@ namespace Muzikos_Parduotuve.Services
 
         public void SortSongsAToZ()
         {
-            List<Track> tracksList = context.SortSongs();
+            List<Track> tracksList = repository.SortSongs();
 
             Console.WriteLine("-------------------------------------------------------------- ");
             Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
@@ -295,7 +301,7 @@ namespace Muzikos_Parduotuve.Services
 
         public void SortSongDescending()
         {
-            List<Track> tracksList = context.TracksByNameDecending();
+            List<Track> tracksList = repository.TracksByNameDecending();
 
             Console.WriteLine("-------------------------------------------------------------- ");
             Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
@@ -310,7 +316,7 @@ namespace Muzikos_Parduotuve.Services
 
         public void SortSongsByComposer()
         {
-            List<Track> tracksList = context.TracksByComposer();
+            List<Track> tracksList = repository.TracksByComposer();
 
             Console.WriteLine("-------------------------------------------------------------- ");
             Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
@@ -325,7 +331,7 @@ namespace Muzikos_Parduotuve.Services
 
         public void SortSongsByGenre()
         {
-            List<Track> tracksList = context.TracksByGenre();
+            List<Track> tracksList = repository.TracksByGenre();
 
             Console.WriteLine("-------------------------------------------------------------- ");
             Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
@@ -340,7 +346,7 @@ namespace Muzikos_Parduotuve.Services
 
         public void SortSongsByComposerAndAlbum()
         {
-            List<Track> tracksList = context.TracksByComposerAndAlbum();
+            List<Track> tracksList = repository.TracksByComposerAndAlbum();
 
             Console.WriteLine("-------------------------------------------------------------- ");
             Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
@@ -401,18 +407,17 @@ namespace Muzikos_Parduotuve.Services
         public void SearchById()
         {
             Console.WriteLine("Įveskite dainos Id");
-            int songId = Convert.ToInt32(Console.ReadLine());
+            long songId = Convert.ToInt64(Console.ReadLine());
 
-            List<Track> tracksList = context.SearchSongsById(songId);
+            Track track = repository.GetSongById(songId);
 
             Console.WriteLine("-------------------------------------------------------------- ");
             Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
             Console.WriteLine("-------------------------------------------------------------- ");
-            foreach (var track in tracksList)
-            {
-                Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
-                Console.WriteLine("-------------------------------------------------------------- ");
-            }
+
+            Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
+            Console.WriteLine("-------------------------------------------------------------- ");
+
             SearchByMenu();
         }
         public void SearchByName()
@@ -420,7 +425,7 @@ namespace Muzikos_Parduotuve.Services
             Console.WriteLine("Įveskite dainos pavadinimą");
             string songName = Console.ReadLine();
 
-            List<Track> tracksList = context.SearchBySongName(songName);
+            List<Track> tracksList = repository.SearchBySongName(songName);
 
             Console.WriteLine("-------------------------------------------------------------- ");
             Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
@@ -437,7 +442,7 @@ namespace Muzikos_Parduotuve.Services
             Console.WriteLine("Įveskite kompzitoriaus pavadinimą");
             string composer = Console.ReadLine();
 
-            List<Track> tracksList = context.SearchByComposer(composer);
+            List<Track> tracksList = repository.SearchByComposer(composer);
 
             Console.WriteLine("-------------------------------------------------------------- ");
             Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
@@ -454,7 +459,7 @@ namespace Muzikos_Parduotuve.Services
             Console.WriteLine("Įveskite dainos žanro pavadinimą");
             string genre = Console.ReadLine();
 
-            List<Track> tracksList = context.SearchByGenre(genre);
+            List<Track> tracksList = repository.SearchByGenre(genre);
 
             Console.WriteLine("-------------------------------------------------------------- ");
             Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
@@ -473,7 +478,7 @@ namespace Muzikos_Parduotuve.Services
             Console.WriteLine("Įveskite albumo pavadinimą");
             string album = Console.ReadLine();
 
-            List<Track> tracksList = context.SearchSongsByComposerAndAlbum(composer, album);
+            List<Track> tracksList = repository.SearchSongsByComposerAndAlbum(composer, album);
 
 
 
@@ -495,7 +500,7 @@ namespace Muzikos_Parduotuve.Services
             Console.WriteLine("2. Dainos trumpesnės nei įvestas milisekundžių skaičius");
             int choice = Convert.ToInt32(Console.ReadLine());
 
-            List<Track> tracksList = context.SearchSongsByLength(miliseconds, choice);
+            List<Track> tracksList = repository.SearchSongsByLength(miliseconds, choice);
 
 
 
@@ -515,7 +520,7 @@ namespace Muzikos_Parduotuve.Services
             Console.WriteLine("Įveskite albumo Id");
             int albumId = Convert.ToInt32(Console.ReadLine());
 
-            List<Track> tracksList = context.SearchSongsByAlbumId(albumId);
+            List<Track> tracksList = repository.SearchSongsByAlbumId(albumId);
 
             Console.WriteLine("-------------------------------------------------------------- ");
             Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
@@ -525,19 +530,19 @@ namespace Muzikos_Parduotuve.Services
                 Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
                 Console.WriteLine("-------------------------------------------------------------- ");
             }
-            //Console.WriteLine("'q' - Grįžti atgal || 'y' - Įdeda į krepšelį visas rastas dainas");
-            //var input = Console.ReadLine();
-            //if (input == "q")
-            //{
-            //    AddToBasketMenu();
-            //}
-            //if (input == "y")
-            //{
-            //    foreach (var track in tracksList)
-            //    {
-            //        TracksSelected.Add(track);
+            Console.WriteLine("'q' - Grįžti atgal || 'y' - Įdeda į krepšelį visas rastas dainas");
+            var input = Console.ReadLine();
+            if (input == "q")
+            {
+                AddToBasketMenu();
+            }
+            if (input == "y")
+            {
 
-            AddToBasketMenu();
+                tracksSelected.AddRange(tracksList);
+
+                AddToBasketMenu();
+            }
         }
 
         public void SearchByAlbumName()
@@ -545,7 +550,7 @@ namespace Muzikos_Parduotuve.Services
             Console.WriteLine("Įveskite albumo Id");
             string albumName = Console.ReadLine();
 
-            List<Track> tracksList = context.SearchBySongAlbumName(albumName);
+            List<Track> tracksList = repository.SearchBySongAlbumName(albumName);
 
             Console.WriteLine("-------------------------------------------------------------- ");
             Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
@@ -555,46 +560,53 @@ namespace Muzikos_Parduotuve.Services
                 Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
                 Console.WriteLine("-------------------------------------------------------------- ");
             }
-            AddToBasketMenu();
+            Console.WriteLine("'q' - Grįžti atgal || 'y' - Įdeda į krepšelį visas rastas dainas");
+            var input = Console.ReadLine();
+            if (input == "q")
+            {
+                AddToBasketMenu();
+            }
+            if (input == "y")
+            {
+
+                tracksSelected.AddRange(tracksList.ToList());
+
+                AddToBasketMenu();
+            }
         }
         public void SearchByIdToBuy()
         {
             Console.WriteLine("Įveskite dainos Id");
             int songId = Convert.ToInt32(Console.ReadLine());
 
-            List<Track> tracksList = context.SearchSongsById(songId);
+            var track = repository.GetSongById(songId);
 
             Console.WriteLine("-------------------------------------------------------------- ");
             Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
             Console.WriteLine("-------------------------------------------------------------- ");
-            foreach (var track in tracksList)
+            Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
+            Console.WriteLine("-------------------------------------------------------------- ");
+
+            Console.WriteLine("'q' - Grįžti atgal || 'y' - Įdeda į krepšelį visas rastas dainas");
+            var input = Console.ReadLine();
+            if (input == "q")
             {
-                Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
-                Console.WriteLine("-------------------------------------------------------------- ");
+                AddToBasketMenu();
             }
+            if (input == "y")
+            {
 
-            //Console.WriteLine("'q' - Grįžti atgal || 'y' - Įdeda į krepšelį visas rastas dainas");
-            //var input = Console.ReadLine();
-            //if (input == "q")
-            //{
-            //    AddToBasketMenu();
-            //}
-            //if (input == "y")
-            //{
-            //    foreach (var track in tracksList)
-            //    {
-            //        TracksSelected.Add(track);
-            //    }
+                tracksSelected.Add(track);
 
-            //}
-            AddToBasketMenu();
+                AddToBasketMenu();
+            }
         }
         public void SearchByNameToBuy()
         {
             Console.WriteLine("Įveskite dainos pavadinimą");
             string songName = Console.ReadLine();
 
-            List<Track> tracksList = context.SearchBySongName(songName);
+            List<Track> tracksList = repository.SearchBySongName(songName);
 
             Console.WriteLine("-------------------------------------------------------------- ");
             Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
@@ -604,9 +616,20 @@ namespace Muzikos_Parduotuve.Services
                 Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
                 Console.WriteLine("-------------------------------------------------------------- ");
             }
-            AddToBasketMenu();
-        }
+            Console.WriteLine("'q' - Grįžti atgal || 'y' - Įdeda į krepšelį visas rastas dainas");
+            var input = Console.ReadLine();
+            if (input == "q")
+            {
+                AddToBasketMenu();
+            }
+            if (input == "y")
+            {
 
+                tracksSelected.AddRange(tracksList.ToList());
+
+                AddToBasketMenu();
+            }
+        }
 
         public void AddToBasketMenu()
         {
@@ -643,23 +666,20 @@ namespace Muzikos_Parduotuve.Services
                     break;
             }
         }
-        //public void AddToBasketSongs()
-        //{
-        //    Console.WriteLine("'q' - Grįžti atgal || 'y' - Įdeda į krepšelį visas rastas dainas");
-        //    var input = Console.ReadLine();
-        //    if(input == "q")
-        //    {
-        //        AddToBasketMenu();
-        //    }
-        //    if(input == "y")
-        //    {
 
-        //    }
 
-        //}
-
+        //sudeti i invoice irpadaryti, kad rodytu total suma. nes reikes traukiant invoice sarasus
         public void ShowBasket()
         {
+
+            Console.WriteLine("-------------------------------------------------------------- ");
+            Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
+            Console.WriteLine("-------------------------------------------------------------- ");
+            foreach (var track in tracksSelected)
+            {
+                Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
+                Console.WriteLine("-------------------------------------------------------------- ");
+            }
 
             Console.WriteLine("'q' - Grįžti atgal || 'y' - Užbaigti pirkimą");
             var input = Console.ReadLine();
@@ -669,36 +689,123 @@ namespace Muzikos_Parduotuve.Services
             }
             if (input == "y")
             {
+                InvoiceFieldsToPrint();
+                var invoice = new Invoice();
+                invoice.InvoiceDate = DateTime.Now;
+                invoice.BillingAddress = activeCustomer.Address;
+                invoice.CustomerId = activeCustomer.CustomerId;
+                invoice.BillingAddress = activeCustomer.Address;
+                invoice.BillingState = activeCustomer.State;
+                invoice.BillingCity = activeCustomer.City;
+                invoice.BillingCountry = activeCustomer.Country;
+                invoice.BillingPostalCode = activeCustomer.PostalCode;
 
+
+                invoice.InvoiceItems = new List<InvoiceItem>();
+                foreach (var track in tracksSelected)
+                {
+                    invoice.InvoiceItems.Add(new InvoiceItem
+                    {
+                        TrackId = track.TrackId
+                    });
+                }
+
+                invoice.Total = Math.Round(TotalPrice() + (TotalPrice() * 0.21), 2);
+                repository.AddInvoice(invoice);
+                tracksSelected.Clear();
             }
 
 
         }
 
+        public double TotalPrice()
+        {
+            double sumNoTax = 0;
+            foreach (var price in tracksSelected)
+            {
+                sumNoTax = sumNoTax + price.UnitPrice.Value;
+            }
+            return sumNoTax;
+        }
+
         public void InvoiceFieldsToPrint()
         {
             Console.WriteLine($"Name:{activeCustomer.FirstName}");
-            Console.WriteLine($"Name:{activeCustomer.LastName}");
-            Console.WriteLine($"Name:{activeCustomer.Address}");
-            Console.WriteLine($"Name:{activeCustomer.Phone}");
+            Console.WriteLine($"Last Name:{activeCustomer.LastName}");
+            Console.WriteLine($"Adress:{activeCustomer.Address}");
+            Console.WriteLine($"Phone:{activeCustomer.Phone}");
+            Console.WriteLine($"Email:{activeCustomer.Email}");
+            double sumNoTax = 0;
 
-            //show songs
+            foreach (var track in tracksSelected)
+            {
+                Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
+                Console.WriteLine("-------------------------------------------------------------- ");
+                sumNoTax = sumNoTax + track.UnitPrice.Value;
+            }
 
-            Console.WriteLine($"Total without Tax:");
+            Console.WriteLine($"Total without Tax: {Math.Round(sumNoTax, 2)}");
             Console.WriteLine($"Tax: 21%");
-            Console.WriteLine($"Total: Total+21%");
+            Console.WriteLine($"Total: {Math.Round(sumNoTax + sumNoTax * 0.21, 2)}");
+            Console.WriteLine("");
+            Console.WriteLine("Q. grįžti į pirkimo ekraną");
+            Console.WriteLine("L. Išeiti");
 
-            Console.WriteLine("Q grįžti į pirkimo ekraną");
+            var input = Console.ReadLine();
+
+            if (input == "q")
+            { BuyMenu(); }
+            if (input == "l")
+            { Environment.Exit(0); }
 
         }
+
+        //nezinau kaip istraukt
+        public void ShowAllInvoices()
+        {
+            int customerId = (int)activeCustomer.CustomerId;
+            List<Invoice> invoices = repository.GetCustomerInvoices(customerId);
+
+            foreach (var invoice in invoices)
+            {
+                Console.WriteLine($"Invoice Id {invoice.InvoiceId}");
+                Console.WriteLine($"Name:{invoice.Customer.FirstName}");
+                Console.WriteLine($"Last Name:{invoice.Customer.LastName}");
+                Console.WriteLine($"Adress:{invoice.Customer.Address}");
+                Console.WriteLine($"Phone:{invoice.Customer.Phone}");
+                Console.WriteLine($"Email:{invoice.Customer.Email}");
+                double sumNoTax = 0;
+
+
+                //Console.Writeline("-------------------------------------------------------------- ");
+                //Console.Writeline("| #   |  name, composer, genre, album, milliseconds, price | ");
+                //Console.Writeline("-------------------------------------------------------------- ");
+                //Console.Writeline($"{(invoice)}| {track.name}, {track.composer}, {track.genre.name}, {track.album.title}, {track.milliseconds}, {track.unitprice}");
+                //Console.Writeline("-------------------------------------------------------------- ");
+                //sumnotax = sumnotax + track.unitprice.value;
+
+
+                Console.WriteLine($"Total without Tax: {invoice.Total}");
+                Console.WriteLine($"Tax: 21%");
+                Console.WriteLine($"Total: {Math.Round(invoice.Total * 0.21, 2)}");
+                Console.WriteLine("*******************************************************************");
+
+            }
+
+            Console.WriteLine("Q. grįžti į pirkimo ekraną");
+        }
+
+
+
+
+
 
         public void EmployeeLogin()
         {
             Console.Clear();
-            const string pin = "1234";
             Console.WriteLine("Enter pin code");
             string pinGuess = Console.ReadLine();
-            List<Employee> employeeList = context.EmployeesList();
+            List<Employee> employeeList = repository.EmployeesList();
 
             if (pinGuess == pin)
             {
@@ -734,7 +841,16 @@ namespace Muzikos_Parduotuve.Services
                     ChangeSongStatus();
                     break;
                 case '3':
-                    //Statistic();
+                    Console.WriteLine("Enter pin code");
+                    string pinGuess = Console.ReadLine();
+                    if (pinGuess == pin)
+                    {
+                        Statistic();
+                    }
+                    else
+                        Console.WriteLine("Neteisingas pin");
+                    AdminMenu();
+                    Statistic();
                     break;
                 case 'q':
                     Environment.Exit(0);
@@ -765,7 +881,7 @@ namespace Muzikos_Parduotuve.Services
             switch (input)
             {
                 case '1':
-                    CustomerLogIn();
+                    GetCustomerList();
                     break;
                 case '2':
                     RegistrationForm();
@@ -786,12 +902,28 @@ namespace Muzikos_Parduotuve.Services
             }
 
         }
+        public void GetCustomerList()
+        {
+            Console.Clear();
+            List<Customer> customerList = repository.CustomerList();
+            foreach (Customer customer in customerList)
+            {
+                Console.WriteLine($"{customer.CustomerId} {customer.FirstName} {customer.LastName}");
+            }
+            Console.WriteLine("Q. Grižti");
+            var input = Console.ReadLine();
+            if (input == "q")
+            { AdminMenuModifyBuyers(); }
+
+        }
+
+        //status keitimo
         public void ChangeSongStatus()
         {
             Console.WriteLine("1.Gauti dainu sarasa");
             Console.WriteLine("2.Keisti dainos statusą");
 
-            List<Track> tracksList = context.ShowCatalogForAdmin();
+            List<Track> tracksList = repository.ShowCatalogForAdmin();
             var input = Console.ReadLine();
 
             if (input == "1")
@@ -804,49 +936,120 @@ namespace Muzikos_Parduotuve.Services
 
                     Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
                     Console.WriteLine("-------------------------------------------------------------- ");
-                    
+
                 }
             }
-            
-                if (input == "2")
+
+            if (input == "2")
+            {
+                Console.WriteLine("Iveskite dainos id");
+                var songId = Convert.ToInt64(Console.ReadLine());
+                Track track = tracksList.First(s => s.TrackId == songId);
+
+                var statusMsg = (track.Status == "Active") ? "Dainos statusas Active" : "Dainos statusas Inactive";
+                Console.WriteLine($"Dainos Id: {track.TrackId}, dainos pavadinimas: {track.Name}, Dainos statusas yra {statusMsg}, ar norite pakeisti");
+
+
+                Console.WriteLine("1.Jeigu norite pakeisti dainos status");
+                Console.WriteLine("Q jeigu norite grįžti");
+                var choice = Console.ReadLine();
+
+
+                if (choice == "1" && track.Status == "Active")
                 {
-                    Console.WriteLine("Iveskite dainos id");
-                    int songId = Convert.ToInt32(Console.ReadLine());
-                    Track track = tracksList.First(s => s.TrackId == songId);
-                    Console.WriteLine($"{track.TrackId} {track.Name} {track.Status}");
-
-                    Console.WriteLine("1.Jeigu norite keisti dainos status į active arba inactive");
-                    Console.WriteLine("Q jeigu norite grįžti");
-                    var choice = Console.ReadLine();
-
-
-                    if (choice == "1" && track.Status == "Active")
-                    {
-                        context.UpdateSongStatus(songId, "Inactive");
-                    return;
-                    }
-                    if (choice == "1" && track.Status == "Inactive")
-                    {
-                        context.UpdateSongStatus(songId, "Active");
-                    return;
-                    }
-                    if (choice == "q")
-                    {
-                        AdminMenu();
-                    }
+                    repository.UpdateSongStatus(songId, "Inactive");
+                    ChangeSongStatus();
                 }
-            ChangeSongStatus();
+                if (choice == "1" && track.Status == "Inactive")
+                {
+                    repository.UpdateSongStatus(songId, "Active");
+                    ChangeSongStatus();
+                }
+                if (choice == "q")
+                {
+                    AdminMenu();
+                }
             }
-        
+            ChangeSongStatus();
+        }
+
 
 
         public void Statistic()
         {
+            Console.WriteLine("| 1.  | Išgauti visas kliento atąskaitas pagal kliento ID   |  ");
+            Console.WriteLine("| 2.  | Išgauti veiklos pelna (Neatskaičius mokesčių pilna suma)    |  ");
+            Console.WriteLine("| 3.  | Išgauti veiklos pelną pagal paduotus metus  |  ");
+            Console.WriteLine("| 4.  | Išgauti kiek kokio žanro kūrinių buvo nupirkta (Rikiuota pagal dydį) |  ");
+            Console.WriteLine("| 5.  | Išgauti kiek kiekvienas klienas išleido pinigų  |  ");
 
+
+            var input = Console.ReadKey().KeyChar;
+            Console.Clear();
+            switch (input)
+            {
+                case '1':
+                    Console.WriteLine("Iveskite Kliento Id");
+                    int customerId = Convert.ToInt32(Console.ReadLine());
+                    List<Invoice> invoices = repository.GetCustomerInvoices(customerId);
+                    foreach (var invoice in invoices)
+                    {
+                        Console.WriteLine($"Sąskaitos id {invoice.InvoiceId} kliento id {invoice.CustomerId}, " +
+                        $"sąskaitos data{invoice.InvoiceDate}, sąskaitos suma {invoice.Total}");
+                    }
+                    Statistic();
+                    break;
+                case '2':
+                    List<Invoice> invoiceForTotalIncomeCount = repository.TotalIncome();
+                    double totalIncome = 0;
+                    foreach (var invoice in invoiceForTotalIncomeCount)
+                    {
+                        totalIncome = totalIncome + invoice.Total;
+                    }
+                    Console.WriteLine($"Visas pelnas be mokesčių yra: {Math.Round(totalIncome, 2)}");
+
+                    Statistic();
+                    break;
+                case '3':
+                    Console.WriteLine("Įveskite metus (yyyy)");
+                    var date = Console.ReadLine();
+                    List<Invoice> invoiceForTotalIncomePerYearCount = repository.TotalIncomeByYear(date);
+                    if (invoiceForTotalIncomePerYearCount.Count == 0)
+                    { Console.WriteLine("Šiais metais pardavimų nebuvo"); }
+                    double totalIncomePerYear = 0;
+                    foreach (var invoice in invoiceForTotalIncomePerYearCount)
+                    {
+                        totalIncomePerYear = totalIncomePerYear + invoice.Total;
+                    }
+                    Console.WriteLine($"Visas pelnas {date} metais yra: {Math.Round(totalIncomePerYear, 2)}");
+
+                    Statistic();
+                    break;
+                case '4':
+                    repository.TotalGenreSold();
+                    break;
+                case '5':
+
+                    break;
+                case 'q':
+
+                    break;
+                case 'Q':
+
+                    break;
+                default:
+                    Console.WriteLine("Tokio pasirinkimo nėra");
+                    break;
+            }
         }
+
     }
-}
-        
+    }
+    
+
+
+
+     
 
     
 

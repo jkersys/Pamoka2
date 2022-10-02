@@ -9,7 +9,7 @@ using Muzikos_Parduotuve;
 
 namespace Muzikos_Parduotuve.Infrastructure.Migrations
 {
-    [DbContext(typeof(chinookContext))]
+    [DbContext(typeof(ChinookContext))]
     partial class chinookContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -10,7 +10,7 @@ using Muzikos_Parduotuve;
 
 namespace Muzikos_Parduotuve.Infrastructure.Migrations
 {
-    [DbContext(typeof(chinookContext))]
+    [DbContext(typeof(ChinookContext))]
     [Migration("20220929162052_IstaisytasduomenuBazesPakeitimasInvoiceItemClaseje")]
     partial class IstaisytasduomenuBazesPakeitimasInvoiceItemClaseje
     {

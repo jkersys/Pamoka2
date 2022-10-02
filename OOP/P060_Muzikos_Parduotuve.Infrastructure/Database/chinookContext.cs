@@ -7,14 +7,14 @@ using Muzikos_Parduotuve.Domain.Models;
 
 namespace Muzikos_Parduotuve
 {
-    public partial class chinookContext : DbContext
+    public partial class ChinookContext : DbContext
     {
-        public chinookContext()
+        public ChinookContext()
         {
         
         }
 
-        public chinookContext(DbContextOptions<chinookContext> options)
+        public ChinookContext(DbContextOptions<ChinookContext> options)
             : base(options)
         {
         }

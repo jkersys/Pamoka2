@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Muzikos_Parduotuve.Infrastructure.Database
 {
-    public class chinookRepository : IChinookRepository
+    public class ChinookRepository : IChinookRepository
     {
-        public chinookRepository()
+        public ChinookRepository()
         {
-            using var context = new chinookContext();
+            using var context = new ChinookContext();
             // Naudojam kaip pavyzdi, kad zinoti, jog yra budas patikrinti ar duombaze siuo metu egzistuoja.
             // Jei neegzsituoja uz mus buna paleidziama CLI komanda update-datase
             context.Database.EnsureCreated();
@@ -25,7 +25,7 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
 
         public void AddUser(string firstName, string lastName, string? company, string? adress, string? city, string? state, string? country, string? postalCode, string? phone, string? fax, string email)
         {
-            using var context = new chinookContext();
+            using var context = new ChinookContext();
 
             Customer customer = new Customer
             {
@@ -51,7 +51,7 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
 
         public List<Customer> CustomerList()
         {
-            using var context = new chinookContext();
+            using var context = new ChinookContext();
 
             List<Customer> customers = context.Customers.ToList();
             return customers;
@@ -61,9 +61,9 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
 
         public List<Track> ShowCatalogForAdmin()
         {
-            using var context = new chinookContext();
+            using var context = new ChinookContext();
 
-            List<Track> activeTrack = context.Tracks.Include(x => x.Genre).Include(x => x.Album).ToList(); ;
+            List<Track> activeTrack = context.Tracks.Include(x => x.Genre).Include(x => x.Album).ToList();
             return activeTrack;
         }
 
@@ -75,84 +75,47 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
         //dainų sarašas kurį paduodu atliekant paieską ir rikiavimą
         public List<Track> SongList()
         {
-            using var context = new chinookContext();
+            using var context = new ChinookContext();
 
             var trackList = context.Tracks.Where(x => x.Status == "Active").Include(x => x.Genre).Include(x => x.Album).ToList();
             return trackList;
 
         }
 
-        public void AddToBasket()
-        {
-            Console.WriteLine("--------------------------------------------------------------");
-            Console.WriteLine("| #       | Pasirinkimas | ");
-            Console.WriteLine("--------------------------------------------------------------");
-            Console.WriteLine("| 1       | Rasti dainą pagal Id | ");
-            Console.WriteLine("--------------------------------------------------------------");
-            Console.WriteLine("| 2       | Rasti dainą pagal pavadinimą | ");
-            Console.WriteLine("--------------------------------------------------------------");
-            Console.WriteLine("| 3       | Rasti dainas pagal albumo Id | ");
-            Console.WriteLine("--------------------------------------------------------------");
-            Console.WriteLine("| 4       | Rasti dainas pagal albumo pavadinimą | ");
-            Console.WriteLine("--------------------------------------------------------------");
 
-            var input = Convert.ToInt32(Console.ReadLine());
-
-            switch (input)
-            {
-                case 1:
-
-                    Console.WriteLine($"'q' - Grįžti atgal || 'y' - Įdeda į krepšelį visas rastas dainas");
-                    Console.ReadLine();
-                    break;
-                case 2:
-
-                    break;
-                case 3:
-                    //SongsByAlbumId();
-                    break;
-                case 4:
-                    // SongsByAlbumName();
-                    break;
-                default:
-                    break;
-            }
-
-
-        }
 
 
         public List<Track> SortSongs()
         {
-            using var context = new chinookContext();
+            using var context = new ChinookContext();
             List<Track> tracksByName = context.Tracks.Where(x => x.Status == "Active").Include(x => x.Genre).Include(x => x.Album).OrderBy(x => x.Name).ToList();
             return tracksByName;
         }
 
         public List<Track> TracksByNameDecending()
         {
-            using var context = new chinookContext();
+            using var context = new ChinookContext();
             var tracksByNameDecending = context.Tracks.Where(x => x.Status == "Active").Include(x => x.Genre).Include(x => x.Album).OrderByDescending(x => x.Name).ToList();
             return tracksByNameDecending;
         }
 
         public List<Track> TracksByComposer()
         {
-            using var context = new chinookContext();
+            using var context = new ChinookContext();
             var tracksByComposer = context.Tracks.Where(x => x.Status == "Active").Include(x => x.Genre).Include(x => x.Album).OrderBy(x => x.Composer).ToList();
             return tracksByComposer;
         }
 
         public List<Track> TracksByGenre()
         {
-            using var context = new chinookContext();
+            using var context = new ChinookContext();
             var tracksByGenre = context.Tracks.Where(x => x.Status == "Active").Include(x => x.Genre).Include(x => x.Album).OrderBy(x => x.Genre.Name).ToList();
             return tracksByGenre;
         }
 
         public List<Track> TracksByComposerAndAlbum()
         {
-            using var context = new chinookContext();
+            using var context = new ChinookContext();
             var tracksByNameDecending = context.Tracks.Where(x => x.Status == "Active").Include(x => x.Genre).Include(x => x.Album).OrderBy(c => c.Composer).ThenBy(a => a.Album.Title).ToList();
             return tracksByNameDecending;
         }
@@ -162,20 +125,16 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
             //invoice
         }
 
-        public List<Track> SearchSongsById(int songId)
+        public Track? GetSongById(long songId)
         {
+            using var context = new ChinookContext();
+            return context.Tracks.Include(x => x.Genre).Include(x => x.Album).First(x => x.TrackId == songId);
 
-            var searchById = SongList().Where(i => i.TrackId == songId).ToList();
-            var songById = (from id in searchById
-                            where id.TrackId == songId
-                            select id).ToList();
-
-            return songById;
         }
         public List<Track> SearchBySongName(string songName)
         {
 
-
+            using var context = new ChinookContext();
             var searchByName = SongList().Where(i => i.Name == songName).ToList();
 
             var songById = (from id in searchByName
@@ -187,7 +146,7 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
 
         public List<Track> SearchSongsByAlbumId(int albumId)
         {
-
+            using var context = new ChinookContext();
             var searchById = SongList().Where(i => i.AlbumId == albumId).ToList();
 
             var SongsByAlbumId = (from id in searchById
@@ -199,20 +158,14 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
 
         public List<Track> SearchBySongAlbumName(string albumName)
         {
-
-            var searchByName = SongList().Where(i => i.Album.Title == albumName).ToList();
-
-            var SongsByAlbumName = (from id in searchByName
-                                    where id.Album.Title == albumName
-                                    select id).ToList();
-
-            return SongsByAlbumName;
+            using var context = new ChinookContext();
+            return context.Tracks.Where(i => i.Album.Title == albumName).Include(x => x.Genre).Include(x => x.Album).ToList();
         }
 
         public List<Track> SearchByComposer(string composer)
         {
 
-
+            using var context = new ChinookContext();
             var searchById = SongList().Where(i => i.Composer == composer).ToList();
 
             var songById = (from id in searchById
@@ -225,7 +178,7 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
 
         public List<Track> SearchByGenre(string genre)
         {
-
+            using var context = new ChinookContext();
             var searchById = SongList().Where(i => i.Genre.Name == genre).ToList();
 
             var songById = (from id in searchById
@@ -239,7 +192,7 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
         public List<Track> SearchSongsByComposerAndAlbum(string composer, string album)
         {
 
-
+            using var context = new ChinookContext();
             var searchByComposer = SongList().Where(i => i.Composer == composer).ToList();
 
             var songByComposer = (from id in searchByComposer
@@ -270,7 +223,7 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
 
         public List<Track> SearchSongsByLength(int length, int choice)
         {
-
+            using var context = new ChinookContext();
             List<Track> songByLength;
 
             if (choice == 1)
@@ -297,24 +250,74 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
 
         public List<Employee> EmployeesList()
         {
-            using var context = new chinookContext();
+            using var context = new ChinookContext();
 
             List<Employee> employee = context.Employees.ToList();
             return employee;
         }
 
-        public void UpdateSongStatus(int id, string status)
+        public void UpdateSongStatus(long id, string status)
         {
-            using var context = new chinookContext();
+            using var context = new ChinookContext();
             {
-                List<Track> tracks = ShowCatalogForAdmin();
-                var track = tracks.First(s => s.TrackId == id);
-                track.Status = status;
-                context.SaveChanges();
+                var track = context.Tracks.Find(id);
+                if (track is not null)
+                {
+                    track.Status = status;
+                    context.SaveChanges();
+                }
             }
         }
+        public List<Invoice> GetCustomerInvoices(int customerId)
+        {
+            using var context = new ChinookContext();
+            var userInvoices = context.Invoices.Include(x => x.Customer)
+                .Where(i => i.Customer.CustomerId == customerId).ToList();
+            return userInvoices;
+        }
+
+        public List<Invoice> TotalIncome()
+        {
+            using var context = new ChinookContext();
+            List<Invoice> invoices = context.Invoices.ToList();
+            return invoices;
+
+        }
+
+        public void AddInvoice(Invoice invoice)
+        {
+            using var context = new ChinookContext();
+            context.Invoices.Add(invoice);
+            context.SaveChanges();
+        }
+
+        public List<Invoice> TotalIncomeByYear(string date)
+        {
+            using var context = new ChinookContext();
+            List<Invoice> invoices = context.Invoices.Where(x => x.InvoiceDate.Year.ToString() == date).ToList();
+            return invoices;
+        }
+        public void TotalGenreSold()
+        {
+            using var context = new ChinookContext();
+            List<Invoice> customers = context.Invoices.Include(x => x.Customer).Where(x=>x.CustomerId == x.Total).ToList();
+            foreach (var customer in customers)
+            {
+                Console.WriteLine($"{customer}");
+            }
+            //List<Customer> customers = context.Customers.Include(x => x.Invoices).ToList();
+            //foreach (var customer in customers)
+            //{
+            //    Console.WriteLine($"{customer.CustomerId} {customer.Invoices.}");
+            //}
+            //return tracks;
+
+
+
+        }
     }
-}
+    }
+
 
 
 
