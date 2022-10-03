@@ -754,6 +754,7 @@ namespace Muzikos_Parduotuve.Services
 
             if (pinGuess == pin)
             {
+                Console.Clear();
                 AdminMenu();
             }
             if(pinGuess != pin)
@@ -892,10 +893,10 @@ namespace Muzikos_Parduotuve.Services
                 Track track = tracksList.First(s => s.TrackId == songId);
 
                 var statusMsg = (track.Status == "Active") ? "Dainos statusas Active" : "Dainos statusas Inactive";
-                Console.WriteLine($"Dainos Id: {track.TrackId}, dainos pavadinimas: {track.Name}, Dainos statusas yra {statusMsg}, ar norite pakeisti");
+                Console.WriteLine($"Dainos Id: {track.TrackId}, dainos pavadinimas: {track.Name}, {statusMsg}, ar norite pakeisti");
 
 
-                Console.WriteLine("1.Jeigu norite pakeisti dainos status");
+                Console.WriteLine("1.Jeigu norite pakeisti dainos statusą");
                 Console.WriteLine("Q jeigu norite grįžti");
                 var choice = Console.ReadLine();
                 Console.Clear();
@@ -973,21 +974,18 @@ namespace Muzikos_Parduotuve.Services
                     Console.WriteLine($"Visas pelnas {date} metais yra: {Math.Round(totalIncomePerYear, 2)}");
 
                     Statistic();
-                    break;
-                case '4':
-                    //repository.TotalGenreSold();
-                    break;
-                case '5':
-
-                    break;
+                    break;            
+                    
                 case 'q':
-
+                    AdminMenu();
                     break;
                 case 'Q':
-
+                    AdminMenu();
                     break;
                 default:
+                    Console.Clear();
                     Console.WriteLine("Tokio pasirinkimo nėra");
+                    Statistic();
                     break;
             }
         }
