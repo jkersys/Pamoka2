@@ -688,14 +688,24 @@ namespace Muzikos_Parduotuve.Services
             Console.WriteLine("Q. grįžti į pirkimo ekraną");
             Console.WriteLine("L. Išeiti");
 
-            var input = Console.ReadLine();
+            var input = Console.ReadKey().KeyChar;
+            Console.Clear();
 
-            if (input == "q")
-            { BuyMenu(); }
-            if (input == "l")
-            { Environment.Exit(0); }
 
-        }
+            switch (input)
+            {
+                case 'q' or 'Q':
+                    BuyMenu();
+                    break;
+                case 'l' or 'L':
+                    Environment.Exit(0);
+                    break;
+                    Console.Clear();
+                    Console.WriteLine("Tokio pasirinkimo nėra");
+                    AddToBasketMenu();
+                    break;
+            }
+            }
 
         //nezinau kaip istraukt
         public void ShowAllInvoices()
