@@ -280,54 +280,7 @@ namespace Muzikos_Parduotuve.Infrastructure.Database
 
         }
 
-        //public void SongListToPrintInvoice(Customer id)
-        //{using var context = new ChinookContext();
-
-        //        var trackList = context.Invoices.Include(x=>x.InvoiceItems).Where(x => x.InvoiceId == "Active").Include(x => x.InvoiceItems).Where(x=>x.)ToList();
-                
-
-        //    }
         
-
-
-
-
-        //public void UpdateCustomerInfo(long id, Customer customer)
-        //{
-        //    using var context = new ChinookContext();
-        //    Customer customerSelected = CustomerList().First(x=>x.CustomerId == id);
-
-        //    foreach (var customer in collection)
-        //    {
-
-        //    }
-        //    customerSelected.FirstName = customer.FirstName;
-        //    customerSelected.LastName = customer.LastName;
-        //    context.SaveChanges();
-        //}
-        //public void TotalGenreSold()
-        //{
-        //    using var context = new ChinookContext();
-        //    List<InvoiceItem> customers = context.InvoiceItems.Include(x => x.Quantity).ToList();
-        //    List<Genre> genre = context.Genres.Include(x=>x.Name).ToList();
-        //    var invoicesItem = context.Genres
-        //         .Include(x => x.Tracks)
-        //         .ThenInclude(x => x.InvoiceItems).Join(, Track => customers.g)
-        //         .ToList();
-
-
-        //    foreach (var item in invoicesItem)
-        //    {
-        //        Console.WriteLine($"{item.Name}");
-        //        Console.WriteLine($"{item.Tracks.Count()}");
-        //List<Customer> customers = context.Customers.Include(x => x.Invoices).ToList();
-        //foreach (var customer in customers)
-        //{
-        //    Console.WriteLine($"{customer.CustomerId} {customer.Invoices.}");
-        //}
-        //return tracks;
-
-
 
     }
     }

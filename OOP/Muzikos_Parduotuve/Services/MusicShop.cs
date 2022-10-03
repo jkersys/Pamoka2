@@ -1034,6 +1034,7 @@ namespace Muzikos_Parduotuve.Services
                 email = Console.ReadLine();
             }
             repository.UpdateCustomerInfo(customerId, firstName, lastName, adress, city, country, postalCode, phone, email);
+            AdminMenuModifyBuyers();
         }
 
         public void PrintTrackList(List<Track> tracksList)
