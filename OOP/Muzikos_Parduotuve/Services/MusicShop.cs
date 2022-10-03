@@ -52,7 +52,7 @@ namespace Muzikos_Parduotuve.Services
                 switch (input)
                 {
                     case '1':
-                        SearchByAlbumId();
+                        CustomerLogIn();
                         break;
                     case '2':
                         RegistrationForm();
@@ -106,7 +106,7 @@ namespace Muzikos_Parduotuve.Services
                     case '3':
                         ShowBasket();
                         break;
-                    case '4':
+                    case '4':                        
                         ShowAllInvoices();
                         break;
                     case 'q' or 'Q':
@@ -626,7 +626,7 @@ namespace Muzikos_Parduotuve.Services
             }
             if (input == "y")
             {
-                InvoiceFieldsToPrint();
+                
                 var invoice = new Invoice();
                 invoice.InvoiceDate = DateTime.Now;
                 invoice.BillingAddress = activeCustomer.Address;
@@ -649,9 +649,9 @@ namespace Muzikos_Parduotuve.Services
 
                 invoice.Total = Math.Round(TotalPrice(), 2);
                 repository.AddInvoice(invoice);
-                tracksSelected.Clear();
             }
-
+            InvoiceFieldsToPrint();
+            
 
         }
 
@@ -687,6 +687,8 @@ namespace Muzikos_Parduotuve.Services
             Console.WriteLine("");
             Console.WriteLine("Q. grįžti į pirkimo ekraną");
             Console.WriteLine("L. Išeiti");
+
+            tracksSelected.Clear();
 
             var input = Console.ReadKey().KeyChar;
             Console.Clear();
@@ -742,6 +744,11 @@ namespace Muzikos_Parduotuve.Services
             }
 
             Console.WriteLine("Q. grįžti į pirkimo ekraną");
+
+            var choice = Console.ReadLine();
+            if(choice == "q")
+            { BuyMenu();}
+            
         }
 
 
@@ -780,6 +787,7 @@ namespace Muzikos_Parduotuve.Services
             Console.WriteLine("--------------------------------------------------------------");
 
             char input = Console.ReadKey().KeyChar;
+            Console.Clear();
 
             switch (input)
             {
@@ -798,17 +806,14 @@ namespace Muzikos_Parduotuve.Services
                     }
                     else
                         Console.WriteLine("Neteisingas pin");
-                    AdminMenu();
-                    Statistic();
+                    AdminMenu();                    
                     break;
-                case 'q':
-                    Environment.Exit(0);
-                    return;
-                case 'Q':
-                    Environment.Exit(0);
-                    return;
+                case 'q' or 'Q':
+                    StartShop();
+                    return;               
                 default:
                     Console.WriteLine("Tokio pasirinkimo nėra");
+                    AdminMenu();
                     break;
             }
         }
@@ -826,6 +831,7 @@ namespace Muzikos_Parduotuve.Services
             Console.WriteLine("--------------------------------------------------------------");
 
             char input = Console.ReadKey().KeyChar;
+            Console.Clear();
 
             switch (input)
             {
@@ -833,19 +839,17 @@ namespace Muzikos_Parduotuve.Services
                     GetCustomerList();
                     break;
                 case '2':
-                    RegistrationForm();
+                    //
                     break;
-                case '3':
-                    EmployeeLogin();
+                case '3':                    
+                    UpdateCustomerInformation();
                     break;
-                case 'q':
-                    Environment.Exit(0);
-                    return;
-                case 'Q':
-                    Environment.Exit(0);
+                case 'q' or 'Q':
+                    AdminMenu();
                     return;
                 default:
                     Console.WriteLine("Tokio pasirinkimo nėra");
+                    AdminMenu();
                     break;
 
             }
@@ -873,9 +877,9 @@ namespace Muzikos_Parduotuve.Services
             Console.WriteLine("2.Keisti dainos statusą");
 
             List<Track> tracksList = repository.ShowCatalogForAdmin();
-            var input = Console.ReadLine();
+            var input = Console.ReadKey().KeyChar;
 
-            if (input == "1")
+            if (input == '1')
             {
                 Console.WriteLine("-------------------------------------------------------------- ");
                 Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
@@ -889,7 +893,7 @@ namespace Muzikos_Parduotuve.Services
                 }
             }
 
-            if (input == "2")
+            if (input == '2')
             {
                 Console.WriteLine("Iveskite dainos id");
                 var songId = Convert.ToInt64(Console.ReadLine());
@@ -902,6 +906,8 @@ namespace Muzikos_Parduotuve.Services
                 Console.WriteLine("1.Jeigu norite pakeisti dainos status");
                 Console.WriteLine("Q jeigu norite grįžti");
                 var choice = Console.ReadLine();
+
+               
 
 
                 if (choice == "1" && track.Status == "Active")
