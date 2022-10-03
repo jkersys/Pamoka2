@@ -21,7 +21,7 @@ namespace Muzikos_Parduotuve.Infrastructure.Interfaces
 
 
        
-        void AddToBasket(int customerId, List<int> trackIds);
+       
 
         void AddInvoice(Invoice invoice);
         List<Track> SortSongs();
@@ -29,7 +29,7 @@ namespace Muzikos_Parduotuve.Infrastructure.Interfaces
         List<Track> TracksByComposer();
         List<Track> TracksByGenre();
         List<Track> TracksByComposerAndAlbum();
-        Track GetSongById(long songId);
+        List<Track> GetSongById(long songId);
         List<Track> SearchBySongName(string songName);
         List<Track> SearchByComposer(string composer);
         List<Track> SearchByGenre(string genre);
@@ -41,7 +41,11 @@ namespace Muzikos_Parduotuve.Infrastructure.Interfaces
         List<Invoice> GetCustomerInvoices(int customerId);
         List<Invoice> TotalIncome();
         List<Invoice> TotalIncomeByYear(string date);
-        void TotalGenreSold();
+        //void UpdateCustomerInfo(long id, Customer customer);
+        void UpdateCustomerInfo(long id, string firstName, string lastName, string?
+            adress, string? city, string? country,
+            string? postalCode, string? phone, string email);
+        //void SongListToPrintInvoice(Customer id);
 
 
 
