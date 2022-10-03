@@ -6,7 +6,7 @@ namespace Muzikos_Parduotuve
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            //Console.WriteLine("Hello, World!");
             IMusicShop startShop = new MusicShop();
             startShop.StartShop();
 

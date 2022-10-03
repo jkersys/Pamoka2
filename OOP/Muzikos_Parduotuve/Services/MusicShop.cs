@@ -22,9 +22,6 @@ namespace Muzikos_Parduotuve.Services
         {
             repository = new ChinookRepository();
         }
-
-
-
         const string pin = "1234";
 
 
@@ -132,8 +129,7 @@ namespace Muzikos_Parduotuve.Services
                 }
             }
         }
-
-       
+               
         public void ShowAllTracks()
         {
 
@@ -200,8 +196,6 @@ namespace Muzikos_Parduotuve.Services
             Console.WriteLine($"\nEmail");
             string email = Console.ReadLine();
 
-            if (firstName.IsNullOrEmpty())
-            {
                 while (firstName.IsNullOrEmpty())
                 {
                     Console.WriteLine("Vardas privalo būti įvestas");
@@ -219,7 +213,7 @@ namespace Muzikos_Parduotuve.Services
                     Console.WriteLine("Neįvestas, arba neteisingai įvestas El. paštas");
                     email = Console.ReadLine();
                 }
-            }
+            
 
 
             repository.AddUser(firstName, lastName, company, adress, city, state, country, postalCode, phone, fax, email);
@@ -604,8 +598,6 @@ namespace Muzikos_Parduotuve.Services
             }
         }
 
-
-
         public void ShowBasket()
         {
 
@@ -673,7 +665,9 @@ namespace Muzikos_Parduotuve.Services
             Console.WriteLine($"Phone:{activeCustomer.Phone}");
             Console.WriteLine($"Email:{activeCustomer.Email}");
             double sumNoTax = 0;
-
+            Console.WriteLine("-------------------------------------------------------------- ");
+            Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
+            Console.WriteLine("-------------------------------------------------------------- ");
             foreach (var track in tracksSelected)
             {
                 Console.WriteLine($"{track.TrackId}| {track.Name}, {track.Composer}, {track.Genre.Name}, {track.Album.Title}, {track.Milliseconds}, {track.UnitPrice}");
@@ -709,7 +703,7 @@ namespace Muzikos_Parduotuve.Services
             }
             }
 
-        //nezinau kaip istraukt
+       
         public void ShowAllInvoices()
         {
             int customerId = (int)activeCustomer.CustomerId;
@@ -726,15 +720,15 @@ namespace Muzikos_Parduotuve.Services
                 Console.WriteLine($"Email:{invoice.Customer.Email}");
                 double sumNoTax = 0;
 
-                Console.WriteLine("-------------------------------------------------------------- ");
-                Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
-                Console.WriteLine("-------------------------------------------------------------- ");
-                foreach (var track in invoice.InvoiceItems)
-                {
-                    Console.WriteLine($"{track.Track.Name}| {track.Track.Genre}, {track.Track.Album.Title}");
-                    Console.WriteLine("-------------------------------------------------------------- ");
+                //Console.WriteLine("-------------------------------------------------------------- ");
+                //Console.WriteLine("| #   |  Name, Composer, Genre, Album, Milliseconds, Price | ");
+                //Console.WriteLine("-------------------------------------------------------------- ");
+                //foreach (var track in invoice.InvoiceItems)
+                //{
+                //    Console.WriteLine($"{track.Track.Name}| {track.Track.Genre}, {track.Track.Album.Title}");
+                //    Console.WriteLine("-------------------------------------------------------------- ");
                   
-                }
+                //}
 
                 Console.WriteLine($"Total without Tax: {invoice.Total}");
                 Console.WriteLine($"Tax: 21%");                
@@ -751,27 +745,23 @@ namespace Muzikos_Parduotuve.Services
             
         }
 
-
-
-
-
-
         public void EmployeeLogin()
         {
             Console.Clear();
-            Console.WriteLine("Enter pin code");
+            Console.WriteLine("Įveskite pin kodą");
             string pinGuess = Console.ReadLine();
             List<Employee> employeeList = repository.EmployeesList();
 
             if (pinGuess == pin)
             {
-                foreach (Employee emlpoyee in employeeList)
-                {
-                    Console.WriteLine($"{emlpoyee.EmployeeId} {emlpoyee.FirstName} {emlpoyee.LastName}");
-                }
-
+                AdminMenu();
             }
-            AdminMenu();
+            if(pinGuess != pin)
+            {
+                Console.Clear();
+                Console.WriteLine("Neteisingas pin kodas");
+            StartShop();
+            }
         }
 
         public void AdminMenu()
@@ -802,6 +792,7 @@ namespace Muzikos_Parduotuve.Services
                     string pinGuess = Console.ReadLine();
                     if (pinGuess == pin)
                     {
+                        Console.Clear();
                         Statistic();
                     }
                     else
@@ -865,12 +856,12 @@ namespace Muzikos_Parduotuve.Services
             }
             Console.WriteLine("Q. Grižti");
             var input = Console.ReadLine();
+            Console.Clear();
             if (input == "q")
             { AdminMenuModifyBuyers(); }
 
         }
-
-        //status keitimo
+        
         public void ChangeSongStatus()
         {
             Console.WriteLine("1.Gauti dainu sarasa");
@@ -878,6 +869,7 @@ namespace Muzikos_Parduotuve.Services
 
             List<Track> tracksList = repository.ShowCatalogForAdmin();
             var input = Console.ReadKey().KeyChar;
+            Console.Clear();
 
             if (input == '1')
             {
@@ -906,6 +898,7 @@ namespace Muzikos_Parduotuve.Services
                 Console.WriteLine("1.Jeigu norite pakeisti dainos status");
                 Console.WriteLine("Q jeigu norite grįžti");
                 var choice = Console.ReadLine();
+                Console.Clear();
 
                
 
@@ -925,10 +918,8 @@ namespace Muzikos_Parduotuve.Services
                     AdminMenu();
                 }
             }
-            ChangeSongStatus();
+            AdminMenu();
         }
-
-
 
         public void Statistic()
         {
@@ -950,8 +941,11 @@ namespace Muzikos_Parduotuve.Services
                     foreach (var invoice in invoices)
                     {
                         Console.WriteLine($"Sąskaitos id {invoice.InvoiceId} kliento id {invoice.CustomerId}, " +
-                        $"sąskaitos data{invoice.InvoiceDate}, sąskaitos suma {invoice.Total}");
+                        $"sąskaitos data {invoice.InvoiceDate}, sąskaitos suma {invoice.Total}");
                     }
+                    Console.WriteLine("Paspauskite bet kurį mygtuką, jeigu norite tęsti");
+                    Console.ReadLine();
+                    Console.Clear();
                     Statistic();
                     break;
                 case '2':
