@@ -1,0 +1,29 @@
+div{
+    background-image: url("../img/chocolate1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 500px;
+    width: 500px;
+    background-color: cadetblue ;
+    padding: 0px 25px 0px 0px;
+    height: 200px;
+    min-width: 700px;
+    border-radius: 25px;
+    border-style: groove;
+}
+img{
+    margin-right: 25px;
+    height: 100%;
+    border-right: 1px solid black;
+    border-radius: 25px;
+}
+div{
+    width: 400px;        
+    height: 200px;        
+    border: 10px dashed red;        
+    margin: 20px auto;
+    
+}
+div{
+    box-sizing: border-box
+}

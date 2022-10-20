@@ -1,0 +1,45 @@
+
+.container-flex-nowrap {
+    display: flex;
+    /* flex-direction: row;
+    flex-wrap: wrap; */
+    flex-flow: row nowrap;
+}
+
+.container-flex-nowrap div {
+    
+    background-color: rgb(223, 19, 19);
+    width: 100px;
+    height: 100px;
+    margin: 1em;
+}
+.container-flex-wrap {
+    display: flex;
+    /* flex-direction: row;
+    flex-wrap: wrap; */
+    flex-flow: row wrap;
+}
+
+.container-flex-wrap div {
+    
+    background-color: rgb(252, 235, 7);
+    width: 100px;
+    height: 100px;
+    margin: 1em;
+    text-align: center;
+    
+}
+.container-flex-wrap-reverse {
+    display: flex;
+    /* flex-direction: row;
+    flex-wrap: wrap; */
+    flex-flow: row wrap-reverse;
+}
+
+.container-flex-wrap-reverse div {
+
+    background-color: rgb(19, 51, 231);
+    width: 100px;
+    height: 100px;
+    margin: 1em;
+}

@@ -1,0 +1,44 @@
+/* flex container */
+.container-row{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.container-row div{
+border: 1px solid red;
+background-color: darkgrey;
+width: 175px;
+height: 100px;
+text-align: center;
+margin: 1em;
+}
+.container-row-reverse{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+}
+
+.container-row-reverse div{
+border: 1px solid red;
+background-color: darkgrey;
+width: 175px;
+height: 100px;
+text-align: center;
+margin: 1em;
+}
+
+.container-column{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.container-column div{
+border: 1px solid red;
+background-color: darkgrey;
+width: 175px;
+height: 175px;
+text-align: center;
+margin: 1em;
+}

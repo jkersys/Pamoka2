@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .contact-form{
+            width: 400px;
+            height: 600px;
+            background-color: azure;
+            border-style: solid; 
+            border-radius: 10px;
+            margin: 5px;
+            text-align: left;
+            padding-left: 10px;
+        }
+        .personal-data{
+            display: inline-block;
+           padding-bottom: 5px;
+            width: 300px;
+            height: 70px;
+            text-align: right;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-form">
+    <form action="">
+        <h1>Payment form</h1>
+        <div>Required fields are folowed by *.</div>
+        <h2>Contact information</h2>
+        <div class="personal-data">
+        
+        <label for="Fname">Name:*</label><input type="text" id="Fname" name="Fname" value="" required/>
+        <br />
+           <label for="Email">Email:*</label> <input type="text" id="Email" name="Email" value="" required/>
+           <br />
+        <label for="password">Password:*</label> <input type="text" id="password" name="password" value="" required/>
+        </div>
+        <br />
+        <h2>Payment information</h2>
+        <div class="personal-data">
+        <label for="CardType">Card type:</label><select id="CardType" name="CardType">
+
+            <option value="Visa">Visa</option>
+            <option value="MasterCard" selected>MasterCard</option>
+            <option value="AmericanExpress">AmericanExpress</option>
+        </select>
+        <br/>
+        <label for="CardNumber">Card number:</label> <input type="number" id="CardNumber" name="CardNumber" value="" required/>
+        <label for="ExpDate">Expiration date:</label><input type="date" id="ExpDate" name="ExpDate" max="2022-10-10" />
+        <br/>
+    </div>
+        <hr/>
+        <br/>
+        <label for="checkbox">Agree with term and condition:</label>
+        <input type="checkbox" id="checkbox" name="checkbox" value="" required/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>       
+        <br/>
+        <div style="text-align: center">
+        <input type="submit" value=" Validate the Payment">                   
+        </div>
+    </form>
+</div>
+</body>
+</html>
