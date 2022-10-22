@@ -195,3 +195,220 @@ for (let i = 0; i < animal.length; i++) {
     let doubleNumbersArr = [5,8,9,7,4,7]
 
     console.log(doubleEleInArray(doubleNumbersArr))
+
+    function outer() {
+        let movie = 'Amadeus';
+
+        function inner() {
+            console.log(movie.toUpperCase());
+        
+        
+        function extraInner() {
+            console.log(movie.toUpperCase());
+        }
+        extraInner();
+    }
+    inner();
+    }
+
+    outer();
+
+
+
+    //Function Expressions
+    //Functions are objects
+
+    console.dir(sum);
+
+    //Annonymous
+    const sumAnnon = function (a, b) {
+        return a + b
+    }
+
+    console.log(sumAnnon(5,5))
+
+// Named
+    const product = function multiplyNamed(a, b) {
+        return a *b;
+    }
+    console.log(product(5,5))
+
+    //Higher order functions
+    //Tai yra funkcijos, kurios priima funkcijas kaip parametrus, arba grazina funkcija kaip return value
+
+
+    function addFtion(a, b) {
+        return a + b
+    }
+
+    function substractFtion(a, b) {
+        return a - b
+    }
+
+    function multiplyFtion(a, b) {
+        return a * b
+    }
+
+    function divideFtion(a, b) {
+        return a / b
+    }
+
+    const operation = [addFtion, substractFtion, multiplyFtion, divideFtion];
+
+    //console.log(operation[0])
+    //console.log(operation[0](100,4))
+
+    for(let func of operation) {
+        let result = func(50,8)
+        console.log(result)
+    }
+
+    const thing = {
+        doSomething: multiplyFtion
+    }
+    console.log(thing.doSomething(70,8))
+
+    //FUNCTION AS PARAMETER
+
+    function callThreeTimes(f) {
+        f();
+        f();
+        f();
+    }
+
+    function callGeneric() {
+        console.log("Generic call");
+    }
+    
+    function callMoreGeneric() {
+        console.log("More generic call");
+    }
+    
+    callThreeTimes(callGeneric);
+    callThreeTimes(callMoreGeneric);
+    
+    // Funkcijos deklaravimas
+    function repeatNTimes(action, num) {
+        for (let i = 0; i < num; i++) {
+            action();      
+        }
+    }
+    
+    repeatNTimes(callGeneric, 5);
+    
+    
+    function pickOne(f1, f2) {
+        let rand = Math.random();
+        console.log(rand);
+        if(rand < 0.5) {
+            f1();
+        }
+        else {
+            f2();
+        }
+    }
+    
+    pickOne(callGeneric, callMoreGeneric);
+//pickOne(callGeneric, callm)
+
+//RETURNING FUNCTION FROM FUNCTION
+//Works like function factories
+
+function multiplyBy(num) { // multiplyBy(3)
+    return function(x) {
+        return x * num; //return x * 3
+    }
+}
+
+//sitoje vietoje musu double atrodo taip:
+/*
+    const double = function(x) {
+        return x *2;
+    }
+*/
+
+const double = multiplyBy(2)
+console.log(double(8))
+
+function makeBetweenFunc(a, b) {
+    return function(num) {
+        return num >= a && num <= b
+    }
+}
+
+const isChild = makeBetweenFunc(0, 18)
+console.log(isChild(17))
+console.log(isChild(19))
+
+const isInNineties = makeBetweenFunc(1990, 2000)
+const isGoodWeather = makeBetweenFunc(20,30)
+
+// ARROW FUNCTIONS
+
+let greetArrow = () => {
+    console.log("Hello using arrow!");
+}
+
+greetArrow();
+
+let greetArrowName = (name) => {
+    console.log(`Hello ${name} using arrow!`);
+}
+
+greetArrowName("Edvinas");
+
+let sumArrow = (a, b) => a + b;
+
+console.log(sumArrow(8,8));
+
+
+
+// function duomenuIvedimas() {
+//     let vardas = prompt('vardas')
+//     let pavarde = prompt('pavarde')
+//     let amzius = prompt('amzius')
+//     let elpastas = prompt('elpastas')
+
+// console.log(vardas)
+// console.log(pavarde)
+// console.log(amzius)
+// console.log(elpastas)
+
+
+// }
+
+// duomenuIvedimas();
+
+// function amziausValidacija(num) {
+//     if(num >= 18) 
+//     {
+//         alert('Amzius tinkamas')
+//     }
+//     else 
+//     {
+//        isApprooved = (confirm("Ar duodate leidima"));
+//        if (isApprooved)
+//         {
+//         alert('Leidimas duotas')
+//         }
+//         else
+//         {
+//         alert('Leidimas neduotas')
+//         }
+//     }
+// }
+// amziausValidacija(17)
+
+
+function arKeliamiejiMetai(metai){
+    if(metai % 4 === 0 || metai % 100 === 0 || metai % 400 === 0)
+    {
+        alert('metai keliamieji') 
+    }
+    else {
+        alert('metai nekeliamieji') 
+    }
+}
+
+arKeliamiejiMetai(1817)
+

@@ -1,0 +1,95 @@
+main.container {
+    width: 100%;
+    height: 1300px;
+     margin: 0 auto;
+     background-color: black;
+     text-align: center;
+ 
+     
+}
+main header.main-header {
+    background-color: rgb(207, 5, 5);
+    padding: 20px 40px;
+     margin: 0 auto;
+     text-align: center;
+     height: 50px;
+     color: white;
+     position:relative
+     
+     
+  
+}
+.nav {
+    top: 50%;
+    bottom: 50%;
+    font-size: 26px;   
+   }
+
+a:link {
+    color:white;
+    text-align: center;
+    padding: 14px 16px;
+   
+    text-decoration: none;
+    font-size: 20px;
+    font-size: 20px;
+   float: left;
+   }
+
+   div.about-me {
+    background-color: red;
+    width: 310px;
+    height: 500px;    
+}
+
+   ul {
+   width: 290px;
+   height: 60px; 
+   text-align: left;
+   
+   }
+   #whyToChoseMe{
+    width: auto;
+    height: 500px;  
+    padding: 60px 0px 20px 30px;
+    display: inline-table;
+    background-color: rgb(230, 73, 73);
+   }
+
+   #whyMe{
+    padding: 30px 30px 30px 30px;
+    font-size: 2.5em;
+    font-weight: 300;
+    line-height: 1.4;
+    display:inline;
+    width: 80%;
+    
+    color: rgba(255, 255, 255, 1);
+    display: inline-table;
+    text-align: center;
+   }
+   .whyMeFields{
+    text-align: center;
+    display: inline-table;   
+    justify-content: center;
+    padding: 3% 2%;
+    font-size: 18px;
+    font-weight: 400;
+    width: 150px;
+    margin-right: 100px;
+
+   }
+   
+   .whyMeFieldsImg{
+    width: 150px;
+    padding: 0 7%;
+
+    }
+
+   .whyMeFieldsText{
+    width: 150px;   
+    
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 200;
+   } 
+   
