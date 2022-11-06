@@ -1,0 +1,23 @@
+li.drink {
+    margin-top: 5px;
+    padding: 10px;
+    border: 1px solid blue;
+    background-color: gray;
+    color: white;
+} 
+li::marker {
+    color: red;
+}
+
+li.pretty_milk {
+    background-color: rgb(255, 248, 248);
+    color: black;
+}
+li.pretty_tea {
+    background-color: rgb(224, 211, 16);
+    color: white
+}
+li.pretty_green_tea {
+    background-color: rgb(99, 204, 14);
+    color: white
+}

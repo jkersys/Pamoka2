@@ -400,15 +400,103 @@ console.log(sumArrow(8,8));
 // amziausValidacija(17)
 
 
-function arKeliamiejiMetai(metai){
-    if(metai % 4 === 0 || metai % 100 === 0 || metai % 400 === 0)
-    {
-        alert('metai keliamieji') 
-    }
-    else {
-        alert('metai nekeliamieji') 
-    }
+// function arKeliamiejiMetai(metai){
+//     if(metai % 4 === 0 || metai % 100 === 0 || metai % 400 === 0)
+//     {
+//         alert('metai keliamieji') 
+//     }
+//     else {
+//         alert('metai nekeliamieji') 
+//     }
+// }
+
+// arKeliamiejiMetai(1817)
+
+// Exercise 7
+
+// // C = 5/9(F-32)
+
+// function fToC(farenheits) {
+//     let fToCelcius = 5 / 9 * (farenheits-32);
+//     console.log(`${farenheits}F to ${fToCelcius}C`);
+// }
+
+// function cToF(celcius) {
+//     let cToFarenheit = celcius * (9/5) + 32;
+//     console.log(`${celcius}C to ${cToFarenheit}F`);
+// }
+
+// // Exercise 7 DONE
+
+
+
+//Exercise 6.3
+
+
+
+// function isPasswordValid(username, password) {
+  
+//     if(password.length < 8) {
+//         console.log('Slaptazodis per trumpas')
+//     }
+//     else if(password === username) {
+//         console.log('Slaptazodis sutampa su vartotojo vardu')
+//     }
+//     // parodo ar yra tarpu
+//     else if(/\s/.test(password)) {
+//         console.log('slaptazodyje yra tarpu')
+//     }
+
+//     else {
+//         console.log('Uzsiregistravote')
+//     }
+// }
+
+// username = prompt('Iveskite vartotojo varda')
+// password = prompt('Iveskite vartotojo varda')
+// isPasswordValid(username, password);
+
+
+//Exercise 6.3 Done
+
+
+
+
+
+//Exercise 6.4
+
+
+// function skaiciuVidurkis(arr) {
+//     let suma = 0;
+//     let vidurkis = 0;
+//     for (let i = 0; i <= arr.length; i++) {
+//        suma += i        
+//     }
+//     vidurkis = suma / arr.length
+//     console.log(`Vidurkis yra ${vidurkis}`);   
+
+// }
+
+// let skaiciuArr = [1, 2, 3, 4, 5, 6, 7]
+
+// skaiciuVidurkis(skaiciuArr)
+// //Exercise 6.4 Done
+
+//Exercise 6.5
+
+function randomCard() {
+let kortuRusis = ['Club', 'Spades', 'Hearts', 'Diamonds']
+let kortuReiksme = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 'J', 'Q', 'K']
+const randomRusis = Math.floor(Math.random() * 4);
+const randomReiksme = Math.floor(Math.random() * 12);
+
+console.log(`You drew ${kortuReiksme[randomReiksme].replace('A', 'Ace').replace('J', 'Jack').replace('Q', 'Queen').replace('K', 'King')} of ${kortuRusis[randomRusis]}`)
+
+
 }
 
-arKeliamiejiMetai(1817)
+randomCard();
+
+//Exercise 6.5 Done
+
 
