@@ -1,0 +1,38 @@
+body {height: 800px;
+width: min-content 800px;
+background-position: center;
+display: flex;
+justify-content: center;
+align-items: center;
+margin:0%
+}
+#reg-form {
+    background-color: black;
+    color: white;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 25px;
+    width: 400px;
+    height: 300px;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+.input-container {
+    
+    height: 200px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;   
+}
+#return-btn{
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+    justify-content: center;   
+}
