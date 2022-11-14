@@ -5,10 +5,14 @@ const url = 'https://testapi.io/api/jkersys/resource/users';
 
 
 
-
 const inputFirstName = document.querySelector('#inputFirstName');
 const inputLastName = document.querySelector('#inputLastName');
 const inputEmail = document.querySelector('#inputEmail');
+
+const inputFirstNameError = document.querySelector('#firstname-err');
+const inputLastNameError = document.querySelector('#lastname-err');
+const inputEmailError = document.querySelector('#email-err');
+const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
 
 function regValidation() {
@@ -35,6 +39,7 @@ const options = {
                 console.log('Toks vartotojas jau yra')
                 userExists = true
                 console.log(`${user.firstname} ${inputFirstName.value} ${user.lastname} ${inputLastName.value} ${user.email} ${inputEmail.value}`);
+                break;
                              
             }
             }
@@ -105,39 +110,64 @@ function sendRegData() {
       },
       body: JSON.stringify(obj),
     })
-      .then((obj) => console.log(obj.json())).then(userValidation())
+      .then(async (obj) => {
+        const savedUser = await obj.json();
+      })
       .catch((error) => console.log(error));
       console.log(data);
   }
 
   
   regFormSbmBtn.addEventListener("click", (e) => {
-    if(document.getElementById("inputFirstName").value.length === 0)
-{
-    document.getElementById('firstname-err').innerHTML = "Please enter First Name";
-           
-}
-if(document.getElementById("inputLastName").value.length === 0)
-{
-    document.getElementById('lastname-err').innerHTML = "Please enter Last Name";
-           
-}
-if(document.getElementById("inputEmail").value.length === 0)
-{
-    document.getElementById('email-err').innerHTML = "Incorect email";
-          
-}    
-else {
     e.preventDefault();
+    checkFields()
     regValidation();
 }
-  });
+);
 
   
   btn_return.onclick = () => {
     window.location.href = "../index.html"
     };
 
+
+    let checkFields = () => {
+        const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if(inputFirstName.value.length === 0) {        
+            inputFirstNameError.style.visibility = "visible";
+            //pasidaryt counteri validacijai pvz false +1 ir tikrint su if(false > 0)
+        }
+        else {
+            inputFirstNameError.style.visibility = 'hidden'
+        }
+        if(inputLastName.value.length === 0) {        
+            inputLastNameError.style.visibility = "visible";
+        }
+        else {
+            inputLastNameError.style.visibility = 'hidden'
+        }
+        if(inputEmail.value.match(mailformat)) {        
+            inputEmailError.style.visibility = 'hidden'
+        }
+        else {
+            inputEmailError.style.visibility = "visible";
+        }
+        // if(inputEmail.value.length > 0 && !inputEmail.value.includes('@')) {   
+        //     inputEmailError.innerHTML = "Incorect email"
+        //     inputEmailError.style.visibility = "visible";
+        // }
+        // else {
+        //     inputEmailError.style.visibility = 'hidden'
+        // }
+        
+    // if(inputEmail.value.length === 0 || !inputEmail.value.includes('@'))
+    // {
+    //     document.getElementById('email-err').innerHTML = "Incorect email";
+              
+    // }    
+    // else {
+    // }
+}
 
 //   function userValidation() {
 //     const url = 'https://testapi.io/api/jkersys/resource/users';

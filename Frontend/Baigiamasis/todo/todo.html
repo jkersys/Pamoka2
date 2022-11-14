@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,38 +8,47 @@
     <title>todo</title>
     <link rel="stylesheet" href="app-todo.css" />
 </head>
+
 <body>
     <div id="container">
-        <form id="delete-todo">
-   
-
-
-
-        </form>
-        <form id="todo-form">
-            <div class="container-logout-btn"><input type="button" id="logout-btn" value="Log Out"></div>
-            <div class="input-container">
-            <div id="user-name-container">
+        <div id="userAndLogout">
+            <div>
                 <h4 id="user-name"></h4>
             </div>
-            <label for="name">Type</label>
-            <input type="text" name="type" id="type-input">
-            <div id="type-err"></div>
-            <label for="type">Content</label>
-            <input type="text" name="content" id="content-input">
-            <div id="content-err"></div>
-            <label for="type">Date</label>
-            <input type="date" name="endDate" id="date-input">
-            <div id="date-err"></div>
-            <input type="button" id="btn_post" value="Post"> <!--submit siuncia visus duomenis ir perkrauna puslapi--> 
+            <div class="container-logout-btn"><input type="button" id="btn_logout" value="Log Out"></div>
+        </div>
+        <form id="todo-form">
+            <div id="addTodo"><input type="button" id="add_todo" value="Add"></div>
+            <div class="input-container">
+                
+                <div>
+                    <label for="name">Type</label>
+                </div>
+                <div>
+                    <input type="text" name="type" id="type-input" placeholder="type" required />
+                </div>
+                <label for="type">Content</label>
+                <input type="text" name="content" id="content-input" placeholder="Enter Firstname"
+                    placeholder="Content" />
+
+                    <label for="type">Date</label>
+                <input type="date" name="endDate" id="date-input" placeholder="Enter">
+
+                
+                
             </div>
+            <input type="button" id="btn_post" value="Post" />
         </form>
-        <div ></div>
+        
+
         <div id="print-user-posts"></div>
     </div>
-
-
+   
     
+
+
+
     <script src="app-todo.js"></script>
 </body>
+
 </html>

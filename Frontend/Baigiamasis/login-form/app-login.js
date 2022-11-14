@@ -1,10 +1,10 @@
 const loginFormSbmBtn = document.querySelector('#login-submit');
+const nameErrorMsg = document.querySelector('#fieldNameError')
+const lastnameErrorMsg = document.querySelector('#fieldLastnameError')
+
 const inputFirstName = document.querySelector('#input-firstname');
 const inputLastName = document.querySelector('#input-lastname');
-const failMsg = document.querySelector('#failed');
-
-
-
+const failMsg = document.querySelector('#redTable');
 const url = 'https://testapi.io/api/jkersys/resource/users';
 const options = {
     method: 'get',
@@ -17,47 +17,69 @@ const options = {
 const response = {};
 
 function userValidation() {
+
     fetch(url, options)
     .then((response) => response.json())
     .then((users) => {
-        console.log(users);
-       
-      //  users.data.forEach(user => {
-
-      for (const user of users.data) {
-        
-      
-            console.log(user);
-
-            if(user.firstname.toLowerCase() === inputFirstName.value.toLowerCase() && 
-            user.lastname.toLowerCase() === inputLastName.value.toLowerCase()) {
-                console.log(`${user.firstname} ${user.lastname}`);
-                const usedData = JSON.stringify(user)
-                localStorage.setItem(user.firstname + ' ' + user.lastname, usedData)
-                failMsg.innerHTML = (`${user.firstname} ${user.lastname}`)
-                window.location.href = '../todo/todo.html'
-                     break
+        console.log(users);       
+        let loggedUser = null;
+      for (const user of users.data) {      
+            if(user.firstname.toLowerCase() === inputFirstName.value.toLowerCase().trim() && 
+            user.lastname.toLowerCase() === inputLastName.value.toLowerCase().trim()) {                
+                loggedUser = user;
+                break;
             }
-            else {
-                console.log(`tokio vartojo nera`);
-                failMsg.innerHTML = `<div id="redTable"><p>Account does not exist</p></div>`
-                console.log(`${user.firstname} ${user.lastname}`);
-                console.log(`${inputFirstName.value} ${inputLastName.value}`);
-            }
-           
         };
+
+        if (loggedUser != null){
+            console.log(`${loggedUser.firstname} ${loggedUser.lastname}`);
+            const userData = JSON.stringify(loggedUser)
+            localStorage.setItem(loggedUser.firstname + ' ' + loggedUser.lastname, userData)
+            failMsg.innerHTML = (`${loggedUser.firstname} ${loggedUser.lastname}`)
+            window.location.href = '../todo/todo.html'
+        }
+        else{
+            console.log(`tokio vartojo nera`);
+            failMsg.style.visibility = "visible"
+            //console.log(`${user.firstname} ${user.lastname}`);
+            console.log(`${inputFirstName.value} ${inputLastName.value}`);
+            if(inputFirstName.value.length < 0) {
+               errorMsg.style.display = 'block'
+            }
+        }
 
       
     })
 }
 
+let fieldsValidation = () => {
+    failMsg.style.visibility = "hidden"
+    if(inputFirstName.value.length === 0) {        
+        nameErrorMsg.style.visibility = "visible";
+    }
+    else {
+        nameErrorMsg.style.visibility = 'hidden'
+    }
+    if(inputLastName.value.length === 0) {
+        lastnameErrorMsg.style.visibility = "visible";    }
+    else {
+        lastnameErrorMsg.style.visibility = "hidden";
+    }
+}
+
+
 btn_return.onclick = () => {
+    localStorage.clear();
     window.location.href = "../index.html"
     };
 
 loginFormSbmBtn.addEventListener("click", (e) => {
     e.preventDefault();
     localStorage.clear();
+    fieldsValidation()
+    if(inputFirstName.value.length === 0 || inputLastName.value.length === 0) {
+       return
+    }
     userValidation(); 
   });
 

@@ -8,20 +8,22 @@
     <link rel="stylesheet" href="app-login.css" />
 </head>
 <body>
-    <div id="container">
         <form id="login-form">
+            <div id="redTable"><p>Account does not exist</p></div>
             <h3 id="failed"></h3>
             <div class="input-container">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="input-firstname">
-            <label for="type">Surname</label>
-            <input type="text" name="surname" id="input-lastname">
-            <input type="button" id="login-submit" value="Login"> <!--submit siuncia visus duomenis ir perkrauna puslapi--> 
-            </div>
+            <h2>Log in</h2>
+            <input type="text" name="name" id="input-firstname" placeholder="Enter Firstname">
+            <div id="fieldNameError">This field is required</div>
+           
+            <input type="text" name="surname" id="input-lastname" placeholder="Enter Lastname">
+            <div id="fieldLastnameError">This field is required</div>
+        </div>
+        <div class="buttons_container">
+            <input type="button" id="login-submit" value="Login"> 
             <button type="button" id="btn_return">Return</button>
+        </div>
         </form>
-    </div>
-    
     <script src="app-login.js"></script>
 </body>
 </html>

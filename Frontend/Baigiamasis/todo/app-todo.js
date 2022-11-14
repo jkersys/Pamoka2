@@ -1,9 +1,7 @@
 let isConected = () => {
     if(KeyName.length < 1) {
         console.log('vartotojas neprisijunges')
-        window.location.href = '../index.html'
-
-    }
+        window.location.href = '../index.html'    }
     else {
         console.log(`prisijunges vartotojas${KeyName}`)
     }
@@ -16,7 +14,7 @@ isConected()
 
 const postForm = document.querySelector('#todo-form');
 const showUserPosts = document.querySelector('#print-user-posts');
-
+const btnToggleTodo = document.querySelector('#addTodo')
 
 
 
@@ -55,7 +53,7 @@ function sendPostData() {
       },
       body: JSON.stringify(obj),
     })
-      .then((obj) => console.log(obj.json()))
+      .then(() => printUserPosts())
       .catch((error) => console.log(error));
       console.log(data);
   }
@@ -96,23 +94,32 @@ btn_post.addEventListener("click", (e) => {
 
         fetch(url, options)
         .then((response) => response.json())
-        .then((usersPosts) => {
-            console.log(usersPosts);
+        .then((posts) => {
+            
+            const userPosts = posts.data.filter(x => x.username === activeUser);
             
             showUserPosts.innerHTML = '';
-            for (const post of usersPosts.data) {
-                if(post.username === activeUser) {
-                console.log(post)
+            
+            let headers = `<div>
+                <div class="printedDataContainer"><div class="postType">TYPE</div>` + 
+                `<div class="postContent">CONTENT</div>` + 
+                `<div class="postEndDate">END DATE</div>` + 
+                `<div>COMMANDS</div></div>`;
+
+            showUserPosts.innerHTML = headers;    
+
+            for (const post of userPosts) {
+                
                 let activeUserPost = `<div id="${post.id}">
                 <div class="printedDataContainer"> <div class="postType">${post.type}</div><input style="display:none" type="text" class='postTypeInput' />` + 
                 `<div class="postContent">${post.content}</div><input style="display:none" type="text" class='postContentInput' />` + 
-                `<div class="postEndDate">${post.endDate}</div><input style="display:none" type="text" class='postEndDateInput' />` + 
-                '<input type="button" class="editButton" value="Edit" onClick="editTodo('+post.id+')" />'+
+                `<div class="postEndDate">${post.endDate}</div><input style="display:none" type="date" class='postEndDateInput' />` + 
+                '<div ><input type="button" class="editButton" value="Edit" onClick="editTodo('+post.id+')" />'+
                 '<input type="button" class="updateButton" style="display:none" value="Update" onClick="updateTodo('+post.id+')" />'+
+                '<input type="button" class="cancelButton" style="display:none" value="Cancel" onClick="cancelTodo('+post.id+')" />'+
                 '<input type="button" value="Delete" onClick="deleteTodo('+post.id+')" /> </div> </div>'
-               // htmlPost += activeUserPost
-               showUserPosts.innerHTML += activeUserPost 
-            }
+                
+                showUserPosts.innerHTML += activeUserPost 
         }
         
         });
@@ -127,12 +134,14 @@ btn_post.addEventListener("click", (e) => {
 
     const deleteForm = document.querySelector('#delete-todo');
     const deleteTodoBtn = document.querySelector('#btn_delete');
+    let inputForm = document.querySelector('.input-container')
 
     function updateTodo(id){
         const div = document.getElementById(id);
         const typeValue = div.getElementsByClassName('postTypeInput')[0].value;
         const contentValue = div.getElementsByClassName('postContentInput')[0].value;
         const endDateValue = div.getElementsByClassName('postEndDateInput')[0].value;
+       
 
 
 
@@ -158,15 +167,18 @@ btn_post.addEventListener("click", (e) => {
             console.log(`Request failed with error: ${error}`);
         })
     }
-        //type update
     function editTodo(id){
+        
+        //type update
         const div = document.getElementById(id);
         const typeDiv = div.getElementsByClassName('postType')[0];  
         const typeInput = div.getElementsByClassName('postTypeInput')[0];
         const editButton = div.getElementsByClassName('editButton')[0];
+        const cancelButton = div.getElementsByClassName('cancelButton')[0];
         const updateButton = div.getElementsByClassName('updateButton')[0];
         editButton.style.display="none";
         updateButton.style.display="block";
+        cancelButton.style.display='block';
         typeDiv.style.display= "none";
         typeInput.style.display= "block";
         typeInput.value= typeDiv.innerHTML;
@@ -184,8 +196,23 @@ btn_post.addEventListener("click", (e) => {
         endDateDiv.style.display= "none";
         endDateInput.style.display= "block";
         endDateInput.value= endDateDiv.innerHTML;
+    }
 
+    let cancelTodo = (id) => {
+        const div = document.getElementById(id);
+        const typeInput = div.getElementsByClassName('postTypeInput')[0];
+        const typeDiv = div.getElementsByClassName('postType')[0];  
 
+        const cancelButton = div.getElementsByClassName('cancelButton')[0];
+        const updateButton = div.getElementsByClassName('updateButton')[0];
+        const editButton = div.getElementsByClassName('editButton')[0];
+
+        typeInput.style.display = "none";
+        typeDiv.style.display = "block";
+        cancelButton.style.display="none";
+        updateButton.style.display="none";
+        editButton.style.display = "block";
+       
     }
 
     function deleteTodo(id){
@@ -254,7 +281,25 @@ btn_post.addEventListener("click", (e) => {
         
     }
     
-    deleteTodoBtn.addEventListener('click', (e) => {
-        e.preventDefault(); // Breaks manual refresh after submit
-        deleteTodo();
-    })
+    btn_logout.onclick = () => {
+        localStorage.clear();
+        window.location.href = '../index.html'   
+    };
+    // deleteTodoBtn.addEventListener('click', (e) => {
+    //     e.preventDefault(); // Breaks manual refresh after submit
+    //     deleteTodo();
+    // })
+
+    btnToggleTodo.onclick = () => {
+        toggleTodo()
+    }
+
+    let toggleTodo = () => {
+      
+   
+        if (inputForm.style.display === 'none' || inputForm.style.display === '') {
+            inputForm.style.display = 'grid';
+        } else {
+            inputForm.style.display = 'none';
+        }
+    }
