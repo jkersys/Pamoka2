@@ -15,7 +15,7 @@ body {
         border: 2px solid black;
         border-radius: 25px;
         width: 800px;
-        height: 600px;    
+        height: fit-content;    
     }
     #userAndLogout {
         display: block;
@@ -26,6 +26,7 @@ body {
     #user-name{
         height: 20px;
         width: fit-content;
+        margin-left: 0;
         
     }
 
@@ -58,7 +59,7 @@ body {
     }
     .postType{
         width: 150px;
-        text-align: center;
+        
     }
     #return-btn{
     
@@ -92,13 +93,20 @@ body {
         gap: 5px;
     }
     .printedDataContainer {
-        border: 1px solid black; 
+        border: 1px solid rgb(59, 59, 59); 
         width:800px;
         display: grid;
         grid-template-columns: 150px 1fr 80px 200px;
         gap: 10px;
+        justify-content: center;
    }
    .button_container{
+    display: flex;
+    justify-content: space-evenly;
+    height: 30px;
+   }
+
+   .button_container button{
     display: flex;
     justify-content: space-evenly;
     height: 30px;
@@ -110,14 +118,12 @@ body {
    
 
    .printedDataContainer input{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    justify-content: center;   
-    border-radius: 25px;
-    padding: 2px;
+   
+  
+    
+ 
     opacity: 0.9;
-    font-size: larger;
+    font-size:small;
     font-style:normal;
     font-family: Arial, Helvetica, sans-serif;
    }

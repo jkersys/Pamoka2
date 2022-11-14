@@ -10,13 +10,9 @@ let isConected = () => {
 let KeyName = Object.getOwnPropertyNames(localStorage) //grazina masyva
 isConected()
 
-
-
 const postForm = document.querySelector('#todo-form');
 const showUserPosts = document.querySelector('#print-user-posts');
 const btnToggleTodo = document.querySelector('#addTodo')
-
-
 
 let UserKey = JSON.parse(localStorage.getItem(KeyName))
 console.log(UserKey)
@@ -24,15 +20,6 @@ let activeUser = UserKey.firstname + ' ' + UserKey.lastname
 console.log(activeUser)
 
 document.querySelector('#user-name').innerHTML = activeUser
-
-if(UserKey.length > 0) 
-{
-console.log('niekas neprisijunges')
-//todogrizt i main page
-}
-
-console.log(activeUser)
-
 
 function sendPostData() {
     let data = new FormData(postForm);
@@ -43,7 +30,6 @@ function sendPostData() {
     });
 
     console.log(obj)
-//POSTINA I DUOMBAZE
 
     fetch(`https://testapi.io/api/jkersys/resource/userPosts`, {
       method: "post",
@@ -58,27 +44,11 @@ function sendPostData() {
       console.log(data);
   }
 
-
-
-// let userConected () => {
-//     if(Object.keys.(localStorage) > 0 )
-// }
-
-
-console.log(UserKey)
-
-console.log(KeyName)
-
-
-
-
 btn_post.addEventListener("click", (e) => {
             e.preventDefault();
         sendPostData();
       
       });
-
-
 
       function printUserPosts() {
 
@@ -124,9 +94,7 @@ btn_post.addEventListener("click", (e) => {
         
         });
     }
-    
-    
-
+        
     printUserPosts()
 
 
@@ -142,8 +110,6 @@ btn_post.addEventListener("click", (e) => {
         const contentValue = div.getElementsByClassName('postContentInput')[0].value;
         const endDateValue = div.getElementsByClassName('postEndDateInput')[0].value;
        
-
-
 
         const post = {
             username: activeUser,
@@ -207,11 +173,24 @@ btn_post.addEventListener("click", (e) => {
         const updateButton = div.getElementsByClassName('updateButton')[0];
         const editButton = div.getElementsByClassName('editButton')[0];
 
+        const contentInput = div.getElementsByClassName('postContentInput')[0];
+        const contentDiv = div.getElementsByClassName('postContent')[0];  
+
+        const endDateDiv = div.getElementsByClassName('postEndDate')[0];  
+        const endDateInput = div.getElementsByClassName('postEndDateInput')[0];
+
+
         typeInput.style.display = "none";
         typeDiv.style.display = "block";
         cancelButton.style.display="none";
         updateButton.style.display="none";
         editButton.style.display = "block";
+
+        contentInput.style.display = "none";
+        contentDiv.style.display = "block";
+
+        endDateInput.style.display = "none";
+        endDateDiv.style.display = "block";
        
     }
 
@@ -232,54 +211,7 @@ btn_post.addEventListener("click", (e) => {
             console.log(`Request failed with error: ${error}`);
         })
         
-    }
-
-    function deleteTodo2() {
-        let data = new FormData(deleteForm);
-        let obj = {};
-    
-        // #1 iteracija -> obj {name: 'asd'}
-        // #2 iteracija -> obj {type: 'asd'}
-        data.forEach((value, key) => {
-            // console.log(`${key}(Key): ${value}(Value)`);
-            obj[key] = value
-        });
-    
-        const url = 'https://testapi.io/api/jkersys/resource/userPosts/' + obj.id;
-    
-        const urlFetchPosts = 'https://testapi.io/api/jkersys/resource/userPosts/' + obj.id;
-        const optionsFetchPosts = {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        }
-    
-        fetch(url, optionsFetchPosts)
-        .then((response) => response.json())
-        .then((p) => {
-            console.log(`Posts exists: ${p}`);
-            return fetch(urlFetchPosts, {
-                method: 'delete',
-                headers: {
-                    'Accept': 'application/json, text/plain, */*',
-                    'Content-Type': 'application/json'
-                }
-            })
-        })
-        .then(obj => { // Now we are working with our Delete fetch
-            const res = obj;// .json()
-            console.log(res);
-            return res;
-        })
-        .catch((error) => {
-            console.log(`Request failed with error: ${error}`);
-        })
-        
-        
-        
-    }
+    }   
     
     btn_logout.onclick = () => {
         localStorage.clear();
