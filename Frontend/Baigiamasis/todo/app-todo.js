@@ -100,7 +100,7 @@ btn_post.addEventListener("click", (e) => {
             
             showUserPosts.innerHTML = '';
             
-            let headers = `<div>
+            let headers = `<div class="printedDataContainer">
                 <div class="printedDataContainer"><div class="postType">TYPE</div>` + 
                 `<div class="postContent">CONTENT</div>` + 
                 `<div class="postEndDate">END DATE</div>` + 
@@ -110,14 +110,14 @@ btn_post.addEventListener("click", (e) => {
 
             for (const post of userPosts) {
                 
-                let activeUserPost = `<div id="${post.id}">
-                <div class="printedDataContainer"> <div class="postType">${post.type}</div><input style="display:none" type="text" class='postTypeInput' />` + 
+                let activeUserPost = `<div id="${post.id}" class="printedDataContainer">
+                 <div class="postType">${post.type}</div><input style="display:none" type="text" class='postTypeInput' />` + 
                 `<div class="postContent">${post.content}</div><input style="display:none" type="text" class='postContentInput' />` + 
                 `<div class="postEndDate">${post.endDate}</div><input style="display:none" type="date" class='postEndDateInput' />` + 
-                '<div ><input type="button" class="editButton" value="Edit" onClick="editTodo('+post.id+')" />'+
+                '<div class="button_container"><input type="button" class="editButton" value="Edit" onClick="editTodo('+post.id+')" />'+
                 '<input type="button" class="updateButton" style="display:none" value="Update" onClick="updateTodo('+post.id+')" />'+
                 '<input type="button" class="cancelButton" style="display:none" value="Cancel" onClick="cancelTodo('+post.id+')" />'+
-                '<input type="button" value="Delete" onClick="deleteTodo('+post.id+')" /> </div> </div>'
+                '<input type="button" value="Delete" onClick="deleteTodo('+post.id+')" /> </div> </div> '
                 
                 showUserPosts.innerHTML += activeUserPost 
         }
