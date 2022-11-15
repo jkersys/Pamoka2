@@ -8,44 +8,29 @@
     <title>todo</title>
     <link rel="stylesheet" href="app-todo.css" />
 </head>
-
 <body>
     <div id="container">
         <div id="userAndLogout">
-            <div id="user-name">        </div>
+            <div id="user-name"></div>
             <div class="container-logout-btn"><input type="button" id="btn_logout" value="Log Out"></div>
         </div>
-        <div id="addTodo"><input type="button" id="add_todo" value="Add"></div>
+        <div id="addTodo"><input type="button" id="add_todo" value="Add New Post"></div>
         <form id="todo-form">
             <div class="input-container">
-                
-                <div>
-                    <label for="name">Type</label>
-                </div>
-                <div>
-                    <input type="text" name="type" id="type-input" placeholder="type" required />
-                </div>
-                <label for="type">Content</label>
-                <input type="text" name="content" id="content-input" placeholder="Enter Firstname"
-                    placeholder="Content" />
-
-                    <label for="type">Date</label>
+               <div class="label-container"><label for="name">Type:</label></div>
+                <input type="text" name="type" id="type-input" placeholder="type" />
+                <div id="fieldTypeError">This field is required</div>
+            <div class="label-container"><label for="type">Content:</label></div>
+                <input type="text" name="content" id="content-input" placeholder="Conent" />
+                <div id="fieldContentError">This field is required</div>
+            <div class="label-container"><label for="type">Date:</label></div>
                 <input type="date" name="endDate" id="date-input" placeholder="Enter">
-
-                
-                
-                <input type="button" id="btn_post" value="Post" />
+                <div id="fieldDateError">This field is required</div>
             </div>
+            <div id="post_btn_container"><input type="button" id="btn_post" value="Post" /></div>
         </form>
-        
-
         <div id="print-user-posts"></div>
     </div>
-   
-    
-
-
-
     <script src="app-todo.js"></script>
 </body>
 
