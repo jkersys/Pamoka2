@@ -104,7 +104,7 @@ body {
 }
 
 .printedDataContainer {
-    border: 1px solid rgb(59, 59, 59);
+    border: 1px solid rgb(136, 135, 135);
     width: 800px;
     display: grid;
     grid-template-columns: 150px 1fr 95px 200px;

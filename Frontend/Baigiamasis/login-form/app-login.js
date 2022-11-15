@@ -30,25 +30,18 @@ function userValidation() {
                 break;
             }
         };
-
         if (loggedUser != null){
-            console.log(`${loggedUser.firstname} ${loggedUser.lastname}`);
             const userData = JSON.stringify(loggedUser)
             localStorage.setItem(loggedUser.firstname + ' ' + loggedUser.lastname, userData)
             failMsg.innerHTML = (`${loggedUser.firstname} ${loggedUser.lastname}`)
             window.location.href = '../todo/todo.html'
         }
         else{
-            console.log(`tokio vartojo nera`);
             failMsg.style.visibility = "visible"
-            //console.log(`${user.firstname} ${user.lastname}`);
-            console.log(`${inputFirstName.value} ${inputLastName.value}`);
             if(inputFirstName.value.length < 0) {
                errorMsg.style.display = 'block'
             }
-        }
-
-      
+        }    
     })
 }
 
@@ -65,8 +58,12 @@ let fieldsValidation = () => {
     else {
         lastnameErrorMsg.style.visibility = "hidden";
     }
-}
+    if(inputFirstName.value.length === 0 || inputLastName.value.length === 0) {
+        return
+     }
+     userValidation(); 
 
+}
 
 btn_return.onclick = () => {
     localStorage.clear();
@@ -77,9 +74,5 @@ loginFormSbmBtn.addEventListener("click", (e) => {
     e.preventDefault();
     localStorage.clear();
     fieldsValidation()
-    if(inputFirstName.value.length === 0 || inputLastName.value.length === 0) {
-       return
-    }
-    userValidation(); 
   });
 

@@ -3,13 +3,9 @@ const regFormSbmBtn = document.querySelector('#signup_btn');
 const response = {};
 const url = 'https://testapi.io/api/jkersys/resource/users';
 const userExistsMsg = document.querySelector('#redTable');
-
-
-
 const inputFirstName = document.querySelector('#inputFirstName');
 const inputLastName = document.querySelector('#inputLastName');
 const inputEmail = document.querySelector('#inputEmail');
-
 const inputFirstNameError = document.querySelector('#firstname-err');
 const inputLastNameError = document.querySelector('#lastname-err');
 const inputEmailError = document.querySelector('#email-err');
@@ -18,7 +14,6 @@ const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
 function regValidation() {
     let userExists = false
-    const url = 'https://testapi.io/api/jkersys/resource/users';
     const options = {
         method: 'get',
         headers: {
@@ -33,13 +28,10 @@ function regValidation() {
             console.log(users);
             for (const user of users.data) {
                 console.log(user);
-
                 if (user.firstname.toLowerCase() === inputFirstName.value.toLowerCase() &&
                     user.lastname.toLowerCase() === inputLastName.value.toLowerCase() &&
                     user.email.toLowerCase() === inputEmail.value.toLowerCase()) {
-                    console.log('Toks vartotojas jau yra')
-                    userExists = true
-                    console.log(`${user.firstname} ${inputFirstName.value} ${user.lastname} ${inputLastName.value} ${user.email} ${inputEmail.value}`);
+                    userExists = true                    
                     break;
                 }
             }
@@ -53,18 +45,18 @@ function regValidation() {
                 sendRegData()
             }
         })
+        .catch((error) => console.log(error));
 }
 
 function sendRegData() {
     let data = new FormData(registrationForm);
     let obj = {};
-    let createdUser
 
     data.forEach((value, key) => {
         obj[key] = value;
     });
 
-    fetch(`https://testapi.io/api/jkersys/resource/users`, {
+    fetch(url, {
         method: "post",
         headers: {
             Accept: "application/json, text/plain, */*",
@@ -77,7 +69,6 @@ function sendRegData() {
             console.log(savedUser)
             const userData = JSON.stringify(savedUser)
             localStorage.setItem(savedUser.firstname + ' ' + savedUser.lastname, userData)
-            //failMsg.innerHTML = (`${loggedUser.firstname} ${loggedUser.lastname}`)
             window.location.href = '../todo/todo.html'
         })
         .catch((error) => console.log(error));
@@ -86,7 +77,8 @@ function sendRegData() {
 
 regFormSbmBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    checkFields()
+    localStorage.clear();
+    checkFields();
 }
 );
 
@@ -99,14 +91,14 @@ let checkFields = () => {
     let lastname = true
     let email = true
     const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (inputFirstName.value.length === 0) {
+    if (inputFirstName.value.trim() === '') {
         inputFirstNameError.style.visibility = "visible";
         name = false
     }
     else {
         inputFirstNameError.style.visibility = 'hidden'
     }
-    if (inputLastName.value.length === 0) {
+    if (inputLastName.value.trim() === '') {
         inputLastNameError.style.visibility = "visible";
         lastname = false
     }

@@ -3,7 +3,6 @@ let isConected = () => {
     KeyName = Object.getOwnPropertyNames(localStorage) //grazina masyva
     console.log(KeyName)
         if (KeyName.length < 1) {
-        console.log('vartotojas neprisijunges')
         window.location.href = '../index.html'
     }
     else {
@@ -14,6 +13,7 @@ let isConected = () => {
 let KeyName = Object.getOwnPropertyNames(localStorage) //grazina masyva
 setInterval(isConected, 1000)
 //kintamieji
+const url = 'https://testapi.io/api/jkersys/resource/userPosts/'
 const postForm = document.querySelector('#todo-form');
 const showUserPosts = document.querySelector('#print-user-posts');
 const btnToggleTodo = document.querySelector('#addTodo')
@@ -29,7 +29,7 @@ let activeUser = UserKey.firstname + ' ' + UserKey.lastname
 console.log(activeUser)
 document.querySelector('#user-name').innerHTML = activeUser
 
-//siuniam posta
+//NEW POST
 const sendPostData = () => {
     let data = new FormData(postForm);
     let obj = {};
@@ -37,10 +37,8 @@ const sendPostData = () => {
     data.forEach((value, key) => {
         obj[key] = value;
     });
-
     console.log(obj)
-
-    fetch(`https://testapi.io/api/jkersys/resource/userPosts`, {
+    fetch(url, {
         method: "post",
         headers: {
             Accept: "application/json, text/plain, */*",
@@ -52,18 +50,16 @@ const sendPostData = () => {
         .catch((error) => console.log(error));
     console.log(data);
 }
-
 btn_post.addEventListener("click", (e) => {
     e.preventDefault();
     inputFieldsValidation()
 
 });
-
+//INPUT VALIDATOR
 const inputFieldsValidation = () => {
     let typeValidation = true
     let contentValidation = true
     let dateValidation = true
-
     if (userTypeInput.value.length === 0) {
         userTypeInputError.style.visibility = "visible";
         typeValidation = false
@@ -81,7 +77,6 @@ const inputFieldsValidation = () => {
     if (userTypeDate.value === '') {
         userTypeDateError.style.visibility = 'visible'
         dateValidation = false
-
     }
     else {
         userTypeDateError.style.visibility = "hidden";
@@ -93,14 +88,9 @@ const inputFieldsValidation = () => {
     else {
         sendPostData();
     }
-
 }
-
-
-
+//PRINT POSTS
 const printUserPosts =() => {
-
-    const url = 'https://testapi.io/api/jkersys/resource/userPosts';
     const options = {
         method: 'get',
         headers: {
@@ -108,26 +98,18 @@ const printUserPosts =() => {
             'Content-Type': 'application/json'
         }
     }
-
-
     fetch(url, options)
         .then((response) => response.json())
         .then((posts) => {
-
             const userPosts = posts.data.filter(x => x.username === activeUser);
-
             showUserPosts.innerHTML = '';
-
             let headers = `<div class="printedDataContainer">
                 <div class="printedDataContainer"><div class="postType">TYPE</div>` +
                 `<div class="postContent">CONTENT</div>` +
                 `<div class="postEndDate">END DATE</div>` +
                 `<div class="button_container">COMMANDS</div></div>`;
-
             showUserPosts.innerHTML = headers;
-
             for (const post of userPosts) {
-
                 let activeUserPost = `<div id="${post.id}" class="printedDataContainer">
                  <div class="postType">${post.type}</div><input style="display:none" type="text" class='postTypeInput' />` +
                     `<div class="postContent">${post.content}</div><input style="display:none" type="text" class='postContentInput' />` +
@@ -136,16 +118,12 @@ const printUserPosts =() => {
                     '<input type="button" class="updateButton" style="display:none" value="Update" onClick="updateTodo(' + post.id + ')" />' +
                     '<input type="button" class="cancelButton" style="display:none" value="Cancel" onClick="cancelTodo(' + post.id + ')" />' +
                     '<input type="button" value="Delete" onClick="deleteTodo(' + post.id + ')" /> </div> </div> '
-
                 showUserPosts.innerHTML += activeUserPost
             }
-
         });
 }
 
 printUserPosts()
-
-
 
 //DELETE POST
 const deleteForm = document.querySelector('#delete-todo');
@@ -165,7 +143,7 @@ function updateTodo(id) {
         endDate: endDateValue,
         type: typeValue
     }
-    const url = 'https://testapi.io/api/jkersys/resource/userPosts/' + id;
+
     const optionsFetchPosts = {
         method: 'put',
         headers: {
@@ -175,7 +153,7 @@ function updateTodo(id) {
         body: JSON.stringify(post)
     }
 
-    fetch(url, optionsFetchPosts)
+    fetch(url + id, optionsFetchPosts)
         .then(() => printUserPosts())
         .catch((error) => {
             console.log(`Request failed with error: ${error}`);
@@ -243,8 +221,6 @@ let cancelTodo = (id) => {
 }
 
 function deleteTodo(id) {
-    const url = 'https://testapi.io/api/jkersys/resource/userPosts/' + id;
-
     const optionsFetchPosts = {
         method: 'delete',
         headers: {
@@ -252,23 +228,17 @@ function deleteTodo(id) {
             'Content-Type': 'application/json'
         }
     }
-
-    fetch(url, optionsFetchPosts)
+    fetch(url +id, optionsFetchPosts)
         .then(() => printUserPosts())
         .catch((error) => {
             console.log(`Request failed with error: ${error}`);
         })
-
 }
 
 btn_logout.onclick = () => {
     localStorage.clear();
     window.location.href = '../index.html'
 };
-// deleteTodoBtn.addEventListener('click', (e) => {
-//     e.preventDefault(); // Breaks manual refresh after submit
-//     deleteTodo();
-// })
 
 btnToggleTodo.onclick = () => {
     toggleTodo()
