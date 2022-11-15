@@ -28,6 +28,7 @@ console.log(UserKey)
 let activeUser = UserKey.firstname + ' ' + UserKey.lastname
 console.log(activeUser)
 document.querySelector('#user-name').innerHTML = activeUser
+let inputForm = document.querySelector('#todo-form')
 
 //NEW POST
 const sendPostData = () => {
@@ -117,25 +118,26 @@ const printUserPosts =() => {
                     '<div class="button_container"><input type="button" class="editButton" value="Edit" onClick="editTodo(' + post.id + ')" />' +
                     '<input type="button" class="updateButton" style="display:none" value="Update" onClick="updateTodo(' + post.id + ')" />' +
                     '<input type="button" class="cancelButton" style="display:none" value="Cancel" onClick="cancelTodo(' + post.id + ')" />' +
-                    '<input type="button" value="Delete" onClick="deleteTodo(' + post.id + ')" /> </div> </div> '
+                    '<input type="button" class="yesButton" style="display:none" value="YES" onClick="deleteTodo(' + post.id + ')" />' +
+                    '<input type="button" class="noButton" style="display:none" value="NO" onClick="cancelDelete(' + post.id + ')" />' +
+                    //'<input type="button" value="Delete" onClick="deleteTodo(' + post.id + ')" /> </div> </div> '
+                    '<input type="button" class="deleteButton" value="Delete" onClick="aproveDelete(' + post.id + ')" /> </div> </div> '
                 showUserPosts.innerHTML += activeUserPost
             }
         });
 }
 
 printUserPosts()
-
 //DELETE POST
 const deleteForm = document.querySelector('#delete-todo');
 const deleteTodoBtn = document.querySelector('#btn_delete');
-let inputForm = document.querySelector('#todo-form')
 
-function updateTodo(id) {
+
+const updateTodo = (id) => {
     const div = document.getElementById(id);
     const typeValue = div.getElementsByClassName('postTypeInput')[0].value;
     const contentValue = div.getElementsByClassName('postContentInput')[0].value;
     const endDateValue = div.getElementsByClassName('postEndDateInput')[0].value;
-
 
     const post = {
         username: activeUser,
@@ -159,15 +161,18 @@ function updateTodo(id) {
             console.log(`Request failed with error: ${error}`);
         })
 }
-function editTodo(id) {
+const editTodo = (id) => {
 
     //type update
+    
     const div = document.getElementById(id);
     const typeDiv = div.getElementsByClassName('postType')[0];
     const typeInput = div.getElementsByClassName('postTypeInput')[0];
     const editButton = div.getElementsByClassName('editButton')[0];
     const cancelButton = div.getElementsByClassName('cancelButton')[0];
     const updateButton = div.getElementsByClassName('updateButton')[0];
+    const deleteButton = div.getElementsByClassName('deleteButton')[0]
+    deleteButton.style.display = "none";
     editButton.style.display = "none";
     updateButton.style.display = "block";
     cancelButton.style.display = 'block';
@@ -190,6 +195,29 @@ function editTodo(id) {
     endDateInput.value = endDateDiv.innerHTML;
 }
 
+let aproveDelete = (id) => {
+    const div = document.getElementById(id);
+    const editButton = div.getElementsByClassName('editButton')[0];
+    const deleteButton = div.getElementsByClassName('deleteButton')[0];
+    const yesButton = div.getElementsByClassName('yesButton')[0];
+    const noButton = div.getElementsByClassName('noButton')[0];
+    editButton.style.display = "none";
+    deleteButton.style.display = "none";
+    yesButton.style.display = "block";
+    noButton.style.display = "block";  
+}
+let cancelDelete = (id) => {
+    const div = document.getElementById(id);
+    const editButton = div.getElementsByClassName('editButton')[0];
+    const deleteButton = div.getElementsByClassName('deleteButton')[0];
+    const yesButton = div.getElementsByClassName('yesButton')[0];
+    const noButton = div.getElementsByClassName('noButton')[0];
+    editButton.style.display = "block";
+    deleteButton.style.display = "block";
+    yesButton.style.display = "none";
+    noButton.style.display = "none";  
+}
+
 let cancelTodo = (id) => {
     const div = document.getElementById(id);
     const typeInput = div.getElementsByClassName('postTypeInput')[0];
@@ -204,23 +232,20 @@ let cancelTodo = (id) => {
 
     const endDateDiv = div.getElementsByClassName('postEndDate')[0];
     const endDateInput = div.getElementsByClassName('postEndDateInput')[0];
-
-
+    const deleteButton = div.getElementsByClassName('deleteButton')[0]
+    deleteButton.style.display = "block";
     typeInput.style.display = "none";
     typeDiv.style.display = "block";
     cancelButton.style.display = "none";
     updateButton.style.display = "none";
     editButton.style.display = "block";
-
     contentInput.style.display = "none";
     contentDiv.style.display = "block";
-
     endDateInput.style.display = "none";
     endDateDiv.style.display = "block";
-
 }
 
-function deleteTodo(id) {
+const deleteTodo = (id) => {
     const optionsFetchPosts = {
         method: 'delete',
         headers: {
