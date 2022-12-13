@@ -1,18 +1,14 @@
 //Tikrinam ar prisijungęs
 let isConected = () => {
-    KeyName = Object.getOwnPropertyNames(localStorage) //grazina masyva
-    console.log(KeyName)
-        if (KeyName.length < 1) {
+    KeyName = Object.getOwnPropertyNames(localStorage)
+    if (KeyName.length < 1) {
         window.location.href = '../index.html'
     }
-    else {
-        console.log(`prisijunges vartotojas${KeyName}`)
-    }
 }
-//nuskaitom rakto koda
-let KeyName = Object.getOwnPropertyNames(localStorage) //grazina masyva
+//nuskaitom raktą
+let KeyName = Object.getOwnPropertyNames(localStorage)
 setInterval(isConected, 1000)
-//kintamieji
+
 const url = 'https://testapi.io/api/jkersys/resource/userPosts/'
 const postForm = document.querySelector('#todo-form');
 const showUserPosts = document.querySelector('#print-user-posts');
@@ -24,9 +20,9 @@ const userTypeInputError = document.querySelector('#fieldTypeError')
 const userTypeContentError = document.querySelector('#fieldContentError')
 const userTypeDateError = document.querySelector('#fieldDateError')
 let UserKey = JSON.parse(localStorage.getItem(KeyName))
-console.log(UserKey)
+//console.log(UserKey)
 let activeUser = UserKey.firstname + ' ' + UserKey.lastname
-console.log(activeUser)
+//console.log(activeUser)
 document.querySelector('#user-name').innerHTML = activeUser
 let inputForm = document.querySelector('#todo-form')
 
@@ -38,7 +34,7 @@ const sendPostData = () => {
     data.forEach((value, key) => {
         obj[key] = value;
     });
-    console.log(obj)
+    //console.log(obj)
     fetch(url, {
         method: "post",
         headers: {
@@ -49,7 +45,7 @@ const sendPostData = () => {
     })
         .then(() => printUserPosts())
         .catch((error) => console.log(error));
-    console.log(data);
+    //console.log(data);
 }
 btn_post.addEventListener("click", (e) => {
     e.preventDefault();
@@ -91,7 +87,7 @@ const inputFieldsValidation = () => {
     }
 }
 //PRINT POSTS
-const printUserPosts =() => {
+const printUserPosts = () => {
     const options = {
         method: 'get',
         headers: {
@@ -164,7 +160,7 @@ const updateTodo = (id) => {
 const editTodo = (id) => {
 
     //type update
-    
+
     const div = document.getElementById(id);
     const typeDiv = div.getElementsByClassName('postType')[0];
     const typeInput = div.getElementsByClassName('postTypeInput')[0];
@@ -204,7 +200,7 @@ let aproveDelete = (id) => {
     editButton.style.display = "none";
     deleteButton.style.display = "none";
     yesButton.style.display = "block";
-    noButton.style.display = "block";  
+    noButton.style.display = "block";
 }
 let cancelDelete = (id) => {
     const div = document.getElementById(id);
@@ -215,7 +211,7 @@ let cancelDelete = (id) => {
     editButton.style.display = "block";
     deleteButton.style.display = "block";
     yesButton.style.display = "none";
-    noButton.style.display = "none";  
+    noButton.style.display = "none";
 }
 
 let cancelTodo = (id) => {
@@ -253,7 +249,7 @@ const deleteTodo = (id) => {
             'Content-Type': 'application/json'
         }
     }
-    fetch(url +id, optionsFetchPosts)
+    fetch(url + id, optionsFetchPosts)
         .then(() => printUserPosts())
         .catch((error) => {
             console.log(`Request failed with error: ${error}`);

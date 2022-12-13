@@ -17,7 +17,6 @@ body {
 
 #btn_container{
     align-items: center;
-    display: flex;
     text-align: center;
     display: block;
     height: 90px;

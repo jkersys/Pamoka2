@@ -25,23 +25,23 @@ function regValidation() {
     fetch(url, options)
         .then((response) => response.json())
         .then((users) => {
-            console.log(users);
+           // console.log(users);
             for (const user of users.data) {
-                console.log(user);
+                //console.log(user);
                 if (user.firstname.toLowerCase() === inputFirstName.value.toLowerCase() &&
                     user.lastname.toLowerCase() === inputLastName.value.toLowerCase() &&
                     user.email.toLowerCase() === inputEmail.value.toLowerCase()) {
-                    userExists = true                    
+                    userExists = true
                     break;
                 }
             }
 
             if (userExists) {
-                console.log('Toks vartotojas duomenu bazeje jau yra')
+                //console.log('Toks vartotojas duomenu bazeje jau yra')
                 userExistsMsg.style.visibility = 'visible'
             }
             else {
-                console.log(`kuriamas naujas vartotojas`);
+                //console.log(`kuriamas naujas vartotojas`);
                 sendRegData()
             }
         })
@@ -66,13 +66,13 @@ function sendRegData() {
     })
         .then(async (obj) => {
             const savedUser = await obj.json()
-            console.log(savedUser)
+            //console.log(savedUser)
             const userData = JSON.stringify(savedUser)
             localStorage.setItem(savedUser.firstname + ' ' + savedUser.lastname, userData)
             window.location.href = '../todo/todo.html'
         })
         .catch((error) => console.log(error));
-    console.log(data);
+    //console.log(data);
 }
 
 regFormSbmBtn.addEventListener("click", (e) => {
