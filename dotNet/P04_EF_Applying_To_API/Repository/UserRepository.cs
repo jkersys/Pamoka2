@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using P04_EF_Applying_To_API.Data;
 using P04_EF_Applying_To_API.Models;
 using P04_EF_Applying_To_API.Models.Dto;
@@ -21,9 +22,16 @@ namespace P04_EF_Applying_To_API.Repository
             _passwordService = passwordService;
             _jwtService = jwtService;
         }
-        public bool IsUniqueUser(string username)
+
+        public async Task<bool> IsRegisterAsync(int userId)
         {
-            var user = _db.LocalUsers.FirstOrDefault(x => x.Username == username);
+            var isRegistered = await _db.LocalUsers.AnyAsync(u => u.Id == userId);
+            return isRegistered;
+        }
+
+        public async Task<bool> IsUniqueUserAsync(string username)
+        {
+            var user = await _db.LocalUsers.FirstOrDefaultAsync(x => x.Username == username);
 
             if(user == null)
             {
@@ -32,10 +40,10 @@ namespace P04_EF_Applying_To_API.Repository
             return false;
         }
 
-        public LoginResponse Login(LoginRequest loginRequest)
+        public async Task<LoginResponse> LoginAsync(LoginRequest loginRequest)
         {
             var inputPasswordBytes = Encoding.UTF8.GetBytes(loginRequest.Password);
-            var user = _db.LocalUsers.FirstOrDefault(x => x.Username.ToLower() == loginRequest.Username.ToLower());
+            var user = await _db.LocalUsers.FirstOrDefaultAsync(x => x.Username.ToLower() == loginRequest.Username.ToLower());
 
             if (user == null && !_passwordService.VerifyPasswordHash(loginRequest.Password, user.PasswordHash, user.PasswordSalt))
             {
@@ -60,7 +68,7 @@ namespace P04_EF_Applying_To_API.Repository
 
         // Add RegistrationResponse (Should not include password)
         // Add adapter classes to map to wanted classes
-        public LocalUser Register(RegistrationRequest registrationRequest)
+        public async Task<LocalUser> RegisterAsync(RegistrationRequest registrationRequest)
         {
             _passwordService.CreatePasswordHash(registrationRequest.Password, out byte[] passwordHash, out byte[] passwordSalt);
             LocalUser user = new()
@@ -72,7 +80,7 @@ namespace P04_EF_Applying_To_API.Repository
                 Role = registrationRequest.Role
             };
             _db.LocalUsers.Add(user);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
             user.PasswordHash = null;
             return user;
         }

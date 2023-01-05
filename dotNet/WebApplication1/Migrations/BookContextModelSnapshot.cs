@@ -40,9 +40,6 @@ namespace ApiMokymai.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ReaderCardId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -51,8 +48,6 @@ namespace ApiMokymai.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ReaderCardId");
 
                     b.ToTable("Books");
 
@@ -165,23 +160,14 @@ namespace ApiMokymai.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("BooksLateToReturn")
+                    b.Property<int>("BooksLateToReturnAtm")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("BorrowDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("BorrowedBooksCount")
+                    b.Property<int>("BooksLoeanedAtm")
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("Debt")
+                    b.Property<double?>("Debt")
                         .HasColumnType("REAL");
-
-                    b.Property<DateTime>("ReturnDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("UpdateDateTime")
-                        .HasColumnType("TEXT");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("INTEGER");
@@ -192,6 +178,34 @@ namespace ApiMokymai.Migrations
                         .IsUnique();
 
                     b.ToTable("ReaderCard");
+                });
+
+            modelBuilder.Entity("ApiMokymai.Models.Reservation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("BorrowDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ReaderCardId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("ReturnDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Returned")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReaderCardId");
+
+                    b.ToTable("UserBooks", (string)null);
                 });
 
             modelBuilder.Entity("ApiMokymai.Models.User", b =>
@@ -212,9 +226,8 @@ namespace ApiMokymai.Migrations
                         .IsRequired()
                         .HasColumnType("BLOB");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -222,14 +235,41 @@ namespace ApiMokymai.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RoleId");
+
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ApiMokymai.Models.Book", b =>
+            modelBuilder.Entity("ApiMokymai.Models.UserRole", b =>
                 {
-                    b.HasOne("ApiMokymai.Models.ReaderCard", null)
-                        .WithMany("BorrowedBooks")
-                        .HasForeignKey("ReaderCardId");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserRole");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Secretary"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Customer"
+                        });
                 });
 
             modelBuilder.Entity("ApiMokymai.Models.ReaderCard", b =>
@@ -241,9 +281,29 @@ namespace ApiMokymai.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ApiMokymai.Models.Reservation", b =>
+                {
+                    b.HasOne("ApiMokymai.Models.ReaderCard", null)
+                        .WithMany("UserBooks")
+                        .HasForeignKey("ReaderCardId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ApiMokymai.Models.User", b =>
+                {
+                    b.HasOne("ApiMokymai.Models.UserRole", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+                });
+
             modelBuilder.Entity("ApiMokymai.Models.ReaderCard", b =>
                 {
-                    b.Navigation("BorrowedBooks");
+                    b.Navigation("UserBooks");
                 });
 
             modelBuilder.Entity("ApiMokymai.Models.User", b =>

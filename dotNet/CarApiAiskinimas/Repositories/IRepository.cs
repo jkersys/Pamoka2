@@ -2,7 +2,7 @@
 
 namespace CarApiAiskinimas.Repositories
 {
-    public interface IRepository<T> where T: class, new()
+    public interface IRepository<T> where T : class, new()
     {
         IEnumerable<T> All();
         T Get(int id);
@@ -12,7 +12,6 @@ namespace CarApiAiskinimas.Repositories
         int Count();
         bool Exist(int id);
         IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
-
 
     }
 }

@@ -10,7 +10,7 @@ namespace ApiMokymai.Repositories.IRepositories
 
         TEntity Get(Expression<Func<TEntity, bool>> filter, bool tracked = true);
 
-        void Create(TEntity entity);
+        TEntity Create(TEntity entity);
 
         void Remove(TEntity entity);
 

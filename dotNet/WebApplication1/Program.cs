@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace WebApplication1
 {
@@ -38,8 +39,20 @@ namespace WebApplication1
             builder.Services.AddScoped<IBookRepository, BookRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IPasswordService, PasswordService>();
-            builder.Services.AddScoped<ILibraryRepository, LibraryRepository>();
+            builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
+            builder.Services.AddScoped<IReservationValidator, ReservationValidator>();
+            builder.Services.AddScoped<IReaderCardRepository, ReaderCardRepository>();
             builder.Services.AddScoped<IJwtService, JwtService>();
+
+            builder.Services.AddHttpClient("FakeApi", client =>
+            {
+                client.BaseAddress = new Uri(builder.Configuration["ExternalServices: FakeApiUri"]);
+                client.Timeout = TimeSpan.FromSeconds(10);
+                client.DefaultRequestHeaders.Clear();
+            });
+            builder.Services.AddTransient<IFakeApiProxyService, FakeApiProxyService>();
+            
+
 
             var key = builder.Configuration.GetValue<string>("ApiSettings:Secret");
 
@@ -68,7 +81,7 @@ namespace WebApplication1
             });
 
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddJsonOptions(option => option.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(option =>

@@ -27,6 +27,5 @@ namespace ApiMokymai.Models
         public int PublishYear { get; set; }
         public DateTime UpdateDateTime { get; set; }
         public int Quantity { get; set; }
-
-    }
+}
 }

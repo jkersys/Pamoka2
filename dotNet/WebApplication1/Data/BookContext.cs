@@ -15,6 +15,8 @@ namespace ApiMokymai.Data
         public DbSet<Book> Books { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<ReaderCard> ReaderCard { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<UserRole> UserRole { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -31,6 +33,33 @@ namespace ApiMokymai.Data
               new Book(9, "Great Expectations", "Great Expectations", ECoverType.Electronic, 1999, 8),
               new Book(10, "Hobbit", "Tolkin", ECoverType.HardCover, 2000, 2)
               );
+
+            modelBuilder.Entity<Reservation>().ToTable("UserBooks");
+
+            //modelBuilder.Entity<ReaderCard>()
+            //  .HasKey(d => d.Id);
+            //// Setting auto inrement behaviour
+            //modelBuilder.Entity<ReaderCard>()
+            //    .Property(d => d.Id)
+            //    .ValueGeneratedOnAdd();
+
+
+            modelBuilder.Entity<UserRole>()
+                .HasData(
+                new UserRole(1, "Admin"),
+                new UserRole(2, "Secretary"),
+                new UserRole(3, "Customer")
+                );
+
+            //modelBuilder.Entity<UserBooks>()
+            //  .HasKey(d => d.Id);
+            //// Setting auto inrement behaviour
+            //modelBuilder.Entity<UserBooks>()
+            //    .Property(d => d.Id)
+            //    .ValueGeneratedOnAdd();
+
+
+
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using CarApiAiskinimas.Database;
 using CarApiAiskinimas.Models;
+using System.Linq.Expressions;
 
 namespace CarApiAiskinimas.Repositories
 {
@@ -17,9 +18,25 @@ namespace CarApiAiskinimas.Repositories
             return _context.Cars;
         }
 
+
+        public Car Get(int id)
+        {
+            return _context.Cars.First(x => x.Id == id);
+        }
+
+        public IEnumerable<Car> Find(Expression<Func<Car, bool>> predicate)
+        {
+            return _context.Cars.Where(predicate);
+        }
+
         public int Count()
         {
             return _context.Cars.Count();
+        }
+
+        public bool Exist(int id)
+        {
+            return _context.Cars.Any(x => x.Id == id);
         }
 
         public int Create(Car entity)
@@ -29,19 +46,10 @@ namespace CarApiAiskinimas.Repositories
             return entity.Id;
         }
 
-        public bool Exist(int id)
+        public void Update(Car entity)
         {
-            return _context.Cars.Any(x => x.Id == id);
-        }
-
-        public IEnumerable<Car> Find(System.Linq.Expressions.Expression<Func<Car, bool>> predicate)
-        {
-            return _context.Cars.Where(predicate);
-        }
-
-        public Car Get(int id)
-        {
-            return _context.Cars.First(x => x.Id == id);
+            _context.Cars.Update(entity);
+            _context.SaveChanges();
         }
 
         public void Remove(Car entity)
@@ -50,10 +58,6 @@ namespace CarApiAiskinimas.Repositories
             _context.SaveChanges();
         }
 
-        public void Update(Car entity)
-        {
-            _context.Cars.Update(entity);
-            _context.SaveChanges();
-        }
+    
     }
 }

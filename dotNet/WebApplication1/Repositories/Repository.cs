@@ -7,7 +7,7 @@ namespace ApiMokymai.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        private readonly BookContext _db;
+        protected readonly BookContext _db;
         private DbSet<TEntity> _dbSet;
 
         public Repository(BookContext db)
@@ -16,10 +16,11 @@ namespace ApiMokymai.Repositories
             _dbSet = _db.Set<TEntity>();
         }
 
-        public void Create(TEntity entity)
+        public virtual TEntity Create(TEntity entity)
         {
             _dbSet.Add(entity);
             Save();
+            return entity;
         }
 
         public TEntity Get(Expression<Func<TEntity, bool>> filter, bool tracked = true)

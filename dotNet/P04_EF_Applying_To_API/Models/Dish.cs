@@ -22,11 +22,13 @@ namespace P04_EF_Applying_To_API.Models
         public int DishId { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
-        public string SpiceLevel { get; set; }
+        public string? SpiceLevel { get; set; }
         public string Country { get; set; }
         public string ImagePath { get; set; }
         public DateTime CreateDateTime { get; set; }
         public DateTime UpdateDateTime { get; set; }
         public virtual List<RecipeItem> RecipeItems { get; set; }
+        public virtual List<DishOrder> DishOrders { get; set; }
+
     }
 }

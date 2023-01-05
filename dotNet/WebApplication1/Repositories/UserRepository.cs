@@ -3,6 +3,8 @@ using ApiMokymai.Models;
 using ApiMokymai.Models.Dto;
 using ApiMokymai.Repositories.IRepositories;
 using ApiMokymai.Services.IServices;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace ApiMokymai.Repositories
@@ -49,7 +51,7 @@ namespace ApiMokymai.Repositories
                 };
             }
 
-            var token = _jwtService.GetJwtToken(user.Id, user.Role);
+            var token = _jwtService.GetJwtToken(user.Id, user.Name);
 
             LoginResponse loginResponse = new()
             {
@@ -68,20 +70,28 @@ namespace ApiMokymai.Repositories
         {
             _passwordService.CreatePasswordHash(registrationRequest.Password, out byte[] passwordHash, out byte[] passwordSalt);
 
+       
             User user = new()
-            {
-                Username = registrationRequest.Username,
-                PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt,
-                Name = registrationRequest.Name,
-                Role = registrationRequest.Role,
-                UserReaderCard = new ReaderCard() 
-            };
+                {
+                    Username = registrationRequest.Username,
+                    PasswordHash = passwordHash,
+                    PasswordSalt = passwordSalt,
+                    Name = registrationRequest.Name,
+                    //Role = registrationRequest.Role,
+                    Role = _db.UserRole.First(x => x.Name == registrationRequest.Role),
+                    UserReaderCard = new ReaderCard(),
+                    
+                };
 
             _db.Users.Add(user);
             _db.SaveChanges();
             user.PasswordHash = null;
             return user;
+        }
+
+        public User Get(Expression<Func<User, bool>> filter)
+        {
+           return _db.Users.FirstOrDefault(filter);
         }
     }
 }
